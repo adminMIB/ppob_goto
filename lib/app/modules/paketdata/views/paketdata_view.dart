@@ -429,11 +429,12 @@ class _PaketdataViewState extends State<PaketdataView> {
                                                   }
                                                 },
                                                 child: Container(
-                                                  padding: EdgeInsets.only(
-                                                      top: 1.0.h),
+                                                  height: 5.0.h,
+                                                  width: 3.0.h,
+                                                  color: whiteColor,
                                                   child: Image.asset(
                                                     'assets/images/kontak.png',
-                                                    height: 4.0.h,
+                                                    // height: 4.0.h,
                                                   ),
                                                 ),
                                               ),

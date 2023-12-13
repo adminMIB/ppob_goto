@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/card.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
@@ -56,17 +58,28 @@ class _HomeViewState extends State<HomeView> {
             Dialogs.materialDialog(
               color: whiteColor,
               msg: 'Demi kemanan akun anda, silahkan \nLogin kembali',
+              msgAlign: TextAlign.center,
               title: 'Sesi anda telah habis',
-              msgStyle: TextStyle(fontSize: 12.0.sp),
+              msgStyle: TextStyle(
+                fontSize: 12.0.sp,
+                fontWeight: FontWeight.w400,
+              ),
+              lottieBuilder: Lottie.asset(
+                'assets/json/timeout.json',
+                fit: BoxFit.contain,
+              ),
               context: context,
               barrierDismissible: false,
               actions: [
-                IconButton(
+                IconsButton(
                   onPressed: () {
                     Get.offAll(LoginView());
                   },
-                  icon: Icon(Icons.close),
-                )
+                  text: 'Keluar',
+                  color: mainColor,
+                  textStyle: const TextStyle(color: Colors.white),
+                  iconColor: Colors.white,
+                ),
               ],
             );
           },

@@ -427,13 +427,23 @@ class _PulsaViewState extends State<PulsaView> {
                                                   }
                                                 },
                                                 child: Container(
-                                                  padding: EdgeInsets.only(
-                                                      top: 1.0.h),
+                                                  height: 5.0.h,
+                                                  width: 3.0.h,
+                                                  color: whiteColor,
                                                   child: Image.asset(
                                                     'assets/images/kontak.png',
                                                     height: 4.0.h,
                                                   ),
                                                 ),
+
+                                                //  Container(
+                                                //   padding: EdgeInsets.only(
+                                                //       top: 1.0.h),
+                                                //   child: Image.asset(
+                                                //     'assets/images/kontak.png',
+                                                //     height: 4.0.h,
+                                                //   ),
+                                                // ),
                                               ),
                                             ],
                                           ),

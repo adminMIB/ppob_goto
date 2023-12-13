@@ -38,8 +38,7 @@ class _LoadingCustomWidgetState extends State<LoadingCustomWidget> {
                     child: Container(
                   width: 50.0.w,
                   height: 30.0.h,
-                  child:
-                      Lottie.asset('assets/json/loading1.json', height: 30.0.h),
+                  child: Lottie.asset('assets/json/io.json', height: 30.0.h),
                 )),
                 // child: Image(
                 //     image:

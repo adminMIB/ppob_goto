@@ -56,7 +56,7 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(2.0.h, 1.0.h, 2.0.h, 1.0.h),
+            padding: EdgeInsets.fromLTRB(2.0.h, 1.0.h, 2.0.h, 2.0.h),
             child: Column(
               children: [
                 Center(
