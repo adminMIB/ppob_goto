@@ -84,14 +84,13 @@ class _InvoiceViewState extends State<InvoiceView> {
                             alignment: Alignment.topRight,
                             child: GestureDetector(
                               onTap: () async {
-                                //  controller.restart
-                                Get.offAll(
-                                  ShowCaseWidget(
-                                      builder: Builder(
-                                          builder: (_) => MainPage(
-                                              //fungsi
-                                              ))),
-                                );
+                                Get.offAll(MainPage()
+                                    // ShowCaseWidget(
+                                    //     builder: Builder(
+                                    //         builder: (_) => MainPage(
+                                    //             //fungsi
+                                    //             ))),
+                                    );
                               },
                               child: Icon(
                                 Icons.close,
@@ -188,7 +187,8 @@ class _InvoiceViewState extends State<InvoiceView> {
                                           Row(
                                             children: [
                                               Text(
-                                                widget.datetime!,
+                                                // widget.datetime!,
+                                                '',
                                                 style: TextStyle(
                                                     fontSize: 11.0.sp,
                                                     fontWeight: FontWeight.w500,

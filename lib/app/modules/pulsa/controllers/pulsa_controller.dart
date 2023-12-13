@@ -195,85 +195,6 @@ class PulsaController extends GetxController {
     );
   }
 
-  // transaksipulsa(var pin, var nomorTelepon, var productCode, var harga,
-  //     var productName, BuildContext context) async {
-  //   var access_token = pref.read('access_token');
-  //   print('productname = $productName');
-
-  //   return network.post(
-  //     path: UrlListService.pulsatransaksi,
-  //     headers: {
-  //       'Authorization': 'Bearer $access_token',
-  //     },
-  //     onSuccess: (content) async {
-  //       if (content['status'] == true) {
-  //         // print('transaksi pulsa : $content');
-  //         print(content['response']['data']['statusTrx']);
-  //         print(content);
-
-  //         print(productCode);
-  //         String tgl = content['response']['data']['time'];
-  //         String tglWith = tgl.toString();
-  //         // tgl.toString().substring(0, 8) + 'T' + tgl.toString().substring(8);
-  //         DateTime dateTime = DateTime.parse(tglWith);
-  //         print(dateTime);
-  //         // String timeString = content['response']['data']['time'];
-  //         // DateTime dateTime = DateFormat('yyyyMMddHHmmss').parse(timeString);
-
-  //         // // Format the date and time for display
-  //         // String formattedDateTime =
-  //         //     DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
-  //         await PersistentNavBarNavigator.pushNewScreen(
-  //           context,
-  //           screen: InvoiceView(
-  //             productName: productName,
-  //             productCode: productCode,
-  //             harga: content['response']['data']['amount'].toString(),
-  //             nomorTelepon: nomorTelepon,
-  //             status: content['response']['data']['statusTrx'],
-  //             noref: content['response']['data']['ref2'],
-  //             datetime: DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime),
-  //           ),
-  //           withNavBar: true,
-  //           pageTransitionAnimation: PageTransitionAnimation.cupertino,
-  //         );
-  //       } else if (content['status'] == false) {
-  //         print('sata');
-  //         print(content['status'] == false);
-  //         // print(content['response']['data']['statusTrx']);
-  //         // print(content);
-  //         // print(productCode);
-
-  //         // // Ambil informasi dari respons API false
-  //         // String errorMessage = content['response']['data']['desc'];
-
-  //         // await PersistentNavBarNavigator.pushNewScreen(
-  //         //   context,
-  //         //   screen: InvoiceView(
-  //         //     productName: productName,
-  //         //     productCode: productCode,
-  //         //     harga: content['response']['data']['amount'].toString(),
-  //         //     nomorTelepon: nomorTelepon,
-  //         //     status: content['response']['data']['statusTrx'],
-  //         //     noref: content['response']['data']['ref2'],
-  //         //   ),
-  //         //   withNavBar: true,
-  //         //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-  //         // );
-  //       }
-  //     },
-  //     onError: (error) {
-  //       print('error: $error');
-  //     },
-  //     body: {
-  //       "pin": pin,
-  //       "no_hp": nomorTelepon,
-  //       "productCode": productCode,
-  //       "user_id": pref.read('user_id'),
-  //       "harga_products": harga
-  //     },
-  //   );
-  // }
   transaksipulsa(var pin, var nomorTelepon, var productCode, var harga,
       var productName, BuildContext context) async {
     var access_token = pref.read('access_token');
@@ -286,15 +207,16 @@ class PulsaController extends GetxController {
       },
       onSuccess: (content) async {
         if (content['status'] == true) {
+          print('Status value: ${content['status']}');
+
           print(content['response']['data']['statusTrx']);
-          print(content);
+          print(' ss $content');
 
-          print(productCode);
           String tgl = content['response']['data']['time'];
-
-          DateTime dateTime = DateTime.parse(tgl);
-          print(dateTime);
-
+          String tglWith = tgl.toString();
+          // tgl.toString().substring(0, 8) + 'T' + tgl.toString().substring(8);
+          DateTime datetime = DateTime.parse(tglWith);
+          print(datetime);
           await PersistentNavBarNavigator.pushNewScreen(
             context,
             screen: InvoiceView(
@@ -304,18 +226,24 @@ class PulsaController extends GetxController {
               nomorTelepon: nomorTelepon,
               status: content['response']['data']['statusTrx'],
               noref: content['response']['data']['ref2'],
-              datetime: DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime),
+              // datetime: DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime),
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
         } else if (content['status'] == false) {
-          print('status: false');
-          print(content);
-          print(productCode);
+          print('object');
+          print(content['status'] == false);
+          print(content['response']['data']['statusTrx']);
+          print('hellow $content');
+          print('Content: $content');
+          print('Status key exists: ${content.containsKey('status')}');
 
-          // Ambil informasi dari respons API false
-          String errorMessage = content['response']['data']['desc'];
+          print(productCode);
+          String tgl = content['response']['data']['time'];
+
+          DateTime dateTime = DateTime.parse(tgl);
+          print(dateTime);
 
           await PersistentNavBarNavigator.pushNewScreen(
             context,

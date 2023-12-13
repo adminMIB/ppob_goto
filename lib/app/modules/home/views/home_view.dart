@@ -9,10 +9,8 @@ import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/card.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
-import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
 import 'package:ppob_mpay1/app/modules/multifinance/views/multifinance_view.dart';
 import 'package:ppob_mpay1/app/modules/paketdata/views/paketdata_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/views/kontak_view.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/views/pulsa_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/bpjs_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
@@ -73,7 +71,8 @@ class _HomeViewState extends State<HomeView> {
               actions: [
                 IconsButton(
                   onPressed: () {
-                    Get.offAll(LoginView());
+                    // Get.offAll(LoginView());
+                    Get.back();
                   },
                   text: 'Keluar',
                   color: mainColor,
