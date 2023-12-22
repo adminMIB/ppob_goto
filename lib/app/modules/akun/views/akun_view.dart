@@ -10,6 +10,9 @@ import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
+import 'package:ppob_mpay1/app/data/urlServices.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/profile_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
 import 'package:ppob_mpay1/app/modules/fingerprint/views/fingerprint_view.dart';
 import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
@@ -28,6 +31,8 @@ class AkunView extends StatefulWidget {
 }
 
 class AkunViewState extends State<AkunView> {
+  final AkunController akunController = Get.put(AkunController());
+  final HelperController helperController = Get.put(HelperController());
   var pref = GetStorage();
   XFile? image1;
 
@@ -40,6 +45,17 @@ class AkunViewState extends State<AkunView> {
       image1 = img2;
     });
   }
+
+  @override
+  void initState() {
+    super.initState();
+    akunController.profile(context);
+  }
+  // void initState() {
+  //   super.initState();
+  //   // Panggil fungsi profile ketika widget diinisialisasi
+  //   akunController.profile(context);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,57 +92,26 @@ class AkunViewState extends State<AkunView> {
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.circular(60.0),
-                        child: image1 == null
-                            ? Image.asset(
-                                'assets/images/orang1.png',
-                                width: 120.0,
-                                height: 120.0,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                File(image1!.path),
-                                width: 120.0,
-                                height: 120.0,
-                                fit: BoxFit.cover,
-                              ),
-                      ),
-                      Positioned(
-                        bottom: 1.0.h,
-                        right: 1.5.w,
-                        child: InkWell(
-                            onTap: () {
-                              showFlexibleBottomSheet(
-                                minHeight: 0,
-                                initHeight: 0.5,
-                                maxHeight: 0.5,
-                                context: context,
-                                builder: bottomsheet,
-                                isExpand: false,
-                              );
-                            },
-                            child: Container(
-                              width: 10.0.w,
-                              height: 10.0.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 2),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.camera_alt,
-                                  color: Colors.grey.shade700,
-                                  size: 28.0,
+                        child: Obx(
+                          () => akunController.userProfile['foto_profile'] ==
+                                      null ||
+                                  akunController.userProfile['foto_profile'] ==
+                                      ''
+                              ? Image.asset(
+                                  'assets/images/orang1.png',
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  UrlListService.baseUrl +
+                                      akunController
+                                          .userProfile['foto_profile'],
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.cover,
                                 ),
-                              ),
-                            )),
+                        ),
                       ),
                     ],
                   ),
@@ -134,7 +119,8 @@ class AkunViewState extends State<AkunView> {
                     height: 1.5.h,
                   ),
                   Text(
-                    '${pref.read('nama_lengkap')}'.toUpperCase(),
+                    '${pref.read('nama_lengkap')}',
+                    // '${controller.userProfile['profile']['alamat'] ?? "Alamat tidak tersedia"}',
                     style: TextStyle(fontSize: 14.0.sp),
                   )
                 ],
@@ -161,8 +147,10 @@ class AkunViewState extends State<AkunView> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  onTap: () {
-                    Get.to(ProfilefieldView());
+                  onTap: () async {
+                    await Future.delayed(Duration(milliseconds: 2000));
+
+                    Get.to(ProfileView());
                   },
                 ),
                 Divider(

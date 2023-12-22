@@ -126,17 +126,16 @@ class CustomPopupWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              // Gambar di tengah atas
-              Center(
-                child: Container(
-                  margin: EdgeInsets.all(5.0.h),
-                  child: Image.asset(
-                    'assets/images/telpon.png',
-                    fit: BoxFit.contain,
-                    height: 5.0.h,
-                  ),
-                ),
-              ),
+              // Center(
+              //   child: Container(
+              //     margin: EdgeInsets.all(5.0.h),
+              //     child: Image.asset(
+              //       'assets/images/telpon.png',
+              //       fit: BoxFit.contain,
+              //       height: 5.0.h,
+              //     ),
+              //   ),
+              // ),
               // Pesan di bawah gambar
               Padding(
                 padding: const EdgeInsets.all(8.0),

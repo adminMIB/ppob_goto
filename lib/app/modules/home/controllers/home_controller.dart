@@ -9,12 +9,12 @@ import 'package:ppob_mpay1/app/data/urlServices.dart';
 class HomeController extends GetxController {
   final helperController = Get.put(HelperController());
 
-  var isLoadBalance = true.obs;
+  var isLoadBalance = false.obs;
   var balance = '0'.obs;
   var pref = GetStorage();
   var access_token;
 
-  CheckBalance() async {
+  CheckBalance(BuildContext context) async {
     isLoadBalance(true);
     var access_token = pref.read('access_token');
     return helperController.post(
@@ -23,12 +23,11 @@ class HomeController extends GetxController {
         'Authorization': 'Bearer $access_token',
       },
       onSuccess: (content) async {
-        print(content);
+        print('hasil: $content');
 
         var saldo = content['saldo'];
 
         balance.value = saldo;
-
         isLoadBalance(false);
         Get.back();
       },

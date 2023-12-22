@@ -8,21 +8,11 @@ import 'package:dio/dio.dart';
 import 'package:ppob_mpay1/app/data/popup/views/customPopup.dart';
 import 'package:ppob_mpay1/app/data/popup/views/loadingcustom.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
-// import 'package:ppob_dtq/app/data/customeDialog.dart';
-
-// import '../CustomDialod.dart';
-// import '../NoConnection.dart';
-// import '../TokenExpired.dart';
-// import '../urlServices.dart';
 
 class HelperController extends getx.GetxController {
   final Dio _client = Dio(
     BaseOptions(
       baseUrl: UrlListService.baseUrl,
-      // baseUrl: "https://6d35-139-194-69-233.ngrok-free.app/api/",
-      // receiveTimeout: 10000, // 10 seconds
-      // receiveTimeout: const Duration(seconds: 10),
-      // sendTimeout: const Duration(seconds: 10),
       contentType: Headers.formUrlEncodedContentType,
     ),
   );
@@ -37,57 +27,20 @@ class HelperController extends getx.GetxController {
       bool isResultCode = false}) async {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
-      // komen dulu sebentar
-
-      // try {
-      //   final response = await _client.get(
-      //     path!,
-      //     options: Options(headers: headers),
-      //     queryParameters: queryParameters,
-      //   );
-
-      //   return isRawResult
-      //       ? onSuccess!(response.data)
-      //       : onSuccess!(response.data['data']);
-      // } on DioError catch (e) {
       try {
         final response = await _client.get(
           path!,
           options: Options(headers: headers),
           queryParameters: queryParameters,
         );
-        print(response.statusCode);
-        print(response.data);
-        if (response.statusCode == 200) {
-          return isRawResult
-              ? onSuccess!(response.data)
-              : onSuccess!(response.data['data']);
-        } else {
-          return isResultCode
-              ? onError!(response.statusCode)
-              : onError!(response.data);
-        }
-        print(response.data);
-        // if (response.statusCode == 200) {
-        //   return onSuccess!(response.data);
-        // } else {
-        //   return isResultCode
-        //       ? onError!(response.statusCode)
-        //       : onError!(response.data);
-        // }
+
+        return isRawResult
+            ? onSuccess!(response.data)
+            : onSuccess!(response.data);
       } on DioError catch (e) {
         print('${e.message} for $path');
-        // if (e.type == DioErrorType.connectionTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // } else if (e.type == DioErrorType.receiveTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // } else if (e.response?.statusCode == 412) {
-        //   return getx.Get.offAll(const TokenExpiredPage());
-        // } else if (e.type == DioErrorType.sendTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // } else if (e.type == DioErrorType.sendTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // }
+        print('Full response in onError: ${e.response?.toString()}');
+
         return isResultCode
             ? onError!(e.response?.statusCode)
             : onError!(e.response?.data);

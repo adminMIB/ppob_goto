@@ -25,7 +25,7 @@ class InvoiceView extends StatefulWidget {
   final String? nomorTelepon;
   final String? status;
   final String? noref;
-  final String? datetime;
+  final String? tglwaktu;
   const InvoiceView({
     super.key,
     this.productCode,
@@ -34,7 +34,7 @@ class InvoiceView extends StatefulWidget {
     this.nomorTelepon,
     this.status,
     this.noref,
-    this.datetime,
+    this.tglwaktu,
   });
 
   @override
@@ -42,6 +42,7 @@ class InvoiceView extends StatefulWidget {
 }
 
 class _InvoiceViewState extends State<InvoiceView> {
+  //  DateTime parsedDateTime = parseDateTime(widget.tglwaktu ?? '');
   final helperController = Get.put(HelperController());
 
   Uint8List? _imageFile;
@@ -174,21 +175,36 @@ class _InvoiceViewState extends State<InvoiceView> {
                                           SizedBox(
                                             height: 2.0.h,
                                           ),
+                                          // Text(
+                                          //   'Pembelian' + ' ' + widget.status!,
+                                          //   style: TextStyle(
+                                          //       fontSize: 14.0.sp,
+                                          //       fontWeight: FontWeight.bold),
+                                          //   textAlign: TextAlign.left,
+                                          // ),
                                           Text(
-                                            'Pembelian' + ' ' + widget.status!,
+                                            'Pembelian' +
+                                                ' ' +
+                                                (widget.status == 'GAGAL'
+                                                    ? 'Gagal'
+                                                    : (widget.status == 'SUKSES'
+                                                        ? 'Berhasil!!'
+                                                        : widget.status!)),
                                             style: TextStyle(
-                                                fontSize: 14.0.sp,
-                                                fontWeight: FontWeight.bold),
+                                              fontSize: 14.0.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                             textAlign: TextAlign.left,
                                           ),
+
                                           SizedBox(
                                             height: 0.5.h,
                                           ),
                                           Row(
                                             children: [
                                               Text(
-                                                // widget.datetime!,
-                                                '',
+                                                // '',
+                                                widget.tglwaktu ?? '',
                                                 style: TextStyle(
                                                     fontSize: 11.0.sp,
                                                     fontWeight: FontWeight.w500,
@@ -198,33 +214,11 @@ class _InvoiceViewState extends State<InvoiceView> {
                                               SizedBox(
                                                 width: 0.8.h,
                                               ),
-                                              Icon(
-                                                Icons.circle,
-                                                size: 0.7.h,
-                                                color: Colors.grey.shade400,
-                                              ),
-                                              SizedBox(
-                                                width: 0.8.h,
-                                              ),
-                                              Text(
-                                                '12.45',
-                                                style: TextStyle(
-                                                    fontSize: 11.0.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                    color:
-                                                        Colors.grey.shade400),
-                                              ),
-                                              SizedBox(
-                                                width: 0.7.h,
-                                              ),
-                                              Icon(
-                                                Icons.circle,
-                                                size: 0.8.h,
-                                                color: Colors.grey.shade400,
-                                              ),
-                                              SizedBox(
-                                                width: 0.8.h,
-                                              ),
+                                              // Icon(
+                                              //   Icons.circle,
+                                              //   size: 0.7.h,
+                                              //   color: Colors.grey.shade400,
+                                              // ),
                                             ],
                                           )
                                         ],
@@ -250,8 +244,7 @@ class _InvoiceViewState extends State<InvoiceView> {
                                             ),
                                           ),
                                           Text(
-                                            widget
-                                                .noref!, // Menggunakan widget.noref untuk menampilkan nilai noref
+                                            widget.noref!,
                                             style: TextStyle(
                                                 fontSize: 12.0.sp,
                                                 fontWeight: FontWeight.w400),
@@ -276,11 +269,14 @@ class _InvoiceViewState extends State<InvoiceView> {
                                           Container(
                                             width: 23.0.h,
                                             // color: oceanColor,
-                                            child: Text(widget.productName!,
-                                                style: TextStyle(
-                                                    fontSize: 12.0.sp,
-                                                    fontWeight:
-                                                        FontWeight.w400)),
+                                            child: Text(
+                                              widget.productName!,
+                                              style: TextStyle(
+                                                fontSize: 12.0.sp,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign.right,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -350,7 +346,11 @@ class _InvoiceViewState extends State<InvoiceView> {
                                           Text(widget.status!,
                                               style: TextStyle(
                                                   fontSize: 10.0.sp,
-                                                  color: Colors.green,
+                                                  color: widget.status ==
+                                                          'GAGAL'
+                                                      ? Colors
+                                                          .red // Set text color to red for status 'gagal'
+                                                      : Colors.green,
                                                   fontWeight: FontWeight.w500)),
                                         ],
                                       ),

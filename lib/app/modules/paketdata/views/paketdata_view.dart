@@ -26,26 +26,26 @@ class PaketdataView extends StatefulWidget {
     Key? key,
     this.pin,
   }) : super(key: key);
-
   @override
   _PaketdataViewState createState() => _PaketdataViewState();
 }
 
 class _PaketdataViewState extends State<PaketdataView> {
   bool status = false;
-  int selectedItemIndex = -1; // -1 berarti tidak ada yang dipilih
-
+  int selectedItemIndex = -1;
   bool _ingatsaya = false;
   bool shouldUpdateViewPrice = false;
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   TextEditingController tNoPulsa = TextEditingController();
 
-  final paketdataController = Get.put(PaketdataController());
-  final pulsaController = Get.put(PulsaController());
+  final paketdata = Get.put(PaketdataController());
   final helperController = Get.put(HelperController());
 
   PhoneContact? _phoneContact;
-
+  String errorText = '';
   int lengthNoTelepon = 0;
+
+  // int lengthNoTelepon = 0;
   var pickNumber = '';
 
   @override
@@ -68,6 +68,19 @@ class _PaketdataViewState extends State<PaketdataView> {
         },
         child: Scaffold(
             backgroundColor: whiteColor,
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ),
             body: Stack(
               children: [
                 SafeArea(
@@ -78,19 +91,6 @@ class _PaketdataViewState extends State<PaketdataView> {
                         init: PaketdataController(),
                         builder: (_data) => ListView(
                           children: [
-                            AppBar(
-                              elevation: 0,
-                              backgroundColor: Colors.transparent,
-                              leading: IconButton(
-                                icon: Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.black,
-                                ),
-                                onPressed: () {
-                                  Get.back();
-                                },
-                              ),
-                            ),
                             Stack(
                               children: [
                                 Column(
@@ -153,6 +153,8 @@ class _PaketdataViewState extends State<PaketdataView> {
                                             height: 1.0.h,
                                           ),
                                           Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
@@ -161,7 +163,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                                               //   height: 5.0.h,
                                               // ),
                                               Container(
-                                                height: 5.0.h,
+                                                height: 8.0.h,
                                                 width: 5.0.h,
                                                 color: whiteColor,
                                                 child: GestureDetector(
@@ -176,227 +178,144 @@ class _PaketdataViewState extends State<PaketdataView> {
                                                           _data.logoProvider
                                                               .value,
                                                           width: 5.0.h,
+                                                          alignment: Alignment
+                                                              .topCenter,
                                                         ),
                                                 ),
                                               ),
 
                                               SizedBox(width: 2.0.h),
-                                              Container(
-                                                width: 65.w,
-                                                height: 6.h,
+                                              Form(
+                                                key: _formkey,
+                                                autovalidateMode:
+                                                    AutovalidateMode
+                                                        .onUserInteraction,
                                                 child: Container(
-                                                  width: 60.0.w,
-                                                  height: 5.0.h,
-                                                  child: TextField(
-                                                    controller: tNoPulsa,
-                                                    keyboardType:
-                                                        TextInputType.phone,
-                                                    // onChanged: (a) {
-                                                    //   // lengthNoTelepon =
-                                                    //   //     a.length;
-                                                    //   // pulsaController
-                                                    //   //     .checkNomorPonsel(
-                                                    //   //         a, context);
-                                                    //   lengthNoTelepon =
-                                                    //       a.length;
-                                                    //   pulsaController
-                                                    //       .checkNomorPonsel(
-                                                    //           a, context);
-
-                                                    //   setState(() {
-                                                    //     shouldUpdateViewPrice =
-                                                    //         true;
-                                                    //   });
-                                                    //   if (a.length > 11) {
-                                                    //     Get.snackbar(
-                                                    //         '', 'message',
-                                                    //         backgroundColor:
-                                                    //             whiteColor);
-                                                    //   } else {
-                                                    //     Get.back();
-                                                    //   }
-                                                    // },
-                                                    onChanged: (a) {
-                                                      lengthNoTelepon =
-                                                          a.length;
-                                                      paketdataController
-                                                          .checkNomorPonsel(
-                                                              a, context);
-
-                                                      setState(() {
-                                                        shouldUpdateViewPrice =
-                                                            true;
-                                                      });
-
-                                                      // Tambahkan validasi untuk angka yang dimasukkan
-                                                      if (a.isNotEmpty) {
-                                                        int enteredNumber =
-                                                            int.tryParse(a) ??
-                                                                0;
-                                                        if (enteredNumber <
-                                                            11) {
-                                                          // Tampilkan Snackbar sebagai alternatif pesan validasi
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                  'Nomor harus minimal 11 digit'),
-                                                              backgroundColor:
-                                                                  Colors.red,
-                                                            ),
-                                                          );
-                                                          //   } else {
-                                                          //     // Reset pesan validasi jika angka sudah sesuai
-                                                          //     setState(() {});
-                                                          //   }
-                                                          // } else {
-                                                          //   // Reset pesan validasi jika field kosong
-                                                          //   setState(() {});
-                                                        }
-                                                      }
-                                                    },
-                                                    decoration: InputDecoration(
-                                                      hintText:
-                                                          'Input nomor handphone',
-                                                      hintStyle: TextStyle(
-                                                        fontSize: 10.0.sp,
-                                                        color: greyTextColor,
-                                                      ),
-                                                      border:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                        borderSide: BorderSide(
-                                                            color: Colors.grey),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                        borderSide: BorderSide(
-                                                            color: Colors.blue),
-                                                      ),
-                                                      suffixIcon:
-                                                          GestureDetector(
-                                                        onTap: () {
-                                                          tNoPulsa.clear();
+                                                  width: 65.w,
+                                                  // height: 7.h,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      TextFormField(
+                                                        minLines: 1,
+                                                        maxLength: 13,
+                                                        controller: tNoPulsa,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        onChanged: (a) {
+                                                          lengthNoTelepon =
+                                                              a.length;
+                                                          paketdata
+                                                              .checkNomorPonsel(
+                                                                  a, context);
+                                                          setState(() {
+                                                            shouldUpdateViewPrice =
+                                                                true;
+                                                          });
                                                         },
-                                                        child: Container(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0),
                                                           ),
-                                                          child: Icon(
-                                                            Icons.close,
-                                                            size: 20,
-                                                            color: Colors.grey,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0), // Same circular border radius
                                                           ),
+                                                          // Warna outline ketika di-klik atau fokus
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .blue),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0), // Same circular border radius
+                                                          ),
+                                                          hintText:
+                                                              'Masukkan Nomer telepon',
+                                                          hintStyle: TextStyle(
+                                                              fontSize: 12.0.sp,
+                                                              color: Colors.grey
+                                                                  .shade500),
                                                         ),
+                                                        validator: (value) {
+                                                          if (lengthNoTelepon <
+                                                              10) {
+                                                            return 'Nomor handphone minimal 10 karakter';
+                                                          }
+                                                          return null; // No error message here
+                                                        },
                                                       ),
-                                                    ),
+                                                      // Display the validation message here
+                                                    ],
                                                   ),
-                                                  //     TextField(
-                                                  //   controller: tNoPulsa,
-                                                  //   keyboardType:
-                                                  //       TextInputType.phone,
-                                                  //   onChanged:
-                                                  //       (nomorHandphone) {
-                                                  //     lengthNoTelepon =
-                                                  //         nomorHandphone.length;
-                                                  //     pulsaController
-                                                  //         .checkNomorPonsel(
-                                                  //             nomorHandphone,
-                                                  //             context);
-
-                                                  //     setState(() {
-                                                  //       shouldUpdateViewPrice =
-                                                  //           true;
-                                                  //     });
-
-                                                  //     // Validasi untuk nomor yang dimasukkan
-                                                  //     if (nomorHandphone
-                                                  //         .isNotEmpty) {
-                                                  //       int nomorTerparsing =
-                                                  //           int.tryParse(
-                                                  //                   nomorHandphone) ??
-                                                  //               0;
-                                                  //       if (nomorTerparsing <
-                                                  //           11) {
-                                                  //         // Tampilkan pesan validasi atau ambil tindakan yang sesuai
-                                                  //         // Anda dapat mengganti baris berikut dengan logika validasi khusus Anda
-                                                  //         print(
-                                                  //             'Nomor harus lebih besar dari atau sama dengan 11');
-                                                  //         // Tambahkan kode untuk menangani kesalahan validasi, misalnya, menampilkan pesan kesalahan
-                                                  //       }
-                                                  //     }
-                                                  //   },
-                                                  //   decoration: InputDecoration(
-                                                  //     hintText:
-                                                  //         'Masukkan nomor handphone',
-                                                  //     hintStyle: TextStyle(
-                                                  //       fontSize: 10.0.sp,
-                                                  //       color: greyTextColor,
-                                                  //     ),
-                                                  //     border:
-                                                  //         OutlineInputBorder(
-                                                  //       borderRadius:
-                                                  //           BorderRadius
-                                                  //               .circular(12.0),
-                                                  //     ),
-                                                  //     enabledBorder:
-                                                  //         OutlineInputBorder(
-                                                  //       borderRadius:
-                                                  //           BorderRadius
-                                                  //               .circular(12.0),
-                                                  //       borderSide: BorderSide(
-                                                  //           color: Colors.grey),
-                                                  //     ),
-                                                  //     focusedBorder:
-                                                  //         OutlineInputBorder(
-                                                  //       borderRadius:
-                                                  //           BorderRadius
-                                                  //               .circular(12.0),
-                                                  //       borderSide: BorderSide(
-                                                  //           color: Colors.blue),
-                                                  //     ),
-                                                  //     suffixIcon:
-                                                  //         GestureDetector(
-                                                  //       onTap: () {
-                                                  //         tNoPulsa.clear();
-                                                  //       },
-                                                  //       child: Container(
-                                                  //         padding:
-                                                  //             EdgeInsets.all(
-                                                  //                 10),
-                                                  //         decoration:
-                                                  //             BoxDecoration(
-                                                  //           shape:
-                                                  //               BoxShape.circle,
-                                                  //         ),
-                                                  //         child: Icon(
-                                                  //           Icons.close,
-                                                  //           size: 20,
-                                                  //           color: Colors.grey,
-                                                  //         ),
-                                                  //       ),
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
                                                 ),
                                               ),
+
+                                              // Form(
+                                              //     child: Container(
+                                              //   width: 65.w,
+                                              //   height: 8.5.h,
+                                              //   child: TextFormField(
+                                              //     minLines: 1,
+                                              //     controller: tNoPulsa,
+                                              //     keyboardType:
+                                              //         TextInputType.phone,
+                                              //     onChanged: (a) {
+                                              //       lengthNoTelepon = a.length;
+                                              //       pulsaController
+                                              //           .checkNomorPonsel(
+                                              //               a, context);
+                                              //       setState(() {
+                                              //         shouldUpdateViewPrice =
+                                              //             true;
+                                              //       });
+                                              //     },
+                                              //     decoration: InputDecoration(
+                                              //       border: OutlineInputBorder(
+                                              //         borderSide: BorderSide(
+                                              //             color: Colors.grey),
+                                              //         borderRadius:
+                                              //             BorderRadius.circular(
+                                              //                 10.0),
+                                              //       ),
+                                              //       hintText:
+                                              //           'Masukkan Merchant',
+                                              //       hintStyle: TextStyle(
+                                              //           fontSize: 12.0.sp,
+                                              //           color: Colors
+                                              //               .grey.shade500),
+                                              //     ),
+                                              //     validator: Validators.compose(
+                                              //       [
+                                              //         Validators.required(
+                                              //             'Nama merchant harus di isi'),
+                                              //       ],
+                                              //     ),
+                                              //   ),
+                                              // )),
+
                                               SizedBox(
                                                 width: 2.0.h,
                                               ),
@@ -421,7 +340,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                                                     setState(() {
                                                       tNoPulsa.text =
                                                           formattedNumber;
-                                                      paketdataController
+                                                      paketdata
                                                           .checkNomorPonsel(
                                                               formattedNumber,
                                                               context);
@@ -429,14 +348,25 @@ class _PaketdataViewState extends State<PaketdataView> {
                                                   }
                                                 },
                                                 child: Container(
-                                                  height: 5.0.h,
+                                                  height: 8.0.h,
                                                   width: 3.0.h,
                                                   color: whiteColor,
                                                   child: Image.asset(
                                                     'assets/images/kontak.png',
-                                                    // height: 4.0.h,
+                                                    height: 4.0.h,
+                                                    alignment:
+                                                        Alignment.topCenter,
                                                   ),
                                                 ),
+
+                                                //  Container(
+                                                //   padding: EdgeInsets.only(
+                                                //       top: 1.0.h),
+                                                //   child: Image.asset(
+                                                //     'assets/images/kontak.png',
+                                                //     height: 4.0.h,
+                                                //   ),
+                                                // ),
                                               ),
                                             ],
                                           ),
@@ -488,11 +418,11 @@ class _PaketdataViewState extends State<PaketdataView> {
                               height: 2.0.h,
                             ),
                             Container(
-                                height: Get.height * 0.60,
+                                height: Get.height * 0.53,
                                 color: whiteColor,
                                 child: Padding(
                                   padding: EdgeInsets.only(
-                                    bottom: 2.0.h,
+                                    bottom: 4.0.h,
                                   ),
                                   child: Obx(() => SingleChildScrollView(
                                         child: Container(
@@ -502,8 +432,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                                                 MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            children: paketdataController
-                                                .listPulsaOnly
+                                            children: paketdata.listPulsaOnly
                                                 .map((element) {
                                               return viewprice(
                                                   _data.isCek.value == true
@@ -513,10 +442,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                                                   element['productCode'],
                                                   element['productName'],
                                                   element['price'],
-                                                  element['type']
-                                                  // _data.provider.value,
-                                                  // _data.logoProvider.value,
-                                                  );
+                                                  element['type']);
                                             }).toList(),
                                           ),
                                         ),
@@ -596,8 +522,15 @@ class _PaketdataViewState extends State<PaketdataView> {
                   maxHeight: 0.5,
                   context: context,
                   builder: (context, scrollController, bottomSheetOffset) {
-                    return _buildBottomSheet(price, productName, productCode,
-                        context, scrollController, bottomSheetOffset);
+                    return _buildBottomSheet(
+                        price,
+                        productName,
+                        productCode,
+                        type,
+                        provider,
+                        context,
+                        scrollController,
+                        bottomSheetOffset);
                   },
                   isExpand: false,
                 );
@@ -606,7 +539,7 @@ class _PaketdataViewState extends State<PaketdataView> {
               },
               child: Container(
                 margin: EdgeInsets.only(bottom: 8.0),
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(15.0),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(10),
@@ -620,47 +553,33 @@ class _PaketdataViewState extends State<PaketdataView> {
                   ],
                 ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: 15,
-                      width: 15,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 2,
+                      width: 50.0.w,
+                      // color: Colors.amber,
+                      child: Text(
+                        productName,
+                        style: TextStyle(
+                          fontSize: 11.0.sp,
+                          fontWeight: FontWeight.w400,
                         ),
-                        color: Colors.grey,
                       ),
                     ),
-                    SizedBox(width: 12),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: 20.0.h,
-                          child: Text(
-                            productName,
-                            style: TextStyle(
-                              fontSize: 11.0.sp,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.4.h,
-                        ),
-                        Text(
-                          NumberFormat.currency(
-                            locale: 'id-ID',
-                            symbol: 'Rp.',
-                            decimalDigits: 0,
-                          ).format(int.parse(price)),
-                          style: TextStyle(
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
+                    // SizedBox(
+                    //   width: 3.4.h,
+                    // ),
+                    Text(
+                      NumberFormat.currency(
+                        locale: 'id-ID',
+                        symbol: 'Rp.',
+                        decimalDigits: 0,
+                      ).format(int.parse(price)),
+                      style: TextStyle(
+                        color: mainColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -676,10 +595,13 @@ class _PaketdataViewState extends State<PaketdataView> {
     var price,
     var productName,
     var productCode,
+    var type,
+    var provider,
     BuildContext context,
     ScrollController scrollController,
     double bottomSheetOffset,
   ) {
+    bool isTextLengthValid = tNoPulsa.text.length >= 10;
     return Material(
       child: Container(
         color: whiteColor,
@@ -697,7 +619,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                       Text(
                         'Konfirmasi pembayaran',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: mainColor,
                           fontSize: 14.0.sp,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w700,
@@ -806,7 +728,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                     ],
                   ),
                   SizedBox(
-                    height: 1.0.h,
+                    height: 2.0.h,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -905,61 +827,61 @@ class _PaketdataViewState extends State<PaketdataView> {
                     ),
                   ),
                   Container(
-                      color: whiteColor,
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(
-                          child: SizedBox(
+                    color: whiteColor,
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(
+                      child: SizedBox(
                         width: 35.0.h,
                         height: 6.0.h,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            // Dialogs.materialDialog(
-                            //   customView: Image.asset(
-                            //     'assets/images/pt4.png',
-                            //     height: 17.0.h,
-                            //   ),
-                            //   msg:
-                            //       'Apakah Data yang Anda isi sudah\nbenar & lengkap?',
-                            //   msgStyle: TextStyle(
-                            //     fontSize: 12.0.sp,
-                            //     fontWeight: FontWeight.w400,
-                            //   ),
-                            //   titleAlign: TextAlign.center,
-                            //   color: whiteColor,
-                            //   context: context,
-                            //   actions: [
-                            //     IconsButton(
-                            //       onPressed: () async {},
-                            //       text: 'Yaa Sudah',
-                            //       color: mainColor,
-                            //       textStyle: TextStyle(
-                            //         color: whiteColor,
-                            //       ),
+                        child:
+                            // ElevatedButton(
+                            //   onPressed: () async {
+                            //     if (_formkey.currentState!.validate()) {
+                            //       Get.to(PinView(
+                            //         productName: productName,
+                            //         nomorTelepon: tNoPulsa.text,
+                            //         harga: price,
+                            //         productCode: productCode,
+                            //         type: type,
+                            //         provider: provider,
+                            //       ));
+                            //     }
+                            //   },
+                            //   style: ElevatedButton.styleFrom(
+                            //     primary: mainColor,
+                            //     shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(10.0),
                             //     ),
-                            //     IconsButton(
-                            //       onPressed: () {
-                            //         Get.back();
-                            //       },
-                            //       text: 'Cek lagi deh',
-                            //       color: whiteColor,
-                            //       textStyle: TextStyle(
-                            //         color: mainColor,
-                            //       ),
-                            //     )
-                            //   ],
-                            // );
-                            Get.to(PinView(
-                              productName: productName,
-                              nomorTelepon: tNoPulsa.text,
-                              harga: price,
-                              productCode: productCode,
-                            ));
-
-                            // pulsaController.transaksipulsa(widget.pin, tNoPulsa,
-                            //     productCode, price, productName, context);
-                          },
+                            //   ),
+                            //   child: Text(
+                            //     'Lanjutkan',
+                            //     style: TextStyle(
+                            //       fontSize: 14.0.sp,
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Color(0xFFFDF8F8),
+                            //     ),
+                            //   ),
+                            // ),
+                            ElevatedButton(
+                          onPressed: tNoPulsa.text.length >= 10
+                              ? () async {
+                                  if (_formkey.currentState!.validate()) {
+                                    Get.to(PinView(
+                                      productName: productName,
+                                      nomorTelepon: tNoPulsa.text,
+                                      harga: price,
+                                      productCode: productCode,
+                                      type: type,
+                                      provider: provider,
+                                    ));
+                                  }
+                                }
+                              : null,
                           style: ElevatedButton.styleFrom(
-                            primary: mainColor,
+                            primary: tNoPulsa.text.length >= 10
+                                ? mainColor
+                                : Colors
+                                    .grey.shade500, // Warna tombol disesuaikan
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -973,7 +895,19 @@ class _PaketdataViewState extends State<PaketdataView> {
                             ),
                           ),
                         ),
-                      )))
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: !isTextLengthValid,
+                    child: Text(
+                      'Nomer handphone minimal harus 10 angka',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 8.0.sp,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

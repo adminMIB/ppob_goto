@@ -17,7 +17,6 @@ class LoginController extends GetxController {
   ) async {
     return helperController.post(
       path: UrlListService.login,
-      // path: 'http://168.138.169.44:69/api/auth/login',
       onSuccess: (context) async {
         print('Login : $context');
 
@@ -57,7 +56,6 @@ class LoginController extends GetxController {
     await helperController.loading(context);
     return helperController.post(
       path: UrlListService.login,
-      // path: 'http://168.138.169.44:69/api/auth/login',
       onSuccess: (context) async {
         print('hasil $context');
 
@@ -90,7 +88,7 @@ class LoginController extends GetxController {
         // Get.back();
         print('Error: $content');
         helperController.popUpMessage(
-            'Email yang anda masukkan tidak ditemukan.', context);
+            'Username atau password anda salah', context);
       },
       body: {
         "username": username,

@@ -14,7 +14,7 @@ class PulsaController extends GetxController {
   final network = Get.put(NetworkHelper());
   var nomorPonsel;
 
-  var provider = ''.obs;
+  // var provider = ''.obs;
   var logoProvider = ''.obs;
   var productCode;
   var listPulsaOnly = [].obs;
@@ -74,7 +74,7 @@ class PulsaController extends GetxController {
         nomorPonsel.toString().contains('+62 833') ||
         nomorPonsel.toString().contains('+62 838')) {
       isCek(true);
-      provider('AXIS');
+      // provider('AXIS');
       listNominalPulsa.clear();
       codeProduct = "100003";
       logoProvider('assets/images/logo_axis.png');
@@ -196,27 +196,25 @@ class PulsaController extends GetxController {
   }
 
   transaksipulsa(var pin, var nomorTelepon, var productCode, var harga,
-      var productName, BuildContext context) async {
+      var productName, var type, var provider, BuildContext context) async {
+    // var access_token = pref.read('access_token');
+    // print('productname = $productName');
+    // print('productCode = $productCode');
     var access_token = pref.read('access_token');
-    print('productname = $productName');
-
+    await helperController.loading(context);
     return network.post(
       path: UrlListService.pulsatransaksi,
       headers: {
         'Authorization': 'Bearer $access_token',
       },
       onSuccess: (content) async {
+        print('masukkkk $content');
         if (content['status'] == true) {
-          print('Status value: ${content['status']}');
+          print("masuk a");
+          print('sukses: $content');
+          String apiTimeString = content['response']['data']['time'];
+          DateTime apiDateTime = fromCustomTime(apiTimeString);
 
-          print(content['response']['data']['statusTrx']);
-          print(' ss $content');
-
-          String tgl = content['response']['data']['time'];
-          String tglWith = tgl.toString();
-          // tgl.toString().substring(0, 8) + 'T' + tgl.toString().substring(8);
-          DateTime datetime = DateTime.parse(tglWith);
-          print(datetime);
           await PersistentNavBarNavigator.pushNewScreen(
             context,
             screen: InvoiceView(
@@ -226,25 +224,17 @@ class PulsaController extends GetxController {
               nomorTelepon: nomorTelepon,
               status: content['response']['data']['statusTrx'],
               noref: content['response']['data']['ref2'],
-              // datetime: DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime),
+              tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+                  .format(fromCustomTime(content['response']['data']['time'])),
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
         } else if (content['status'] == false) {
-          print('object');
+          print("masuk b");
+          print('gagal : $content');
+
           print(content['status'] == false);
-          print(content['response']['data']['statusTrx']);
-          print('hellow $content');
-          print('Content: $content');
-          print('Status key exists: ${content.containsKey('status')}');
-
-          print(productCode);
-          String tgl = content['response']['data']['time'];
-
-          DateTime dateTime = DateTime.parse(tgl);
-          print(dateTime);
-
           await PersistentNavBarNavigator.pushNewScreen(
             context,
             screen: InvoiceView(
@@ -254,22 +244,72 @@ class PulsaController extends GetxController {
               nomorTelepon: nomorTelepon,
               status: content['response']['data']['statusTrx'],
               noref: content['response']['data']['ref2'],
+              tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+                  .format(fromCustomTime(content['response']['data']['time'])),
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
+        } else {
+          print("masuk c");
+          print(content);
         }
       },
       onError: (error) {
         print('error: $error');
+
+        if (error['response'] != null) {
+          String apiTimeString = error['response']['data']['time'];
+          DateTime apiDateTime = fromCustomTime(apiTimeString);
+
+          PersistentNavBarNavigator.pushNewScreen(
+            context,
+            screen: InvoiceView(
+              productName: productName,
+              productCode: productCode,
+              harga: error['response']['data']['amount'].toString(),
+              nomorTelepon: nomorTelepon,
+              status: error['response']['data']['statusTrx'],
+              noref: error['response']['data']['ref2'],
+              tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+                  .format(fromCustomTime(error['response']['data']['time'])),
+            ),
+            withNavBar: true,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        } else {
+          print(error);
+          Get.back();
+        }
       },
       body: {
         "pin": pin,
         "no_hp": nomorTelepon,
         "productCode": productCode,
         "user_id": pref.read('user_id'),
-        "harga_products": harga
+        "harga_products": harga,
+        "type": type,
+        "jenis_provider": provider,
       },
+    );
+  }
+
+  DateTime fromCustomTime(String time) {
+    int year = int.parse(time.substring(0, 4));
+    int month = int.parse(time.substring(4, 6));
+    int day = int.parse(time.substring(6, 8));
+
+    int hours = int.parse(time.substring(8, 10));
+    int minutes = int.parse(time.substring(10, 12));
+    int seconds = int.parse(time.substring(12, 14));
+
+    return DateTime(
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+      seconds,
     );
   }
 }

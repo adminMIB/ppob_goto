@@ -233,7 +233,7 @@ class NetworkHelper {
           //   }
           //   return onError(e.response?.data);
           // } else {
-          //   return onError(e);
+          return onError(e.response?.data);
           // }
         } catch (e) {
           // print('body: $body');

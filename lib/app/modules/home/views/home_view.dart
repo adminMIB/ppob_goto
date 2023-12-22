@@ -9,6 +9,7 @@ import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/card.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
+import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
 import 'package:ppob_mpay1/app/modules/multifinance/views/multifinance_view.dart';
 import 'package:ppob_mpay1/app/modules/paketdata/views/paketdata_view.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/views/pulsa_view.dart';
@@ -18,9 +19,10 @@ import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pln_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/telco/views/telco_view.dart';
 import 'package:ppob_mpay1/app/modules/transferbank/views/transferbank_view.dart';
 import 'package:ppob_mpay1/main.dart';
+import 'package:remixicon/remixicon.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -33,12 +35,27 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final homeController = Get.put(HomeController());
-
+  PersistentTabController? persistentTabController;
+  bool isRefreshing = false;
   var pref = GetStorage();
   @override
   void initState() {
     super.initState();
-    homeController.CheckBalance();
+    homeController.CheckBalance(context);
+  }
+
+  void _handleRefresh() {
+    homeController.CheckBalance(context);
+  }
+
+  Future<void> _refreshBalance() async {
+    setState(() {
+      isRefreshing = true;
+    });
+    await homeController.CheckBalance(context);
+    setState(() {
+      isRefreshing = false;
+    });
   }
 
   @override
@@ -71,8 +88,8 @@ class _HomeViewState extends State<HomeView> {
               actions: [
                 IconsButton(
                   onPressed: () {
-                    // Get.offAll(LoginView());
-                    Get.back();
+                    Get.offAll(LoginView());
+                    // Get.back();
                   },
                   text: 'Keluar',
                   color: mainColor,
@@ -210,20 +227,33 @@ class _HomeViewState extends State<HomeView> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        // Hanya menampilkan widget saldo jika loading sudah selesai
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'Saldo Anda',
-                                              style: TextStyle(
-                                                fontSize: 12.0.sp,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'Saldo Anda',
+                                                  style: TextStyle(
+                                                    fontSize: 12.0.sp,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 8.0),
+                                                if (isRefreshing)
+                                                  SizedBox(
+                                                    height: 20.0,
+                                                    width: 20.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      strokeWidth: 2.0,
+                                                    ),
+                                                  ),
+                                              ],
                                             ),
                                             SizedBox(
-                                              height: 0.2.h,
+                                              height: 0.8.h,
                                             ),
                                             Row(
                                               crossAxisAlignment:
@@ -236,14 +266,6 @@ class _HomeViewState extends State<HomeView> {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                // Text(
-                                                //   ' ${homeController.balance.value}',
-                                                //   style: TextStyle(
-                                                //     fontSize: 18.0.sp,
-                                                //     fontWeight: FontWeight.bold,
-                                                //     color: Color(0xFF124688),
-                                                //   ),
-                                                // ),
                                                 Text(
                                                   NumberFormat.currency(
                                                     locale: 'id-ID',
@@ -254,6 +276,20 @@ class _HomeViewState extends State<HomeView> {
                                                   style: TextStyle(
                                                     fontSize: 12.0.sp,
                                                     fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 2.0.w),
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    await _refreshBalance();
+                                                  },
+                                                  child: Align(
+                                                    alignment: Alignment.center,
+                                                    child: Icon(
+                                                      Remix.add_circle_line,
+                                                      color: blackColor,
+                                                      size: 15.0.sp,
+                                                    ),
                                                   ),
                                                 ),
                                               ],

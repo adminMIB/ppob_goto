@@ -15,13 +15,17 @@ class PinView extends StatefulWidget {
   final String? nomorTelepon;
   final String? productCode;
   final String? harga;
-  const PinView({
-    Key? key,
-    this.productName,
-    this.nomorTelepon,
-    this.productCode,
-    this.harga,
-  }) : super(key: key);
+  final String? type;
+  final String? provider;
+  const PinView(
+      {Key? key,
+      this.productName,
+      this.nomorTelepon,
+      this.productCode,
+      this.harga,
+      this.type,
+      this.provider})
+      : super(key: key);
 
   @override
   _PinViewState createState() => _PinViewState();
@@ -145,6 +149,8 @@ class _PinViewState extends State<PinView> {
                         widget.productCode,
                         widget.harga,
                         widget.productName,
+                        widget.type,
+                        widget.provider,
                         context,
                       );
                     },

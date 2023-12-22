@@ -426,6 +426,7 @@ class _UploadKTPState extends State<UploadKTP> {
               email: widget.email,
               nomer_tlp: widget.nomer_tlp,
               nama_kerabat: widget.nama_kerabat,
+              alamat_kerabat: widget.alamat_kerabat,
               nomer_tlp_kerabat: widget.nomer_tlp_kerabat,
               status_kerabat: widget.status_kerabat,
               foto_ktp: image2!,

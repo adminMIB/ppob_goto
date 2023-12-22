@@ -19,6 +19,7 @@ class RegisterController extends GetxController {
   }
 
   verifiksiOTP(var kodeOTP, var email, BuildContext context) async {
+    await helperController.loading(context);
     return helperController.post(
         path: UrlListService.verifikasiOtp,
         onSuccess: (content) async {
@@ -44,6 +45,7 @@ class RegisterController extends GetxController {
   }
 
   email(BuildContext context, var email) async {
+    await helperController.loading(context);
     return helperController.post(
       path: UrlListService.email,
       onSuccess: (content) {
@@ -81,6 +83,8 @@ class RegisterController extends GetxController {
     var alamat_kerabat,
     BuildContext context,
   ) async {
+    print("alamat kerabat : $alamat_kerabat");
+    await helperController.loading(context);
     return helperController.post(
       path: UrlListService.register,
       containsFile: true,
@@ -117,6 +121,8 @@ class RegisterController extends GetxController {
         "namaMerchant": namaMerchant,
         "pin": pin,
         "confirm_pin": confirm_pin,
+        "kota": "-",
+        "alamat_toko": "-",
       },
     );
   }

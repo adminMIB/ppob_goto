@@ -5,18 +5,45 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/data/urlServices.dart';
+import 'package:ppob_mpay1/app/modules/akun/controllers/akun_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfilefieldView extends StatefulWidget {
-  String? email;
-  ProfilefieldView({Key? key, this.email}) : super(key: key);
+  String? nama_kerabat;
+  String? nomer_tlp_kerabat;
+  String? alamat_kerabat;
+  String? status_kerabat;
+  String? foto_profile;
+  String? namaMerchant;
+  String? kota;
+  String? alamat_toko;
+  ProfilefieldView(
+      {Key? key,
+      this.nama_kerabat,
+      this.nomer_tlp_kerabat,
+      this.alamat_kerabat,
+      this.status_kerabat,
+      this.foto_profile,
+      this.namaMerchant,
+      this.kota,
+      this.alamat_toko})
+      : super(key: key);
 
   @override
   _ProfilefieldViewState createState() => _ProfilefieldViewState();
 }
 
 class _ProfilefieldViewState extends State<ProfilefieldView> {
+  final akunController = Get.put(AkunController());
+
+  TextEditingController name = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController alamat = TextEditingController();
+  TextEditingController nik = TextEditingController();
   var pref = GetStorage();
   XFile? image1;
 
@@ -28,6 +55,18 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
     setState(() {
       image1 = img2;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    akunController.profile(context);
+    name.text = akunController.userProfile['nama_lengkap'] ?? '';
+    username.text = akunController.userProfile['username'] ?? '';
+    email.text = akunController.userProfile['email'] ?? '';
+    phone.text = akunController.userProfile['nomor_telepon'] ?? '';
+    nik.text = akunController.userProfile['nik'] ?? '';
+    alamat.text = akunController.userProfile['alamat'] ?? '';
   }
 
   @override
@@ -46,7 +85,7 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
           },
         ),
         title: Text(
-          'Akun',
+          'Edit Profile',
           style: TextStyle(
             color: Colors.black,
             fontSize: 14.0.sp,
@@ -64,19 +103,39 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.circular(60.0),
-                        child: image1 == null
-                            ? Image.asset(
-                                'assets/images/orang1.png',
-                                width: 120.0,
-                                height: 120.0,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                File(image1!.path),
-                                width: 120.0,
-                                height: 120.0,
-                                fit: BoxFit.cover,
-                              ),
+                        child: Obx(
+                          () => akunController.userProfile['foto_profile'] ==
+                                      null ||
+                                  akunController.userProfile['foto_profile'] ==
+                                      ''
+                              ? Image.asset(
+                                  'assets/images/orang1.png',
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  UrlListService.baseUrl +
+                                      akunController
+                                          .userProfile['foto_profile'],
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                        //  image1 == null
+                        //     ? Image.asset(
+                        //         'assets/images/orang1.png',
+                        //         width: 120.0,
+                        //         height: 120.0,
+                        //         fit: BoxFit.cover,
+                        //       )
+                        //     : Image.file(
+                        //         File(image1!.path),
+                        //         width: 120.0,
+                        //         height: 120.0,
+                        //         fit: BoxFit.cover,
+                        //       ),
                       ),
                       Positioned(
                         bottom: 1.0.h,
@@ -138,27 +197,24 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                     ),
                     TextFormField(
                       minLines: 1,
-                      // controller: name,
+                      controller: name,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        hintText: 'Nama Lengkap',
+                        hintText: 'Masukkan Nama Lengkap',
                         hintStyle: TextStyle(
                             fontSize: 10.0.sp, color: Colors.grey.shade500),
                       ),
-                      // validator: Validators.compose(
-                      //   [
-                      //     Validators.required('Nama Lengkap harus di isi'),
-                      //   ],
-                      // ),
+                      //   initialValue:
+                      //       akunController.userProfile['nama_lengkap'] ?? '',
                     ),
                     SizedBox(
                       height: 1.0.h,
                     ),
                     Text(
-                      'NIK',
+                      'username',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12.sp,
@@ -170,55 +226,18 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                     ),
                     TextFormField(
                       minLines: 1,
-                      // controller: nik,
-                      keyboardType: TextInputType.number,
+                      controller: username,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        hintText: 'Masukkan NIK',
+                        hintText: 'masukkan username',
                         hintStyle: TextStyle(
                             fontSize: 10.0.sp, color: Colors.grey.shade500),
                       ),
-                      // validator: Validators.compose(
-                      //   [
-                      //     Validators.required('NIK harus di isi'),
-                      //   ],
-                      // ),
-                    ),
-                    SizedBox(
-                      height: 1.0.h,
-                    ),
-                    Text(
-                      'Alamat',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 0.5.h,
-                    ),
-                    TextFormField(
-                      minLines: 3,
-                      maxLines: 5,
-                      // controller: alamat,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        hintText: 'Masukkan Alamat',
-                        hintStyle: TextStyle(
-                            fontSize: 10.0.sp, color: Colors.grey.shade500),
-                      ),
-                      // validator: Validators.compose(
-                      //   [
-                      //     Validators.required('Alamat harus di isi'),
-                      //   ],
-                      // ),
+                      // initialValue:
+                      //     akunController.userProfile['username'] ?? '',
                     ),
                     SizedBox(
                       height: 1.0.h,
@@ -236,20 +255,17 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                     ),
                     TextFormField(
                       minLines: 1,
+                      controller: email,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        // hintText: widget.email,
+                        hintText: ' Masukkan email',
                         hintStyle: TextStyle(
                             fontSize: 10.0.sp, color: Colors.grey.shade500),
                       ),
-                      // validator: Validators.compose(
-                      //   [
-                      //     Validators.required('NIK harus di isi'),
-                      //   ],
-                      // ),
+                      // initialValue: akunController.userProfile['email'] ?? '',
                     ),
                     SizedBox(
                       height: 1.0.h,
@@ -268,7 +284,7 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                     TextFormField(
                       minLines: 1,
                       maxLength: 13,
-                      // controller: phone,
+                      controller: phone,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -279,22 +295,93 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                         hintStyle: TextStyle(
                             fontSize: 10.0.sp, color: Colors.grey.shade500),
                       ),
-                      // validator: Validators.compose(
-                      //   [
-                      //     Validators.required(
-                      //         'No telepon harus di isi'),
-                      //   ],
-                      // ),
+                      // initialValue:
+                      //     akunController.userProfile['nomor_telepon'] ?? '',
+                    ),
+                    SizedBox(
+                      height: 1.0.h,
+                    ),
+                    Text(
+                      'NIK',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    TextFormField(
+                      minLines: 1,
+                      controller: nik,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        hintText: 'Masukkan NIK',
+                        hintStyle: TextStyle(
+                            fontSize: 10.0.sp, color: Colors.grey.shade500),
+                      ),
+                      // initialValue: akunController.userProfile['nik'] ?? '',
+                    ),
+                    SizedBox(
+                      height: 1.0.h,
+                    ),
+                    Text(
+                      'Alamat',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    TextFormField(
+                      minLines: 3,
+                      maxLines: 5,
+                      controller: alamat,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        hintText: 'Masukkan Alamat',
+                        hintStyle: TextStyle(
+                            fontSize: 10.0.sp, color: Colors.grey.shade500),
+                      ),
+                      // initialValue: akunController.userProfile['alamat'] ?? '',
                     ),
                     SizedBox(
                       height: 2.0.h,
                     ),
                     Center(
                       child: SizedBox(
-                        width: 44.0.h,
+                        width: 45.0.h,
                         height: 6.0.h,
                         child: ElevatedButton(
-                          onPressed: () async {},
+                          onPressed: () async {
+                            await akunController.updateprofile(
+                                name.text,
+                                username.text,
+                                email.text,
+                                phone.text,
+                                alamat.text,
+                                widget.nama_kerabat,
+                                widget.nomer_tlp_kerabat,
+                                widget.alamat_kerabat,
+                                widget.status_kerabat,
+                                nik.text,
+                                // widget.foto_profile,
+                                widget.namaMerchant,
+                                widget.kota,
+                                widget.alamat_toko,
+                                context);
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: mainColor,
                             shape: RoundedRectangleBorder(

@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -12,11 +12,11 @@ final CountdownController controller = new CountdownController();
 void main() async {
   await dotenv.load(fileName: ".env");
 
-  if (dotenv.env['PROD'] == "true") {
-    if (Platform.isAndroid) {
-      await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
-    } // aktifkan jika ingin upload ke playstore dan appstore
-  }
+  // if (dotenv.env['PROD'] == "true") {
+  //   if (Platform.isAndroid) {
+  //     await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  //   } // aktifkan jika ingin upload ke playstore dan appstore
+  // }
 
   runApp(
     LayoutBuilder(

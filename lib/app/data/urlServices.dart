@@ -14,4 +14,6 @@ class UrlListService {
   static const productProvider = 'api/ppob/product_provider';
   static const checkbalance = 'api/ppob/cek_saldo_user';
   static const pulsatransaksi = 'api/ppob/transaksi_pulsa';
+  static const profile = 'api/profile/ProfileUser';
+  static const updateprofile = 'api/profile/update_profile';
 }

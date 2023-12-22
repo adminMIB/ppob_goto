@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/register/controllers/register_controller.dart';
 import 'package:ppob_mpay1/app/modules/register/views/datakerabat.dart';
+import 'package:ppob_mpay1/app/modules/register/views/uploadktp_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
 
@@ -15,7 +16,7 @@ class FormPersonalView extends StatefulWidget {
 }
 
 class _FormPersonalViewState extends State<FormPersonalView> {
-  final egistrasiController = RegisterController();
+  final registrasiController = RegisterController();
   final _formKey = GlobalKey<FormState>();
   DateTime now = DateTime.now();
   DateTime? firstDay;
@@ -300,6 +301,7 @@ class _FormPersonalViewState extends State<FormPersonalView> {
                               height: 0.5.h,
                             ),
                             TextFormField(
+                              readOnly: true,
                               minLines: 1,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -382,6 +384,7 @@ class _FormPersonalViewState extends State<FormPersonalView> {
                                       //       email: widget.email,
                                       //     ));
                                     }
+                                    // Get.to(UploadKTP());
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: mainColor,
