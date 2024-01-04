@@ -18,30 +18,40 @@ import 'package:showcaseview/showcaseview.dart';
 import 'package:sizer/sizer.dart';
 import 'package:screenshot/screenshot.dart';
 
-class InvoiceView extends StatefulWidget {
-  final String? productCode;
-  final String? productName;
-  final String? harga;
-  final String? nomorTelepon;
+class transaksipdamView extends StatefulWidget {
+  final String? kodeproduk;
+  final String? tanggal;
+  final String? idpel2;
+  final String? nominal;
+  final String? admin;
+  final String? nama_pelanggan;
   final String? status;
   final String? noref;
-  final String? tglwaktu;
-  const InvoiceView({
+  final String? keterangan;
+  final String? jml_bln;
+  final String? stan_awal;
+  final String? stan_akhir;
+  const transaksipdamView({
     super.key,
-    this.productCode,
-    this.productName,
-    this.harga,
-    this.nomorTelepon,
+    this.kodeproduk,
+    this.tanggal,
+    this.idpel2,
+    this.nominal,
+    this.admin,
+    this.nama_pelanggan,
     this.status,
     this.noref,
-    this.tglwaktu,
+    this.keterangan,
+    this.jml_bln,
+    this.stan_awal,
+    this.stan_akhir,
   });
 
   @override
-  State<InvoiceView> createState() => _InvoiceViewState();
+  State<transaksipdamView> createState() => _transaksipdamViewState();
 }
 
-class _InvoiceViewState extends State<InvoiceView> {
+class _transaksipdamViewState extends State<transaksipdamView> {
   //  DateTime parsedDateTime = parseDateTime(widget.tglwaktu ?? '');
   final helperController = Get.put(HelperController());
 
@@ -181,20 +191,20 @@ class _InvoiceViewState extends State<InvoiceView> {
                                           //       fontWeight: FontWeight.bold),
                                           //   textAlign: TextAlign.left,
                                           // ),
-                                          Text(
-                                            'Transaksi' +
-                                                ' ' +
-                                                (widget.status == 'GAGAL'
-                                                    ? 'Gagal'
-                                                    : (widget.status == 'SUKSES'
-                                                        ? 'Berhasil!!'
-                                                        : widget.status!)),
-                                            style: TextStyle(
-                                              fontSize: 14.0.sp,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
+                                          // Text(
+                                          //   'Transaksi' +
+                                          //       ' ' +
+                                          //       (widget.status == 'GAGAL'
+                                          //           ? 'Gagal'
+                                          //           : (widget.status == 'SUKSES'
+                                          //               ? 'Berhasil!!'
+                                          //               : widget.status!)),
+                                          //   style: TextStyle(
+                                          //     fontSize: 14.0.sp,
+                                          //     fontWeight: FontWeight.bold,
+                                          //   ),
+                                          //   textAlign: TextAlign.left,
+                                          // ),
 
                                           SizedBox(
                                             height: 0.5.h,
@@ -203,7 +213,7 @@ class _InvoiceViewState extends State<InvoiceView> {
                                             children: [
                                               Text(
                                                 // '',
-                                                widget.tglwaktu ?? '',
+                                                widget.tanggal ?? '',
                                                 style: TextStyle(
                                                     fontSize: 11.0.sp,
                                                     fontWeight: FontWeight.w500,
@@ -260,28 +270,51 @@ class _InvoiceViewState extends State<InvoiceView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Produk',
+                                            'Nomor Pelanggan',
                                             style: TextStyle(
                                               fontSize: 12.0.sp,
                                             ),
                                           ),
-                                          Container(
-                                            width: 23.0.h,
-                                            // color: oceanColor,
-                                            child: Text(
-                                              widget.productName!,
-                                              style: TextStyle(
+                                          Text(
+                                            widget.idpel2!,
+                                            style: TextStyle(
                                                 fontSize: 12.0.sp,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              textAlign: TextAlign.right,
-                                            ),
+                                                fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
                                       SizedBox(
                                         height: 2.h,
                                       ),
+                                      // Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   crossAxisAlignment:
+                                      //       CrossAxisAlignment.start,
+                                      //   children: [
+                                      //     Text(
+                                      //       'Nama Pelanggan',
+                                      //       style: TextStyle(
+                                      //         fontSize: 12.0.sp,
+                                      //       ),
+                                      //     ),
+                                      //     Container(
+                                      //       width: 23.0.h,
+                                      //       // color: oceanColor,
+                                      //       child: Text(
+                                      //         widget.nama_pelanggan!,
+                                      //         style: TextStyle(
+                                      //           fontSize: 12.0.sp,
+                                      //           fontWeight: FontWeight.w400,
+                                      //         ),
+                                      //         textAlign: TextAlign.right,
+                                      //       ),
+                                      //     ),
+                                      //   ],
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 2.h,
+                                      // ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -289,12 +322,12 @@ class _InvoiceViewState extends State<InvoiceView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Nomor Handphone',
+                                            'Keterangan',
                                             style: TextStyle(
                                               fontSize: 12.0.sp,
                                             ),
                                           ),
-                                          Text(widget.nomorTelepon!,
+                                          Text(widget.keterangan!,
                                               style: TextStyle(
                                                   fontSize: 12.0.sp,
                                                   fontWeight: FontWeight.w400)),
@@ -310,7 +343,34 @@ class _InvoiceViewState extends State<InvoiceView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Harga',
+                                            'Nominal',
+                                            style: TextStyle(
+                                              fontSize: 12.0.sp,
+                                            ),
+                                          ),
+                                          Text(
+                                              NumberFormat.currency(
+                                                      locale: 'id-ID',
+                                                      symbol: 'Rp ',
+                                                      decimalDigits: 0)
+                                                  .format(int.parse(
+                                                      widget.nominal!)),
+                                              style: TextStyle(
+                                                  fontSize: 12.0.sp,
+                                                  fontWeight: FontWeight.w400)),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 2.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Biaya Admin',
                                             style: TextStyle(
                                               fontSize: 12.0.sp,
                                             ),
@@ -321,7 +381,7 @@ class _InvoiceViewState extends State<InvoiceView> {
                                                       symbol: 'Rp ',
                                                       decimalDigits: 0)
                                                   .format(
-                                                      int.parse(widget.harga!)),
+                                                      int.parse(widget.admin!)),
                                               style: TextStyle(
                                                   fontSize: 12.0.sp,
                                                   fontWeight: FontWeight.w400)),
@@ -330,29 +390,29 @@ class _InvoiceViewState extends State<InvoiceView> {
                                       SizedBox(
                                         height: 2.h,
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Status',
-                                            style: TextStyle(
-                                              fontSize: 12.0.sp,
-                                            ),
-                                          ),
-                                          Text(widget.status!,
-                                              style: TextStyle(
-                                                  fontSize: 10.0.sp,
-                                                  color: widget.status ==
-                                                          'GAGAL'
-                                                      ? Colors
-                                                          .red // Set text color to red for status 'gagal'
-                                                      : Colors.green,
-                                                  fontWeight: FontWeight.w500)),
-                                        ],
-                                      ),
+                                      // Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   crossAxisAlignment:
+                                      //       CrossAxisAlignment.start,
+                                      //   children: [
+                                      //     Text(
+                                      //       'Status',
+                                      //       style: TextStyle(
+                                      //         fontSize: 12.0.sp,
+                                      //       ),
+                                      //     ),
+                                      //     Text(widget.status!,
+                                      //         style: TextStyle(
+                                      //             fontSize: 10.0.sp,
+                                      //             color: widget.status ==
+                                      //                     'GAGAL'
+                                      //                 ? Colors
+                                      //                     .red // Set text color to red for status 'gagal'
+                                      //                 : Colors.green,
+                                      //             fontWeight: FontWeight.w500)),
+                                      //   ],
+                                      // ),
                                       SizedBox(
                                         height: 3.0.h,
                                       ),

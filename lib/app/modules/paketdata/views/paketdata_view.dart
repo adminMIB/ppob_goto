@@ -520,6 +520,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                   minHeight: 0,
                   initHeight: 0.5,
                   maxHeight: 0.5,
+                  bottomSheetColor: Colors.transparent,
                   context: context,
                   builder: (context, scrollController, bottomSheetOffset) {
                     return _buildBottomSheet(
@@ -602,317 +603,326 @@ class _PaketdataViewState extends State<PaketdataView> {
     double bottomSheetOffset,
   ) {
     bool isTextLengthValid = tNoPulsa.text.length >= 10;
-    return Material(
-      child: Container(
-        color: whiteColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(2.5.h, 2.0.h, 2.5.h, 0.0.h),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Konfirmasi pembayaran',
-                        style: TextStyle(
-                          color: mainColor,
-                          fontSize: 14.0.sp,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: Color(0xFF8E8C8C),
-                          size: 20,
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                  Text(
-                    'Apa Anda yakin ingin melanjutkan\ntransaksi ini?',
-                    style: TextStyle(
-                      fontSize: 12.0.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  Divider(
-                    color: Colors.grey.shade500,
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Produk',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.1,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Container(
-                        width: 28.0.h,
-                        child: Text(
-                          productName,
-                          style: TextStyle(
-                            fontSize: 12.0.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'No. HP',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.1,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        tNoPulsa.text,
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Harga',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.12,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        NumberFormat.currency(
-                          locale: 'id-ID',
-                          symbol: 'Rp.',
-                          decimalDigits: 0,
-                        ).format(int.parse(price)),
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Divider(
-                    color: Colors.grey.shade500,
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Harga',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.12,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        NumberFormat.currency(
-                          locale: 'id-ID',
-                          symbol: 'Rp.',
-                          decimalDigits: 0,
-                        ).format(int.parse(price)),
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Harga jual akan tampil pada struk bukti pembelian',
+    return Container(
+      decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          )),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(2.5.h, 2.0.h, 2.5.h, 0.0.h),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Konfirmasi pembayaran',
                       style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontSize: 8.0.sp,
+                        color: mainColor,
+                        fontSize: 14.0.sp,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.close,
+                        color: Color(0xFF8E8C8C),
+                        size: 20,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: Get.height * 0.03,
+                ),
+                Text(
+                  'Apa Anda yakin ingin melanjutkan\ntransaksi ini?',
+                  style: TextStyle(
+                    fontSize: 12.0.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Divider(
+                  color: Colors.grey.shade500,
+                ),
+                SizedBox(
+                  height: 1.0.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Produk',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
                         fontWeight: FontWeight.w400,
                       ),
-                      textAlign: TextAlign.right,
                     ),
+                    SizedBox(
+                      width: Get.width * 0.1,
+                    ),
+                    Text(
+                      ':',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 2.0.h,
+                    ),
+                    Container(
+                      width: 28.0.h,
+                      child: Text(
+                        productName,
+                        style: TextStyle(
+                          fontSize: 12.0.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 1.0.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'No. HP',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.1,
+                    ),
+                    Text(
+                      ':',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 2.0.h,
+                    ),
+                    Text(
+                      tNoPulsa.text,
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 2.0.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Harga',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.12,
+                    ),
+                    Text(
+                      ':',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 2.0.h,
+                    ),
+                    Text(
+                      NumberFormat.currency(
+                        locale: 'id-ID',
+                        symbol: 'Rp.',
+                        decimalDigits: 0,
+                      ).format(int.parse(price)),
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 1.0.h,
+                ),
+                Divider(
+                  color: Colors.grey.shade500,
+                ),
+                SizedBox(
+                  height: 1.0.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Harga',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.12,
+                    ),
+                    Text(
+                      ':',
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 2.0.h,
+                    ),
+                    Text(
+                      NumberFormat.currency(
+                        locale: 'id-ID',
+                        symbol: 'Rp.',
+                        decimalDigits: 0,
+                      ).format(int.parse(price)),
+                      style: TextStyle(
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 1.0.h,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Harga jual akan tampil pada struk bukti pembelian',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 8.0.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    textAlign: TextAlign.right,
                   ),
-                  Container(
-                    color: whiteColor,
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(
-                      child: SizedBox(
-                        width: 35.0.h,
-                        height: 6.0.h,
-                        child:
-                            // ElevatedButton(
-                            //   onPressed: () async {
-                            //     if (_formkey.currentState!.validate()) {
-                            //       Get.to(PinView(
-                            //         productName: productName,
-                            //         nomorTelepon: tNoPulsa.text,
-                            //         harga: price,
-                            //         productCode: productCode,
-                            //         type: type,
-                            //         provider: provider,
-                            //       ));
-                            //     }
-                            //   },
-                            //   style: ElevatedButton.styleFrom(
-                            //     primary: mainColor,
-                            //     shape: RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.circular(10.0),
-                            //     ),
-                            //   ),
-                            //   child: Text(
-                            //     'Lanjutkan',
-                            //     style: TextStyle(
-                            //       fontSize: 14.0.sp,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Color(0xFFFDF8F8),
-                            //     ),
-                            //   ),
-                            // ),
-                            ElevatedButton(
-                          onPressed: tNoPulsa.text.length >= 10
-                              ? () async {
-                                  if (_formkey.currentState!.validate()) {
-                                    Get.to(PinView(
-                                      productName: productName,
-                                      nomorTelepon: tNoPulsa.text,
-                                      harga: price,
-                                      productCode: productCode,
-                                      type: type,
-                                      provider: provider,
-                                    ));
-                                  }
+                ),
+                SizedBox(
+                  height: 1.5.h,
+                ),
+                Container(
+                  color: whiteColor,
+                  // padding: EdgeInsets.all(16.0),
+                  child: Center(
+                    child: SizedBox(
+                      width: 35.0.h,
+                      height: 6.0.h,
+                      child:
+                          // ElevatedButton(
+                          //   onPressed: () async {
+                          //     if (_formkey.currentState!.validate()) {
+                          //       Get.to(PinView(
+                          //         productName: productName,
+                          //         nomorTelepon: tNoPulsa.text,
+                          //         harga: price,
+                          //         productCode: productCode,
+                          //         type: type,
+                          //         provider: provider,
+                          //       ));
+                          //     }
+                          //   },
+                          //   style: ElevatedButton.styleFrom(
+                          //     primary: mainColor,
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(10.0),
+                          //     ),
+                          //   ),
+                          //   child: Text(
+                          //     'Lanjutkan',
+                          //     style: TextStyle(
+                          //       fontSize: 14.0.sp,
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Color(0xFFFDF8F8),
+                          //     ),
+                          //   ),
+                          // ),
+                          ElevatedButton(
+                        onPressed: tNoPulsa.text.length >= 10
+                            ? () async {
+                                if (_formkey.currentState!.validate()) {
+                                  Get.to(PinView(
+                                    productName: productName,
+                                    nomorTelepon: tNoPulsa.text,
+                                    harga: price,
+                                    productCode: productCode,
+                                    type: type,
+                                    provider: provider,
+                                  ));
                                 }
-                              : null,
-                          style: ElevatedButton.styleFrom(
-                            primary: tNoPulsa.text.length >= 10
-                                ? mainColor
-                                : Colors
-                                    .grey.shade500, // Warna tombol disesuaikan
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                              }
+                            : null,
+                        style: ElevatedButton.styleFrom(
+                          primary: tNoPulsa.text.length >= 10
+                              ? mainColor
+                              : Colors
+                                  .grey.shade500, // Warna tombol disesuaikan
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          child: Text(
-                            'Lanjutkan',
-                            style: TextStyle(
-                              fontSize: 14.0.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFDF8F8),
-                            ),
+                        ),
+                        child: Text(
+                          'Lanjutkan',
+                          style: TextStyle(
+                            fontSize: 14.0.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFFDF8F8),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  Visibility(
-                    visible: !isTextLengthValid,
-                    child: Text(
-                      'Nomer handphone minimal harus 10 angka',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 8.0.sp,
-                      ),
+                ),
+                SizedBox(
+                  height: 1.5.h,
+                ),
+                Visibility(
+                  visible: !isTextLengthValid,
+                  child: Text(
+                    'Nomer handphone minimal harus 10 angka',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 8.0.sp,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

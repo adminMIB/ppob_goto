@@ -21,6 +21,9 @@ class Datapersonalview extends StatefulWidget {
 }
 
 class _DatapersonalviewState extends State<Datapersonalview> {
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      : '';
   final akunController = Get.put(AkunController());
   var pref = GetStorage();
   XFile? image1;
@@ -91,44 +94,56 @@ class _DatapersonalviewState extends State<Datapersonalview> {
                     child: Center(
                       child: Stack(
                         children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(60.0),
-                            child: Obx(
-                              () => akunController
-                                              .userProfile['foto_profile'] ==
-                                          null ||
-                                      akunController
-                                              .userProfile['foto_profile'] ==
-                                          ''
-                                  ? Image.asset(
-                                      'assets/images/orang1.png',
-                                      width: 120.0,
-                                      height: 120.0,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.network(
-                                      UrlListService.baseUrl +
-                                          akunController
-                                              .userProfile['foto_profile'],
-                                      width: 120.0,
-                                      height: 120.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                            // image1 == null
-                            //     ? Image.asset(
-                            //         'assets/images/orang1.png',
-                            //         width: 120.0,
-                            //         height: 120.0,
-                            //         fit: BoxFit.cover,
-                            //       )
-                            //     : Image.file(
-                            //         File(image1!.path),
-                            //         width: 120.0,
-                            //         height: 120.0,
-                            //         fit: BoxFit.cover,
-                            //       ),
-                          ),
+                          CircleAvatar(
+                              radius: 60,
+                              backgroundColor: Colors.grey.shade300,
+                              child: Text(
+                                getInitials(
+                                  pref.read('nama_lengkap'),
+                                ),
+                                style: TextStyle(
+                                    color: mainColor,
+                                    fontSize: 29.0.sp,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                          // ClipRRect(
+                          //   borderRadius: BorderRadius.circular(60.0),
+                          //   child: Obx(
+                          //     () => akunController
+                          //                     .userProfile['foto_profile'] ==
+                          //                 null ||
+                          //             akunController
+                          //                     .userProfile['foto_profile'] ==
+                          //                 ''
+                          //         ? Image.asset(
+                          //             'assets/images/orang1.png',
+                          //             width: 120.0,
+                          //             height: 120.0,
+                          //             fit: BoxFit.cover,
+                          //           )
+                          //         : Image.network(
+                          //             UrlListService.baseUrl +
+                          //                 akunController
+                          //                     .userProfile['foto_profile'],
+                          //             width: 120.0,
+                          //             height: 120.0,
+                          //             fit: BoxFit.cover,
+                          //           ),
+                          //   ),
+                          //   // image1 == null
+                          //   //     ? Image.asset(
+                          //   //         'assets/images/orang1.png',
+                          //   //         width: 120.0,
+                          //   //         height: 120.0,
+                          //   //         fit: BoxFit.cover,
+                          //   //       )
+                          //   //     : Image.file(
+                          //   //         File(image1!.path),
+                          //   //         width: 120.0,
+                          //   //         height: 120.0,
+                          //   //         fit: BoxFit.cover,
+                          //   //       ),
+                          // ),
                         ],
                       ),
                     ),

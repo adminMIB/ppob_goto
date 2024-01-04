@@ -146,7 +146,7 @@ class AppPages {
         ),
         GetPage(
           name: _Paths.PDAM,
-          page: () => const PdamView(),
+          page: () => PdamView(),
           binding: PdamBinding(),
         ),
         GetPage(

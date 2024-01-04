@@ -69,7 +69,7 @@ class AkunController extends GetxController {
         },
         onSuccess: (content) {
           // Get.back();
-          Get.to(ProfileView());
+          // Get.to(ProfileView());
           print(content);
         },
         onError: (onError) {

@@ -18,6 +18,8 @@ class FieldkerabatView extends StatefulWidget {
   String? nik;
   String? foto_profile;
   String? kota;
+  String? namaMerchant;
+  String? alamat_toko;
   FieldkerabatView(
       {Key? key,
       this.nama_lengkap,
@@ -27,7 +29,9 @@ class FieldkerabatView extends StatefulWidget {
       this.alamat,
       this.nik,
       this.foto_profile,
-      this.kota})
+      this.kota,
+      this.namaMerchant,
+      this.alamat_toko})
       : super(key: key);
 
   @override
@@ -213,21 +217,21 @@ class _FieldkerabatViewState extends State<FieldkerabatView> {
                         child: ElevatedButton(
                           onPressed: () async {
                             await akunController.updateprofile(
-                                widget.nama_lengkap,
-                                widget.username,
-                                widget.email,
-                                widget.nomer_tlp,
-                                widget.alamat,
-                                namaKerabat.text,
-                                nomerKerabat.text,
-                                alamatKerabat.text,
-                                statuskerabat.text,
-                                widget.nik,
-                                // widget.foto_profile,
-                                namaKerabat.text,
-                                widget.kota,
-                                alamatKerabat.text,
-                                context);
+                              widget.nama_lengkap,
+                              widget.username,
+                              widget.email,
+                              widget.nomer_tlp,
+                              widget.alamat,
+                              namaKerabat.text,
+                              nomerKerabat.text,
+                              alamatKerabat.text,
+                              statuskerabat.text,
+                              widget.nik,
+                              widget.namaMerchant,
+                              widget.kota,
+                              widget.alamat_toko,
+                              context,
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             primary: mainColor,

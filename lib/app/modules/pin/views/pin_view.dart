@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/invoice.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -11,21 +12,25 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 
 class PinView extends StatefulWidget {
+  final String? tipeTransaksi;
   final String? productName;
   final String? nomorTelepon;
   final String? productCode;
   final String? harga;
   final String? type;
   final String? provider;
-  const PinView(
-      {Key? key,
-      this.productName,
-      this.nomorTelepon,
-      this.productCode,
-      this.harga,
-      this.type,
-      this.provider})
-      : super(key: key);
+  final String? idpel;
+  const PinView({
+    Key? key,
+    this.tipeTransaksi,
+    this.productName,
+    this.nomorTelepon,
+    this.productCode,
+    this.harga,
+    this.type,
+    this.provider,
+    this.idpel,
+  }) : super(key: key);
 
   @override
   _PinViewState createState() => _PinViewState();
@@ -33,6 +38,7 @@ class PinView extends StatefulWidget {
 
 class _PinViewState extends State<PinView> {
   final pulsaController = Get.put(PulsaController());
+  final pdamController = Get.put(PdamController());
   String currentText = "";
   TextEditingController textEditingController = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
@@ -143,6 +149,7 @@ class _PinViewState extends State<PinView> {
                       controller.restart();
                       print("Completed");
 
+                      // if (widget.tipeTransaksi == 'pulsa') {
                       await pulsaController.transaksipulsa(
                         v,
                         widget.nomorTelepon,
@@ -153,6 +160,7 @@ class _PinViewState extends State<PinView> {
                         widget.provider,
                         context,
                       );
+                      // } else if (widget.tipeTransaksi == 'pdam') {
                     },
                     onChanged: (value) {
                       if (value.length == 6) {

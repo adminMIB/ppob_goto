@@ -36,12 +36,15 @@ class ProfilefieldView extends StatefulWidget {
 }
 
 class _ProfilefieldViewState extends State<ProfilefieldView> {
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      : '';
   final akunController = Get.put(AkunController());
 
   TextEditingController name = TextEditingController();
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
-  TextEditingController phone = TextEditingController();
+  TextEditingController nomer_tlp = TextEditingController();
   TextEditingController alamat = TextEditingController();
   TextEditingController nik = TextEditingController();
   var pref = GetStorage();
@@ -64,9 +67,9 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
     name.text = akunController.userProfile['nama_lengkap'] ?? '';
     username.text = akunController.userProfile['username'] ?? '';
     email.text = akunController.userProfile['email'] ?? '';
-    phone.text = akunController.userProfile['nomor_telepon'] ?? '';
-    nik.text = akunController.userProfile['nik'] ?? '';
+    nomer_tlp.text = akunController.userProfile['nomor_telepon'] ?? '';
     alamat.text = akunController.userProfile['alamat'] ?? '';
+    nik.text = akunController.userProfile['nik'] ?? '';
   }
 
   @override
@@ -101,80 +104,92 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                 Center(
                   child: Stack(
                     children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(60.0),
-                        child: Obx(
-                          () => akunController.userProfile['foto_profile'] ==
-                                      null ||
-                                  akunController.userProfile['foto_profile'] ==
-                                      ''
-                              ? Image.asset(
-                                  'assets/images/orang1.png',
-                                  width: 120.0,
-                                  height: 120.0,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.network(
-                                  UrlListService.baseUrl +
-                                      akunController
-                                          .userProfile['foto_profile'],
-                                  width: 120.0,
-                                  height: 120.0,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                        //  image1 == null
-                        //     ? Image.asset(
-                        //         'assets/images/orang1.png',
-                        //         width: 120.0,
-                        //         height: 120.0,
-                        //         fit: BoxFit.cover,
-                        //       )
-                        //     : Image.file(
-                        //         File(image1!.path),
-                        //         width: 120.0,
-                        //         height: 120.0,
-                        //         fit: BoxFit.cover,
-                        //       ),
-                      ),
-                      Positioned(
-                        bottom: 1.0.h,
-                        right: 1.5.w,
-                        child: InkWell(
-                            onTap: () {
-                              showFlexibleBottomSheet(
-                                minHeight: 0,
-                                initHeight: 0.5,
-                                maxHeight: 0.5,
-                                context: context,
-                                builder: bottomsheet,
-                                isExpand: false,
-                              );
-                            },
-                            child: Container(
-                              width: 10.0.w,
-                              height: 10.0.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 2),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.camera_alt,
-                                  color: Colors.grey.shade700,
-                                  size: 28.0,
-                                ),
-                              ),
-                            )),
-                      ),
+                      CircleAvatar(
+                          radius: 60,
+                          backgroundColor: Colors.grey.shade300,
+                          child: Text(
+                            getInitials(
+                              pref.read('nama_lengkap'),
+                            ),
+                            style: TextStyle(
+                                color: mainColor,
+                                fontSize: 29.0.sp,
+                                fontWeight: FontWeight.bold),
+                          )),
+                      // ClipRRect(
+                      //   borderRadius: BorderRadius.circular(60.0),
+                      //   child: Obx(
+                      //     () => akunController.userProfile['foto_profile'] ==
+                      //                 null ||
+                      //             akunController.userProfile['foto_profile'] ==
+                      //                 ''
+                      //         ? Image.asset(
+                      //             'assets/images/orang1.png',
+                      //             width: 120.0,
+                      //             height: 120.0,
+                      //             fit: BoxFit.cover,
+                      //           )
+                      //         : Image.network(
+                      //             UrlListService.baseUrl +
+                      //                 akunController
+                      //                     .userProfile['foto_profile'],
+                      //             width: 120.0,
+                      //             height: 120.0,
+                      //             fit: BoxFit.cover,
+                      //           ),
+                      //   ),
+                      //   //  image1 == null
+                      //   //     ? Image.asset(
+                      //   //         'assets/images/orang1.png',
+                      //   //         width: 120.0,
+                      //   //         height: 120.0,
+                      //   //         fit: BoxFit.cover,
+                      //   //       )
+                      //   //     : Image.file(
+                      //   //         File(image1!.path),
+                      //   //         width: 120.0,
+                      //   //         height: 120.0,
+                      //   //         fit: BoxFit.cover,
+                      //   //       ),
+                      // ),
+                      // Positioned(
+                      //   bottom: 1.0.h,
+                      //   right: 1.5.w,
+                      //   child: InkWell(
+                      //       onTap: () {
+                      //         showFlexibleBottomSheet(
+                      //           minHeight: 0,
+                      //           initHeight: 0.5,
+                      //           maxHeight: 0.5,
+                      //           context: context,
+                      //           builder: bottomsheet,
+                      //           isExpand: false,
+                      //         );
+                      //       },
+                      //       child: Container(
+                      //         width: 10.0.w,
+                      //         height: 10.0.w,
+                      //         decoration: BoxDecoration(
+                      //           shape: BoxShape.circle,
+                      //           color: Colors.white,
+                      //           boxShadow: [
+                      //             BoxShadow(
+                      //               color: Colors.grey.withOpacity(0.5),
+                      //               spreadRadius: 2,
+                      //               blurRadius: 4,
+                      //               offset: Offset(0, 2),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //         child: Center(
+                      //           child: Icon(
+                      //             Icons.camera_alt,
+                      //             color: Colors.grey.shade700,
+                      //             size: 28.0,
+                      //           ),
+                      //         ),
+                      //       )),
+                      // ),
                     ],
                   ),
                 ),
@@ -284,19 +299,18 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                     TextFormField(
                       minLines: 1,
                       maxLength: 13,
-                      controller: phone,
-                      keyboardType: TextInputType.phone,
+                      controller: nomer_tlp,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        hintText: 'Masukkan No telepon',
+                        hintText: 'Masukkan Nomor telepon',
                         hintStyle: TextStyle(
                             fontSize: 10.0.sp, color: Colors.grey.shade500),
                       ),
-                      // initialValue:
-                      //     akunController.userProfile['nomor_telepon'] ?? '',
+                      // initialValue: akunController.userProfile['nik'] ?? '',
                     ),
                     SizedBox(
                       height: 1.0.h,
@@ -369,7 +383,7 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                                 name.text,
                                 username.text,
                                 email.text,
-                                phone.text,
+                                nomer_tlp.text,
                                 alamat.text,
                                 widget.nama_kerabat,
                                 widget.nomer_tlp_kerabat,

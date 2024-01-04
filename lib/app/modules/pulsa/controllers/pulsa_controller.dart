@@ -197,9 +197,6 @@ class PulsaController extends GetxController {
 
   transaksipulsa(var pin, var nomorTelepon, var productCode, var harga,
       var productName, var type, var provider, BuildContext context) async {
-    // var access_token = pref.read('access_token');
-    // print('productname = $productName');
-    // print('productCode = $productCode');
     var access_token = pref.read('access_token');
     await helperController.loading(context);
     return network.post(
@@ -257,7 +254,6 @@ class PulsaController extends GetxController {
       },
       onError: (error) {
         print('error: $error');
-
         if (error['response'] != null) {
           String apiTimeString = error['response']['data']['time'];
           DateTime apiDateTime = fromCustomTime(apiTimeString);

@@ -11,9 +11,18 @@ class UrlListService {
   static const email = 'api/auth/verifikasi_email';
   static const verifikasiOtp = 'api/auth/verifikasi_code_email';
   static const login = 'api/auth/login';
+
+  //pulsa,paketdata
   static const productProvider = 'api/ppob/product_provider';
   static const checkbalance = 'api/ppob/cek_saldo_user';
   static const pulsatransaksi = 'api/ppob/transaksi_pulsa';
+
+  //profile
   static const profile = 'api/profile/ProfileUser';
   static const updateprofile = 'api/profile/update_profile';
+
+  //pdam
+  static const pdam = 'api/ppob/product_pdam';
+  static const pdaminqury = 'api/ppob/product_pdam_inquiry';
+  static const pdamtraksaksi = 'api/ppob/product_pdam_payment';
 }

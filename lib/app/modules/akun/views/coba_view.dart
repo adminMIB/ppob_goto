@@ -1,56 +1,24 @@
-import 'dart:io';
-import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/akun/controllers/akun_controller.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/datakerabat_view.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/datapersonal_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/fieldkerabat_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/fieldmerchant_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
-import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 
-class ProfileView extends StatefulWidget {
-  String? email;
-  ProfileView({Key? key, this.email}) : super(key: key);
-
-  @override
-  _ProfileViewState createState() => _ProfileViewState();
-}
-
-class _ProfileViewState extends State<ProfileView> {
-  final akunController = Get.put(AkunController());
-  var pref = GetStorage();
-  XFile? image1;
-
-  final ImagePicker picker = ImagePicker();
-
-  Future getImage2(ImageSource media) async {
-    var img2 = await picker.pickImage(source: media);
-
-    setState(() {
-      image1 = img2;
-    });
-  }
-
-  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
-      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
-      : '';
-
-  @override
-  void initState() {
-    super.initState();
-    akunController.profile(context);
-  }
+class CobaView extends GetView {
+  const CobaView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final akunController = Get.put(AkunController());
+    String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+        ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+        : '';
+    var pref = GetStorage();
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,7 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
                 // color: Colors.amber,
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(right: 1.5.h),
+                    padding: EdgeInsets.only(right: 1.2.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -697,71 +665,6 @@ class _ProfileViewState extends State<ProfileView> {
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget bottomsheet(
-    BuildContext context,
-    ScrollController scrollController,
-    double bottomSheetOffset,
-  ) {
-    return Container(
-      height: 15.0.h,
-      color: Colors.white,
-      child: Padding(
-        padding: EdgeInsets.only(top: 1.5.h),
-        child: Column(
-          children: [
-            Text(
-              'Pilih Foto Profile',
-              style: TextStyle(
-                fontSize: 15.0.sp,
-              ),
-            ),
-            SizedBox(
-              height: 5.0.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () async {
-                    getImage2(ImageSource.gallery);
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.photo_library, // Menggunakan ikon photo_library
-                      ),
-                      SizedBox(
-                        width: 1.0.h,
-                      ),
-                      Text('Galeri'),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    getImage2(ImageSource.camera);
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.camera_alt,
-                      ),
-                      SizedBox(
-                        width: 1.0.h,
-                      ),
-                      Text('Kamera')
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
         ),
       ),
     );

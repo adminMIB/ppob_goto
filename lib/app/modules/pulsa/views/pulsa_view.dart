@@ -204,7 +204,7 @@ class _PulsaViewState extends State<PulsaView> {
                                                         keyboardType:
                                                             TextInputType
                                                                 .number,
-                                                        onChanged: (a) {
+                                                        onChanged: (a) async {
                                                           lengthNoTelepon =
                                                               a.length;
                                                           pulsaController
@@ -214,6 +214,10 @@ class _PulsaViewState extends State<PulsaView> {
                                                             shouldUpdateViewPrice =
                                                                 true;
                                                           });
+                                                          await Future.delayed(
+                                                              Duration(
+                                                                  milliseconds:
+                                                                      2000));
                                                         },
                                                         decoration:
                                                             InputDecoration(
@@ -239,7 +243,6 @@ class _PulsaViewState extends State<PulsaView> {
                                                                     .circular(
                                                                         10.0), // Same circular border radius
                                                           ),
-                                                          // Warna outline ketika di-klik atau fokus
                                                           focusedBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
@@ -249,7 +252,7 @@ class _PulsaViewState extends State<PulsaView> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        10.0), // Same circular border radius
+                                                                        10.0),
                                                           ),
                                                           hintText:
                                                               'Masukkan Nomer telepon',
@@ -520,6 +523,7 @@ class _PulsaViewState extends State<PulsaView> {
                   minHeight: 0,
                   initHeight: 0.5,
                   maxHeight: 0.5,
+                  bottomSheetColor: Colors.transparent,
                   context: context,
                   builder: (context, scrollController, bottomSheetOffset) {
                     return _buildBottomSheet(
@@ -602,9 +606,13 @@ class _PulsaViewState extends State<PulsaView> {
     double bottomSheetOffset,
   ) {
     bool isTextLengthValid = tNoPulsa.text.length >= 10;
-    return Material(
-      child: Container(
-        color: whiteColor,
+    return Container(
+        decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -631,7 +639,7 @@ class _PulsaViewState extends State<PulsaView> {
                         },
                         child: Icon(
                           Icons.close,
-                          color: Color(0xFF8E8C8C),
+                          color: blackColor,
                           size: 20,
                         ),
                       )
@@ -826,9 +834,12 @@ class _PulsaViewState extends State<PulsaView> {
                       textAlign: TextAlign.right,
                     ),
                   ),
+                  SizedBox(
+                    height: 2.0.h,
+                  ),
                   Container(
                     color: whiteColor,
-                    padding: EdgeInsets.all(16.0),
+                    // padding: EdgeInsets.all(16.0),
                     child: Center(
                       child: SizedBox(
                         width: 35.0.h,
@@ -898,6 +909,9 @@ class _PulsaViewState extends State<PulsaView> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 2.0.h,
+                  ),
                   Visibility(
                     visible: !isTextLengthValid,
                     child: Text(
@@ -912,8 +926,6 @@ class _PulsaViewState extends State<PulsaView> {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

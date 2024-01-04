@@ -12,6 +12,7 @@ import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/coba_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profile_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
 import 'package:ppob_mpay1/app/modules/fingerprint/views/fingerprint_view.dart';
@@ -45,6 +46,10 @@ class AkunViewState extends State<AkunView> {
       image1 = img2;
     });
   }
+
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      : '';
 
   @override
   void initState() {
@@ -90,29 +95,41 @@ class AkunViewState extends State<AkunView> {
                 children: [
                   Stack(
                     children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(60.0),
-                        child: Obx(
-                          () => akunController.userProfile['foto_profile'] ==
-                                      null ||
-                                  akunController.userProfile['foto_profile'] ==
-                                      ''
-                              ? Image.asset(
-                                  'assets/images/orang1.png',
-                                  width: 120.0,
-                                  height: 120.0,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.network(
-                                  UrlListService.baseUrl +
-                                      akunController
-                                          .userProfile['foto_profile'],
-                                  width: 120.0,
-                                  height: 120.0,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                      ),
+                      CircleAvatar(
+                          radius: 60,
+                          backgroundColor: Colors.grey.shade300,
+                          child: Text(
+                            getInitials(
+                              pref.read('nama_lengkap'),
+                            ),
+                            style: TextStyle(
+                                color: mainColor,
+                                fontSize: 29.0.sp,
+                                fontWeight: FontWeight.bold),
+                          )),
+                      // ClipRRect(
+                      //   borderRadius: BorderRadius.circular(60.0),
+                      //   child: Obx(
+                      //     () => akunController.userProfile['foto_profile'] ==
+                      //                 null ||
+                      //             akunController.userProfile['foto_profile'] ==
+                      //                 ''
+                      //         ? Image.asset(
+                      //             'assets/images/orang1.png',
+                      //             width: 120.0,
+                      //             height: 120.0,
+                      //             fit: BoxFit.cover,
+                      //           )
+                      //         : Image.network(
+                      //             UrlListService.baseUrl +
+                      //                 akunController
+                      //                     .userProfile['foto_profile'],
+                      //             width: 120.0,
+                      //             height: 120.0,
+                      //             fit: BoxFit.cover,
+                      //           ),
+                      //   ),
+                      // ),
                     ],
                   ),
                   SizedBox(
@@ -151,6 +168,7 @@ class AkunViewState extends State<AkunView> {
                     await Future.delayed(Duration(milliseconds: 2000));
 
                     Get.to(ProfileView());
+                    // Get.to(CobaView());
                   },
                 ),
                 Divider(
