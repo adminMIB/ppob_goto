@@ -109,7 +109,7 @@ class _ProfileViewState extends State<ProfileView> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(FieldmerchantView());
+                          Get.off(FieldmerchantView());
                         },
                         child: Container(
                           height: 6.h,
@@ -223,7 +223,7 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(ProfilefieldView());
+                              Get.off(ProfilefieldView());
                             },
                             child: Container(
                               height: 6.h,
@@ -511,7 +511,7 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(FieldkerabatView());
+                              Get.off(FieldkerabatView());
                             },
                             child: Container(
                               height: 6.h,

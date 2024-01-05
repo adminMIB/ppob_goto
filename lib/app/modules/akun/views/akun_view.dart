@@ -165,7 +165,7 @@ class AkunViewState extends State<AkunView> {
                     ),
                   ),
                   onTap: () async {
-                    await Future.delayed(Duration(milliseconds: 2000));
+                    // await Future.delayed(Duration(milliseconds: 2000));
 
                     Get.to(ProfileView());
                     // Get.to(CobaView());

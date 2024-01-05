@@ -68,8 +68,8 @@ class AkunController extends GetxController {
           'Authorization': 'Bearer $access_token',
         },
         onSuccess: (content) {
-          // Get.back();
-          // Get.to(ProfileView());
+          Get.back();
+          Get.off(ProfileView());
           print(content);
         },
         onError: (onError) {

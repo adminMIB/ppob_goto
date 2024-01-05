@@ -249,26 +249,12 @@ class _HomeViewState extends State<HomeView> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Saldo Anda',
-                                                      style: TextStyle(
-                                                        fontSize: 12.0.sp,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 2.0.w,
-                                                    ),
-                                                    Icon(
-                                                      Icons.add,
-                                                      size: 12.0.sp,
-                                                    ),
-                                                  ],
+                                                Text(
+                                                  'Saldo Anda',
+                                                  style: TextStyle(
+                                                    fontSize: 12.0.sp,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: 0.2.h,

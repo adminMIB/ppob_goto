@@ -176,7 +176,7 @@ class _WilayahViewState extends State<WilayahView> {
                               onPressed: idpel.text.length >= 7
                                   ? () async {
                                       if (formkey.currentState!.validate()) {
-                                        await pdamController.pdamtrasaksi(
+                                        await pdamController.pdaminquiry(
                                             idpel.text,
                                             widget.productCode,
                                             context);

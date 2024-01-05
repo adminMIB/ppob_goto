@@ -9,7 +9,6 @@ import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/register/views/dialogberes_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/bottmsheetpdam_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/transaksipdam_view.dart';
 
 class PdamController extends GetxController {
   final dataPdam = [].obs;
@@ -76,7 +75,7 @@ class PdamController extends GetxController {
     }
   }
 
-  pdamtrasaksi(var idpel, var productCode, BuildContext context) async {
+  pdaminquiry(var idpel, var productCode, BuildContext context) async {
     await helperController.loading(context);
     var access_token = pref.read('access_token');
     return network.post(
@@ -90,15 +89,31 @@ class PdamController extends GetxController {
             print('masuk : $content');
             String apiTimeString = content['response']['periode'];
             DateTime apiDateTime = fromCustomTime(apiTimeString);
+
+            List<String> periodeMonths =
+                content['response']['periode'].split(",");
+            List<String> formattedMonths = periodeMonths.map((month) {
+              DateTime dateTime = fromCustomTime(month.trim());
+              return DateFormat('MMMM yyyy').format(dateTime);
+            }).toList();
+
+            Get.back();
             Get.bottomSheet(
               BottmsheetpdamView(
-                idpel2: content['response']['idpel2'],
+                idpel: idpel,
                 nama_pelanggan: content['response']['nama_pelanggan'],
-                kodeproduk: content['response']['kodeproduk'],
+                kodeproduk: productCode,
                 admin: content['response']['admin'],
-                nominal: content['response']['nominal'],
-                periode: DateFormat('MMMM, yyyy')
-                    .format(fromCustomTime(content['response']['periode'])),
+                harga: content['response']['nominal'],
+                // periode: DateFormat('MMMM, yyyy')
+                //     .format(fromCustomTime(content['response']['periode'])),
+                periode: formattedMonths.join(', ' + " "),
+                jumlahbulan: content['response']['jml_bln'],
+                stan_awal: content['response']['stan_awal'],
+                stan_akhir: content['response']['stan_akhir'],
+                total_bayar: content['response']['total_bayar'],
+                ref1: content['response']['ref1'],
+                ref2: content['response']['ref2'],
               ),
             );
           }
@@ -130,6 +145,46 @@ class PdamController extends GetxController {
       // hours,
       // minutes,
       // seconds,
+    );
+  }
+
+  pdampayment(
+    var productCode,
+    var idpel,
+    var ref1,
+    var ref2,
+    var amount,
+    var admin,
+    var total_bayar,
+    var pin,
+    BuildContext context,
+  ) async {
+    await helperController.loading(context);
+    var access_token = pref.read('access_token');
+    return network.post(
+      path: UrlListService.pdampayment,
+      headers: {
+        'Authorization': 'Bearer $access_token',
+      },
+      onSuccess: (content) {
+        if (content['status'] == true) {
+          print('hasil : $content');
+        }
+      },
+      onError: (onError) {
+        print(onError);
+      },
+      body: {
+        "productCode": productCode,
+        "idpel": idpel,
+        "ref1": ref1,
+        "ref2": ref2,
+        "amount": amount,
+        "admin": admin,
+        "total_bayar": total_bayar,
+        "user_id": pref.read('user_id'),
+        "pin": pin,
+      },
     );
   }
 }

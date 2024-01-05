@@ -12,7 +12,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 
 class PinView extends StatefulWidget {
-  final String? tipeTransaksi;
   final String? productName;
   final String? nomorTelepon;
   final String? productCode;
@@ -20,9 +19,12 @@ class PinView extends StatefulWidget {
   final String? type;
   final String? provider;
   final String? idpel;
+  final String? ref1;
+  final String? ref2;
+  final String? admin;
+  final String? total_bayar;
   const PinView({
     Key? key,
-    this.tipeTransaksi,
     this.productName,
     this.nomorTelepon,
     this.productCode,
@@ -30,6 +32,10 @@ class PinView extends StatefulWidget {
     this.type,
     this.provider,
     this.idpel,
+    this.ref1,
+    this.ref2,
+    this.admin,
+    this.total_bayar,
   }) : super(key: key);
 
   @override
@@ -160,7 +166,18 @@ class _PinViewState extends State<PinView> {
                         widget.provider,
                         context,
                       );
-                      // } else if (widget.tipeTransaksi == 'pdam') {
+
+                      await pdamController.pdampayment(
+                        widget.productCode,
+                        widget.idpel,
+                        widget.ref1,
+                        widget.ref2,
+                        widget.harga,
+                        widget.admin,
+                        widget.total_bayar,
+                        v,
+                        context,
+                      );
                     },
                     onChanged: (value) {
                       if (value.length == 6) {

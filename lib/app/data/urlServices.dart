@@ -24,5 +24,5 @@ class UrlListService {
   //pdam
   static const pdam = 'api/ppob/product_pdam';
   static const pdaminqury = 'api/ppob/product_pdam_inquiry';
-  static const pdamtraksaksi = 'api/ppob/product_pdam_payment';
+  static const pdampayment = 'api/ppob/product_pdam_payment';
 }

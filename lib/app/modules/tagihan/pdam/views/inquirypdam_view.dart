@@ -18,7 +18,7 @@ import 'package:showcaseview/showcaseview.dart';
 import 'package:sizer/sizer.dart';
 import 'package:screenshot/screenshot.dart';
 
-class transaksipdamView extends StatefulWidget {
+class inquirypdamView extends StatefulWidget {
   final String? kodeproduk;
   final String? tanggal;
   final String? idpel2;
@@ -31,7 +31,7 @@ class transaksipdamView extends StatefulWidget {
   final String? jml_bln;
   final String? stan_awal;
   final String? stan_akhir;
-  const transaksipdamView({
+  const inquirypdamView({
     super.key,
     this.kodeproduk,
     this.tanggal,
@@ -48,10 +48,10 @@ class transaksipdamView extends StatefulWidget {
   });
 
   @override
-  State<transaksipdamView> createState() => _transaksipdamViewState();
+  State<inquirypdamView> createState() => _inquirypdamViewState();
 }
 
-class _transaksipdamViewState extends State<transaksipdamView> {
+class _inquirypdamViewState extends State<inquirypdamView> {
   //  DateTime parsedDateTime = parseDateTime(widget.tglwaktu ?? '');
   final helperController = Get.put(HelperController());
 
