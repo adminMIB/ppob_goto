@@ -102,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Username',
+                                      'Usernamgi',
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 12.0.sp,
