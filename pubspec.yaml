@@ -45,6 +45,8 @@ dependencies:
   lottie: 2.7.0
   remixicon: 1.0.0
   modal_bottom_sheet: 2.1.2
+  google_fonts: 6.1.0
+  font_awesome_flutter: 10.6.0
   flutter: 
     sdk: flutter
 
