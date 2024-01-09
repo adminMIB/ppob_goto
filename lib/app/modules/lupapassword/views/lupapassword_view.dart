@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/popup/views/gagaltransaksi_view.dart';
+import 'package:ppob_mpay1/app/data/popup/views/gagalpopup_view.dart';
 import 'package:ppob_mpay1/app/data/popup/views/saldotidakcukup_view.dart';
 import 'package:ppob_mpay1/app/modules/lupapassword/views/verifikasiOtp_view.dart';
 import 'package:sizer/sizer.dart';

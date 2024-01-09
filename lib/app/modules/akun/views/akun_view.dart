@@ -47,8 +47,17 @@ class AkunViewState extends State<AkunView> {
     });
   }
 
+  // String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+  //     ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+  //     : '';
   String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
-      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      ? userNamalengkap
+          .trim()
+          .split(' ')
+          .map((l) => l[0])
+          .take(2)
+          .join()
+          .toUpperCase()
       : '';
 
   @override

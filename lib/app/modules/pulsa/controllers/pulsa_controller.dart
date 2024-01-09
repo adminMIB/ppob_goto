@@ -167,7 +167,7 @@ class PulsaController extends GetxController {
     }
   }
 
-  ///yang di pake
+  ///get provider
   productprovider(BuildContext context, var provider) async {
     var access_token = pref.read('access_token');
 

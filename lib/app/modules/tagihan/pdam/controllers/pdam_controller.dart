@@ -5,10 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
+import 'package:ppob_mpay1/app/data/popup/views/gagalpopup_view.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
-import 'package:ppob_mpay1/app/modules/register/views/dialogberes_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/bottmsheetpdam_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdamgagal_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdamsukses_view.dart';
 
 class PdamController extends GetxController {
   final dataPdam = [].obs;
@@ -41,6 +43,9 @@ class PdamController extends GetxController {
   //     body: {},
   //   );
   // }
+
+  //get pdam //
+
   pdam(BuildContext context) async {
     // await helperController.loading(context);
     var access_token = pref.read('access_token');
@@ -75,7 +80,10 @@ class PdamController extends GetxController {
     }
   }
 
-  pdaminquiry(var idpel, var productCode, BuildContext context) async {
+// inquiry //
+
+  pdaminquiry(var idpel, var productCode, var product_name,
+      BuildContext context) async {
     await helperController.loading(context);
     var access_token = pref.read('access_token');
     return network.post(
@@ -105,8 +113,6 @@ class PdamController extends GetxController {
                 kodeproduk: productCode,
                 admin: content['response']['admin'],
                 harga: content['response']['nominal'],
-                // periode: DateFormat('MMMM, yyyy')
-                //     .format(fromCustomTime(content['response']['periode'])),
                 periode: formattedMonths.join(', ' + " "),
                 jumlahbulan: content['response']['jml_bln'],
                 stan_awal: content['response']['stan_awal'],
@@ -124,7 +130,7 @@ class PdamController extends GetxController {
         body: {
           "idpel": idpel,
           "productCode": productCode,
-          // "pin": pin,
+          "product_name": product_name,
           "user_id": pref.read('user_id'),
         });
   }
@@ -132,21 +138,14 @@ class PdamController extends GetxController {
   DateTime fromCustomTime(String time) {
     int year = int.parse(time.substring(0, 4));
     int month = int.parse(time.substring(4, 6));
-    // int day = int.parse(time.substring(6, 8));
-
-    // int hours = int.parse(time.substring(8, 10));
-    // int minutes = int.parse(time.substring(10, 12));
-    // int seconds = int.parse(time.substring(12, 14));
 
     return DateTime(
       year,
       month,
-      // day,
-      // hours,
-      // minutes,
-      // seconds,
     );
   }
+
+//payment pdam //
 
   pdampayment(
     var productCode,
@@ -169,10 +168,58 @@ class PdamController extends GetxController {
       onSuccess: (content) {
         if (content['status'] == true) {
           print('hasil : $content');
+
+          //periode//
+          String apiperiodeString = content['response']['periode'];
+          DateTime apiDatePeriode = fromCustomTime(apiperiodeString);
+          List<String> periodeMonths =
+              content['response']['periode'].split(",");
+          List<String> formattedMonths = periodeMonths.map((month) {
+            DateTime dateTime = fromCustomTime(month.trim());
+            return DateFormat('MMMM yyyy').format(dateTime);
+          }).toList();
+
+          //date time//
+          String apiTimeString = content['response']['date'];
+          DateTime apiDateTime = fromCustomTime(apiTimeString);
+
+          String TimeString = content['response']['date'];
+          DateTime Tgl = CustomTime(apiTimeString);
+
+          PersistentNavBarNavigator.pushNewScreen(context,
+              screen: PdamsuksesView(
+                noref: ref2,
+                idpel: idpel,
+                nama_pelanggan: content['response']['nama_pelanggan'],
+                stan_awal: content['response']['stan_awal'],
+                stan_akhir: content['response']['stan_akhir'],
+                jumlah_bulan: content['response']['jml_bln'],
+                periode: formattedMonths.join(', ' + " "),
+                deskripsi: content['response']['description'],
+                harga: amount,
+                admin: admin,
+                total_bayar: total_bayar,
+                tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+                    .format(CustomTime(content['response']['date'])),
+              ));
         }
       },
       onError: (onError) {
-        print(onError);
+        print("hasil error: $onError");
+
+        int responseStatus = onError['response']['status'];
+
+        if (responseStatus == 1002) {
+          print(onError['response']['error']);
+          print(
+              "Status 1002 terdeteksi! Tiket ID: ${onError['response']['tiket-id']}");
+          Get.offAll(PdamgagalView());
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => gagalpopup(
+                    error: onError['response']['error'],
+                  ));
+        }
       },
       body: {
         "productCode": productCode,
@@ -185,6 +232,25 @@ class PdamController extends GetxController {
         "user_id": pref.read('user_id'),
         "pin": pin,
       },
+    );
+  }
+
+  DateTime CustomTime(String time) {
+    int year = int.parse(time.substring(0, 4));
+    int month = int.parse(time.substring(4, 6));
+    int day = int.parse(time.substring(6, 8));
+
+    int hours = int.parse(time.substring(8, 10));
+    int minutes = int.parse(time.substring(10, 12));
+    int seconds = int.parse(time.substring(12, 14));
+
+    return DateTime(
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+      seconds,
     );
   }
 }

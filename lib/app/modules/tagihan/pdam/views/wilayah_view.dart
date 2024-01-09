@@ -179,6 +179,7 @@ class _WilayahViewState extends State<WilayahView> {
                                         await pdamController.pdaminquiry(
                                             idpel.text,
                                             widget.productCode,
+                                            widget.productName,
                                             context);
                                       }
                                     }

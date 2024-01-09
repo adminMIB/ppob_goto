@@ -37,7 +37,13 @@ class ProfilefieldView extends StatefulWidget {
 
 class _ProfilefieldViewState extends State<ProfilefieldView> {
   String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
-      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      ? userNamalengkap
+          .trim()
+          .split(' ')
+          .map((l) => l[0])
+          .take(2)
+          .join()
+          .toUpperCase()
       : '';
   final akunController = Get.put(AkunController());
 
