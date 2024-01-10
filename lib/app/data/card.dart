@@ -24,8 +24,8 @@ class CardMenu extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 8.0.h,
-              height: 8.0.h,
+              width: 4.5.h,
+              height: 4.0.h,
               // decoration: BoxDecoration(
               //   color: isSvg
               //       ? Colors.transparent
@@ -36,14 +36,14 @@ class CardMenu extends StatelessWidget {
                 child: isSvg
                     ? SvgPicture.asset(
                         image!,
-                        width: 40.0,
-                        height: 40.0,
+                        // width: 40.0,
+                        // height: 40.0,
                       )
                     : Image.asset(
                         image!,
                         fit: BoxFit.contain,
-                        width: 40.0,
-                        height: 40.0,
+                        // width: 40.0,
+                        // height: 40.0,
                       ),
               ),
             ),
@@ -52,14 +52,17 @@ class CardMenu extends StatelessWidget {
             ),
             Column(
               children: [
-                Text(
-                  title!,
-                  style: TextStyle(
-                    fontSize: 10.0.sp,
-                    fontWeight: FontWeight.w400,
-                    color: blackColor,
+                Container(
+                  width: 8.0.h,
+                  child: Text(
+                    title!,
+                    style: TextStyle(
+                      color: mainColor,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ],
             ),

@@ -4,6 +4,10 @@ Color mainColor = const Color(0xFF005B96);
 Color secondColor = const Color(0xFF03396C);
 Color thirdColor = const Color(0xFFF29D38);
 
+Color mainContainer = Color(0xFFB3CDE0).withOpacity(0.25);
+Color secondContainer = Color(0xFFB3CDE0).withOpacity(0.1);
+Color borderColor = Color(0xFF005B96).withOpacity(0.2);
+
 Color oceanColor = const Color(0xFFDAE8FA);
 Color whiteColor = const Color(0xFFFFFFFF);
 

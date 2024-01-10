@@ -86,194 +86,492 @@ class _HomeViewState extends State<HomeView> {
                 : SizedBox.shrink(),
           ),
           SafeArea(
-            child: Column(
+            child: ListView(
               children: [
-                Container(
-                  height: 9.h,
-                  color: mainColor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor: greyishColor,
-                              child: Text(
-                                getInitials(
-                                  pref.read('nama_lengkap'),
-                                ).toUpperCase(),
-                                style: TextStyle(
-                                  color: secondColor,
-                                  fontSize: 15.0.sp,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 2.0.h,
-                            ),
-                            Container(
-                              // color: blackColor,
-                              width: 60.w,
-                              height: 7.h,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Selamat datang, ${pref.read('nama_lengkap')}',
-                                        style: TextStyle(
-                                          color: whiteColor,
-                                          fontSize: 11.0.sp,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 0.5.h,
-                                  ),
-                                  Text(
-                                    '${pref.read('nomer_tlp')}',
-                                    style: TextStyle(
-                                      color: whiteColor,
-                                      fontSize: 8.0.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Image.asset(
-                          'assets/images/Notif.png',
-                          height: 5.0.h,
-                          width: 5.0.h,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 3.0.h,
-                ),
-                Container(
-                  width: 87.w,
-                  height: 14.h,
-                  decoration: BoxDecoration(
-                    color: Color(0XFFECF1F6),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: secondColor,
-                      width: 2,
-                    ),
-                  ),
-                  child: Obx(
-                    () => Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
+                Padding(
+                  padding: EdgeInsets.only(bottom: 8.0.h),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 9.h,
+                        color: mainColor,
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0.h),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Stack(
-                                alignment: Alignment.center,
+                              Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  if (homeController.balance.value == '0' &&
-                                      isLoading.value)
-                                    SizedBox(
-                                      width: 12.0,
-                                      height: 12.0,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2.0,
-                                      ),
-                                    ),
-                                  if (!(homeController.balance.value == '0' &&
-                                      isLoading.value))
-                                    Text(
-                                      'Rp. ' +
-                                          NumberFormat.currency(
-                                            locale: 'id-ID',
-                                            symbol: '',
-                                            decimalDigits: 0,
-                                          ).format(double.parse(
-                                              '${homeController.balance.value}')),
+                                  CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: greyishColor,
+                                    child: Text(
+                                      getInitials(
+                                        pref.read('nama_lengkap'),
+                                      ).toUpperCase(),
                                       style: TextStyle(
-                                        color: mainColor,
-                                        fontSize: 18.0.sp,
+                                        color: secondColor,
+                                        fontSize: 15.0.sp,
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 2.0.h,
-                              ),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/Dompet.png',
                                   ),
                                   SizedBox(
-                                    width: 0.5.h,
-                                  ),
-                                  Text(
-                                    'Saldo',
-                                    style: TextStyle(
-                                      color: greyColor,
-                                      fontSize: 9.0.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 1.0.h,
+                                    width: 2.0.h,
                                   ),
                                   Container(
-                                    color: Colors.grey,
-                                    height: 3.h,
-                                    width: 1,
-                                  ),
-                                  SizedBox(
-                                    width: 1.0.h,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      setState(() {
-                                        isLoading.value = true;
-                                      });
-                                      await Future.delayed(
-                                          Duration(seconds: 2));
-                                      await _refreshBalance();
-                                      setState(() {
-                                        isLoading.value = false;
-                                      });
-                                    },
-                                    child: Row(
+                                    // color: blackColor,
+                                    width: 60.w,
+                                    height: 7.h,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
-                                          Remix.refresh_line,
-                                          color: greyColor,
-                                          size: 10.0.sp,
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Selamat datang, ${pref.read('nama_lengkap')}',
+                                              style: TextStyle(
+                                                color: whiteColor,
+                                                fontSize: 11.0.sp,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        Text(
+                                          '${pref.read('nomer_tlp')}',
+                                          style: TextStyle(
+                                            color: whiteColor,
+                                            fontSize: 8.0.sp,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Image.asset(
+                                'assets/images/Notif.png',
+                                height: 5.0.h,
+                                width: 5.0.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3.0.h,
+                      ),
+                      Container(
+                        width: 87.w,
+                        height: 14.h,
+                        decoration: BoxDecoration(
+                          color: mainContainer,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: secondColor,
+                            width: 2,
+                          ),
+                        ),
+                        child: Obx(
+                          () => Padding(
+                            padding: EdgeInsets.all(2.0.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        if (homeController.balance.value ==
+                                                '0' &&
+                                            isLoading.value)
+                                          SizedBox(
+                                            width: 12.0,
+                                            height: 12.0,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2.0,
+                                            ),
+                                          ),
+                                        if (!(homeController.balance.value ==
+                                                '0' &&
+                                            isLoading.value))
+                                          Text(
+                                            'Rp. ' +
+                                                NumberFormat.currency(
+                                                  locale: 'id-ID',
+                                                  symbol: '',
+                                                  decimalDigits: 0,
+                                                ).format(double.parse(
+                                                    '${homeController.balance.value}')),
+                                            style: TextStyle(
+                                              color: mainColor,
+                                              fontSize: 18.0.sp,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 2.0.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/Dompet.png',
                                         ),
                                         SizedBox(
                                           width: 0.5.h,
                                         ),
                                         Text(
-                                          'Refresh',
+                                          'Saldo',
                                           style: TextStyle(
                                             color: greyColor,
                                             fontSize: 9.0.sp,
                                             fontWeight: FontWeight.w700,
                                           ),
+                                        ),
+                                        SizedBox(
+                                          width: 1.0.h,
+                                        ),
+                                        Container(
+                                          color: Colors.grey,
+                                          height: 3.h,
+                                          width: 1,
+                                        ),
+                                        SizedBox(
+                                          width: 1.0.h,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            setState(() {
+                                              isLoading.value = true;
+                                            });
+                                            await Future.delayed(
+                                                Duration(seconds: 2));
+                                            await _refreshBalance();
+                                            setState(() {
+                                              isLoading.value = false;
+                                            });
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Remix.refresh_line,
+                                                color: greyColor,
+                                                size: 10.0.sp,
+                                              ),
+                                              SizedBox(
+                                                width: 0.5.h,
+                                              ),
+                                              Text(
+                                                'Refresh',
+                                                style: TextStyle(
+                                                  color: greyColor,
+                                                  fontSize: 9.0.sp,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 2.5.h,
+                                ),
+                                Container(
+                                  color: Colors.grey,
+                                  height: 10.h,
+                                  width: 1,
+                                ),
+                                SizedBox(
+                                  width: 2.5.h,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ElevatedButton.icon(
+                                      onPressed: () {},
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.cartPlus,
+                                        color: whiteColor,
+                                      ),
+                                      label: Text(
+                                        'Top Up Saldo',
+                                        style: TextStyle(
+                                          color: whiteColor,
+                                          fontSize: 8.0.sp,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: mainColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/Prize.png',
+                                          height: 3.0.h,
+                                          width: 3.0.h,
+                                        ),
+                                        // SizedBox(
+                                        //   width: 0.5.h,
+                                        // ),
+                                        Text(
+                                          'Reward',
+                                          style: TextStyle(
+                                            color: thirdColor,
+                                            fontSize: 8.0.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 1.5.h,
+                                        ),
+                                        Text(
+                                          '10.250,-',
+                                          style: TextStyle(
+                                            color: thirdColor,
+                                            fontSize: 12.0.sp,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3.0.h,
+                      ),
+                      //Menu Isi Ulang
+                      Container(
+                        width: 90.w,
+                        height: 19.0.h,
+                        decoration: BoxDecoration(
+                          color: secondContainer,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: borderColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Isi Ulang',
+                                style: TextStyle(
+                                  color: thirdColor,
+                                  fontSize: 12.0.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2.0.h,
+                              ),
+                              Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                // mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CardMenu(
+                                    image: 'assets/images/pulsa.png',
+                                    title: 'Pulsa Prabayar',
+                                    onTap: () {
+                                      // Get.to(PlnView());
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 2.0.h,
+                                  ),
+                                  CardMenu(
+                                    image: 'assets/images/paketdata.png',
+                                    title: 'Paket Data',
+                                    onTap: () async {
+                                      // isLoading.value = true;
+                                      await pdamController.pdam(context);
+                                      // isLoading.value = false;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 2.0.h,
+                                  ),
+                                  CardMenu(
+                                    image: 'assets/images/ewalet.png',
+                                    title: 'Top Up Ewallet',
+                                    onTap: () {
+                                      Get.to(BpjsView());
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //Akhir Menu Isi Ulang
+                      SizedBox(
+                        height: 3.0.h,
+                      ),
+                      //Menu Tagihan & Pascabayar
+                      Container(
+                        width: 90.w,
+                        height: 19.0.h,
+                        decoration: BoxDecoration(
+                          color: secondContainer,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: borderColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tagihan & Pascabayar',
+                                style: TextStyle(
+                                  color: thirdColor,
+                                  fontSize: 12.0.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2.0.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  CardMenu(
+                                    image: 'assets/images/listrik.png',
+                                    title: 'Listrik PLN',
+                                    onTap: () {
+                                      // Get.to(PlnView());
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 2.0.h,
+                                  ),
+                                  CardMenu(
+                                    image: 'assets/images/pdam.png',
+                                    title: 'PDAM',
+                                    onTap: () async {
+                                      // isLoading.value = true;
+                                      await pdamController.pdam(context);
+                                      // isLoading.value = false;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 2.0.h,
+                                  ),
+                                  CardMenu(
+                                    image: 'assets/images/ewalet.png',
+                                    title: 'Top Up Ewallet',
+                                    onTap: () {
+                                      Get.to(BpjsView());
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //Akhir Menu Tagihan & Pascabayar
+                      SizedBox(
+                        height: 3.0.h,
+                      ),
+                      //Menu Keuangan
+                      Container(
+                        width: 90.w,
+                        height: 19.0.h,
+                        decoration: BoxDecoration(
+                          color: secondContainer,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: borderColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Keuangan',
+                                style: TextStyle(
+                                  color: thirdColor,
+                                  fontSize: 12.0.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2.0.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  _menuItem('Transfer Bank',
+                                      'assets/images/listrik.png', () {
+                                    //
+                                  }),
+                                  SizedBox(
+                                    width: 2.0.h,
+                                  ),
+                                  Container(
+                                    width: 10.0.h,
+                                    height: 10.0.h,
+                                    // color: greyColor,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/multifinance.png',
+                                          width: 4.0.h,
+                                          height: 4.0.h,
+                                          // Contoh penggunaan fit:
+                                          // fit: BoxFit.contain, // Atau sesuaikan dengan kebutuhan tata letak
+                                        ),
+                                        SizedBox(height: 1.5.h),
+                                        Text(
+                                          'Multifinance',
+                                          style: TextStyle(
+                                            color: mainColor,
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          textAlign: TextAlign.left,
                                         ),
                                       ],
                                     ),
@@ -282,84 +580,82 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            width: 2.5.h,
-                          ),
-                          Container(
-                            color: Colors.grey,
-                            height: 10.h,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 2.0.h,
+                      ),
+                      //Akhir Menu Keuangan
+                      Container(
+                        width: Get.width,
+                        height: Get.height,
+                        decoration: BoxDecoration(
+                          color: secondContainer,
+                          // borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: borderColor,
                             width: 1,
                           ),
-                          SizedBox(
-                            width: 2.5.h,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0.h),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ElevatedButton.icon(
-                                onPressed: () {},
-                                icon: FaIcon(
-                                  FontAwesomeIcons.cartPlus,
-                                  color: whiteColor,
-                                ),
-                                label: Text(
-                                  'Top Up Saldo',
-                                  style: TextStyle(
-                                    color: whiteColor,
-                                    fontSize: 8.0.sp,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: mainColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+                              Text(
+                                'Keuangan',
+                                style: TextStyle(
+                                  color: thirdColor,
+                                  fontSize: 12.0.sp,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/Prize.png',
-                                    height: 3.0.h,
-                                    width: 3.0.h,
-                                  ),
-                                  // SizedBox(
-                                  //   width: 0.5.h,
-                                  // ),
-                                  Text(
-                                    'Reward',
-                                    style: TextStyle(
-                                      color: thirdColor,
-                                      fontSize: 8.0.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 1.5.h,
-                                  ),
-                                  Text(
-                                    '10.250,-',
-                                    style: TextStyle(
-                                      color: thirdColor,
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ],
+                              SizedBox(
+                                height: 2.0.h,
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _menuItem(String label, String imagePath, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 8.0.h,
+        height: 10.0.h,
+        // color: greyColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              imagePath,
+              width: 4.0.h,
+              height: 4.0.h,
+              // fit: BoxFit.contain,
+            ),
+            SizedBox(height: 1.5.h),
+            Text(
+              label,
+              style: TextStyle(
+                color: mainColor,
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ],
+        ),
       ),
     );
   }
