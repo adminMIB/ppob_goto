@@ -47,6 +47,8 @@ dependencies:
   modal_bottom_sheet: 2.1.2
   google_fonts: 6.1.0
   font_awesome_flutter: 10.6.0
+  carousel_slider: 4.2.1
+  package_info_plus: 4.2.0
   flutter: 
     sdk: flutter
 

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/akun_view.dart';
 
 import '../modules/akun/bindings/akun_binding.dart';
-import '../modules/akun/views/akun_view.dart';
 import '../modules/ewallet/brizzi/bindings/brizzi_binding.dart';
 import '../modules/ewallet/brizzi/views/brizzi_view.dart';
 import '../modules/ewallet/dana/bindings/dana_binding.dart';
