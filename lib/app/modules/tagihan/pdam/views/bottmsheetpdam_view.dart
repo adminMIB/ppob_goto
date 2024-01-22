@@ -6,6 +6,7 @@ import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:sizer/sizer.dart';
 
 class BottmsheetpdamView extends StatefulWidget {
+  String? productName;
   String? idpel;
   String? nama_pelanggan;
   String? kodeproduk;
@@ -20,6 +21,7 @@ class BottmsheetpdamView extends StatefulWidget {
   String? ref2;
   BottmsheetpdamView({
     super.key,
+    this.productName,
     this.idpel,
     this.nama_pelanggan,
     this.kodeproduk,
@@ -62,7 +64,7 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Konfirmasi pembayaran',
+                          'Konfirmasi Pembayaran',
                           style: TextStyle(
                             color: mainColor,
                             fontSize: 14.0.sp,
@@ -94,7 +96,7 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                         children: [
                           Center(
                             child: Text(
-                              'Apa Anda yakin ingin melanjutkan\ntransaksi ini?',
+                              'Apa anda yakin ingin melanjutkan\ntransaksi ini?',
                               style: TextStyle(
                                 fontSize: 12.0.sp,
                                 fontWeight: FontWeight.bold,
@@ -120,7 +122,7 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'ID pelanggan',
+                                    'ID Pelanggan',
                                     style: TextStyle(
                                       fontSize: 12.0.sp,
                                       fontWeight: FontWeight.w400,
@@ -269,17 +271,22 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                     height: 1.h,
                                   ),
                                   Text(
-                                    widget.stan_awal!,
+                                    (widget.stan_awal! == "0")
+                                        ? widget.stan_awal!
+                                        : "—",
                                     style: TextStyle(
-                                      fontSize: 12.0.sp,
+                                      fontSize: 11.0.sp,
                                       fontWeight: FontWeight.w400,
                                     ),
+                                    textAlign: TextAlign.right,
                                   ),
                                   SizedBox(
                                     height: 1.h,
                                   ),
                                   Text(
-                                    widget.stan_akhir!,
+                                    (widget.stan_akhir! == "0")
+                                        ? widget.stan_awal!
+                                        : "—",
                                     style: TextStyle(
                                       fontSize: 12.0.sp,
                                       fontWeight: FontWeight.w400,
@@ -471,6 +478,8 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                           onPressed: () async {
                             // Get.to(PdamstrukView());
                             Get.to(PinView(
+                              tipeTransaksi: 'pdam',
+                              productName: widget.productName,
                               productCode: widget.kodeproduk,
                               idpel: widget.idpel,
                               ref1: widget.ref1,
@@ -478,6 +487,7 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                               harga: widget.harga,
                               admin: widget.admin,
                               total_bayar: widget.total_bayar,
+                              periode: widget.periode,
                             ));
                           },
                           style: ElevatedButton.styleFrom(

@@ -7,6 +7,7 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/transaksisukses_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/wilayah_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/nontaglis_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar_view.dart';
@@ -185,6 +186,8 @@ class _PdamViewState extends State<PdamView> {
                                                         .keyboard_arrow_right_outlined,
                                                   ),
                                                   onTap: () {
+                                                    // Get.to(
+                                                    //     transaksisuksesView());
                                                     Get.to(WilayahView(
                                                       productName: element[
                                                           'product_name'],

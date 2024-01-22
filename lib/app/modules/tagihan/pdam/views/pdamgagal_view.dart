@@ -19,6 +19,7 @@ import 'package:sizer/sizer.dart';
 import 'package:screenshot/screenshot.dart';
 
 class PdamgagalView extends StatefulWidget {
+  final String? error;
   // final String? productCode;
   // final String? productName;
   // final String? idpel;
@@ -35,6 +36,7 @@ class PdamgagalView extends StatefulWidget {
   // final String? tglwaktu;
   const PdamgagalView({
     super.key,
+    this.error,
     // this.productCode,
     // this.productName,
     // this.idpel,
@@ -177,7 +179,15 @@ class _PdamgagalViewState extends State<PdamgagalView> {
                                   EdgeInsets.only(left: 2.0.h, right: 2.0.h),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [],
+                                children: [
+                                  Text(
+                                    (widget.error!) + ' ' + '(1002)',
+                                    style: TextStyle(
+                                        fontSize: 14.0.sp,
+                                        fontWeight: FontWeight.w400),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
                               ),
                             )
                           ],

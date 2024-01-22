@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 
-//   }
 class HomeController extends GetxController {
   final helperController = Get.put(HelperController());
 

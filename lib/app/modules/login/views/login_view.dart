@@ -21,6 +21,7 @@ class _LoginViewState extends State<LoginView> {
 
   bool hapus = true;
   bool _ingatsaya = false;
+  bool _obscureTextKonfirmasi = true;
 
   @override
   void dispose() {
@@ -112,20 +113,71 @@ class _LoginViewState extends State<LoginView> {
                                     SizedBox(
                                       height: 0.5.h,
                                     ),
+                                    // Row(
+                                    //   children: [
+                                    //     Expanded(
+                                    //       child: TextField(
+                                    //         controller: username,
+                                    //         minLines: 1,
+                                    //         style:
+                                    //             TextStyle(color: Colors.grey),
+                                    //         decoration: InputDecoration(
+                                    //           contentPadding:
+                                    //               EdgeInsets.symmetric(
+                                    //             vertical: 1.0.h,
+                                    //             horizontal: 2.0.h,
+                                    //           ),
+                                    //           suffixIcon: GestureDetector(
+                                    //             onTap: () {
+                                    //               username.clear();
+                                    //             },
+                                    //             child: Container(
+                                    //               padding: EdgeInsets.all(10),
+                                    //               decoration: BoxDecoration(
+                                    //                 shape: BoxShape.circle,
+                                    //               ),
+                                    //               child: Icon(
+                                    //                 Icons.close,
+                                    //                 size: 20,
+                                    //                 color: Colors.grey,
+                                    //               ),
+                                    //             ),
+                                    //           ),
+                                    //           filled: true,
+                                    //           fillColor: Colors.grey.shade200,
+                                    //           hintText: 'Masukkan username',
+                                    //           hintStyle:
+                                    //               TextStyle(color: Colors.grey),
+                                    //           border: InputBorder.none,
+                                    //           enabledBorder: OutlineInputBorder(
+                                    //             borderSide: BorderSide(
+                                    //                 color: Colors.grey),
+                                    //             borderRadius:
+                                    //                 BorderRadius.circular(10.0),
+                                    //           ),
+                                    //           focusedBorder: OutlineInputBorder(
+                                    //             borderSide: BorderSide(
+                                    //                 color: Colors.grey),
+                                    //             borderRadius:
+                                    //                 BorderRadius.circular(10.0),
+                                    //           ),
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                     Row(
                                       children: [
                                         Expanded(
                                           child: TextField(
                                             controller: username,
                                             minLines: 1,
-                                            style:
-                                                TextStyle(color: Colors.grey),
                                             decoration: InputDecoration(
-                                              contentPadding:
-                                                  EdgeInsets.symmetric(
-                                                vertical: 1.0.h,
-                                                horizontal: 2.0.h,
-                                              ),
+                                              // contentPadding:
+                                              //     EdgeInsets.symmetric(
+                                              //   vertical: 1.0.h,
+                                              //   horizontal: 2.0.h,
+                                              // ),
                                               suffixIcon: GestureDetector(
                                                 onTap: () {
                                                   username.clear();
@@ -147,7 +199,7 @@ class _LoginViewState extends State<LoginView> {
                                               hintText: 'Masukkan username',
                                               hintStyle:
                                                   TextStyle(color: Colors.grey),
-                                              border: InputBorder.none,
+                                              // border: InputBorder.none,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Colors.grey),
@@ -165,11 +217,12 @@ class _LoginViewState extends State<LoginView> {
                                         ),
                                       ],
                                     ),
+
                                     SizedBox(
                                       height: 1.0.h,
                                     ),
                                     Text(
-                                      'Kata sandi',
+                                      'Kata Sandi',
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 12.0.sp,
@@ -179,35 +232,41 @@ class _LoginViewState extends State<LoginView> {
                                     SizedBox(
                                       height: 0.5.h,
                                     ),
-                                    TextField(
-                                      controller:
-                                          password, // Ganti dari username menjadi password
-                                      enableInteractiveSelection: false,
+
+                                    TextFormField(
                                       minLines: 1,
-                                      style: TextStyle(color: Colors.grey),
-                                      obscureText: !hapus,
+                                      controller: password,
+                                      obscureText: _obscureTextKonfirmasi,
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                          vertical: 1.0.h,
-                                          horizontal: 2.0.h,
+                                        border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                         ),
                                         suffixIcon: IconButton(
-                                          icon: hapus
-                                              ? Icon(Icons.visibility)
-                                              : Icon(Icons.visibility_off),
-                                          color: Colors.grey,
+                                          icon: _obscureTextKonfirmasi
+                                              ? const Icon(Icons.visibility)
+                                              : const Icon(
+                                                  Icons.visibility_off),
+                                          color: greyTextColor,
                                           onPressed: () {
                                             setState(() {
-                                              hapus = !hapus;
+                                              _obscureTextKonfirmasi =
+                                                  !_obscureTextKonfirmasi;
                                             });
                                           },
                                         ),
+                                        // hintText: 'Masukkan konfirmasi sandi',
+                                        // hintStyle: TextStyle(
+                                        //     fontSize: 12.0.sp,
+                                        //     color: Colors.grey.shade500),
                                         filled: true,
                                         fillColor: Colors.grey.shade200,
-                                        hintText: 'Masukkan kata sandi',
+                                        hintText: 'Masukkan Password',
                                         hintStyle:
                                             TextStyle(color: Colors.grey),
-                                        border: InputBorder.none,
+                                        // border: InputBorder.none,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.grey),
@@ -322,7 +381,7 @@ class _LoginViewState extends State<LoginView> {
                                     SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.20,
+                                              0.15,
                                     ),
                                     Column(
                                       children: [
