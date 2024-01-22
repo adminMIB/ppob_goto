@@ -275,49 +275,6 @@ class _PulsaViewState extends State<PulsaView> {
                                                 ),
                                               ),
 
-                                              // Form(
-                                              //     child: Container(
-                                              //   width: 65.w,
-                                              //   height: 8.5.h,
-                                              //   child: TextFormField(
-                                              //     minLines: 1,
-                                              //     controller: tNoPulsa,
-                                              //     keyboardType:
-                                              //         TextInputType.phone,
-                                              //     onChanged: (a) {
-                                              //       lengthNoTelepon = a.length;
-                                              //       pulsaController
-                                              //           .checkNomorPonsel(
-                                              //               a, context);
-                                              //       setState(() {
-                                              //         shouldUpdateViewPrice =
-                                              //             true;
-                                              //       });
-                                              //     },
-                                              //     decoration: InputDecoration(
-                                              //       border: OutlineInputBorder(
-                                              //         borderSide: BorderSide(
-                                              //             color: Colors.grey),
-                                              //         borderRadius:
-                                              //             BorderRadius.circular(
-                                              //                 10.0),
-                                              //       ),
-                                              //       hintText:
-                                              //           'Masukkan Merchant',
-                                              //       hintStyle: TextStyle(
-                                              //           fontSize: 12.0.sp,
-                                              //           color: Colors
-                                              //               .grey.shade500),
-                                              //     ),
-                                              //     validator: Validators.compose(
-                                              //       [
-                                              //         Validators.required(
-                                              //             'Nama merchant harus di isi'),
-                                              //       ],
-                                              //     ),
-                                              //   ),
-                                              // )),
-
                                               SizedBox(
                                                 width: 2.0.h,
                                               ),
@@ -360,15 +317,6 @@ class _PulsaViewState extends State<PulsaView> {
                                                         Alignment.topCenter,
                                                   ),
                                                 ),
-
-                                                //  Container(
-                                                //   padding: EdgeInsets.only(
-                                                //       top: 1.0.h),
-                                                //   child: Image.asset(
-                                                //     'assets/images/kontak.png',
-                                                //     height: 4.0.h,
-                                                //   ),
-                                                // ),
                                               ),
                                             ],
                                           ),
@@ -420,37 +368,38 @@ class _PulsaViewState extends State<PulsaView> {
                               height: 2.0.h,
                             ),
                             Container(
-                                height: Get.height * 0.53,
-                                color: whiteColor,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    bottom: 4.0.h,
-                                  ),
-                                  child: Obx(() => SingleChildScrollView(
-                                        child: Container(
-                                          color: whiteColor,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: pulsaController
-                                                .listPulsaOnly
-                                                .map((element) {
-                                              return viewprice(
-                                                  _data.isCek.value == true
-                                                      ? true
-                                                      : false,
-                                                  element['provider'],
-                                                  element['productCode'],
-                                                  element['productName'],
-                                                  element['price'],
-                                                  element['type']);
-                                            }).toList(),
-                                          ),
+                              height: Get.height * 0.53,
+                              color: whiteColor,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: 4.0.h,
+                                ),
+                                child: Obx(() => SingleChildScrollView(
+                                      child: Container(
+                                        color: whiteColor,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: pulsaController
+                                              .listPulsaOnly
+                                              .map((element) {
+                                            return viewprice(
+                                                _data.isCek.value == true
+                                                    ? true
+                                                    : false,
+                                                element['provider'],
+                                                element['productCode'],
+                                                element['productName'],
+                                                element['price'],
+                                                element['type']);
+                                          }).toList(),
                                         ),
-                                      )),
-                                )),
+                                      ),
+                                    )),
+                              ),
+                            ),
                             // Container(
                             //     color: whiteColor,
                             //     padding: EdgeInsets.all(16.0),

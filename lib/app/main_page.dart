@@ -29,13 +29,16 @@ class _MainPageState extends State<MainPage> {
         index: mainPageController.tabIndex,
         children: [
           HomeView(),
-          RiwayatView(),
           PromoView(),
+          RiwayatView(),
           AkunView(),
         ],
       ),
       bottomNavigationBar: CustomNavigationBar(
-        backgroundColor: oceanColor,
+        backgroundColor: mainColor,
+        selectedColor: whiteColor,
+        unSelectedColor: whiteColor,
+        strokeColor: mainContainer,
         opacity: 8,
         iconSize: 3.5.h,
         currentIndex: mainPageController.tabIndex,
@@ -47,27 +50,55 @@ class _MainPageState extends State<MainPage> {
         items: [
           CustomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/homept1.png',
+              'assets/images/home.png',
             ),
-            title: Text("Beranda"),
+            title: Text(
+              "Home",
+              style: TextStyle(
+                color: whiteColor,
+                fontSize: 10.0.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
           CustomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/toa.png',
+              'assets/images/promo.png',
             ),
-            title: Text("Promo"),
+            title: Text(
+              "Promo",
+              style: TextStyle(
+                color: whiteColor,
+                fontSize: 10.0.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
           CustomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/mutasipt1.png',
+              'assets/images/history.png',
             ),
-            title: Text("Mutasi"),
+            title: Text(
+              "Riwayat",
+              style: TextStyle(
+                color: whiteColor,
+                fontSize: 10.0.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
           CustomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/akunpt1.png',
+              'assets/images/person.png',
             ),
-            title: Text("Profile"),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                color: whiteColor,
+                fontSize: 10.0.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
         ],
       ),

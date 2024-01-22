@@ -232,8 +232,14 @@ class _LoginViewState extends State<LoginView> {
                                     SizedBox(
                                       height: 0.5.h,
                                     ),
+<<<<<<< HEAD
 
                                     TextFormField(
+=======
+                                    TextField(
+                                      controller: password,
+                                      enableInteractiveSelection: false,
+>>>>>>> bd671d8bb51a0211f29a865a1b3502a47883a34a
                                       minLines: 1,
                                       controller: password,
                                       obscureText: _obscureTextKonfirmasi,
@@ -323,24 +329,6 @@ class _LoginViewState extends State<LoginView> {
                                       height: 50,
                                       child: ElevatedButton(
                                         onPressed: () async {
-                                          // if (_formKey.currentState!
-                                          //     .validate()) {
-                                          //   if (username.text == 'intan12' &&
-                                          //       password.text == 'password') {
-                                          //     print('masuk no login');
-                                          //     await loginController.loginhc(
-                                          //         'intan12',
-                                          //         'password',
-                                          //         context);
-                                          //   } else {
-                                          //     await loginController.actlogin(
-                                          //         username.text,
-                                          //         password.text,
-                                          //         context);
-                                          //     print(
-                                          //         '{$username} or {$password} is null');
-                                          //   }
-                                          // }
                                           if (_formKey.currentState!
                                               .validate()) {
                                             if (username.text == 'intan12' &&
@@ -352,14 +340,12 @@ class _LoginViewState extends State<LoginView> {
                                                   context);
                                             } else {
                                               await loginController.actlogin(
-                                                  username.text,
-                                                  password.text,
-                                                  context);
+                                                username.text,
+                                                password.text,
+                                                context,
+                                              );
                                             }
                                           }
-
-                                          // Get.to(HomeView());
-                                          // Get.to(MainPage());
                                         },
                                         style: ElevatedButton.styleFrom(
                                           primary: mainColor,

@@ -25,4 +25,7 @@ class UrlListService {
   static const pdam = 'api/ppob/product_pdam';
   static const pdaminqury = 'api/ppob/product_pdam_inquiry';
   static const pdampayment = 'api/ppob/product_pdam_payment';
+
+  //Riwayat Rika
+  static const riwayat = 'api/ppob/transaksi_history';
 }
