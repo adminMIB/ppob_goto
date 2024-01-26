@@ -46,6 +46,8 @@ class _RiwayatBerhasilViewState extends State<RiwayatBerhasilView> {
                 Column(
                   children: [
                     SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,

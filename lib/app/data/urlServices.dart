@@ -28,4 +28,5 @@ class UrlListService {
 
   //Riwayat Rika
   static const riwayat = 'api/ppob/transaksi_history';
+  static const riwayatFilter = 'api/ppob/filter_history_transaksi';
 }
