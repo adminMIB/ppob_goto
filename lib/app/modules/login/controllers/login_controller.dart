@@ -57,8 +57,7 @@ class LoginController extends GetxController {
     return helperController.post(
       path: UrlListService.login,
       onSuccess: (context) async {
-        print('hasil $context');
-
+        Get.back();
         print('hasil $context');
         if (context['status'] == true) {
           var user = context['user'];
@@ -85,7 +84,7 @@ class LoginController extends GetxController {
         }
       },
       onError: (content) {
-        // Get.back();
+        Get.back();
         print('Error: $content');
         helperController.popUpMessage(
             'Username atau password anda salah', context);

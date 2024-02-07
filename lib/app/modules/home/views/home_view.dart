@@ -8,14 +8,16 @@ import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/card.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/popup/views/loadingcustom.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
 import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
 import 'package:ppob_mpay1/app/modules/multifinance/views/multifinance_view.dart';
 import 'package:ppob_mpay1/app/modules/paketdata/views/paketdata_view.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/views/pulsa_view.dart';
+import 'package:ppob_mpay1/app/modules/saldo/views/inquirysaldo_view.dart';
+import 'package:ppob_mpay1/app/modules/saldo/views/saldo_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/bpjs_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/bindings/pdam_binding.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pln_view.dart';
@@ -41,6 +43,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final pdamController = Get.put(PdamController());
   final homeController = Get.put(HomeController());
+  final helperController = Get.put(HelperController());
   String? greeting;
 
   final isLoading = false.obs;
@@ -54,11 +57,12 @@ class _HomeViewState extends State<HomeView> {
     initGreeting();
   }
 
-  void _handleRefresh() {
-    homeController.CheckBalance(context);
-  }
+  // void _handleRefresh() {
+  //   homeController.CheckBalance(context);
+  // }
 
   Future<void> _refreshBalance() async {
+    await helperController.loading(context);
     setState(() {
       isRefreshing = true;
     });
@@ -66,12 +70,13 @@ class _HomeViewState extends State<HomeView> {
     setState(() {
       isRefreshing = false;
     });
+    Get.back();
   }
 
-  Future<void> _showLoadingWithDelay() async {
-    await Future.delayed(Duration(seconds: 2));
-    isLoading.value = true;
-  }
+  // Future<void> _showLoadingWithDelay() async {
+  //   await Future.delayed(Duration(seconds: 2));
+  //   isLoading.value = true;
+  // }
 
   String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
       ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
@@ -148,11 +153,11 @@ class _HomeViewState extends State<HomeView> {
           backgroundColor: whiteColor,
           body: Stack(
             children: [
-              Obx(
-                () => isLoading.value
-                    ? LoadingCustomWidget() // Show custom loading widget if isLoading is true
-                    : SizedBox.shrink(),
-              ),
+              // Obx(
+              //   () => isLoading.value
+              //       ? LoadingCustomWidget() // Show custom loading widget if isLoading is true
+              //       : SizedBox.shrink(),
+              // ),
               SafeArea(
                 child: ListView(
                   children: [
@@ -284,7 +289,8 @@ class _HomeViewState extends State<HomeView> {
                                                     symbol: '',
                                                     decimalDigits: 0,
                                                   ).format(double.parse(
-                                                      '${homeController.balance.value}')),
+                                                      '${homeController.balance.value}')) +
+                                                  '',
                                               style: TextStyle(
                                                 color: mainColor,
                                                 fontSize: 18.0.sp,
@@ -377,7 +383,10 @@ class _HomeViewState extends State<HomeView> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       ElevatedButton.icon(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(SaldoView());
+                                          // Get.to(InquirysaldoView());
+                                        },
                                         icon: FaIcon(
                                           FontAwesomeIcons.cartPlus,
                                           color: whiteColor,

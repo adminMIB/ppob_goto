@@ -14,7 +14,7 @@ class UrlListService {
 
   //pulsa,paketdata
   static const productProvider = 'api/ppob/product_provider';
-  static const checkbalance = 'api/ppob/cek_saldo_user';
+
   static const pulsatransaksi = 'api/ppob/transaksi_pulsa';
 
   //profile
@@ -28,4 +28,9 @@ class UrlListService {
 
   //Riwayat Rika
   static const riwayat = 'api/ppob/transaksi_history';
+
+  //Topup saldo
+  static const checkbalance = 'api/ppob/cek_saldo_user';
+  static const topupsaldo = 'api/ppob/inquiry_topSaldo';
+  static const uploadbukti = 'api/ppob/payment_topSaldo';
 }

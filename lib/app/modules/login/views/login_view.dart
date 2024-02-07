@@ -232,14 +232,8 @@ class _LoginViewState extends State<LoginView> {
                                     SizedBox(
                                       height: 0.5.h,
                                     ),
-<<<<<<< HEAD
 
                                     TextFormField(
-=======
-                                    TextField(
-                                      controller: password,
-                                      enableInteractiveSelection: false,
->>>>>>> bd671d8bb51a0211f29a865a1b3502a47883a34a
                                       minLines: 1,
                                       controller: password,
                                       obscureText: _obscureTextKonfirmasi,

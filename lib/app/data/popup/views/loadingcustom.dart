@@ -15,7 +15,7 @@ class _LoadingCustomWidgetState extends State<LoadingCustomWidget> {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 0.0,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color.fromARGB(0, 0, 0, 0),
       child: dialogContent(context),
     );
   }
@@ -25,7 +25,7 @@ class _LoadingCustomWidgetState extends State<LoadingCustomWidget> {
       child: Stack(
         children: <Widget>[
           Container(
-            color: Colors.transparent,
+            color: const Color.fromARGB(0, 2, 2, 2),
             padding: EdgeInsets.only(
               top: 1.0.h,
             ),

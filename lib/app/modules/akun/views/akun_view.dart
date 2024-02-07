@@ -13,6 +13,7 @@ import 'package:ppob_mpay1/app/modules/fingerprint/views/fingerprint_view.dart';
 import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
 import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
 import 'package:ppob_mpay1/app/modules/lupapassword/views/lupapassword_view.dart';
+import 'package:ppob_mpay1/app/modules/saldo/views/saldo_view.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:sizer/sizer.dart';
 import 'package:ppob_mpay1/main.dart';
@@ -348,7 +349,9 @@ class _AkunViewState extends State<AkunView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ElevatedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.to(SaldoView());
+                                    },
                                     icon: FaIcon(
                                       FontAwesomeIcons.cartPlus,
                                       color: whiteColor,
@@ -508,7 +511,7 @@ class _AkunViewState extends State<AkunView> {
                           Get.to(FingerprintView());
                         }),
                         _buildListTile('MPIN', 'assets/images/pin.png', () {
-                          //
+                          // Get.to(MyApp());
                         }),
                         // _buildListTile('Notifikasi', 'assets/images/bel.png',
                         //     () {
