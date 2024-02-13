@@ -5,22 +5,26 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/akun/controllers/akun_controller.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datakerabat_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datapersonal_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/fieldkerabat_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/fieldmerchant_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
 import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 
-class Datakerabatview extends StatefulWidget {
+class Datakerabat extends StatefulWidget {
   String? email;
-  Datakerabatview({Key? key, this.email}) : super(key: key);
+  Datakerabat({Key? key, this.email}) : super(key: key);
 
   @override
-  _DatakerabatviewState createState() => _DatakerabatviewState();
+  _DatakerabatState createState() => _DatakerabatState();
 }
 
-class _DatakerabatviewState extends State<Datakerabatview> {
+class _DatakerabatState extends State<Datakerabat> {
   final akunController = Get.put(AkunController());
   var pref = GetStorage();
   XFile? image1;
@@ -35,6 +39,16 @@ class _DatakerabatviewState extends State<Datakerabatview> {
     });
   }
 
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap
+          .trim()
+          .split(' ')
+          .map((l) => l[0])
+          .take(2)
+          .join()
+          .toUpperCase()
+      : '';
+
   @override
   void initState() {
     super.initState();
@@ -44,185 +58,255 @@ class _DatakerabatviewState extends State<Datakerabatview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: whiteColor,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        title: Container(), // Kosongkan title
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 8.0),
-                child: GestureDetector(
-                  child: Text(
-                    'Edit perubahan data',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.0.sp),
-                  ),
-                  onTap: () {
-                    Get.to(FieldkerabatView());
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
-            child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(2.0.h, 1.0.h, 2.0.h, 2.0.h),
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Data Kerabat',
-                        style: TextStyle(
-                          color: mainColor,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+          child: Column(
+            children: [
+              Container(
+                height: 8.0.h,
+                // color: Colors.amber,
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 1.5.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: mainColor,
+                          ),
+                          onPressed: () {
+                            Get.back();
+                          },
                         ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Text(
-                        'Nama Kerabat',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
+                        Padding(
+                          padding: EdgeInsets.only(right: 8),
+                          child: Text(
+                            'Informasi Akun',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.bold,
+                              color: mainColor,
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Text(
-                        // '${akunController.userProfile}'
-                        '${akunController.kerabat['namaKerabat']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Text(
-                        'Alamat kerabat',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.kerabat['alamat_kerabat']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        'Status Kerabat',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.kerabat['status_kerabat']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        'Nomor Telepon Kerabat',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.kerabat['nomer_tlp_kerabat']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                        // thickness: 1,
-                      ),
-                      // SizedBox(
-                      //   height: 1.0.h,
-                      // ),
-                    ],
-                  )
-                ],
+                        CircleAvatar(
+                            radius: 20,
+                            backgroundColor: Colors.grey.shade300,
+                            child: Text(
+                              getInitials(
+                                pref.read('nama_lengkap'),
+                              ),
+                              style: TextStyle(
+                                  color: mainColor,
+                                  fontSize: 14.0.sp,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
-        )),
+              Padding(
+                padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 2.0.h,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.off(FieldkerabatView());
+                          },
+                          child: Container(
+                            height: 7.h,
+                            // width: Get.width * 0.90,
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: 1.5.h,
+                                right: 1.0.h,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Data Kerabat',
+                                    style: TextStyle(
+                                      fontSize: 12.0.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: whiteColor,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: whiteColor,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.5.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: 1.5.h,
+                            right: 1.0.h,
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Nama Kerabat',
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                      // '${akunController.userProfile}'
+                                      '${akunController.kerabat['namaKerabat']}',
+                                      style: TextStyle(
+                                        color: blackColor,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 1.0.h,
+                              ),
+                              Divider(
+                                color: Colors.grey.shade500,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Alamat Kerabat',
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                      // '${akunController.userProfile}'
+                                      '${akunController.kerabat['alamat_kerabat']}',
+                                      style: TextStyle(
+                                        color: blackColor,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 1.0.h,
+                              ),
+                              Divider(
+                                color: Colors.grey.shade500,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Status Kerabat',
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                      // '${akunController.userProfile}'
+                                      '${akunController.kerabat['status_kerabat']}',
+                                      style: TextStyle(
+                                        color: blackColor,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 1.0.h,
+                              ),
+                              Divider(
+                                color: Colors.grey.shade500,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'No Telepon Kerabat',
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  Obx(
+                                    () => Text(
+                                      // '${akunController.userProfile}'
+                                      '${akunController.kerabat['nomer_tlp_kerabat']}',
+                                      style: TextStyle(
+                                        color: blackColor,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 3.0.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

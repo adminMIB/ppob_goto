@@ -30,13 +30,13 @@ class _VerifikasiOtpViewState extends State<VerifikasiOtpView> {
         title: Text(
           'Lupa kata sandi',
           style: TextStyle(
-            color: Colors.black,
+            color: mainColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -45,36 +45,33 @@ class _VerifikasiOtpViewState extends State<VerifikasiOtpView> {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              SizedBox(
-                height: 3.0.h,
-              ),
-              Center(
-                child: Text(
-                  'Kode OTP telah kami kirimkan ke',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
+          Padding(
+            padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 3.h),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    'Kode OTP telah kami kirimkan ke',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 1.0.h,
-              ),
-              Text(
-                'D*********@gmail.com',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
+                SizedBox(
+                  height: 1.0.h,
                 ),
-              ),
-              SizedBox(
-                height: 3.0.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.0.w),
-                child: Container(
+                Text(
+                  'D*********@gmail.com',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(
+                  height: 3.0.h,
+                ),
+                Container(
                   height: 8.0.h,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -97,125 +94,125 @@ class _VerifikasiOtpViewState extends State<VerifikasiOtpView> {
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 3.0.h,
-              ),
-              Countdown(
-                controller: _controller,
-                seconds: 5,
-                build: (_, double time) => Visibility(
-                  visible: isTimerResend!,
+                SizedBox(
+                  height: 3.0.h,
+                ),
+                Countdown(
+                  controller: _controller,
+                  seconds: 5,
+                  build: (_, double time) => Visibility(
+                    visible: isTimerResend!,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Mohon tunggu',
+                                    style: TextStyle(
+                                      fontSize: 12.0.sp,
+                                      color: blackColor,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: ' ' +
+                                        time.toString().substring(
+                                            0, time.toString().indexOf('.')) +
+                                        'detik',
+                                    style: TextStyle(
+                                      fontSize: 12.0.sp,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                      text: ' ' + 'Untuk mengirim ulang',
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                      ))
+                                ],
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  interval: const Duration(milliseconds: 10),
+                  onFinished: () {
+                    setState(() {
+                      isTimerResend = false;
+                    });
+                  },
+                ),
+                Visibility(
+                  visible: isTimerResend == true ? false : true,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Mohon tunggu',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    color: blackColor,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: ' ' +
-                                      time.toString().substring(
-                                          0, time.toString().indexOf('.')) +
-                                      'detik',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                  ),
-                                ),
-                                TextSpan(
-                                    text: ' ' + 'Untuk mengirim ulang',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                    ))
-                              ],
-                            ),
-                            textAlign: TextAlign.center,
+                      Text(
+                        'Tidak dapat kode?',
+                        style: TextStyle(
+                          fontSize: 12.0.sp,
+                          color: blackColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 2.0.w,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          _controller.restart();
+                          setState(() {
+                            isTimerResend = true;
+                          });
+                        },
+                        child: Text(
+                          ' ' + 'Kirim ulang',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: mainColor,
                           ),
                         ),
                       )
                     ],
                   ),
                 ),
-                interval: const Duration(milliseconds: 10),
-                onFinished: () {
-                  setState(() {
-                    isTimerResend = false;
-                  });
-                },
-              ),
-              Visibility(
-                visible: isTimerResend == true ? false : true,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Tidak dapat kode?',
-                      style: TextStyle(
-                        fontSize: 12.0.sp,
-                        color: blackColor,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 2.0.w,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _controller.restart();
-                        setState(() {
-                          isTimerResend = true;
-                        });
-                      },
-                      child: Text(
-                        ' ' + 'Kirim ulang',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
-                          color: mainColor,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              // SizedBox(height: Get.height * 0.45),
-              // Center(
-              //   child: SizedBox(
-              //     width: 236,
-              //     height: 40,
-              //     child: ElevatedButton(
-              //       onPressed: () async {
-              //         Get.to(VerifikasiOtpView());
-              //       },
-              //       style: ElevatedButton.styleFrom(
-              //         primary: mainColor,
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(10.0),
-              //         ),
-              //       ),
-              //       child: Text(
-              //         'Kirim',
-              //         style: TextStyle(
-              //           fontSize: 16,
-              //           fontWeight: FontWeight.bold,
-              //           color: Color(0xFFFDF8F8),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // )
-            ],
+                // SizedBox(height: Get.height * 0.45),
+                // Center(
+                //   child: SizedBox(
+                //     width: 236,
+                //     height: 40,
+                //     child: ElevatedButton(
+                //       onPressed: () async {
+                //         Get.to(VerifikasiOtpView());
+                //       },
+                //       style: ElevatedButton.styleFrom(
+                //         primary: mainColor,
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(10.0),
+                //         ),
+                //       ),
+                //       child: Text(
+                //         'Kirim',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.bold,
+                //           color: Color(0xFFFDF8F8),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // )
+              ],
+            ),
           ),
         ],
       ),

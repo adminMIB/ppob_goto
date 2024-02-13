@@ -158,7 +158,7 @@ class _PinViewState extends State<PinView> {
                       controller.restart();
                       print("Completed");
                       // print(widget.tipeTransaksi == 'pulsaDANpaketdata');
-
+                      print(widget.tipeTransaksi);
                       if (widget.tipeTransaksi == 'pulsa') {
                         await pulsaController.transaksipulsa(
                           v,

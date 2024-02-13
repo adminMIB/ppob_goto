@@ -28,7 +28,6 @@ class HomeController extends GetxController {
 
         balance.value = saldo;
         isLoadBalance(false);
-        Get.back();
       },
       onError: (error) {
         isLoadBalance(false);

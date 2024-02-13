@@ -154,7 +154,7 @@ class _SaldoViewState extends State<SaldoView> {
                                                   '',
                                               style: TextStyle(
                                                 color: mainColor,
-                                                fontSize: 20.0.sp,
+                                                fontSize: 24.0.sp,
                                                 fontWeight: FontWeight.w700,
                                               ),
                                             ),
@@ -167,16 +167,16 @@ class _SaldoViewState extends State<SaldoView> {
                                         children: [
                                           Image.asset(
                                             'assets/images/Dompet.png',
-                                            height: 3.h,
+                                            height: 2.h,
                                           ),
-                                          // SizedBox(
-                                          //   width: 0.5.h,
-                                          // ),
+                                          SizedBox(
+                                            width: 0.5.h,
+                                          ),
                                           Text(
                                             'Saldo',
                                             style: TextStyle(
                                               color: greyColor,
-                                              fontSize: 12.0.sp,
+                                              fontSize: 10.0.sp,
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
@@ -208,7 +208,7 @@ class _SaldoViewState extends State<SaldoView> {
                                                 Icon(
                                                   Remix.refresh_line,
                                                   color: greyColor,
-                                                  size: 14.0.sp,
+                                                  size: 12.0.sp,
                                                 ),
                                                 SizedBox(
                                                   width: 0.5.h,
@@ -217,7 +217,7 @@ class _SaldoViewState extends State<SaldoView> {
                                                   'Refresh',
                                                   style: TextStyle(
                                                     color: greyColor,
-                                                    fontSize: 12.0.sp,
+                                                    fontSize: 10.0.sp,
                                                     fontWeight: FontWeight.w700,
                                                   ),
                                                 ),

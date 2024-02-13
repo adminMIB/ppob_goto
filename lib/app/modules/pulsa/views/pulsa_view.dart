@@ -827,6 +827,7 @@ class _PulsaViewState extends State<PulsaView> {
                               ? () async {
                                   if (_formkey.currentState!.validate()) {
                                     Get.to(PinView(
+                                      tipeTransaksi: 'pulsa',
                                       productName: productName,
                                       nomorTelepon: tNoPulsa.text,
                                       harga: price,
@@ -840,8 +841,7 @@ class _PulsaViewState extends State<PulsaView> {
                           style: ElevatedButton.styleFrom(
                             primary: tNoPulsa.text.length >= 10
                                 ? mainColor
-                                : Colors
-                                    .grey.shade500, // Warna tombol disesuaikan
+                                : Colors.grey.shade500,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),

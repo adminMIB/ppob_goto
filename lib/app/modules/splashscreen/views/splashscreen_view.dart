@@ -17,7 +17,7 @@ class _SplashscreenViewState extends State<SplashscreenView> {
     super.initState();
 
     Future.delayed(Duration(seconds: 4), () {
-      Get.to(LoginView());
+      Get.offAll(LoginView());
     });
   }
 
@@ -33,7 +33,7 @@ class _SplashscreenViewState extends State<SplashscreenView> {
             Container(),
             Center(
               child: Image.asset(
-                'assets/images/mpayfile.png',
+                'assets/images/Moganti_logo.png',
                 height: 200,
               ),
             ),

@@ -18,9 +18,10 @@ class LoginController extends GetxController {
     return helperController.post(
       path: UrlListService.login,
       onSuccess: (context) async {
-        print('Login : $context');
+        // print('Login : $context');
 
         if (context['status'] == true) {
+          print('Login : $context');
           var user = context['user'];
           var access_token = context['access_token'];
           print('user: $user');
@@ -35,6 +36,7 @@ class LoginController extends GetxController {
           pref.write('token_type', context['type_token']);
           pref.write('expires_in', context['expires_in']);
           pref.write('user_id', user['user_id']);
+          // Get.offAll(MainPage());
           Get.to(MainPage());
         } else {
           Get.back();
@@ -58,8 +60,9 @@ class LoginController extends GetxController {
       path: UrlListService.login,
       onSuccess: (context) async {
         Get.back();
-        print('hasil $context');
+        // print('hasil $context');
         if (context['status'] == true) {
+          print('hasil $context');
           var user = context['user'];
           var access_token = context['access_token'];
 

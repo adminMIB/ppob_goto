@@ -7,23 +7,24 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/akun/controllers/akun_controller.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datakerabat_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datapersonal_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/fieldkerabat_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/fieldmerchant_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
 import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 
-class Datapersonalview extends StatefulWidget {
+class Datapersonal extends StatefulWidget {
   String? email;
-  Datapersonalview({Key? key, this.email}) : super(key: key);
+  Datapersonal({Key? key, this.email}) : super(key: key);
 
   @override
-  _DatapersonalviewState createState() => _DatapersonalviewState();
+  _DatapersonalState createState() => _DatapersonalState();
 }
 
-class _DatapersonalviewState extends State<Datapersonalview> {
-  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
-      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
-      : '';
+class _DatapersonalState extends State<Datapersonal> {
   final akunController = Get.put(AkunController());
   var pref = GetStorage();
   XFile? image1;
@@ -38,6 +39,16 @@ class _DatapersonalviewState extends State<Datapersonalview> {
     });
   }
 
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap
+          .trim()
+          .split(' ')
+          .map((l) => l[0])
+          .take(2)
+          .join()
+          .toUpperCase()
+      : '';
+
   @override
   void initState() {
     super.initState();
@@ -47,301 +58,362 @@ class _DatapersonalviewState extends State<Datapersonalview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: whiteColor,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        title: Container(), // Kosongkan title
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: GestureDetector(
-                    child: Text(
-                      'Edit perubahan data',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0.sp),
-                    ),
-                    onTap: () {
-                      Get.to(ProfilefieldView());
-                    },
-                  )),
-            ],
-          ),
-        ],
-      ),
+      backgroundColor: whiteColor,
       body: SafeArea(
         child: SingleChildScrollView(
-            child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(2.0.h, 1.0.h, 2.0.h, 2.0.h),
-              child: Column(
-                children: [
-                  SingleChildScrollView(
-                    child: Center(
-                      child: Stack(
-                        children: <Widget>[
-                          CircleAvatar(
-                              radius: 60,
-                              backgroundColor: Colors.grey.shade300,
-                              child: Text(
-                                getInitials(
-                                  pref.read('nama_lengkap'),
-                                ),
-                                style: TextStyle(
-                                    color: mainColor,
-                                    fontSize: 29.0.sp,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                          // ClipRRect(
-                          //   borderRadius: BorderRadius.circular(60.0),
-                          //   child: Obx(
-                          //     () => akunController
-                          //                     .userProfile['foto_profile'] ==
-                          //                 null ||
-                          //             akunController
-                          //                     .userProfile['foto_profile'] ==
-                          //                 ''
-                          //         ? Image.asset(
-                          //             'assets/images/orang1.png',
-                          //             width: 120.0,
-                          //             height: 120.0,
-                          //             fit: BoxFit.cover,
-                          //           )
-                          //         : Image.network(
-                          //             UrlListService.baseUrl +
-                          //                 akunController
-                          //                     .userProfile['foto_profile'],
-                          //             width: 120.0,
-                          //             height: 120.0,
-                          //             fit: BoxFit.cover,
-                          //           ),
-                          //   ),
-                          //   // image1 == null
-                          //   //     ? Image.asset(
-                          //   //         'assets/images/orang1.png',
-                          //   //         width: 120.0,
-                          //   //         height: 120.0,
-                          //   //         fit: BoxFit.cover,
-                          //   //       )
-                          //   //     : Image.file(
-                          //   //         File(image1!.path),
-                          //   //         width: 120.0,
-                          //   //         height: 120.0,
-                          //   //         fit: BoxFit.cover,
-                          //   //       ),
-                          // ),
-                        ],
-                      ),
+          child: Column(
+            children: [
+              Container(
+                height: 8.h,
+                color: whiteColor,
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 1.5.h),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: mainColor,
+                          ),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 8),
+                          child: Text(
+                            'Informasi Akun',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.bold,
+                              color: mainColor,
+                            ),
+                          ),
+                        ),
+                        CircleAvatar(
+                            radius: 20,
+                            backgroundColor: Colors.grey.shade300,
+                            child: Text(
+                              getInitials(
+                                pref.read('nama_lengkap'),
+                              ),
+                              style: TextStyle(
+                                  color: mainColor,
+                                  fontSize: 14.0.sp,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
+                child: Container(
+                  child: Column(
                     children: [
-                      Text(
-                        'Data Personal',
-                        style: TextStyle(
-                          color: mainColor,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Text(
-                        'Nama Lengkap',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Text(
-                        // '${akunController.userProfile}'
-                        akunController.userProfile['nama_lengkap'],
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Text(
-                        'Username',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.userProfile['username']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        'Email',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.userProfile['email']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        'Nomor Telepon',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.userProfile['nomor_telepon']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                        // thickness: 1,
-                      ),
-                      // SizedBox(
-                      //   height: 1.0.h,
-                      // ),
-                      Text(
-                        'NIK',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.userProfile['nik']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        'Alamat',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.0.h,
-                      ),
-                      Text(
-                        '${akunController.userProfile['alamat']}',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Divider(
-                        color: Colors.grey.shade700,
-                      ),
-                      SizedBox(
-                        height: 3.0.h,
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: 2.0.h,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.off(ProfilefieldView());
+                            },
+                            child: Container(
+                              height: 7.0.h,
+                              // width: Get.width * 0.90,
+                              decoration: BoxDecoration(
+                                color: mainColor,
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: 1.5.h,
+                                  right: 1.0.h,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Data Personal',
+                                      style: TextStyle(
+                                        fontSize: 12.0.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: whiteColor,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.keyboard_arrow_right,
+                                      color: whiteColor,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.5.h,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 1.5.h,
+                              right: 1.0.h,
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Nama Lengkap',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        // '${akunController.userProfile}'
+                                        '${akunController.userProfile['nama_lengkap']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.0.h,
+                                ),
+                                Divider(
+                                  color: Colors.grey.shade500,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Username',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        // '${akunController.userProfile}'
+                                        '${akunController.userProfile['username']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.0.h,
+                                ),
+                                Divider(
+                                  color: Colors.grey.shade500,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Email',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        '${akunController.userProfile['email']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.0.h,
+                                ),
+                                Divider(
+                                  color: Colors.grey.shade500,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Nomor Telepon',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        // '${akunController.userProfile}'
+                                        '${akunController.userProfile['nomor_telepon']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.0.h,
+                                ),
+                                Divider(
+                                  color: Colors.grey.shade500,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Alamat',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        // '${akunController.userProfile}'
+                                        '${akunController.userProfile['alamat']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.0.h,
+                                ),
+                                Divider(
+                                  color: Colors.grey.shade500,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Kota',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        // '${akunController.userProfile}'
+                                        '${akunController.userProfile['kota']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 1.0.h,
+                                ),
+                                Divider(
+                                  color: Colors.grey.shade500,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'NIK',
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Obx(
+                                      () => Text(
+                                        // '${akunController.userProfile}'
+                                        '${akunController.userProfile['nik']}',
+                                        style: TextStyle(
+                                          color: blackColor,
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 2.0.h,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        )),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

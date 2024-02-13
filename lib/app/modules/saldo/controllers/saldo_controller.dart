@@ -24,6 +24,7 @@ class SaldoController extends GetxController {
         'Authorization': 'Bearer $access_token',
       },
       onSuccess: (content) {
+        Get.back();
         if (content['status'] == true) {
           print('masuk $content');
           // Get.to(Inquirsyaldo(

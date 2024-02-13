@@ -101,7 +101,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
         elevation: 0,
         backgroundColor: mainColor,
         title: Text(
-          'Upload bukti transaksi',
+          'Upload Bukti Transfer',
           style: TextStyle(
             color: whiteColor,
           ),
@@ -286,10 +286,11 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                                                   const Duration(seconds: 4),
                                               flushbarPosition:
                                                   FlushbarPosition.TOP,
-                                              backgroundColor: Colors.white,
+                                              backgroundColor:
+                                                  Colors.lightGreen.shade500,
                                               message:
                                                   'Nomer Rekening berhasil di salin ke clipboard Anda',
-                                              messageColor: blackColor,
+                                              messageColor: whiteColor,
                                             )..show(context));
                                   },
                                   child: Icon(
@@ -778,7 +779,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                                                                 size: 15.h,
                                                               ),
                                                               Text(
-                                                                'Upload bukti Transfer',
+                                                                'Upload Bukti Transfer',
                                                                 style:
                                                                     TextStyle(
                                                                   fontSize:

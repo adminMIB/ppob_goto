@@ -54,11 +54,18 @@ dependencies:
   flutter_masked_text2: 0.9.1
   flutter: 
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
   flutter_test: 
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.png"
+  adaptive_icon_background: "#ffffff"
 
 flutter: 
   assets: 

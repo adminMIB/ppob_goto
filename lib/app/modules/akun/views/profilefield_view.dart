@@ -81,24 +81,24 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: whiteColor,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Edit Profile',
+          style: TextStyle(
+            color: mainColor,
+          ),
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
           },
-        ),
-        title: Text(
-          'Edit Profile',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 14.0.sp,
-          ),
         ),
       ),
       body: SafeArea(
@@ -235,7 +235,7 @@ class _ProfilefieldViewState extends State<ProfilefieldView> {
                       height: 1.0.h,
                     ),
                     Text(
-                      'username',
+                      'Username',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12.sp,

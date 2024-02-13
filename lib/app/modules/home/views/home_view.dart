@@ -206,7 +206,7 @@ class _HomeViewState extends State<HomeView> {
                                           Row(
                                             children: [
                                               Text(
-                                                'Selamat ${greeting} ${pref.read('nama_lengkap')}',
+                                                'Selamat ${greeting} ${pref.read('nama_lengkap').substring(0, 1).toUpperCase()}${pref.read('nama_lengkap').substring(1)}',
                                                 style: TextStyle(
                                                   color: whiteColor,
                                                   fontSize: 11.0.sp,
@@ -509,7 +509,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     CardMenu(
                                       image: 'assets/images/ewalet.png',
-                                      title: 'Top Up Ewallet',
+                                      title: 'Top Up \nE-wallet',
                                       onTap: () {
                                         Get.to(EwalletView());
                                       },
@@ -771,7 +771,7 @@ class _HomeViewState extends State<HomeView> {
                                 CarouselSlider(
                                   options: CarouselOptions(
                                     reverse: true,
-                                    height: 25.h,
+                                    height: 20.h,
                                     autoPlay: false,
                                     viewportFraction: 0.8,
                                     aspectRatio: 0.5,

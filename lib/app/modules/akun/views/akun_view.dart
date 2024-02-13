@@ -6,8 +6,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:material_dialogs/dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datakerabat_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datamerchat_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/datapersonal_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/fieldkerabat_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/fieldmerchant_view.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/profile_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
 import 'package:ppob_mpay1/app/modules/fingerprint/views/fingerprint_view.dart';
 import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
@@ -439,7 +443,8 @@ class _AkunViewState extends State<AkunView> {
                               children: [
                                 ListTile(
                                   onTap: () {
-                                    Get.to(FieldmerchantView());
+                                    // Get.to(FieldmerchantView());
+                                    Get.to(Datamerchant());
                                   },
                                   contentPadding: EdgeInsets.only(left: 0.0.h),
                                   title: Text(
@@ -459,7 +464,9 @@ class _AkunViewState extends State<AkunView> {
                                 ListTile(
                                   contentPadding: EdgeInsets.only(left: 0.0.h),
                                   onTap: () {
-                                    Get.to(ProfilefieldView());
+                                    // Get.to(ProfilefieldView());
+                                    // Get.to(ProfileView());
+                                    Get.to(Datapersonal());
                                   },
                                   title: Text(
                                     'Personal',
@@ -478,7 +485,8 @@ class _AkunViewState extends State<AkunView> {
                                 ListTile(
                                   contentPadding: EdgeInsets.only(left: 0.0.h),
                                   onTap: () {
-                                    Get.to(FieldkerabatView());
+                                    // Get.to(FieldkerabatView());
+                                    Get.to(Datakerabat());
                                   },
                                   title: Text(
                                     'Kerabat',
@@ -614,7 +622,7 @@ class _AkunViewState extends State<AkunView> {
                                   onPressed: () {
                                     Get.back();
                                   },
-                                  text: 'Tidak jadi deh',
+                                  text: 'Tidak',
                                   color: whiteColor,
                                   textStyle: TextStyle(
                                     color: mainColor,

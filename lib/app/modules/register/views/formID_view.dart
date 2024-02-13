@@ -71,343 +71,344 @@ class _FormIdViewState extends State<FormIdView> {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              SizedBox(
-                height: 3.0.h,
-              ),
-              Image.asset(
-                'assets/images/kunci.png',
-                height: 90,
-              ),
-              SizedBox(
-                height: 2.0.h,
-              ),
-              Text(
-                'Pastikan Data yang anda masukan\n Benar!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: Color(0xFFAEAEB1),
-                  fontWeight: FontWeight.w600,
+          Padding(
+            padding: EdgeInsets.only(left: 2.h, right: 2.h),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 3.0.h,
                 ),
-              ),
-              SizedBox(
-                height: 0.5.h,
-              ),
-              // Text(
-              //   'Benar!',
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(
-              //     fontSize: 12.sp,
-              //     color: Color(0xFFAEAEB1),
-              //     fontWeight: FontWeight.w600,
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Username',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                Image.asset(
+                  'assets/images/kunci.png',
+                  height: 90,
+                ),
+                SizedBox(
+                  height: 2.0.h,
+                ),
+                Text(
+                  'Pastikan Data yang anda masukan\n Benar!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: Color(0xFFAEAEB1),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                // Text(
+                //   'Benar!',
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //     fontSize: 12.sp,
+                //     color: Color(0xFFAEAEB1),
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Username',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
                               ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              TextFormField(
-                                minLines: 1,
-                                controller: username,
+                            ),
+                            SizedBox(
+                              height: 0.5.h,
+                            ),
+                            TextFormField(
+                              minLines: 1,
+                              controller: username,
 
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  hintText: 'Masukkan username',
-                                  hintStyle: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      color: Colors.grey.shade500),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                // validator: Validators.compose(
-                                //   [
-                                //     Validators.required('NIK harus di isi'),
-                                //   ],
-                                // ),
+                                hintText: 'Masukkan username',
+                                hintStyle: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    color: Colors.grey.shade500),
                               ),
-                              SizedBox(
-                                height: 1.0.h,
+                              // validator: Validators.compose(
+                              //   [
+                              //     Validators.required('NIK harus di isi'),
+                              //   ],
+                              // ),
+                            ),
+                            SizedBox(
+                              height: 1.0.h,
+                            ),
+                            Text(
+                              'Kata Sandi',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 13.5.sp,
+                                fontWeight: FontWeight.w600,
                               ),
-                              Text(
-                                'Kata Sandi',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 13.5.sp,
-                                  fontWeight: FontWeight.w600,
+                            ),
+                            SizedBox(
+                              height: 0.5.h,
+                            ),
+                            TextFormField(
+                              minLines: 1,
+                              controller: password,
+                              obscureText: _obscureTextBaru,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              TextFormField(
-                                minLines: 1,
-                                controller: password,
-                                obscureText: _obscureTextBaru,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: _obscureTextBaru
-                                        ? const Icon(Icons.visibility)
-                                        : const Icon(Icons.visibility_off),
-                                    color: greyTextColor,
-                                    onPressed: () {
-                                      setState(() {
-                                        _obscureTextBaru = !_obscureTextBaru;
-                                      });
-                                    },
-                                  ),
-                                  hintText: 'Masukkan Kata sandi',
-                                  hintStyle: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      color: Colors.grey.shade500),
+                                suffixIcon: IconButton(
+                                  icon: _obscureTextBaru
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
+                                  color: greyTextColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureTextBaru = !_obscureTextBaru;
+                                    });
+                                  },
                                 ),
-                                // validator: Validators.compose(
-                                //   [
-                                //     Validators.required('NIK harus di isi'),
-                                //   ],
-                                // ),
+                                hintText: 'Masukkan Kata sandi',
+                                hintStyle: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    color: Colors.grey.shade500),
                               ),
-                              SizedBox(
-                                height: 1.0.h,
+                              // validator: Validators.compose(
+                              //   [
+                              //     Validators.required('NIK harus di isi'),
+                              //   ],
+                              // ),
+                            ),
+                            SizedBox(
+                              height: 1.0.h,
+                            ),
+                            Text(
+                              'Konfirmasi Kata Sandi',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 13.5.sp,
+                                fontWeight: FontWeight.w600,
                               ),
-                              Text(
-                                'Konfirmasi Kata Sandi',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 13.5.sp,
-                                  fontWeight: FontWeight.w600,
+                            ),
+                            SizedBox(
+                              height: 0.5.h,
+                            ),
+                            TextFormField(
+                              minLines: 1,
+                              controller: konfirPassword,
+                              obscureText: _obscureTextKonfirmasi,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              TextFormField(
-                                minLines: 1,
-                                controller: konfirPassword,
-                                obscureText: _obscureTextKonfirmasi,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: _obscureTextKonfirmasi
-                                        ? const Icon(Icons.visibility)
-                                        : const Icon(Icons.visibility_off),
-                                    color: greyTextColor,
-                                    onPressed: () {
-                                      setState(() {
-                                        _obscureTextKonfirmasi =
-                                            !_obscureTextKonfirmasi;
-                                      });
-                                    },
-                                  ),
-                                  hintText: 'Masukkan konfirmasi sandi',
-                                  hintStyle: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      color: Colors.grey.shade500),
+                                suffixIcon: IconButton(
+                                  icon: _obscureTextKonfirmasi
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
+                                  color: greyTextColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureTextKonfirmasi =
+                                          !_obscureTextKonfirmasi;
+                                    });
+                                  },
                                 ),
-                                // validator: Validators.compose(
-                                //   [
-                                //     Validators.required('NIK harus di isi'),
-                                //   ],
-                                // ),
+                                hintText: 'Masukkan konfirmasi sandi',
+                                hintStyle: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    color: Colors.grey.shade500),
                               ),
-                            ],
-                          ),
-                        )),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: Get.height * 0.15,
-              ),
-              Text(
-                'Dengan mendaftar, saya telah menyetujui',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  letterSpacing: 0.75,
-                  color: blackColor,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Ketentuan layanan',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        letterSpacing: 0.75,
-                        color: mainColor,
+                              // validator: Validators.compose(
+                              //   [
+                              //     Validators.required('NIK harus di isi'),
+                              //   ],
+                              // ),
+                            ),
+                          ],
+                        ),
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          //fungsi
-                        },
-                    ),
-                    TextSpan(
-                      text: ' dan ',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        letterSpacing: 0.25,
-                        color: Colors.black,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'kebijakan kami',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        letterSpacing: 0.25,
-                        color: mainColor,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          //fungsi
-                        },
-                    ),
+                    )
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 2.5.h,
-              ),
-              Center(
-                child: SizedBox(
-                  width: 44.0.h,
-                  height: 6.0.h,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      Dialogs.materialDialog(
-                        customView: Image.asset(
-                          'assets/images/pt4.png',
-                          height: 17.0.h,
+                SizedBox(
+                  height: Get.height * 0.15,
+                ),
+                Text(
+                  'Dengan mendaftar, saya telah menyetujui',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    letterSpacing: 0.75,
+                    color: blackColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'Ketentuan layanan',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          letterSpacing: 0.75,
+                          color: mainColor,
                         ),
-                        msg:
-                            'Apakah Data yang Anda isi sudah\nbenar & lengkap?',
-                        msgStyle: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        color: whiteColor,
-                        context: context,
-                        actions: [
-                          IconsButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                print('data');
-
-                                Get.to(SetPinView(
-                                  namaMerchant: widget.namaMerchant,
-                                  nama_lengkap: widget.nama_lengkap,
-                                  nik: widget.nik,
-                                  email: widget.email,
-                                  alamat: widget.alamat,
-                                  nomer_tlp: widget.nomer_tlp,
-                                  nama_kerabat: widget.nama_kerabat,
-                                  nomer_tlp_kerabat: widget.nomer_tlp_kerabat,
-                                  alamat_kerabat: widget.alamat_kerabat,
-                                  status_kerabat: widget.status_kerabat,
-                                  foto_ktp: widget.foto_ktp,
-                                  username: username.text,
-                                  password: password.text,
-                                  confirm_password: konfirPassword.text,
-                                ));
-
-                                // await pushNewScreen(context,
-                                //     screen: SetPinView(
-                                //       namaMerchant: widget.namaMerchant,
-                                //       nama_lengkap: widget.nama_lengkap,
-                                //       nik: widget.nik,
-                                //       email: widget.email,
-                                //       alamat: widget.alamat,
-                                //       nomer_tlp: widget.nomer_tlp,
-                                //       nama_kerabat: widget.nama_kerabat,
-                                //       nomer_tlp_kerabat:
-                                //           widget.nomer_tlp_kerabat,
-                                //       alamat_kerabat: widget.alamat_kerabat,
-                                //       status_kerabat: widget.status_kerabat,
-                                //       foto_ktp: widget.foto_ktp,
-                                //       username: username.text,
-                                //       password: password.text,
-                                //       confirm_password: konfirPassword.text,
-                                //     ));
-                              }
-                            },
-                            text: 'Yaa Sudah',
-                            color: mainColor,
-                            textStyle: TextStyle(
-                              color: whiteColor,
-                            ),
-                          ),
-                          IconsButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            text: 'Cek lagi deh',
-                            color: whiteColor,
-                            textStyle: TextStyle(
-                              color: mainColor,
-                            ),
-                          )
-                        ],
-                      );
-                      // await showDialog(
-                      //   context: context,
-                      //   builder: (BuildContext context) => DialogRegistrasi(
-                      //     username: username.text,
-                      //     password: password.text,
-                      //     confirm_password: konfirPassword.text,
-                      //   ),
-                      // );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: mainColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            //fungsi
+                          },
                       ),
-                    ),
-                    child: Text(
-                      'Lanjutkan',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFFDF8F8),
+                      TextSpan(
+                        text: ' dan ',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          letterSpacing: 0.25,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'kebijakan kami',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          letterSpacing: 0.25,
+                          color: mainColor,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            //fungsi
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 2.5.h,
+                ),
+                Center(
+                  child: SizedBox(
+                    width: 44.0.h,
+                    height: 6.0.h,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Dialogs.materialDialog(
+                          customView: Image.asset(
+                            'assets/images/pt4.png',
+                            height: 17.0.h,
+                          ),
+                          msg:
+                              'Apakah Data yang Anda isi sudah\nbenar & lengkap?',
+                          msgStyle: TextStyle(
+                            fontSize: 12.0.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          color: whiteColor,
+                          context: context,
+                          actions: [
+                            IconsButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  print('data');
+
+                                  Get.to(SetPinView(
+                                    namaMerchant: widget.namaMerchant,
+                                    nama_lengkap: widget.nama_lengkap,
+                                    nik: widget.nik,
+                                    email: widget.email,
+                                    alamat: widget.alamat,
+                                    nomer_tlp: widget.nomer_tlp,
+                                    nama_kerabat: widget.nama_kerabat,
+                                    nomer_tlp_kerabat: widget.nomer_tlp_kerabat,
+                                    alamat_kerabat: widget.alamat_kerabat,
+                                    status_kerabat: widget.status_kerabat,
+                                    foto_ktp: widget.foto_ktp,
+                                    username: username.text,
+                                    password: password.text,
+                                    confirm_password: konfirPassword.text,
+                                  ));
+
+                                  // await pushNewScreen(context,
+                                  //     screen: SetPinView(
+                                  //       namaMerchant: widget.namaMerchant,
+                                  //       nama_lengkap: widget.nama_lengkap,
+                                  //       nik: widget.nik,
+                                  //       email: widget.email,
+                                  //       alamat: widget.alamat,
+                                  //       nomer_tlp: widget.nomer_tlp,
+                                  //       nama_kerabat: widget.nama_kerabat,
+                                  //       nomer_tlp_kerabat:
+                                  //           widget.nomer_tlp_kerabat,
+                                  //       alamat_kerabat: widget.alamat_kerabat,
+                                  //       status_kerabat: widget.status_kerabat,
+                                  //       foto_ktp: widget.foto_ktp,
+                                  //       username: username.text,
+                                  //       password: password.text,
+                                  //       confirm_password: konfirPassword.text,
+                                  //     ));
+                                }
+                              },
+                              text: 'Yaa Sudah',
+                              color: mainColor,
+                              textStyle: TextStyle(
+                                color: whiteColor,
+                              ),
+                            ),
+                            IconsButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              text: 'Cek lagi deh',
+                              color: whiteColor,
+                              textStyle: TextStyle(
+                                color: mainColor,
+                              ),
+                            )
+                          ],
+                        );
+                        // await showDialog(
+                        //   context: context,
+                        //   builder: (BuildContext context) => DialogRegistrasi(
+                        //     username: username.text,
+                        //     password: password.text,
+                        //     confirm_password: konfirPassword.text,
+                        //   ),
+                        // );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: mainColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        'Lanjutkan',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFFDF8F8),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           )
         ],
       ),
