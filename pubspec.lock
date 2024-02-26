@@ -145,14 +145,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
-  custom_date_range_picker:
-    dependency: "direct main"
-    description:
-      name: custom_date_range_picker
-      sha256: e2814b22af6fd72909f23a86400eec0454417e6955314e2bfb2ffd88019ac345
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.10"
   custom_navigation_bar:
     dependency: "direct main"
     description:
@@ -278,14 +270,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
-  flutter_rounded_date_picker:
-    dependency: "direct main"
-    description:
-      name: flutter_rounded_date_picker
-      sha256: e6aa2dc5d3b44e8bbe85ef901be69eac59ba4136427f11f4c8b2a303e1e774e7
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.4"
   flutter_screenutil:
     dependency: "direct main"
     description:
