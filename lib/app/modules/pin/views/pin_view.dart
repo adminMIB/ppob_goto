@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/invoice.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
@@ -23,6 +22,8 @@ class PinView extends StatefulWidget {
   final String? ref2;
   final String? admin;
   final String? total_bayar;
+  final String? periode;
+  final String? tipeTransaksi;
   const PinView({
     Key? key,
     this.productName,
@@ -36,6 +37,8 @@ class PinView extends StatefulWidget {
     this.ref2,
     this.admin,
     this.total_bayar,
+    this.periode,
+    this.tipeTransaksi,
   }) : super(key: key);
 
   @override
@@ -154,30 +157,69 @@ class _PinViewState extends State<PinView> {
                     onCompleted: (v) async {
                       controller.restart();
                       print("Completed");
+                      // print(widget.tipeTransaksi == 'pulsaDANpaketdata');
+                      print(widget.tipeTransaksi);
+                      if (widget.tipeTransaksi == 'pulsa') {
+                        await pulsaController.transaksipulsa(
+                          v,
+                          widget.nomorTelepon,
+                          widget.productCode,
+                          widget.harga,
+                          widget.productName,
+                          widget.type,
+                          widget.provider,
+                          widget.tipeTransaksi,
+                          context,
+                        );
+                      } else if (widget.tipeTransaksi == 'paket_data') {
+                        await pulsaController.transaksipulsa(
+                          v,
+                          widget.nomorTelepon,
+                          widget.productCode,
+                          widget.harga,
+                          widget.productName,
+                          widget.type,
+                          widget.provider,
+                          widget.tipeTransaksi,
+                          context,
+                        );
+                      } else if (widget.tipeTransaksi == 'pdam') {
+                        await pdamController.pdampayment(
+                            widget.productName,
+                            widget.productCode,
+                            widget.idpel,
+                            widget.ref1,
+                            widget.ref2,
+                            widget.harga,
+                            widget.admin,
+                            widget.total_bayar,
+                            widget.periode,
+                            v,
+                            context);
+                      }
+                      // await pulsaController.transaksipulsa(
+                      //   v,
+                      //   widget.nomorTelepon,
+                      //   widget.productCode,
+                      //   widget.harga,
+                      //   widget.productName,pos
+                      //   widget.type,
+                      //   widget.provider,
+                      //   context,
+                      // );
 
-                      // if (widget.tipeTransaksi == 'pulsa') {
-                      await pulsaController.transaksipulsa(
-                        v,
-                        widget.nomorTelepon,
-                        widget.productCode,
-                        widget.harga,
-                        widget.productName,
-                        widget.type,
-                        widget.provider,
-                        context,
-                      );
-
-                      await pdamController.pdampayment(
-                        widget.productCode,
-                        widget.idpel,
-                        widget.ref1,
-                        widget.ref2,
-                        widget.harga,
-                        widget.admin,
-                        widget.total_bayar,
-                        v,
-                        context,
-                      );
+                      // await pdamController.pdampayment(
+                      //     widget.productName,
+                      //     widget.productCode,
+                      //     widget.idpel,
+                      //     widget.ref1,
+                      //     widget.ref2,
+                      //     widget.harga,
+                      //     widget.admin,
+                      //     widget.total_bayar,
+                      //     widget.periode,
+                      //     v,
+                      //     context);
                     },
                     onChanged: (value) {
                       if (value.length == 6) {

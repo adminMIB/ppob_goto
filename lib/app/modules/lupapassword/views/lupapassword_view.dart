@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/popup/views/gagaltransaksi_view.dart';
+import 'package:ppob_mpay1/app/data/popup/views/gagalpopup_view.dart';
 import 'package:ppob_mpay1/app/data/popup/views/saldotidakcukup_view.dart';
 import 'package:ppob_mpay1/app/modules/lupapassword/views/verifikasiOtp_view.dart';
 import 'package:sizer/sizer.dart';
@@ -27,13 +27,13 @@ class _LupasandiViewState extends State<LupapasswordView> {
         title: Text(
           'Lupa kata sandi',
           style: TextStyle(
-            color: Colors.black,
+            color: mainColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -42,24 +42,24 @@ class _LupasandiViewState extends State<LupapasswordView> {
       ),
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 3.0.h,
-            ),
-            Text(
-              'Silahkan masukan email anda untuk melakukan ubah kata sandi',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 13.sp,
+        child: Padding(
+          padding: EdgeInsets.only(left: 2.h, right: 2.h),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 3.0.h,
               ),
-            ),
-            SizedBox(
-              height: 4.0.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
+              Text(
+                'Silahkan masukan email anda untuk melakukan ubah kata sandi',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13.sp,
+                ),
+              ),
+              SizedBox(
+                height: 4.0.h,
+              ),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -138,9 +138,9 @@ class _LupasandiViewState extends State<LupapasswordView> {
                     ),
                   )
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       )),
     );

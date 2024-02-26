@@ -35,6 +35,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/riwayat/bindings/riwayat_binding.dart';
 import '../modules/riwayat/views/riwayat_view.dart';
+import '../modules/saldo/bindings/saldo_binding.dart';
+import '../modules/saldo/views/saldo_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
 import '../modules/tagihan/bindings/tagihan_binding.dart';
@@ -185,6 +187,11 @@ class AppPages {
       name: _Paths.FINGERPRINT,
       page: () => FingerprintView(),
       binding: FingerprintBinding(),
+    ),
+    GetPage(
+      name: _Paths.SALDO,
+      page: () => SaldoView(),
+      binding: SaldoBinding(),
     ),
   ];
 }

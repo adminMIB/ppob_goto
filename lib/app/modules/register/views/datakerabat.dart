@@ -59,13 +59,13 @@ class _DataKerabattViewState extends State<DataKerabattView> {
         title: Text(
           'Data Kerabat',
           style: TextStyle(
-            color: Colors.black,
+            color: mainColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -74,34 +74,34 @@ class _DataKerabattViewState extends State<DataKerabattView> {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              Image.asset(
-                'assets/images/kunci.png',
-                height: 90,
-              ),
-              SizedBox(
-                height: 2.0.h,
-              ),
-              Text(
-                'Pastikan Data yang anda masukan\n Benar!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: Color(0xFFAEAEB1),
-                  fontWeight: FontWeight.w600,
+          Padding(
+            padding: EdgeInsets.only(left: 2.h, right: 2.h),
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/images/kunci.png',
+                  height: 90,
                 ),
-              ),
-              // SizedBox(
-              //   height: 2.0.h,
-              // ),
-              Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(3.0.h, 2.0.h, 3.0.h, 0.0.h),
-                      child: Column(
+                SizedBox(
+                  height: 2.0.h,
+                ),
+                Text(
+                  'Pastikan Data yang anda masukan\n Benar!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: Color(0xFFAEAEB1),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                // SizedBox(
+                //   height: 2.0.h,
+                // ),
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -325,12 +325,12 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                             ),
                           )
                         ],
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),

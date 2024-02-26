@@ -7,6 +7,8 @@ import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/invoice.dart';
+import 'package:ppob_mpay1/app/modules/pulsa/views/pulsatransaksi_view.dart';
+import 'package:ppob_mpay1/app/modules/pulsa/views/pulsatransaksigagal_view.dart';
 
 class PulsaController extends GetxController {
 //  final network = Get.put(NetworkHelper());
@@ -167,7 +169,7 @@ class PulsaController extends GetxController {
     }
   }
 
-  ///yang di pake
+  ///get provider
   productprovider(BuildContext context, var provider) async {
     var access_token = pref.read('access_token');
 
@@ -195,8 +197,16 @@ class PulsaController extends GetxController {
     );
   }
 
-  transaksipulsa(var pin, var nomorTelepon, var productCode, var harga,
-      var productName, var type, var provider, BuildContext context) async {
+  transaksipulsa(
+      var pin,
+      var nomorTelepon,
+      var productCode,
+      var harga,
+      var productName,
+      var type,
+      var provider,
+      var tipetransaksi,
+      BuildContext context) async {
     var access_token = pref.read('access_token');
     await helperController.loading(context);
     return network.post(
@@ -211,10 +221,11 @@ class PulsaController extends GetxController {
           print('sukses: $content');
           String apiTimeString = content['response']['data']['time'];
           DateTime apiDateTime = fromCustomTime(apiTimeString);
+          Get.back();
 
           await PersistentNavBarNavigator.pushNewScreen(
             context,
-            screen: InvoiceView(
+            screen: PulsatransaksiView(
               productName: productName,
               productCode: productCode,
               harga: content['response']['data']['amount'].toString(),
@@ -223,52 +234,55 @@ class PulsaController extends GetxController {
               noref: content['response']['data']['ref2'],
               tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
                   .format(fromCustomTime(content['response']['data']['time'])),
+              tipetransaksi: tipetransaksi,
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
-        } else if (content['status'] == false) {
-          print("masuk b");
-          print('gagal : $content');
-
-          print(content['status'] == false);
-          await PersistentNavBarNavigator.pushNewScreen(
-            context,
-            screen: InvoiceView(
-              productName: productName,
-              productCode: productCode,
-              harga: content['response']['data']['amount'].toString(),
-              nomorTelepon: nomorTelepon,
-              status: content['response']['data']['statusTrx'],
-              noref: content['response']['data']['ref2'],
-              tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
-                  .format(fromCustomTime(content['response']['data']['time'])),
-            ),
-            withNavBar: true,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
-        } else {
-          print("masuk c");
-          print(content);
         }
+        //  else if (content['status'] == false) {
+        //   print("masuk b");
+        //   print('gagal : $content');
+
+        //   print(content['status'] == false);
+        //   await PersistentNavBarNavigator.pushNewScreen(
+        //     context,
+        //     screen: PulsatransaksiView(
+        //       productName: productName,
+        //       productCode: productCode,
+        //       harga: content['response']['data']['amount'].toString(),
+        //       nomorTelepon: nomorTelepon,
+        //       status: content['response']['data']['statusTrx'],
+        //       noref: content['response']['data']['ref2'],
+        //       tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+        //           .format(fromCustomTime(content['response']['data']['time'])),
+        //     ),
+        //     withNavBar: true,
+        //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        //   );
+        // } else {
+        //   print("masuk c");
+        //   print(content);
+        // }
       },
       onError: (error) {
-        print('error: $error');
+        print('pulsa ERROR: $error');
         if (error['response'] != null) {
           String apiTimeString = error['response']['data']['time'];
           DateTime apiDateTime = fromCustomTime(apiTimeString);
 
           PersistentNavBarNavigator.pushNewScreen(
             context,
-            screen: InvoiceView(
+            screen: PulsagagalView(
               productName: productName,
               productCode: productCode,
               harga: error['response']['data']['amount'].toString(),
               nomorTelepon: nomorTelepon,
-              status: error['response']['data']['statusTrx'],
+              status: error['response']['data']['desc'],
               noref: error['response']['data']['ref2'],
               tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
                   .format(fromCustomTime(error['response']['data']['time'])),
+              tipetransaksi: tipetransaksi,
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,

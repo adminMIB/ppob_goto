@@ -43,13 +43,13 @@ class _FormPersonalViewState extends State<FormPersonalView> {
         title: Text(
           'Buat Akun',
           style: TextStyle(
-            color: Colors.black,
+            color: mainColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -58,40 +58,43 @@ class _FormPersonalViewState extends State<FormPersonalView> {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              SizedBox(
-                height: 1.5.h,
-              ),
-              Image.asset(
-                'assets/images/kunci.png',
-                height: 12.0.h,
-              ),
-              SizedBox(
-                height: 2.0.h,
-              ),
-              Text(
-                'Pastikan Data yang anda masukan\n Benar! ',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12.0.sp,
-                  color: Color(0xFFAEAEB1),
-                  fontWeight: FontWeight.w600,
+          Padding(
+            padding: EdgeInsets.only(
+              left: 2.h,
+              right: 2.h,
+              bottom: 2.h,
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 1.5.h,
                 ),
-              ),
-              SizedBox(
-                height: 0.5.h,
-              ),
-              Form(
-                key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            2.4.h, 1.0.h, 2.4.h, 2.0.h),
+                Image.asset(
+                  'assets/images/kunci.png',
+                  height: 12.0.h,
+                ),
+                SizedBox(
+                  height: 2.0.h,
+                ),
+                Text(
+                  'Pastikan Data yang anda masukan\n Benar! ',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12.0.sp,
+                    color: Color(0xFFAEAEB1),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -405,12 +408,12 @@ class _FormPersonalViewState extends State<FormPersonalView> {
                             )
                           ],
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:ppob_mpay1/app/modules/akun/views/akun_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/profile_view.dart';
 
 class AkunController extends GetxController {
@@ -69,7 +70,8 @@ class AkunController extends GetxController {
         },
         onSuccess: (content) {
           Get.back();
-          Get.off(ProfileView());
+          Get.back();
+          // Get.off(AkunView());
           print(content);
         },
         onError: (onError) {

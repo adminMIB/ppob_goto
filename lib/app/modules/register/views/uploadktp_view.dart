@@ -188,27 +188,54 @@ class _UploadKTPState extends State<UploadKTP> {
                                       ),
                                     ),
                                   ),
+                                  // SizedBox(
+                                  //   height: Get.height * 0.06,
+                                  //   width: Get.width * 0.90,
+                                  //   child: TextButton(
+                                  //       style: TextButton.styleFrom(
+                                  //         backgroundColor: mainColor,
+                                  //         shape: RoundedRectangleBorder(
+                                  //           borderRadius:
+                                  //               BorderRadius.circular(20),
+                                  //         ),
+                                  //       ),
+                                  //       onPressed: () async {
+                                  //         controller.restart();
+                                  //         getImage2(ImageSource.gallery);
+                                  //       },
+                                  //       child: Text(
+                                  //         "Upload ulang foto",
+                                  //         style: TextStyle(
+                                  //           color: whiteColor,
+                                  //         ),
+                                  //       )),
+                                  // )
                                   SizedBox(
                                     height: Get.height * 0.06,
                                     width: Get.width * 0.90,
+                                    // color: Colors.black,
                                     child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: mainColor,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: mainColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                         ),
-                                        onPressed: () async {
-                                          controller.restart();
-                                        },
-                                        child: Text(
-                                          "Upload ulang foto",
-                                          style: TextStyle(
-                                            color: whiteColor,
-                                          ),
-                                        )),
-                                  )
+                                      ),
+                                      onPressed: () async {
+                                        controller.restart();
+                                        getImage2(ImageSource.gallery);
+                                      },
+                                      child: Text(
+                                        "Upload Ulang Foto",
+                                        style: TextStyle(
+                                          color: const Color(0xffffffff),
+                                          fontSize: 11.0.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               )
                             : Column(

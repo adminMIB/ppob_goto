@@ -875,6 +875,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                             ? () async {
                                 if (_formkey.currentState!.validate()) {
                                   Get.to(PinView(
+                                    tipeTransaksi: 'paket_data',
                                     productName: productName,
                                     nomorTelepon: tNoPulsa.text,
                                     harga: price,

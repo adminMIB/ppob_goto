@@ -23,15 +23,15 @@ class _ResetSandiViewState extends State<ResetSandiView> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Lupa kata sandi',
+          'Ubah Kata Sandi',
           style: TextStyle(
-            color: Colors.black,
+            color: mainColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -40,36 +40,40 @@ class _ResetSandiViewState extends State<ResetSandiView> {
       ),
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 3.0.h,
-            ),
-            Text(
-              'Ubah kata sandi',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 2.h,
+            right: 2.h,
+            top: 3.h,
+          ),
+          child: Column(
+            children: [
+              // SizedBox(
+              //   height: 3.0.h,
+              // ),
+              // Text(
+              //   'Ubah kata sandi',
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //     fontSize: 14.sp,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+              SizedBox(
+                height: 0.5.h,
               ),
-            ),
-            SizedBox(
-              height: 0.5.h,
-            ),
-            Text(
-              'Pastikan kata sandi sesuai kriteria keamanan',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF83858B)),
-            ),
-            SizedBox(
-              height: 5.0.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
+              Text(
+                'Pastikan kata sandi sesuai kriteria keamanan',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF83858B)),
+              ),
+              SizedBox(
+                height: 5.0.h,
+              ),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -238,9 +242,9 @@ class _ResetSandiViewState extends State<ResetSandiView> {
                     ),
                   )
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       )),
     );

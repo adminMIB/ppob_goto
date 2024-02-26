@@ -28,6 +28,7 @@ abstract class Routes {
   static const RIWAYAT = _Paths.RIWAYAT;
   static const PROMO = _Paths.PROMO;
   static const FINGERPRINT = _Paths.FINGERPRINT;
+  static const SALDO = _Paths.SALDO;
 }
 
 abstract class _Paths {
@@ -58,4 +59,5 @@ abstract class _Paths {
   static const RIWAYAT = '/riwayat';
   static const PROMO = '/promo';
   static const FINGERPRINT = '/fingerprint';
+  static const SALDO = '/saldo';
 }

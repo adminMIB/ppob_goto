@@ -5,7 +5,8 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class gagalpopup extends StatefulWidget {
-  const gagalpopup({Key? key}) : super(key: key);
+  String? error;
+  gagalpopup({Key? key, this.error}) : super(key: key);
 
   @override
   State<gagalpopup> createState() => _gagalpopupState();
@@ -44,7 +45,7 @@ class _gagalpopupState extends State<gagalpopup> {
                 Padding(
                   padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
                   child: Text(
-                    'Maaf transaksi tidak dapat dilakukan, silakan coba beberapa saat kemudian',
+                    widget.error! + ('1002'),
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
@@ -59,7 +60,7 @@ class _gagalpopupState extends State<gagalpopup> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      // Get.to(LoginView());
+                      Get.back();
                     },
                     style: ElevatedButton.styleFrom(
                         primary: mainColor,

@@ -73,22 +73,21 @@ class _FieldkerabatViewState extends State<FieldkerabatView> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: whiteColor,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Edit Data Kerabat',
+          style: TextStyle(
+            color: mainColor,
+          ),
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
           },
-        ),
-        title: Text(
-          'Edit Data Kerabat',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 14.0.sp,
-          ),
         ),
       ),
       body: SafeArea(
