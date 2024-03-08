@@ -261,6 +261,7 @@ class _AkunViewState extends State<AkunView> {
                                           // color: blackColor,
                                           child: FittedBox(
                                             fit: BoxFit.scaleDown,
+                                            alignment: Alignment.centerLeft,
                                             child: Text(
                                               'Rp. ' +
                                                   NumberFormat.currency(

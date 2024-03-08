@@ -35,5 +35,6 @@ class UrlListService {
   static const uploadbukti = 'api/ppob/payment_topSaldo';
 
   //PLN Prabayar Rika
-  static const plnInquiry = 'api/ppob/product_pln_prabayar_inquiry';
+  static const plnprbayarinquiry = 'api/ppob/product_pln_prabayar_inquiry';
+  static const plnprbayarpayment = 'api/ppob/product_pln_prabayar_payment';
 }

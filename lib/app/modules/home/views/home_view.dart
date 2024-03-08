@@ -290,6 +290,7 @@ class _HomeViewState extends State<HomeView> {
                                               // color: blackColor,
                                               child: FittedBox(
                                                 fit: BoxFit.scaleDown,
+                                                alignment: Alignment.centerLeft,
                                                 child: Text(
                                                   'Rp. ' +
                                                       NumberFormat.currency(
@@ -446,7 +447,7 @@ class _HomeViewState extends State<HomeView> {
                                             '10.250,-',
                                             style: TextStyle(
                                               color: thirdColor,
-                                              fontSize: 12.0.sp,
+                                              fontSize: 10.0.sp,
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
