@@ -110,220 +110,13 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                         SizedBox(
                           height: 1.0.h,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'ID Pelanggan',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Nama Pelanggan',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Daya / Tarif',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   'No Referensi',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   'Nominal',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Tanggal',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  ':',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  ':',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  ':',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   ':',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   ':',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  ':',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Text(
-                                //   widget.idpel!,
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                                Text(
-                                  widget.idpel!,
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Container(
-                                  width: Get.width * 0.50,
-                                  // color: Colors.amber,
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      widget.namaPelanggan!,
-                                      style: TextStyle(
-                                        fontSize: 12.0.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  widget.daya! + '/' + widget.tarif!,
-                                  style: TextStyle(
-                                    fontSize: 11.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   'Nominal',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  widget.tanggal!,
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                // Container(
-                                //   width: Get.width * 0.50,
-                                //   child: Text(
-                                //     '',
-                                //     style: TextStyle(
-                                //       fontSize: 12.0.sp,
-                                //       fontWeight: FontWeight.w400,
-                                //     ),
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ],
+                        _buildInvoiceField("ID Pelanggan", widget.idpel!),
+                        _buildInvoiceField("Nama Pelanggan", widget.namaPelanggan!),
+                        _buildInvoiceField(
+                          "Daya/Tarif",
+                          widget.daya! + '/' + widget.tarif!,
                         ),
+                        _buildInvoiceField("Tanggal", widget.tanggal!),
                         SizedBox(
                           height: 0.5.h,
                         ),
@@ -333,124 +126,21 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                         SizedBox(
                           height: 0.5.h,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Nominal',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Biaya Admin',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   'Total Tagihan',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 5.0.w,
-                            ),
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  ':',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  ':',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                // SizedBox(
-                                //   height: 1.h,
-                                // ),
-                                // Text(
-                                //   ':',
-                                //   style: TextStyle(
-                                //     fontSize: 12.0.sp,
-                                //     fontWeight: FontWeight.w400,
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                            Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  NumberFormat.currency(
-                                    locale: 'id-ID',
-                                    symbol: 'Rp.',
-                                    decimalDigits: 0,
-                                  ).format(int.parse(widget.nominal!)),
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  NumberFormat.currency(
-                                    locale: 'id-ID',
-                                    symbol: 'Rp.',
-                                    decimalDigits: 0,
-                                  ).format(int.parse(widget.admin!)),
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Container(
-                                  width: Get.width * 0.50,
-                                  // child: Text(
-                                  //   '100.000',
-                                  //   style: TextStyle(
-                                  //     fontSize: 12.sp,
-                                  //     fontWeight: FontWeight.bold,
-                                  //   ),
-                                  // ),
-                                ),
-                              ],
-                            ),
-                          ],
+                        _buildInvoiceField(
+                          "Nominal Tagihan",
+                          NumberFormat.currency(
+                            locale: 'id-ID',
+                            symbol: 'Rp.',
+                            decimalDigits: 0,
+                          ).format(int.parse(widget.nominal!)),
+                        ),
+                        _buildInvoiceField(
+                          "Biaya Admin",
+                          NumberFormat.currency(
+                            locale: 'id-ID',
+                            symbol: 'Rp.',
+                            decimalDigits: 0,
+                          ).format(int.parse(widget.admin!)),
                         ),
                         SizedBox(
                           height: 1.0.h,
@@ -513,6 +203,45 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInvoiceField(String label, String value) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.5.h),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 35.5.w,
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12.0.sp,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          SizedBox(width: 1.5.w),
+          Text(
+            ":",
+            style: TextStyle(
+              fontSize: 12.0.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          SizedBox(width: 4.0.w),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 12.0.sp,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
         ],
