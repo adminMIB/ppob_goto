@@ -100,7 +100,7 @@ class PdamController extends GetxController {
                 jumlahbulan: content['response']['jml_bln'],
                 stan_awal: content['response']['stan_awal'],
                 stan_akhir: content['response']['stan_akhir'],
-                total_bayar: content['response']['total_bayar'],
+                total_payment: content['response']['total_bayar'],
                 ref1: content['response']['ref1'],
                 ref2: content['response']['ref2'],
               ),
@@ -109,6 +109,7 @@ class PdamController extends GetxController {
         },
         onError: (onError) {
           print('error : $onError');
+          Get.back();
         },
         body: {
           "idpel": idpel,
@@ -136,9 +137,9 @@ class PdamController extends GetxController {
     var idpel,
     var ref1,
     var ref2,
-    var amount,
+    var total_payment,
+    var harga,
     var admin,
-    var total_bayar,
     var periode,
     var pin,
     BuildContext context,
@@ -175,9 +176,9 @@ class PdamController extends GetxController {
                 productName: productname,
                 periode: formattedMonths.join(', ' + " "),
                 deskripsi: content['response']['description'],
-                harga: amount,
+                harga: harga,
                 admin: admin,
-                total_bayar: total_bayar,
+                total_bayar: total_payment,
                 tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
                     .format(CustomTime(content['response']['date'])),
               ));
@@ -192,28 +193,57 @@ class PdamController extends GetxController {
       },
       onError: (onError) {
         print("hasil error: $onError");
-        print(onError['response']['error']);
+        // print(onError['response']['error']);
 
         Get.offAll(transaksigagalView(
-          harga: onError['data']['amount'].toString(),
-          admin: onError['admin'].toString(),
-          idpel: onError['data']['idpel'].toString(),
-          periode: onError['priode'],
-          tglwaktu: onError['tanggal'],
-          statusgagal: onError['response']['error'],
-          total_bayar: onError['data']['total_bayar'].toString(),
+          // tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+          //     .format(CustomTime(onError['response']['date'])),
+          tglwaktu: onError['response']['date'],
+          idpel: idpel,
+          harga: onError['response']['amount'],
+          admin: onError['response']['admin'],
+          total_payment: onError['response']['total'].toString(),
+          // deskripsi: onError['reponse']['description'],
+          // jumlah_bulan: onError['response']['jml_bln'],
+          // stan_awal: onError['response']['stan_awal'],
+          // stan_akhir: onError['response']['stan_akhir'],
+          // nama_pelanggan: onError['reponse']['nama_pelanggan'],
+          periode: onError['response']['periode'],
         ));
+        // if (onError['status'] == false) {
+        //   if (onError['response'] == '1002') {
+        //     // print('error pdm: $onError');
+        //     Get.back();
+        //     helperController.popUpMessage(
+        //         'Mohon maaf sistem sedang maintenance, Coba beberapa saat lagi.',
+        //         context);
+        //   } else {
+        //     Get.offAll(transaksigagalView(
+        //       tglwaktu: onError['response']['date'],
+        //       idpel: idpel,
+        //       harga: onError['response']['amount'],
+        //       admin: onError['response']['admin'],
+        //       total_payment: onError['response']['total'].toString(),
+        //       // deskripsi: onError['response']['description'],
+        //       // jumlah_bulan: onError['response']['jml_bln'],
+        //       // stan_awal: onError['response']['stan_awal'],
+        //       // stan_akhir: onError['response']['stan_akhir'],
+        //       // nama_pelanggan: onError['response']['nama_pelanggan'],
+        //       periode: onError['response']['periode'],
+        //     ));
+        //   }
+        // }
       },
       body: {
         "productCode": productCode,
         "idpel": idpel,
         "ref1": ref1,
         "ref2": ref2,
-        "amount": amount,
+        "total_payment": total_payment,
+        // "total_payment": amount,
         "admin": admin,
-        "total_bayar": total_bayar,
-        "user_id": pref.read('user_id'),
         "priode": periode,
+        "user_id": pref.read('user_id'),
         "pin": pin,
       },
     );

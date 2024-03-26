@@ -143,7 +143,7 @@ class AppPages {
         ),
         GetPage(
           name: _Paths.BPJS,
-          page: () => const BpjsView(),
+          page: () => BpjsView(),
           binding: BpjsBinding(),
         ),
         GetPage(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/brizzi/views/brizzi_view.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/dana/views/dana_view.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/emoney_view.dart';
@@ -27,14 +28,14 @@ class _EwalletViewState extends State<EwalletView> {
         title: Text(
           'Uang Elektronik',
           style: TextStyle(
-            color: Colors.black,
+            color: mainColor,
             fontSize: 14.0.sp,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();

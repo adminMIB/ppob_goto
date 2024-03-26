@@ -14,14 +14,14 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:bottom_sheet/bottom_sheet.dart';
 
-class PrabayarView extends StatefulWidget {
-  const PrabayarView({Key? key}) : super(key: key);
+class PascabayarView extends StatefulWidget {
+  const PascabayarView({Key? key}) : super(key: key);
 
   @override
-  _PrabayarViewState createState() => _PrabayarViewState();
+  _PascabayarViewState createState() => _PascabayarViewState();
 }
 
-class _PrabayarViewState extends State<PrabayarView> {
+class _PascabayarViewState extends State<PascabayarView> {
   bool status = false;
   int selectedItemIndex = -1; // -1 berarti tidak ada yang dipilih
 
@@ -34,7 +34,6 @@ class _PrabayarViewState extends State<PrabayarView> {
 
   PhoneContact? _phoneContact;
   int wilayah = 0;
-  int lengthNoTelepon = 0;
   var pickNumber = '';
 
   @override
@@ -91,7 +90,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                                 ),
                                 SizedBox(height: 1.5.h),
                                 Text(
-                                  'Pasca Bayar',
+                                  'Tagihan Listrik',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14.0.sp,
@@ -163,8 +162,23 @@ class _PrabayarViewState extends State<PrabayarView> {
                               SizedBox(
                                 height: 1.5.h,
                               ),
+                              Container(
+                                padding: EdgeInsets.all(16.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.amber.withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Text(
+                                  'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
+                                  style: TextStyle(
+                                    fontSize: 11.0.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  textAlign: TextAlign.justify,
+                                ),
+                              ),
                               SizedBox(
-                                height: Get.height * 0.45,
+                                height: Get.height * 0.37,
                               ),
                               Container(
                                 color: whiteColor,
@@ -179,7 +193,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                                               if (formkey.currentState!
                                                   .validate()) {
                                                 await plnpascaController
-                                                    .plnprabayarinquiry(
+                                                    .plnpascainquiry(
                                                         idpel.text, context);
                                               }
                                             }

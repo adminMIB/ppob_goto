@@ -4,7 +4,7 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/kesehatan_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/ketenagakerjaan_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/coba2_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba2_view.dart';
 import 'package:sizer/sizer.dart';
 
 class BpjsView extends StatefulWidget {

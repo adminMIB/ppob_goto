@@ -112,7 +112,7 @@ class _PulsaViewState extends State<PulsaView> {
                                     ),
                                     SizedBox(height: 1.0.h),
                                     Text(
-                                      'Pulsa Pascabayar',
+                                      'Pulsa Prabayar',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0.sp,
@@ -263,7 +263,7 @@ class _PulsaViewState extends State<PulsaView> {
                                                         ),
                                                         validator: (value) {
                                                           if (lengthNoTelepon <
-                                                              10) {
+                                                              7) {
                                                             return 'Nomor handphone minimal 10 karakter';
                                                           }
                                                           return null; // No error message here
@@ -554,7 +554,7 @@ class _PulsaViewState extends State<PulsaView> {
     ScrollController scrollController,
     double bottomSheetOffset,
   ) {
-    bool isTextLengthValid = tNoPulsa.text.length >= 10;
+    bool isTextLengthValid = tNoPulsa.text.length >= 7;
     return Container(
         decoration: BoxDecoration(
             color: whiteColor,
@@ -823,7 +823,7 @@ class _PulsaViewState extends State<PulsaView> {
                             //   ),
                             // ),
                             ElevatedButton(
-                          onPressed: tNoPulsa.text.length >= 10
+                          onPressed: tNoPulsa.text.length >= 7
                               ? () async {
                                   if (_formkey.currentState!.validate()) {
                                     Get.to(PinView(
@@ -839,7 +839,7 @@ class _PulsaViewState extends State<PulsaView> {
                                 }
                               : null,
                           style: ElevatedButton.styleFrom(
-                            primary: tNoPulsa.text.length >= 10
+                            primary: tNoPulsa.text.length >= 7
                                 ? mainColor
                                 : Colors.grey.shade500,
                             shape: RoundedRectangleBorder(

@@ -5,7 +5,7 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:sizer/sizer.dart';
 
-class BottmsheetpdamView extends StatefulWidget {
+class BottomsheetplnView extends StatefulWidget {
   String? productName;
   String? idpel;
   String? nama_pelanggan;
@@ -13,13 +13,12 @@ class BottmsheetpdamView extends StatefulWidget {
   String? harga;
   String? admin;
   String? periode;
-  String? jumlahbulan;
-  String? stan_awal;
-  String? stan_akhir;
+  String? tarif;
+  String? daya;
   String? total_payment;
   String? ref1;
   String? ref2;
-  BottmsheetpdamView({
+  BottomsheetplnView({
     super.key,
     this.productName,
     this.idpel,
@@ -28,23 +27,22 @@ class BottmsheetpdamView extends StatefulWidget {
     this.harga,
     this.admin,
     this.periode,
-    this.jumlahbulan,
-    this.stan_awal,
-    this.stan_akhir,
+    this.tarif,
+    this.daya,
     this.total_payment,
     this.ref1,
     this.ref2,
   });
 
   @override
-  State<BottmsheetpdamView> createState() => _BottmsheetpdamViewState();
+  State<BottomsheetplnView> createState() => _BottmsheetpdamViewState();
 }
 
-class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
+class _BottmsheetpdamViewState extends State<BottomsheetplnView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 150.h,
+        height: Get.height,
         decoration: BoxDecoration(
             color: whiteColor,
             borderRadius: BorderRadius.only(
@@ -142,32 +140,22 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                     height: 1.h,
                                   ),
                                   Text(
-                                    'Stan Awal',
+                                    'Tarif/Daya',
                                     style: TextStyle(
                                       fontSize: 12.0.sp,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                    'Stan Akhir',
-                                    style: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                    'Jumlah Bulan',
-                                    style: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
+                                  // SizedBox(
+                                  //   height: 1.h,
+                                  // ),
+                                  // Text(
+                                  //   'Daya',
+                                  //   style: TextStyle(
+                                  //     fontSize: 12.0.sp,
+                                  //     fontWeight: FontWeight.w400,
+                                  //   ),
+                                  // ),
                                   SizedBox(
                                     height: 1.h,
                                   ),
@@ -221,26 +209,16 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                    ':',
-                                    style: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                    ':',
-                                    style: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
+                                  // SizedBox(
+                                  //   height: 1.h,
+                                  // ),
+                                  // Text(
+                                  //   ':',
+                                  //   style: TextStyle(
+                                  //     fontSize: 12.0.sp,
+                                  //     fontWeight: FontWeight.w400,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                               Column(
@@ -270,10 +248,18 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  // Text(
+                                  //   widget.tarif! + '/' + widget.daya!,
+                                  //   style: TextStyle(
+                                  //     fontSize: 12.0.sp,
+                                  //     fontWeight: FontWeight.w400,
+                                  //   ),
+                                  // ),
                                   Text(
-                                    (widget.stan_awal! == "0")
-                                        ? widget.stan_awal!
-                                        : "—",
+                                    (widget.tarif != '' && widget.daya != '')
+                                        ? '${widget.tarif}/${widget.daya}'
+                                        : (widget.tarif ?? '') +
+                                            (widget.daya ?? ''),
                                     style: TextStyle(
                                       fontSize: 11.0.sp,
                                       fontWeight: FontWeight.w400,
@@ -283,28 +269,13 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  Text(
-                                    (widget.stan_akhir! == "0")
-                                        ? widget.stan_awal!
-                                        : "—",
-                                    style: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  Text(
-                                    widget.jumlahbulan!,
-                                    style: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
+                                  // SizedBox(
+                                  //   height: 1.h,
+                                  // ),
+                                  // Text(widget.daya!),
+                                  // SizedBox(
+                                  //   height: 1.h,
+                                  // ),
                                   Container(
                                     width: Get.width * 0.50,
                                     child: Text(
@@ -337,7 +308,7 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Tagihan',
+                                    'Harga',
                                     style: TextStyle(
                                       fontSize: 12.0.sp,
                                       fontWeight: FontWeight.w400,
@@ -479,16 +450,13 @@ class _BottmsheetpdamViewState extends State<BottmsheetpdamView> {
                           onPressed: () async {
                             // Get.to(PdamstrukView());
                             Get.to(PinView(
-                              tipeTransaksi: 'pdam',
-                              productName: widget.productName,
-                              productCode: widget.kodeproduk,
+                              tipeTransaksi: 'plnpasca',
                               idpel: widget.idpel,
                               ref1: widget.ref1,
                               ref2: widget.ref2,
                               harga: widget.harga,
                               admin: widget.admin,
                               total_payment: widget.total_payment,
-                              periode: widget.periode,
                             ));
                           },
                           style: ElevatedButton.styleFrom(
