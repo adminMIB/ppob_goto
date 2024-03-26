@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class PinView extends StatefulWidget {
   final String? ref1;
   final String? ref2;
   final String? admin;
-  final String? total_bayar;
+  final String? total_payment;
   final String? periode;
   final String? tipeTransaksi;
   const PinView({
@@ -36,7 +37,7 @@ class PinView extends StatefulWidget {
     this.ref1,
     this.ref2,
     this.admin,
-    this.total_bayar,
+    this.total_payment,
     this.periode,
     this.tipeTransaksi,
   }) : super(key: key);
@@ -48,6 +49,7 @@ class PinView extends StatefulWidget {
 class _PinViewState extends State<PinView> {
   final pulsaController = Get.put(PulsaController());
   final pdamController = Get.put(PdamController());
+  final plnController = Get.put(PlnController());
   String currentText = "";
   TextEditingController textEditingController = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
@@ -190,36 +192,24 @@ class _PinViewState extends State<PinView> {
                             widget.idpel,
                             widget.ref1,
                             widget.ref2,
+                            widget.total_payment,
                             widget.harga,
                             widget.admin,
-                            widget.total_bayar,
                             widget.periode,
                             v,
                             context);
+                      } else if (widget.tipeTransaksi == 'plnpasca') {
+                        await plnController.plnpascapayment(
+                          widget.idpel,
+                          widget.ref1,
+                          widget.ref2,
+                          widget.harga,
+                          widget.total_payment,
+                          widget.admin,
+                          v,
+                          context,
+                        );
                       }
-                      // await pulsaController.transaksipulsa(
-                      //   v,
-                      //   widget.nomorTelepon,
-                      //   widget.productCode,
-                      //   widget.harga,
-                      //   widget.productName,pos
-                      //   widget.type,
-                      //   widget.provider,
-                      //   context,
-                      // );
-
-                      // await pdamController.pdampayment(
-                      //     widget.productName,
-                      //     widget.productCode,
-                      //     widget.idpel,
-                      //     widget.ref1,
-                      //     widget.ref2,
-                      //     widget.harga,
-                      //     widget.admin,
-                      //     widget.total_bayar,
-                      //     widget.periode,
-                      //     v,
-                      //     context);
                     },
                     onChanged: (value) {
                       if (value.length == 6) {

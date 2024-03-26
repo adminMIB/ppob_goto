@@ -33,7 +33,7 @@ dependencies:
   another_flushbar: 1.12.30
   intl: 0.18.1
   line_icons: 2.0.3
-  bottom_sheet: 4.0.0
+  bottom_sheet: ^4.0.0
   showcaseview: 2.0.3
   screenshot: 2.1.0
   image_gallery_saver: 2.0.3

@@ -28,6 +28,7 @@ class PulsagagalView extends StatefulWidget {
   final String? noref;
   final String? tglwaktu;
   final String? tipetransaksi;
+  final String? statusTrx;
   const PulsagagalView(
       {super.key,
       this.productCode,
@@ -37,7 +38,8 @@ class PulsagagalView extends StatefulWidget {
       this.status,
       this.noref,
       this.tglwaktu,
-      this.tipetransaksi});
+      this.tipetransaksi,
+      this.statusTrx});
 
   @override
   State<PulsagagalView> createState() => _PulsagagalViewState();
@@ -147,12 +149,30 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                   child: Column(
                                                     children: [
                                                       Text(
-                                                        'Transaksi Gagal',
+                                                        'Transaksi' +
+                                                            ' ' +
+                                                            (widget.statusTrx ==
+                                                                    'PENDING'
+                                                                ? 'Pending'
+                                                                : (widget.statusTrx ==
+                                                                        'GAGAL'
+                                                                    ? 'Gagal'
+                                                                    : widget
+                                                                        .statusTrx!)),
                                                         style: TextStyle(
                                                           fontSize: 14.0.sp,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Colors.red,
+                                                          color: widget
+                                                                      .statusTrx ==
+                                                                  'PENDING'
+                                                              ? Color(
+                                                                  0xFFFE7A36)
+                                                              : widget.statusTrx ==
+                                                                      'GAGAL'
+                                                                  ? Colors.red
+                                                                  : Colors
+                                                                      .black,
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -165,7 +185,7 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                             ' ' +
                                                             (widget.tipetransaksi ==
                                                                     'paket_data'
-                                                                ? 'Paket data'
+                                                                ? 'Paket Data'
                                                                 : (widget.tipetransaksi ==
                                                                         'pulsa'
                                                                     ? 'Pulsa'
@@ -495,13 +515,34 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                                   .circular(
                                                                       8.0),
                                                           border: Border.all(
-                                                            color: Colors
-                                                                .red, // Outline color
+                                                            color: widget
+                                                                        .statusTrx ==
+                                                                    'PENDING'
+                                                                ? Color(
+                                                                    0xFFFE7A36)
+                                                                : widget.statusTrx ==
+                                                                        'GAGAL'
+                                                                    ? Colors.red
+                                                                    : Colors
+                                                                        .black,
                                                             width:
                                                                 2.0, // Outline width
                                                           ),
-                                                          color: Colors.red
-                                                              .withOpacity(0.2),
+                                                          color: widget
+                                                                      .statusTrx ==
+                                                                  'PENDING'
+                                                              ? Color(0xFFFFBB64)
+                                                                  .withOpacity(
+                                                                      0.5)
+                                                                  .withOpacity(
+                                                                      0.2)
+                                                              : widget.statusTrx ==
+                                                                      'GAGAL'
+                                                                  ? Colors.red
+                                                                      .withOpacity(
+                                                                          0.2)
+                                                                  : Colors
+                                                                      .black,
                                                         ),
                                                         child: Padding(
                                                           padding:
@@ -509,10 +550,27 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                                   1.0.h),
                                                           child: Row(
                                                             children: [
-                                                              Image.asset(
-                                                                'assets/images/failed.png',
-                                                                height: 4.h,
-                                                              ),
+                                                              // Image.asset(
+                                                              //   'assets/images/failed.png',
+                                                              //   height: 4.h,
+                                                              // ),
+                                                              widget.statusTrx ==
+                                                                      'GAGAL'
+                                                                  ? Image.asset(
+                                                                      'assets/images/failed.png',
+                                                                      height:
+                                                                          4.0.h,
+                                                                    )
+                                                                  : widget.statusTrx ==
+                                                                          'PENDING'
+                                                                      ? Image
+                                                                          .asset(
+                                                                          'assets/images/pen.png',
+                                                                          height:
+                                                                              4.0.h,
+                                                                        )
+                                                                      : Container(),
+
                                                               SizedBox(
                                                                 width: 2.0.w,
                                                               ),
@@ -525,13 +583,13 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                                       (widget
                                                                           .status!),
                                                                   style: TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      color: Colors
-                                                                          .red,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400),
+                                                                      fontSize: 11.sp,
+                                                                      color: widget.statusTrx == 'PENDING'
+                                                                          ? Color(0xFFFE7A36)
+                                                                          : widget.statusTrx == 'GAGAL'
+                                                                              ? Colors.red
+                                                                              : Colors.black,
+                                                                      fontWeight: FontWeight.w500),
                                                                 ),
                                                               )
                                                             ],
@@ -545,20 +603,43 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                             ),
                                           ),
                                         ),
+                                        // Positioned(
+                                        //   left: Get.width * 0.45 - 25.0,
+                                        //   top: 0.0,
+                                        //   child: FractionalTranslation(
+                                        //     translation: Offset(0.0, -0.5),
+                                        //     child: Container(
+                                        //         height: 60.h,
+                                        //         width: 60.0,
+                                        //         decoration: BoxDecoration(
+                                        //           shape: BoxShape.circle,
+                                        //           color: whiteColor,
+                                        //         ),
+                                        //         child: Image.asset(
+                                        //             'assets/images/failed.png')),
+                                        //   ),
+                                        // ),
                                         Positioned(
                                           left: Get.width * 0.45 - 25.0,
                                           top: 0.0,
                                           child: FractionalTranslation(
                                             translation: Offset(0.0, -0.5),
                                             child: Container(
-                                                height: 60.h,
-                                                width: 60.0,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: whiteColor,
-                                                ),
-                                                child: Image.asset(
-                                                    'assets/images/failed.png')),
+                                              height: 60.h,
+                                              width: 60.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: whiteColor,
+                                              ),
+                                              child: widget.statusTrx == 'GAGAL'
+                                                  ? Image.asset(
+                                                      'assets/images/failed.png')
+                                                  : widget.statusTrx ==
+                                                          'PENDING'
+                                                      ? Image.asset(
+                                                          'assets/images/pen.png')
+                                                      : Container(),
+                                            ),
                                           ),
                                         ),
                                       ],

@@ -165,7 +165,7 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                             ' ' +
                                                             (widget.tipetransaksi ==
                                                                     'paket_data'
-                                                                ? 'Paket data'
+                                                                ? 'Paket Data'
                                                                 : (widget.tipetransaksi ==
                                                                         'pulsa'
                                                                     ? 'Pulsa'

@@ -58,13 +58,14 @@ class _DatamerchantState extends State<Datamerchant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: mainColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 height: Get.height * 0.08,
-                // color: Colors.amber,
+                color: mainColor,
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(right: 1.5.h),
@@ -75,7 +76,7 @@ class _DatamerchantState extends State<Datamerchant> {
                         IconButton(
                           icon: Icon(
                             Icons.arrow_back,
-                            color: mainColor,
+                            color: whiteColor,
                           ),
                           onPressed: () {
                             Get.back();
@@ -88,7 +89,7 @@ class _DatamerchantState extends State<Datamerchant> {
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
-                              color: mainColor,
+                              color: whiteColor,
                             ),
                           ),
                         ),
@@ -109,127 +110,140 @@ class _DatamerchantState extends State<Datamerchant> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 2.0.h,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.off(FieldmerchantView());
-                      },
-                      child: Container(
-                        height: 7.h,
-                        // width: Get.width * 0.90,
-                        decoration: BoxDecoration(
-                          color: mainColor,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 1.5.h,
-                            right: 1.0.h,
+              Container(
+                height: Get.height,
+                decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5.h),
+                      topRight: Radius.circular(5.h),
+                    )),
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: 2.0.h, right: 2.0.h, top: 2.0.h),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 2.0.h,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.off(FieldmerchantView());
+                        },
+                        child: Container(
+                          height: 7.h,
+                          // width: Get.width * 0.90,
+                          decoration: BoxDecoration(
+                            color: mainColor,
+                            borderRadius: BorderRadius.circular(15.0),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Data Merchant',
-                                style: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  fontWeight: FontWeight.w500,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: 1.5.h,
+                              right: 1.0.h,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Data Merchant',
+                                  style: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: whiteColor,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
                                   color: whiteColor,
                                 ),
-                              ),
-                              Icon(
-                                Icons.keyboard_arrow_right,
-                                color: whiteColor,
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 2.5.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 1.5.h,
-                        right: 1.0.h,
+                      SizedBox(
+                        height: 2.5.h,
                       ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Nama Merchant',
-                                style: TextStyle(
-                                  color: Colors.grey.shade600,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 1.h,
-                              ),
-                              Obx(
-                                () => Text(
-                                  // '${akunController.userProfile}'
-                                  '${akunController.merchant['nama_merchant']}',
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 1.5.h,
+                          right: 1.0.h,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Nama Merchant',
                                   style: TextStyle(
-                                    color: blackColor,
+                                    color: Colors.grey.shade600,
                                     fontSize: 14.sp,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Divider(
-                            color: Colors.grey.shade500,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Alamat Toko',
-                                style: TextStyle(
-                                  color: Colors.grey.shade600,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
+                                SizedBox(
+                                  height: 1.h,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 1.h,
-                              ),
-                              Obx(
-                                () => Text(
-                                  // '${akunController.userProfile}'
-                                  '${akunController.merchant['alamat_toko']}',
-                                  style: TextStyle(
-                                    color: blackColor,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w500,
+                                Obx(
+                                  () => Text(
+                                    // '${akunController.userProfile}'
+                                    '${akunController.merchant['nama_merchant'] ?? ''}',
+                                    style: TextStyle(
+                                      color: blackColor,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 2.0.h,
-                          ),
-                        ],
+                              ],
+                            ),
+                            SizedBox(
+                              height: 1.0.h,
+                            ),
+                            Divider(
+                              color: Colors.grey.shade500,
+                            ),
+                            SizedBox(
+                              height: 1.0.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Alamat Toko',
+                                  style: TextStyle(
+                                    color: Colors.grey.shade600,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 1.h,
+                                ),
+                                Obx(
+                                  () => Text(
+                                    // '${akunController.userProfile}'
+                                    '${akunController.merchant['alamat_toko'] ?? ''}',
+                                    style: TextStyle(
+                                      color: blackColor,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 2.0.h,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

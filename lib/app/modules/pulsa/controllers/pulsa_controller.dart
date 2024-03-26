@@ -217,7 +217,7 @@ class PulsaController extends GetxController {
       onSuccess: (content) async {
         print('masukkkk $content');
         if (content['status'] == true) {
-          print("masuk a");
+          print("masuk A");
           print('sukses: $content');
           String apiTimeString = content['response']['data']['time'];
           DateTime apiDateTime = fromCustomTime(apiTimeString);
@@ -240,34 +240,11 @@ class PulsaController extends GetxController {
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
         }
-        //  else if (content['status'] == false) {
-        //   print("masuk b");
-        //   print('gagal : $content');
-
-        //   print(content['status'] == false);
-        //   await PersistentNavBarNavigator.pushNewScreen(
-        //     context,
-        //     screen: PulsatransaksiView(
-        //       productName: productName,
-        //       productCode: productCode,
-        //       harga: content['response']['data']['amount'].toString(),
-        //       nomorTelepon: nomorTelepon,
-        //       status: content['response']['data']['statusTrx'],
-        //       noref: content['response']['data']['ref2'],
-        //       tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
-        //           .format(fromCustomTime(content['response']['data']['time'])),
-        //     ),
-        //     withNavBar: true,
-        //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        //   );
-        // } else {
-        //   print("masuk c");
-        //   print(content);
-        // }
       },
       onError: (error) {
-        print('pulsa ERROR: $error');
-        if (error['response'] != null) {
+        if (error['status'] == "GAGAL") {
+          print('masuk C');
+          print('GAGAL: $error');
           String apiTimeString = error['response']['data']['time'];
           DateTime apiDateTime = fromCustomTime(apiTimeString);
 
@@ -283,13 +260,42 @@ class PulsaController extends GetxController {
               tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
                   .format(fromCustomTime(error['response']['data']['time'])),
               tipetransaksi: tipetransaksi,
+              // statusTrx: error['response']['status'],
+              statusTrx: error['response']['status'],
+            ),
+            withNavBar: true,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        } else if (error['status'] == "PENDING") {
+          print('Masuk B');
+          print('Pending : $error');
+          String apiTimeString = error['response']['data']['time'];
+          DateTime apiDateTime = fromCustomTime(apiTimeString);
+
+          PersistentNavBarNavigator.pushNewScreen(
+            context,
+            screen: PulsagagalView(
+              productName: productName,
+              productCode: productCode,
+              harga: error['response']['data']['amount'].toString(),
+              nomorTelepon: nomorTelepon,
+              status: error['response']['data']['desc'],
+              noref: error['response']['data']['ref2'],
+              tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+                  .format(fromCustomTime(error['response']['data']['time'])),
+              tipetransaksi: tipetransaksi,
+              // statusTrx: error['response']['status'],
+              statusTrx: error['response']['status'],
             ),
             withNavBar: true,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
         } else {
-          print(error);
           Get.back();
+          print('error weh: $error');
+          helperController.popUpMessage(
+              'Terjadi kesalahan dalam permintaan, Silahkan coba lagi beberapa saat',
+              context);
         }
       },
       body: {

@@ -14,7 +14,6 @@ class UrlListService {
 
   //pulsa,paketdata
   static const productProvider = 'api/ppob/product_provider';
-
   static const pulsatransaksi = 'api/ppob/transaksi_pulsa';
 
   //profile
@@ -26,11 +25,21 @@ class UrlListService {
   static const pdaminqury = 'api/ppob/product_pdam_inquiry';
   static const pdampayment = 'api/ppob/product_pdam_payment';
 
-  //Riwayat Rika
+  //Riwayat
   static const riwayat = 'api/ppob/transaksi_history';
 
   //Topup saldo
   static const checkbalance = 'api/ppob/cek_saldo_user';
   static const topupsaldo = 'api/ppob/inquiry_topSaldo';
   static const uploadbukti = 'api/ppob/payment_topSaldo';
+
+  //Pln Pascabayar
+  static const plnpascainquiry = 'api/ppob/product_pln_pasca_inquiry';
+  static const plnpascapayment = 'api/ppob/product_pln_pasca_payment';
+
+  //pln prabyar
+  static const plnprbayarinquiry = 'api/ppob/product_pln_prabayar_inquiry';
+
+  // bpjs kesehatan
+  static const bpjskesehataninquiry = 'api/ppob/product_bpjs_inquiry';
 }
