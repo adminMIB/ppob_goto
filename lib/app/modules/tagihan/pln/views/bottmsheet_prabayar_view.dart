@@ -61,7 +61,7 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Konfrmasi Pembayaran',
+                        'Konfirmasi Pembayaran',
                         style: TextStyle(
                           color: mainColor,
                           fontSize: 14.0.sp,
