@@ -238,6 +238,8 @@ class _AkunViewState extends State<AkunView> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Stack(
                                     alignment: Alignment.center,
@@ -254,18 +256,26 @@ class _AkunViewState extends State<AkunView> {
                                       if (!(homeController.balance.value ==
                                               '0' &&
                                           isLoading.value))
-                                        Text(
-                                          'Rp. ' +
-                                              NumberFormat.currency(
-                                                locale: 'id-ID',
-                                                symbol: '',
-                                                decimalDigits: 0,
-                                              ).format(double.parse(
-                                                  '${homeController.balance.value}')),
-                                          style: TextStyle(
-                                            color: mainColor,
-                                            fontSize: 18.0.sp,
-                                            fontWeight: FontWeight.w700,
+                                        Container(
+                                          width: 40.w,
+                                          // color: blackColor,
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'Rp. ' +
+                                                  NumberFormat.currency(
+                                                    locale: 'id-ID',
+                                                    symbol: '',
+                                                    decimalDigits: 0,
+                                                  ).format(double.parse(
+                                                      '${homeController.balance.value}')),
+                                              style: TextStyle(
+                                                color: mainColor,
+                                                fontSize: 18.0.sp,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                     ],

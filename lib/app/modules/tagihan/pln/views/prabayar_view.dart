@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
@@ -9,6 +7,7 @@ import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/bottmsheet_prabayar_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
@@ -25,14 +24,19 @@ class _PrabayarViewState extends State<PrabayarView> {
   bool status = false;
   int selectedItemIndex = -1; // -1 berarti tidak ada yang dipilih
 
-  bool _ingatsaya = false;
   bool shouldUpdateViewPrice = false;
   final formkey = GlobalKey<FormState>();
   TextEditingController idpel = TextEditingController();
+<<<<<<< HEAD
   final plnpascaController = Get.put(PlnController());
   final helperController = Get.put(HelperController());
 
   PhoneContact? _phoneContact;
+=======
+  final plnprabayarController = Get.put(PlnController());
+  final helperController = Get.put(HelperController());
+
+>>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
   int wilayah = 0;
   int lengthNoTelepon = 0;
   var pickNumber = '';
@@ -59,25 +63,27 @@ class _PrabayarViewState extends State<PrabayarView> {
         body: Stack(
           children: [
             SafeArea(
-                child: Column(
-              children: [
-                Expanded(
-                  child: GetBuilder<PulsaController>(
-                    init: PulsaController(),
-                    builder: (_data) => ListView(
-                      children: [
-                        AppBar(
-                          elevation: 0,
-                          backgroundColor: Colors.transparent,
-                          leading: IconButton(
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.black,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: GetBuilder<PulsaController>(
+                      init: PulsaController(),
+                      builder: (_data) => ListView(
+                        children: [
+                          AppBar(
+                            elevation: 0,
+                            backgroundColor: Colors.transparent,
+                            leading: IconButton(
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {
+                                Get.back();
+                              },
                             ),
-                            onPressed: () {
-                              Get.back();
-                            },
                           ),
+<<<<<<< HEAD
                         ),
                         Stack(
                           children: [
@@ -87,27 +93,98 @@ class _PrabayarViewState extends State<PrabayarView> {
                                   child: Image.asset(
                                     'assets/images/pln.png',
                                     height: 5.0.h,
+=======
+                          Stack(
+                            children: [
+                              Column(
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      'assets/images/prabayar.png',
+                                      height: 5.0.h,
+                                    ),
+>>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
                                   ),
-                                ),
-                                SizedBox(height: 1.5.h),
+                                  SizedBox(height: 1.5.h),
+                                  Text(
+                                    'Token Listrik',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14.0.sp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(
+                                    height: 1.0.h,
+                                  ),
+                                  Divider(
+                                    color: Colors.grey.shade500,
+                                    indent: 2.0.h,
+                                    endIndent: 2.0.h,
+                                  ),
+                                  SizedBox(
+                                    height: 1.5.h,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Text(
+<<<<<<< HEAD
                                   'Pasca Bayar',
+=======
+                                  'No. ID Pelanggan / Kode bayar',
+>>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14.0.sp,
-                                      fontWeight: FontWeight.w600),
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 1.0.h,
                                 ),
-                                Divider(
-                                  color: Colors.grey.shade500,
-                                  indent: 2.0.h,
-                                  endIndent: 2.0.h,
+                                Form(
+                                  key: formkey,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  child: TextFormField(
+                                    minLines: 1,
+                                    maxLength: 15,
+                                    controller: idpel,
+                                    onChanged: (a) {
+                                      setState(() {
+                                        wilayah = a.length;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      hintText: 'Masukkan Kode ',
+                                      hintStyle: TextStyle(
+                                        fontSize: 12.0.sp,
+                                        color: Colors.grey.shade500,
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (wilayah < 7) {
+                                        return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                                      }
+                                      return null;
+                                    },
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 1.5.h,
                                 ),
+<<<<<<< HEAD
                               ],
                             ),
                           ],
@@ -200,11 +277,162 @@ class _PrabayarViewState extends State<PrabayarView> {
                                           fontSize: 14.0.sp,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFFFDF8F8),
+=======
+                                //List nominal Token Listrik
+                                Obx(
+                                  () => SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: plnprabayarController
+                                          .listDenomPrabayarListrik
+                                          .map((element) {
+                                        return GestureDetector(
+                                          onTap: () async {
+                                            controller.restart();
+                                            if (idpel.text.isEmpty) {
+                                              Flushbar(
+                                                message:
+                                                    'Mohon masukkan nomor terlebih dahulu!',
+                                                duration: Duration(seconds: 3),
+                                              )..show(context);
+                                            } else {
+                                              plnprabayarController
+                                                  .selectedNominal
+                                                  .value = element.nominal;
+                                              print(plnprabayarController
+                                                  .selectedNominal
+                                                  .value = element.nominal);
+                                              setState(() {
+                                                selectedItemIndex =
+                                                    plnprabayarController
+                                                        .listDenomPrabayarListrik
+                                                        .indexOf(element);
+                                              });
+                                            }
+                                          },
+                                          child: Container(
+                                            margin:
+                                                EdgeInsets.only(bottom: 2.0.h),
+                                            padding: EdgeInsets.all(2.0.h),
+                                            decoration: BoxDecoration(
+                                              color: selectedItemIndex ==
+                                                      plnprabayarController
+                                                          .listDenomPrabayarListrik
+                                                          .indexOf(element)
+                                                  ? greyishColor
+                                                  : whiteColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.3),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 2,
+                                                  offset: Offset(0, 1),
+                                                ),
+                                              ],
+                                            ),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  width: 35.0.w,
+                                                  // color: Colors.amber,
+                                                  child: Text(
+                                                    'Token Listrik PLN',
+                                                    style: TextStyle(
+                                                      fontSize: 11.0.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 40.0.w,
+                                                  // color: Colors.red,
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    child: FittedBox(
+                                                      fit: BoxFit.scaleDown,
+                                                      child: Text(
+                                                        NumberFormat.currency(
+                                                          locale: 'id-ID',
+                                                          symbol: 'Rp.',
+                                                          decimalDigits: 0,
+                                                        ).format(int.parse(
+                                                            element.nominal)),
+                                                        style: TextStyle(
+                                                          color: mainColor,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                ),
+                                //Akhir nominal Token Listrik
+                                SizedBox(
+                                  height: Get.height * 0.45,
+                                ),
+                                Container(
+                                  color: whiteColor,
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Center(
+                                    child: SizedBox(
+                                      width: 41.0.h,
+                                      height: 6.0.h,
+                                      child: ElevatedButton(
+                                        onPressed: idpel.text.length >= 7
+                                            ? () async {
+                                                if (formkey.currentState!
+                                                    .validate()) {
+                                                  await plnprabayarController
+                                                      .plnprabayarInquiry(
+                                                          idpel.text, context);
+                                                }
+                                              }
+                                            : null,
+                                        style: ElevatedButton.styleFrom(
+                                          primary: idpel.text.length >= 7
+                                              ? mainColor
+                                              : Colors.grey.shade700,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          // elevation: 10,
+                                        ),
+                                        child: Text(
+                                          'Lanjutkan',
+                                          style: TextStyle(
+                                            fontSize: 14.0.sp,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFFFDF8F8),
+                                          ),
+>>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
+<<<<<<< HEAD
                               )
                             ],
                           ),
@@ -215,6 +443,18 @@ class _PrabayarViewState extends State<PrabayarView> {
                 )
               ],
             ))
+=======
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+>>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
           ],
         ),
       ),

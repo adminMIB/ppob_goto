@@ -266,6 +266,9 @@ class _HomeViewState extends State<HomeView> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Stack(
                                         alignment: Alignment.center,
@@ -283,19 +286,26 @@ class _HomeViewState extends State<HomeView> {
                                           if (!(homeController.balance.value ==
                                                   '0' &&
                                               isLoading.value))
-                                            Text(
-                                              'Rp. ' +
-                                                  NumberFormat.currency(
-                                                    locale: 'id-ID',
-                                                    symbol: '',
-                                                    decimalDigits: 0,
-                                                  ).format(double.parse(
-                                                      '${homeController.balance.value}')) +
-                                                  '',
-                                              style: TextStyle(
-                                                color: mainColor,
-                                                fontSize: 18.0.sp,
-                                                fontWeight: FontWeight.w700,
+                                            Container(
+                                              width: 40.w,
+                                              // color: blackColor,
+                                              child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  'Rp. ' +
+                                                      NumberFormat.currency(
+                                                        locale: 'id-ID',
+                                                        symbol: '',
+                                                        decimalDigits: 0,
+                                                      ).format(double.parse(
+                                                          '${homeController.balance.value}')),
+                                                  style: TextStyle(
+                                                    color: mainColor,
+                                                    fontSize: 18.0.sp,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                         ],
@@ -438,7 +448,7 @@ class _HomeViewState extends State<HomeView> {
                                             '10.250,-',
                                             style: TextStyle(
                                               color: thirdColor,
-                                              fontSize: 12.0.sp,
+                                              fontSize: 10.0.sp,
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),

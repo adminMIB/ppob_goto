@@ -37,9 +37,10 @@ class UrlListService {
   static const plnpascainquiry = 'api/ppob/product_pln_pasca_inquiry';
   static const plnpascapayment = 'api/ppob/product_pln_pasca_payment';
 
-  //pln prabyar
-  static const plnprbayarinquiry = 'api/ppob/product_pln_prabayar_inquiry';
-
   // bpjs kesehatan
   static const bpjskesehataninquiry = 'api/ppob/product_bpjs_inquiry';
+
+  //PLN Prabayar Rika
+  static const plnprbayarinquiry = 'api/ppob/product_pln_prabayar_inquiry';
+  static const plnprbayarpayment = 'api/ppob/product_pln_prabayar_payment';
 }

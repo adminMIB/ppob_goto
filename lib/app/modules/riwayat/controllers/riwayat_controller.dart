@@ -22,7 +22,7 @@ class RiwayatController extends GetxController {
       onSuccess: (onSuccess) {
         // print('Ini Riwayat ${onSuccess}');
         if (onSuccess['status'] == true) {
-          print('Ini Riwayat');
+          print('Ini Riwayat Berhasil');
           print(onSuccess['response']['data']);
           listRiwayat.assignAll(onSuccess['response']['data']);
           riwayatBerhasil.assignAll(

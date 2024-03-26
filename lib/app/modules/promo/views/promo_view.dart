@@ -47,6 +47,18 @@ class _PromoViewState extends State<PromoView> {
       ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
       : '';
 
+  final List<String> promo = [
+    'assets/images/promov1.png',
+    'assets/images/promov2.png',
+    'assets/images/promov3.png',
+    'assets/images/promov4.png',
+  ];
+
+  final List<String> promoIklan = [
+    'assets/images/iklan1.png',
+    'assets/images/iklan2.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +74,7 @@ class _PromoViewState extends State<PromoView> {
             child: ListView(
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       height: 9.h,
@@ -143,7 +156,84 @@ class _PromoViewState extends State<PromoView> {
                       ),
                     ),
                     SizedBox(
-                      height: 3.0.h,
+                      height: 2.0.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2.0.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Promo',
+                            style: TextStyle(
+                              color: mainColor,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.0.h,
+                          ),
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 2.5.h,
+                              mainAxisSpacing: 2.5.h,
+                            ),
+                            itemCount: promo.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                width: 20.h,
+                                height: 20.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: greyColor,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Image.asset(
+                                    promo[index],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          SizedBox(
+                            height: 2.0.h,
+                          ),
+                          SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: promoIklan.map((element) {
+                                return Padding(
+                                  padding: EdgeInsets.only(bottom: 2.5.h),
+                                  child: Container(
+                                    width: Get.width,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: greyColor,
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.asset(
+                                        element,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),

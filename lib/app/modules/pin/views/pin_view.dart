@@ -19,12 +19,14 @@ class PinView extends StatefulWidget {
   final String? type;
   final String? provider;
   final String? idpel;
+  final String? idpel2;
   final String? ref1;
   final String? ref2;
   final String? admin;
   final String? total_payment;
   final String? periode;
   final String? tipeTransaksi;
+  final String? amount;
   const PinView({
     Key? key,
     this.productName,
@@ -34,12 +36,14 @@ class PinView extends StatefulWidget {
     this.type,
     this.provider,
     this.idpel,
+    this.idpel2,
     this.ref1,
     this.ref2,
     this.admin,
     this.total_payment,
     this.periode,
     this.tipeTransaksi,
+    this.amount,
   }) : super(key: key);
 
   @override
@@ -50,6 +54,7 @@ class _PinViewState extends State<PinView> {
   final pulsaController = Get.put(PulsaController());
   final pdamController = Get.put(PdamController());
   final plnController = Get.put(PlnController());
+  final plnprabayarController = Get.put(PlnController());
   String currentText = "";
   TextEditingController textEditingController = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
@@ -209,6 +214,16 @@ class _PinViewState extends State<PinView> {
                           v,
                           context,
                         );
+                      } else if (widget.tipeTransaksi == 'plnprabayar') {
+                        await plnprabayarController.plnprabayarPayment(
+                            widget.idpel,
+                            widget.idpel2,
+                            widget.ref1,
+                            widget.ref2,
+                            widget.amount,
+                            widget.admin,
+                            v,
+                            context);
                       }
                     },
                     onChanged: (value) {
