@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:ppob_mpay1/main.dart';

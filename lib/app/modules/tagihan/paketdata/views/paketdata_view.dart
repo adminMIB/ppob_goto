@@ -1,24 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
-import 'package:material_dialogs/dialogs.dart';
-import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/paketdata/controllers/paketdata_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/paketdata/controllers/paketdata_controller.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/product.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/views/kontak_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/kontak_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:bottom_sheet/bottom_sheet.dart';
-import 'package:wc_form_validators/wc_form_validators.dart';
 
 class PaketdataView extends StatefulWidget {
   final String? pin;

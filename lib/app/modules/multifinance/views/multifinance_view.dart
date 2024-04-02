@@ -6,14 +6,9 @@ import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/multifinance/views/penyedia_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/wilayah_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/nontaglis_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/pascabayar_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class MultifinanceView extends StatefulWidget {
   const MultifinanceView({Key? key}) : super(key: key);

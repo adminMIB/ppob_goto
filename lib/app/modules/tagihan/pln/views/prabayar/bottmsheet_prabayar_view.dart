@@ -111,7 +111,8 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                           height: 1.0.h,
                         ),
                         _buildInvoiceField("ID Pelanggan", widget.idpel!),
-                        _buildInvoiceField("Nama Pelanggan", widget.namaPelanggan!),
+                        _buildInvoiceField(
+                            "Nama Pelanggan", widget.namaPelanggan!),
                         _buildInvoiceField(
                           "Daya/Tarif",
                           widget.daya! + '/' + widget.tarif!,

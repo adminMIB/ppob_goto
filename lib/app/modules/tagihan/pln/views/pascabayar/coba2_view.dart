@@ -27,115 +27,118 @@ class _Coba2ViewState extends State<Coba2View> {
     return Scaffold(
         body: Stack(
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'No Meter/ID Pelanggan',
-              style: TextStyle(
-                fontSize: 11.0.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            Form(
-              key: formkey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              child: TextFormField(
-                minLines: 1,
-                maxLength: 15,
-                controller: idpel,
-                onChanged: (a) {
-                  setState(() {
-                    wilayah = a.length;
-                    // _isButtonVisible = a.isNotEmpty;
-                  });
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  hintText: 'Masukkan Kode ',
-                  hintStyle: TextStyle(
-                    fontSize: 12.0.sp,
-                    color: Colors.grey.shade500,
-                  ),
-                ),
-                validator: (value) {
-                  if (wilayah < 7) {
-                    return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            Container(
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors.amber.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Text(
-                'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
+        Padding(
+          padding: EdgeInsets.only(left: 2.h, right: 2.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'No Meter/ID Pelanggan',
                 style: TextStyle(
                   fontSize: 11.0.sp,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                 ),
-                textAlign: TextAlign.justify,
               ),
-            ),
-            Expanded(
-              child: SizedBox(),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                color: Colors.transparent,
+              SizedBox(
+                height: 1.h,
+              ),
+              Form(
+                key: formkey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: TextFormField(
+                  minLines: 1,
+                  maxLength: 15,
+                  controller: idpel,
+                  onChanged: (a) {
+                    setState(() {
+                      wilayah = a.length;
+                      // _isButtonVisible = a.isNotEmpty;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    hintText: 'Masukkan Kode ',
+                    hintStyle: TextStyle(
+                      fontSize: 12.0.sp,
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                  validator: (value) {
+                    if (wilayah < 7) {
+                      return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
                 padding: EdgeInsets.all(16.0),
-                child: Center(
-                  child: SizedBox(
-                    width: 41.0.h,
-                    height: 6.0.h,
-                    child: ElevatedButton(
-                      onPressed: idpel.text.length >= 7
-                          // idpel.text.length >= 7
-                          ? () async {
-                              if (formkey.currentState!.validate()) {
-                                await plnpascaController.plnpascainquiry(
-                                    idpel.text, context);
+                decoration: BoxDecoration(
+                  color: Colors.amber.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Text(
+                  'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
+                  style: TextStyle(
+                    fontSize: 11.0.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+              // Expanded(
+              //   child: SizedBox(),
+              // ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: Colors.transparent,
+                  padding: EdgeInsets.all(16.0),
+                  child: Center(
+                    child: SizedBox(
+                      width: 41.0.h,
+                      height: 6.0.h,
+                      child: ElevatedButton(
+                        onPressed: idpel.text.length >= 7
+                            // idpel.text.length >= 7
+                            ? () async {
+                                if (formkey.currentState!.validate()) {
+                                  await plnpascaController.plnpascainquiry(
+                                      idpel.text, context);
+                                }
                               }
-                            }
-                          : null,
-                      style: ElevatedButton.styleFrom(
-                        primary: idpel.text.length >= 7
-                            ? mainColor
-                            : Colors.grey.shade700,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                            : null,
+                        style: ElevatedButton.styleFrom(
+                          primary: idpel.text.length >= 7
+                              ? mainColor
+                              : Colors.grey.shade700,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          // elevation: 10,
                         ),
-                        // elevation: 10,
-                      ),
-                      child: Text(
-                        'Lanjutkan',
-                        style: TextStyle(
-                          fontSize: 14.0.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFFDF8F8),
+                        child: Text(
+                          'Lanjutkan',
+                          style: TextStyle(
+                            fontSize: 14.0.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFFDF8F8),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         )
       ],
     ));

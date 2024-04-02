@@ -1,18 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:ppob_mpay1/main.dart';
-import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
-import 'package:bottom_sheet/bottom_sheet.dart';
 
 class PascabayarView extends StatefulWidget {
   const PascabayarView({Key? key}) : super(key: key);

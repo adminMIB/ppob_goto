@@ -13,8 +13,8 @@ import 'package:ppob_mpay1/app/data/popup/views/loadingcustom.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
 import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
 import 'package:ppob_mpay1/app/modules/multifinance/views/multifinance_view.dart';
-import 'package:ppob_mpay1/app/modules/paketdata/views/paketdata_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/views/pulsa_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/paketdata/views/paketdata_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/pulsa_view.dart';
 import 'package:ppob_mpay1/app/modules/saldo/views/inquirysaldo_view.dart';
 import 'package:ppob_mpay1/app/modules/saldo/views/saldo_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/bpjs_view.dart';
@@ -570,8 +570,8 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/listrik.png',
                                       title: 'Listrik PLN',
                                       onTap: () {
-                                        // Get.to(PlnView());
-                                        Get.to(PascaView());
+                                        Get.to(PlnView());
+                                        // Get.to(PascaView());
                                       },
                                     ),
                                     SizedBox(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba2_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar2_view.dart';
 import 'package:sizer/sizer.dart';
 
 class PascaView extends StatefulWidget {
@@ -64,11 +65,11 @@ class _PascaViewState extends State<PascaView>
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
-          child: Column(
-            children: [
-              Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 2.h, right: 2.h),
+              child: Container(
                 decoration: BoxDecoration(
                   color: mainContainer,
                   borderRadius: BorderRadius.circular(1.5.h),
@@ -117,76 +118,77 @@ class _PascaViewState extends State<PascaView>
                   // },
                 ),
               ),
-              SizedBox(
-                height: 2.h,
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  // Replace with your first tab content
+                  // Center(child: Text('Tab 1 content')),
+                  Prabayar2View(),
+                  // Replace with your second tab content
+                  Coba2View(pasca: 'Tagihan'),
+                  Center(child: Text('Tab 3 content')),
+                ],
               ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    // Replace with your first tab content
-                    Center(child: Text('Tab 1 content')),
-                    // Replace with your second tab content
-                    Coba2View(pasca: 'Tagihan'),
-                    Center(child: Text('Tab 3 content')),
-                  ],
-                ),
-              ),
-              // Align(
-              //     alignment: Alignment.bottomCenter,
-              //     child: Container(
-              //       color: Colors.transparent,
-              //       padding: EdgeInsets.all(16.0),
-              //       child: Center(
-              //         child: SizedBox(
-              //           width: 41.0.h,
-              //           height: 6.0.h,
-              //           child: ElevatedButton(
-              //             onPressed: idpel.text.length >= 7
-              //                 ? () async {
-              //                     // if (formkey.currentState!.validate()) {
-              //                     //   await plnpasca.plnpascainquiry(
-              //                     //       idpel.text, context);
-              //                     // }
-              //                     if (formkey.currentState!.validate()) {
-              //                       if (selectedTab == 'Token') {
-              //                         // Logika untuk tab 'Token'
-              //                         // Misalnya:
-              //                         // await plnpasca.plnpascainquiryToken(idpel.text, context);
-              //                       } else if (selectedTab == 'Tagihan') {
-              //                         await plnpasca.plnpascainquiry(
-              //                             idpel.text, context);
-              //                       }
-              //                     } else if (selectedTab == 'Non-Tagihan') {
-              //                       // // Logika untuk tab 'Non-Tagihan'
-              //                       // // Misalnya:
-              //                       // await plnpasca.plnpascainquiryNonTagihan(idpel.text, context);
-              //                     }
-              //                   }
-              //                 : null,
-              //             style: ElevatedButton.styleFrom(
-              //               primary: idpel.text.length >= 7
-              //                   ? mainColor
-              //                   : Colors.grey.shade700,
-              //               shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(10.0),
-              //               ),
-              //               // elevation: 10,
-              //             ),
-              //             child: Text(
-              //               'Lanjutkan',
-              //               style: TextStyle(
-              //                 fontSize: 14.0.sp,
-              //                 fontWeight: FontWeight.bold,
-              //                 color: Color(0xFFFDF8F8),
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ))
-            ],
-          ),
+            ),
+            // Align(
+            //     alignment: Alignment.bottomCenter,
+            //     child: Container(
+            //       color: Colors.transparent,
+            //       padding: EdgeInsets.all(16.0),
+            //       child: Center(
+            //         child: SizedBox(
+            //           width: 41.0.h,
+            //           height: 6.0.h,
+            //           child: ElevatedButton(
+            //             onPressed: idpel.text.length >= 7
+            //                 ? () async {
+            //                     // if (formkey.currentState!.validate()) {
+            //                     //   await plnpasca.plnpascainquiry(
+            //                     //       idpel.text, context);
+            //                     // }
+            //                     if (formkey.currentState!.validate()) {
+            //                       if (selectedTab == 'Token') {
+            //                         // Logika untuk tab 'Token'
+            //                         // Misalnya:
+            //                         // await plnpasca.plnpascainquiryToken(idpel.text, context);
+            //                       } else if (selectedTab == 'Tagihan') {
+            //                         await plnpasca.plnpascainquiry(
+            //                             idpel.text, context);
+            //                       }
+            //                     } else if (selectedTab == 'Non-Tagihan') {
+            //                       // // Logika untuk tab 'Non-Tagihan'
+            //                       // // Misalnya:
+            //                       // await plnpasca.plnpascainquiryNonTagihan(idpel.text, context);
+            //                     }
+            //                   }
+            //                 : null,
+            //             style: ElevatedButton.styleFrom(
+            //               primary: idpel.text.length >= 7
+            //                   ? mainColor
+            //                   : Colors.grey.shade700,
+            //               shape: RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(10.0),
+            //               ),
+            //               // elevation: 10,
+            //             ),
+            //             child: Text(
+            //               'Lanjutkan',
+            //               style: TextStyle(
+            //                 fontSize: 14.0.sp,
+            //                 fontWeight: FontWeight.bold,
+            //                 color: Color(0xFFFDF8F8),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ))
+          ],
         ),
       ),
     );

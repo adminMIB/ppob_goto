@@ -7,14 +7,14 @@ import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
 import 'package:ppob_mpay1/app/data/popup/views/saldotidakcukup_view.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/pulsa_model.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/bottmsheet_prabayar_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/pulsa_model.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/bottmsheet_prabayar_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/listrikmodel.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/bottomsheetpln_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/bottomsheetpasca_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/transaksigagalpln_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/transaksisuksespln_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar_transaksi_berhasil_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar_transaksi_gagal_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar_transaksi_berhasil_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar_transaksi_gagal_view.dart';
 
 class PlnController extends GetxController {
   final helperController = Get.put(HelperController());
@@ -29,18 +29,6 @@ class PlnController extends GetxController {
     super.onInit();
     denomPrabayarListrik();
   }
-
-  // void denomPrabayarListrik() {
-  //   listDenomPrabayarListrik.clear();
-  //   listDenomPrabayarListrik.addAll([
-  //     TokenListrikModel('20000'),
-  //     TokenListrikModel('50000'),
-  //     TokenListrikModel('100000'),
-  //     TokenListrikModel('200000'),
-  //     TokenListrikModel('500000'),
-  //     TokenListrikModel('1000000'),
-  //   ]);
-  // }
 
   void denomPrabayarListrik() {
     listDenomPrabayarListrik.clear();
@@ -83,7 +71,7 @@ class PlnController extends GetxController {
               .toList();
 
           Get.bottomSheet(
-            BottomsheetplnView(
+            BottmsheetPascaView(
               idpel: idpel,
               nama_pelanggan: content['response']['nama_pelanggan'],
               admin: content['response']['admin'],
@@ -286,35 +274,6 @@ class PlnController extends GetxController {
       },
     );
   }
-
-  // DateTime fromCustomTime(String time) {
-  //   int year = int.parse(time.substring(0, 4));
-  //   int month = int.parse(time.substring(4, 6));
-
-  //   return DateTime(
-  //     year,
-  //     month,
-  //   );
-  // }
-
-  // DateTime CustomTime(String time) {
-  //   int year = int.parse(time.substring(0, 4));
-  //   int month = int.parse(time.substring(4, 6));
-  //   int day = int.parse(time.substring(6, 8));
-
-  //   int hours = int.parse(time.substring(8, 10));
-  //   int minutes = int.parse(time.substring(10, 12));
-  //   int seconds = int.parse(time.substring(12, 14));
-
-  //   return DateTime(
-  //     year,
-  //     month,
-  //     day,
-  //     hours,
-  //     minutes,
-  //     seconds,
-  //   );
-  // }
 
   // PLN Prabayar Payment
   plnprabayarPayment(

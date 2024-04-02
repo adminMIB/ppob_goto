@@ -101,44 +101,43 @@ class _RiwayatViewState extends State<RiwayatView> {
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 2.0.h,
-                              ),
-                              Container(
-                                width: 60.w,
-                                height: 7.h,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Selamat ${greeting} ${pref.read('nama_lengkap').substring(0, 1).toUpperCase()}${pref.read('nama_lengkap').substring(1)}',
-                                          style: TextStyle(
-                                            color: whiteColor,
-                                            fontSize: 11.0.sp,
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                              ],
+                            ),
+                            // SizedBox(
+                            //   width: 2.0.h,
+                            // ),
+                            Container(
+                              width: 60.w,
+                              height: 7.h,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Selamat ${greeting} ${pref.read('nama_lengkap').substring(0, 1).toUpperCase()}${pref.read('nama_lengkap').substring(1)}',
+                                        style: TextStyle(
+                                          color: whiteColor,
+                                          fontSize: 11.0.sp,
+                                          fontWeight: FontWeight.w700,
                                         ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 0.5.h,
-                                    ),
-                                    Text(
-                                      '${pref.read('nomer_tlp')}',
-                                      style: TextStyle(
-                                        color: whiteColor,
-                                        fontSize: 8.0.sp,
-                                        fontWeight: FontWeight.w700,
                                       ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 0.5.h,
+                                  ),
+                                  Text(
+                                    '${pref.read('nomer_tlp')}',
+                                    style: TextStyle(
+                                      color: whiteColor,
+                                      fontSize: 8.0.sp,
+                                      fontWeight: FontWeight.w700,
                                     ),
-                                  ],
-                                ),
-                      
-                              
+                                  ),
+                                ],
+                              ),
                             ),
                             Image.asset(
                               'assets/images/Notif.png',

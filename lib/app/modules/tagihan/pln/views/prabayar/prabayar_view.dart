@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/bottmsheet_prabayar_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/bottmsheet_prabayar_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
@@ -27,16 +27,12 @@ class _PrabayarViewState extends State<PrabayarView> {
   bool shouldUpdateViewPrice = false;
   final formkey = GlobalKey<FormState>();
   TextEditingController idpel = TextEditingController();
-<<<<<<< HEAD
   final plnpascaController = Get.put(PlnController());
   final helperController = Get.put(HelperController());
 
   PhoneContact? _phoneContact;
-=======
   final plnprabayarController = Get.put(PlnController());
-  final helperController = Get.put(HelperController());
 
->>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
   int wilayah = 0;
   int lengthNoTelepon = 0;
   var pickNumber = '';
@@ -83,17 +79,6 @@ class _PrabayarViewState extends State<PrabayarView> {
                               },
                             ),
                           ),
-<<<<<<< HEAD
-                        ),
-                        Stack(
-                          children: [
-                            Column(
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/images/pln.png',
-                                    height: 5.0.h,
-=======
                           Stack(
                             children: [
                               Column(
@@ -103,7 +88,6 @@ class _PrabayarViewState extends State<PrabayarView> {
                                       'assets/images/prabayar.png',
                                       height: 5.0.h,
                                     ),
->>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
                                   ),
                                   SizedBox(height: 1.5.h),
                                   Text(
@@ -134,11 +118,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-<<<<<<< HEAD
-                                  'Pasca Bayar',
-=======
                                   'No. ID Pelanggan / Kode bayar',
->>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
                                   style: TextStyle(
                                     fontSize: 12.0.sp,
                                     fontWeight: FontWeight.w400,
@@ -184,100 +164,6 @@ class _PrabayarViewState extends State<PrabayarView> {
                                 SizedBox(
                                   height: 1.5.h,
                                 ),
-<<<<<<< HEAD
-                              ],
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'No ID Pelanggan',
-                                style: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 1.0.h,
-                              ),
-                              Form(
-                                key: formkey,
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                child: TextFormField(
-                                  minLines: 1,
-                                  maxLength: 15,
-                                  controller: idpel,
-                                  onChanged: (a) {
-                                    setState(() {
-                                      wilayah = a.length;
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    hintText: 'Masukkan Kode ',
-                                    hintStyle: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      color: Colors.grey.shade500,
-                                    ),
-                                  ),
-                                  validator: (value) {
-                                    if (wilayah < 7) {
-                                      return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                height: 1.5.h,
-                              ),
-                              SizedBox(
-                                height: Get.height * 0.45,
-                              ),
-                              Container(
-                                color: whiteColor,
-                                padding: EdgeInsets.all(16.0),
-                                child: Center(
-                                  child: SizedBox(
-                                    width: 41.0.h,
-                                    height: 6.0.h,
-                                    child: ElevatedButton(
-                                      onPressed: idpel.text.length >= 7
-                                          ? () async {
-                                              if (formkey.currentState!
-                                                  .validate()) {
-                                                await plnpascaController
-                                                    .plnprabayarinquiry(
-                                                        idpel.text, context);
-                                              }
-                                            }
-                                          : null,
-                                      style: ElevatedButton.styleFrom(
-                                        primary: idpel.text.length >= 7
-                                            ? mainColor
-                                            : Colors.grey.shade700,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        // elevation: 10,
-                                      ),
-                                      child: Text(
-                                        'Lanjutkan',
-                                        style: TextStyle(
-                                          fontSize: 14.0.sp,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFFFDF8F8),
-=======
                                 //List nominal Token Listrik
                                 Obx(
                                   () => SingleChildScrollView(
@@ -426,24 +312,11 @@ class _PrabayarViewState extends State<PrabayarView> {
                                             fontWeight: FontWeight.bold,
                                             color: Color(0xFFFDF8F8),
                                           ),
->>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-<<<<<<< HEAD
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ))
-=======
                               ],
                             ),
                           )
@@ -454,7 +327,6 @@ class _PrabayarViewState extends State<PrabayarView> {
                 ],
               ),
             )
->>>>>>> b1243830b659bbf094c1df56700ace32bd55bb98
           ],
         ),
       ),

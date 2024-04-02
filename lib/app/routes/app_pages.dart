@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/akun_view.dart';
-
 import '../modules/akun/bindings/akun_binding.dart';
 import '../modules/ewallet/brizzi/bindings/brizzi_binding.dart';
 import '../modules/ewallet/brizzi/views/brizzi_view.dart';
@@ -23,14 +22,14 @@ import '../modules/lupapassword/bindings/lupapassword_binding.dart';
 import '../modules/lupapassword/views/lupapassword_view.dart';
 import '../modules/multifinance/bindings/multifinance_binding.dart';
 import '../modules/multifinance/views/multifinance_view.dart';
-import '../modules/paketdata/bindings/paketdata_binding.dart';
-import '../modules/paketdata/views/paketdata_view.dart';
+import '../modules/tagihan/paketdata/bindings/paketdata_binding.dart';
+import '../modules/tagihan/paketdata/views/paketdata_view.dart';
 import '../modules/pin/bindings/pin_binding.dart';
 import '../modules/pin/views/pin_view.dart';
 import '../modules/promo/bindings/promo_binding.dart';
 import '../modules/promo/views/promo_view.dart';
-import '../modules/pulsa/bindings/pulsa_binding.dart';
-import '../modules/pulsa/views/pulsa_view.dart';
+import '../modules/tagihan/pulsa/bindings/pulsa_binding.dart';
+import '../modules/tagihan/pulsa/views/pulsa_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/riwayat/bindings/riwayat_binding.dart';
