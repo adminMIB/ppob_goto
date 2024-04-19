@@ -45,6 +45,7 @@ class _BpjsViewState extends State<BpjsView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

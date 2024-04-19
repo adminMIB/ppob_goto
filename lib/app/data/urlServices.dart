@@ -39,6 +39,7 @@ class UrlListService {
 
   // bpjs kesehatan
   static const bpjskesehataninquiry = 'api/ppob/product_bpjs_inquiry';
+  static const bpjskesehatanpayment = 'api/ppob/product_bpjs_payment';
 
   //PLN Prabayar Rika
   static const plnprbayarinquiry = 'api/ppob/product_pln_prabayar_inquiry';

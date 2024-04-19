@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/bpjs/controllers/bpjs_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
@@ -27,6 +28,7 @@ class PinView extends StatefulWidget {
   final String? periode;
   final String? tipeTransaksi;
   final String? amount;
+  final String? no_hp;
   const PinView({
     Key? key,
     this.productName,
@@ -44,6 +46,7 @@ class PinView extends StatefulWidget {
     this.periode,
     this.tipeTransaksi,
     this.amount,
+    this.no_hp,
   }) : super(key: key);
 
   @override
@@ -51,16 +54,18 @@ class PinView extends StatefulWidget {
 }
 
 class _PinViewState extends State<PinView> {
-  final pulsaController = Get.put(PulsaController());
-  final pdamController = Get.put(PdamController());
-  final plnController = Get.put(PlnController());
-  final plnprabayarController = Get.put(PlnController());
   String currentText = "";
   TextEditingController textEditingController = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   FocusNode pinFocusNode = FocusNode();
+
+  final pulsaController = Get.put(PulsaController());
+  final pdamController = Get.put(PdamController());
+  final plnController = Get.put(PlnController());
+  final plnprabayarController = Get.put(PlnController());
+  final bpjskesehatanController = Get.put(BpjsController());
 
   @override
   void initState() {
@@ -221,6 +226,17 @@ class _PinViewState extends State<PinView> {
                             widget.ref1,
                             widget.ref2,
                             widget.amount,
+                            widget.admin,
+                            v,
+                            context);
+                      } else if (widget.tipeTransaksi == 'bpjskesehatan') {
+                        await bpjskesehatanController.bpjskespayment(
+                            widget.idpel,
+                            widget.no_hp,
+                            widget.periode,
+                            widget.ref1,
+                            widget.ref2,
+                            widget.total_payment,
                             widget.admin,
                             v,
                             context);
