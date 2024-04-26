@@ -476,37 +476,37 @@ class _transaksigagalplnViewState extends State<transaksigagalplnView> {
                                                       SizedBox(
                                                         height: 1.0.h,
                                                       ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Periode',
-                                                            style: TextStyle(
-                                                              fontSize: 11.0.sp,
-                                                              // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            widget.periode!,
-                                                            style: TextStyle(
-                                                              fontSize: 11.0.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                            textAlign:
-                                                                TextAlign.right,
-                                                          ),
-                                                        ],
-                                                      ),
+                                                      // Row(
+                                                      //   mainAxisAlignment:
+                                                      //       MainAxisAlignment
+                                                      //           .spaceBetween,
+                                                      //   crossAxisAlignment:
+                                                      //       CrossAxisAlignment
+                                                      //           .start,
+                                                      //   children: [
+                                                      //     Text(
+                                                      //       'Periode',
+                                                      //       style: TextStyle(
+                                                      //         fontSize: 11.0.sp,
+                                                      //         // color: Colors.grey,
+                                                      //         fontWeight:
+                                                      //             FontWeight
+                                                      //                 .w400,
+                                                      //       ),
+                                                      //     ),
+                                                      //     Text(
+                                                      //       widget.periode!,
+                                                      //       style: TextStyle(
+                                                      //         fontSize: 11.0.sp,
+                                                      //         fontWeight:
+                                                      //             FontWeight
+                                                      //                 .w400,
+                                                      //       ),
+                                                      //       textAlign:
+                                                      //           TextAlign.right,
+                                                      //     ),
+                                                      //   ],
+                                                      // ),
                                                       SizedBox(
                                                         height: 1.0.h,
                                                       ),

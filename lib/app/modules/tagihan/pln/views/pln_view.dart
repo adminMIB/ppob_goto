@@ -7,7 +7,7 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/coba_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/plnview.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/nontaglis_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/pascabayar_view.dart';
@@ -162,7 +162,7 @@ class _PlnViewState extends State<PlnView> {
                                 trailing:
                                     Icon(Icons.keyboard_arrow_right_outlined),
                                 onTap: () {
-                                  Get.to(PascaView());
+                                  Get.to(Pln2View());
                                 },
                               ),
 

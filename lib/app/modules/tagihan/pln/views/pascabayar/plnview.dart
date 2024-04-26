@@ -6,20 +6,20 @@ import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba2_view.d
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar2_view.dart';
 import 'package:sizer/sizer.dart';
 
-class PascaView extends StatefulWidget {
+class Pln2View extends StatefulWidget {
   String? tipePLN;
   String? idpel;
-  PascaView({
+  Pln2View({
     Key? key,
     this.tipePLN,
     this.idpel,
   }) : super(key: key);
 
   @override
-  _PascaViewState createState() => _PascaViewState();
+  _Pln2ViewState createState() => _Pln2ViewState();
 }
 
-class _PascaViewState extends State<PascaView>
+class _Pln2ViewState extends State<Pln2View>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final formkey = GlobalKey<FormState>();
@@ -130,7 +130,7 @@ class _PascaViewState extends State<PascaView>
                   // Center(child: Text('Tab 1 content')),
                   Prabayar2View(),
                   // Replace with your second tab content
-                  Coba2View(pasca: 'Tagihan'),
+                  Coba2View(),
                   Center(child: Text('Tab 3 content')),
                 ],
               ),

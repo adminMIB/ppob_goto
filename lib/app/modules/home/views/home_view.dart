@@ -20,7 +20,7 @@ import 'package:ppob_mpay1/app/modules/saldo/views/saldo_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/bpjs_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/plnview.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pln_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/telco/views/telco_view.dart';
 import 'package:ppob_mpay1/app/modules/transferbank/views/transferbank_view.dart';
@@ -570,7 +570,8 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/listrik.png',
                                       title: 'Listrik PLN',
                                       onTap: () {
-                                        Get.to(PlnView());
+                                        Get.to(Pln2View());
+                                        // Get.to(PlnView());
                                         // Get.to(PascaView());
                                       },
                                     ),

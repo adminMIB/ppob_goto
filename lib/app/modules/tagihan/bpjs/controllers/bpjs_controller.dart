@@ -127,6 +127,7 @@ class BpjsController extends GetxController {
               noref: content['response']['ref2'],
               nama_pelanggan: content['response']['nama_pelanggan'],
               jml_keluarga: content['response']['jml_keluarga'].toString(),
+              no_va_keluarga: content['response']['no_va_keluarga'].toString(),
               periode: periode.toString(),
               no_hp: no_hp,
               harga: content['response']['nominal'].toString(),

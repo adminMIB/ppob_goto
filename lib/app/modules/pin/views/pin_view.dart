@@ -210,6 +210,7 @@ class _PinViewState extends State<PinView> {
                             context);
                       } else if (widget.tipeTransaksi == 'plnpasca') {
                         await plnController.plnpascapayment(
+                          widget.periode,
                           widget.idpel,
                           widget.ref1,
                           widget.ref2,

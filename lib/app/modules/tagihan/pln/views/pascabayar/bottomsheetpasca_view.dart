@@ -186,6 +186,7 @@ class _BottmsheetPascaViewState extends State<BottmsheetPascaView> {
                           // Get.to(PdamstrukView());
                           Get.to(PinView(
                             tipeTransaksi: 'plnpasca',
+                            periode: widget.periode,
                             idpel: widget.idpel,
                             ref1: widget.ref1,
                             ref2: widget.ref2,

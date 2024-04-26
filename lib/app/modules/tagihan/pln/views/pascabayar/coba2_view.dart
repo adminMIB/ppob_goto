@@ -93,9 +93,9 @@ class _Coba2ViewState extends State<Coba2View> {
                   textAlign: TextAlign.justify,
                 ),
               ),
-              // Expanded(
-              //   child: SizedBox(),
-              // ),
+              Expanded(
+                child: SizedBox(),
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

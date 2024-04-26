@@ -114,6 +114,7 @@ class PlnController extends GetxController {
 
   //pln pasca payment
   plnpascapayment(
+    var periode,
     var idpel,
     var ref1,
     var ref2,
@@ -151,7 +152,8 @@ class PlnController extends GetxController {
             harga: harga,
             admin: admin,
             // periode: content['response']['periode'],
-            periode: formattedMonths.join(', ' + " "),
+            // periode: formattedMonths.join(', ' + " "),
+            periode: periode,
             total_bayar: total_payment,
             deskripsi: content['response']['description'],
             info: content['response']['info_text'],
