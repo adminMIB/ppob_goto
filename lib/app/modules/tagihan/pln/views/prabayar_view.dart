@@ -90,10 +90,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                                   SizedBox(height: 1.5.h),
                                   Text(
                                     'Token Listrik',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14.0.sp,
-                                        fontWeight: FontWeight.w600),
+                                    style: TextStyle(color: Colors.black, fontSize: 14.0.sp, fontWeight: FontWeight.w600),
                                   ),
                                   SizedBox(
                                     height: 1.0.h,
@@ -127,8 +124,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                                 ),
                                 Form(
                                   key: formkey,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
                                   child: TextFormField(
                                     minLines: 1,
                                     maxLength: 15,
@@ -140,10 +136,8 @@ class _PrabayarViewState extends State<PrabayarView> {
                                     },
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
+                                        borderSide: BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(10.0),
                                       ),
                                       hintText: 'Masukkan Kode ',
                                       hintStyle: TextStyle(
@@ -166,54 +160,36 @@ class _PrabayarViewState extends State<PrabayarView> {
                                 Obx(
                                   () => SingleChildScrollView(
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: plnprabayarController
-                                          .listDenomPrabayarListrik
-                                          .map((element) {
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: plnprabayarController.listDenomPrabayarListrik.map((element) {
                                         return GestureDetector(
                                           onTap: () async {
                                             controller.restart();
                                             if (idpel.text.isEmpty) {
                                               Flushbar(
-                                                message:
-                                                    'Mohon masukkan nomor terlebih dahulu!',
+                                                message: 'Mohon masukkan nomor terlebih dahulu!',
                                                 duration: Duration(seconds: 3),
                                               )..show(context);
                                             } else {
-                                              plnprabayarController
-                                                  .selectedNominal
-                                                  .value = element.nominal;
-                                              print(plnprabayarController
-                                                  .selectedNominal
-                                                  .value = element.nominal);
+                                              plnprabayarController.selectedNominal.value = element.nominal;
+                                              print(plnprabayarController.selectedNominal.value = element.nominal);
                                               setState(() {
-                                                selectedItemIndex =
-                                                    plnprabayarController
-                                                        .listDenomPrabayarListrik
-                                                        .indexOf(element);
+                                                selectedItemIndex = plnprabayarController.listDenomPrabayarListrik.indexOf(element);
                                               });
                                             }
                                           },
                                           child: Container(
-                                            margin:
-                                                EdgeInsets.only(bottom: 2.0.h),
+                                            margin: EdgeInsets.only(bottom: 2.0.h),
                                             padding: EdgeInsets.all(2.0.h),
                                             decoration: BoxDecoration(
-                                              color: selectedItemIndex ==
-                                                      plnprabayarController
-                                                          .listDenomPrabayarListrik
-                                                          .indexOf(element)
+                                              color: selectedItemIndex == plnprabayarController.listDenomPrabayarListrik.indexOf(element)
                                                   ? greyishColor
                                                   : whiteColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                              borderRadius: BorderRadius.circular(10),
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.3),
+                                                  color: Colors.grey.withOpacity(0.3),
                                                   spreadRadius: 2,
                                                   blurRadius: 2,
                                                   offset: Offset(0, 1),
@@ -221,11 +197,8 @@ class _PrabayarViewState extends State<PrabayarView> {
                                               ],
                                             ),
                                             child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Container(
                                                   width: 35.0.w,
@@ -234,8 +207,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                                                     'Token Listrik PLN',
                                                     style: TextStyle(
                                                       fontSize: 11.0.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400,
+                                                      fontWeight: FontWeight.w400,
                                                     ),
                                                   ),
                                                 ),
@@ -243,8 +215,7 @@ class _PrabayarViewState extends State<PrabayarView> {
                                                   width: 40.0.w,
                                                   // color: Colors.red,
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.centerRight,
+                                                    alignment: Alignment.centerRight,
                                                     child: FittedBox(
                                                       fit: BoxFit.scaleDown,
                                                       child: Text(
@@ -252,12 +223,10 @@ class _PrabayarViewState extends State<PrabayarView> {
                                                           locale: 'id-ID',
                                                           symbol: 'Rp.',
                                                           decimalDigits: 0,
-                                                        ).format(int.parse(
-                                                            element.nominal)),
+                                                        ).format(int.parse(element.nominal)),
                                                         style: TextStyle(
                                                           color: mainColor,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                          fontWeight: FontWeight.bold,
                                                         ),
                                                       ),
                                                     ),
@@ -285,21 +254,15 @@ class _PrabayarViewState extends State<PrabayarView> {
                                       child: ElevatedButton(
                                         onPressed: idpel.text.length >= 7
                                             ? () async {
-                                                if (formkey.currentState!
-                                                    .validate()) {
-                                                  await plnprabayarController
-                                                      .plnprabayarInquiry(
-                                                          idpel.text, context);
+                                                if (formkey.currentState!.validate()) {
+                                                  await plnprabayarController.plnprabayarInquiry(idpel.text, context);
                                                 }
                                               }
                                             : null,
                                         style: ElevatedButton.styleFrom(
-                                          primary: idpel.text.length >= 7
-                                              ? mainColor
-                                              : Colors.grey.shade700,
+                                          backgroundColor: idpel.text.length >= 7 ? mainColor : Colors.grey.shade700,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
+                                            borderRadius: BorderRadius.circular(10.0),
                                           ),
                                           // elevation: 10,
                                         ),

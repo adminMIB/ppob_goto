@@ -7,6 +7,7 @@ import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/emoney_view.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/gopay/views/customergopay_view.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/gopay/views/drivergopay_view.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ovo/views/ovo_view.dart';
+import 'package:ppob_mpay1/app/modules/home/views/old_home_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:ppob_mpay1/app/data/card.dart';
 
@@ -98,7 +99,7 @@ class _EwalletViewState extends State<EwalletView> {
                     image: 'assets/images/brizzii.png',
                     title: 'Brizzi',
                     onTap: () {
-                      Get.to(BrizziView());
+                      Get.to(OldHomeView());
                     },
                   ),
                 ],

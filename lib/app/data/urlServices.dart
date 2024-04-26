@@ -1,9 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class UrlListService {
-  static final baseUrl = dotenv.env['PROD'] == "true"
-      ? 'http://168.138.169.44:69/'
-      : 'http://168.138.169.44:69/';
+  static final baseUrl = dotenv.env['PROD'] == "true" ? 'http://168.138.169.44:69/' : 'http://168.138.169.44:69/';
 
   static const urlFile = 'http://158.178.242.173:8082';
 
@@ -37,4 +35,8 @@ class UrlListService {
   //PLN Prabayar Rika
   static const plnprbayarinquiry = 'api/ppob/product_pln_prabayar_inquiry';
   static const plnprbayarpayment = 'api/ppob/product_pln_prabayar_payment';
+
+  //E-money Rika
+  static const emoneyInquiry = 'api/ppob/product_emoney_check';
+  static const emoneyPayment = 'api/ppob/product_emoney_payment';
 }
