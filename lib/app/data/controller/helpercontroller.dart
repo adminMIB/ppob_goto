@@ -196,6 +196,8 @@ class HelperController extends getx.GetxController {
   }
 
   loading(BuildContext context) async {
+    // await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration.zero);
     showDialog(
         barrierDismissible: false,
         context: context,

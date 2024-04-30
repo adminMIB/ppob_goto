@@ -1,24 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/invoice.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/views/kontak_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/kesehatan_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/bpjs/controllers/bpjs_controller.dart';
 import 'package:ppob_mpay1/main.dart';
-import 'package:intl/intl.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:sizer/sizer.dart';
-import 'package:bottom_sheet/bottom_sheet.dart';
-import 'package:contacts_service/contacts_service.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class KetenagakerjaanView extends StatefulWidget {
   const KetenagakerjaanView({Key? key}) : super(key: key);
@@ -31,14 +19,15 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
   bool status = false;
   int selectedItemIndex = -1; // -1 berarti tidak ada yang dipilih
 
-  bool _ingatsaya = false;
-  bool shouldUpdateViewPrice = false;
-  TextEditingController tNoPulsa = TextEditingController();
+  TextEditingController idpel = TextEditingController();
 
-  final pulsaController = Get.put(PulsaController());
+  final bpjsController = Get.put(BpjsController());
   final helperController = Get.put(HelperController());
-
+  final formkey = GlobalKey<FormState>();
   PhoneContact? _phoneContact;
+  var bayarHinggaValue;
+
+  int wilayah = 0;
 
   int lengthNoTelepon = 0;
   var pickNumber = '';
@@ -51,587 +40,257 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () {
-        controller.restart();
-        FocusScopeNode currentFocus = FocusScope.of(context);
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          controller.restart();
+          FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
-        backgroundColor: whiteColor,
-        body: Stack(
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+            // backgroundColor: whiteColor,
+            body: Stack(
           children: [
-            SafeArea(
-                child: Column(
+            ListView(
               children: [
-                Expanded(
-                  child: GetBuilder<PulsaController>(
-                    init: PulsaController(),
-                    builder: (_data) => ListView(
-                      children: [
-                        AppBar(
-                          elevation: 0,
-                          backgroundColor: Colors.transparent,
-                          leading: IconButton(
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              Get.back();
-                            },
-                          ),
-                        ),
-                        Stack(
-                          children: [
-                            Column(
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/images/ketenagakerjaan.png',
-                                    height: 3.h,
-                                  ),
-                                ),
-                                SizedBox(height: 1.5.h),
-                                Text(
-                                  'BPJS Ketenagakerjaan',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13.0.sp,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                SizedBox(
-                                  height: 1.0.h,
-                                ),
-                                Divider(
-                                  color: Colors.grey.shade500,
-                                  indent: 2.0.h,
-                                  endIndent: 2.0.h,
-                                ),
-                                SizedBox(
-                                  height: 2.h,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'No. ID Pelanggan / Kode bayar',
-                                style: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 1.5.h,
-                              ),
-                              TextFormField(
-                                minLines: 1,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  hintText: 'Masukkan Kode Iuran',
-                                  hintStyle: TextStyle(
-                                      fontSize: 12.0.sp,
-                                      color: Colors.grey.shade500),
-                                ),
-                              ),
-                              SizedBox(
-                                height: Get.height * 0.50,
-                              ),
-                              Container(
-                                  color: whiteColor,
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Center(
-                                      child: SizedBox(
-                                    width: 41.0.h,
-                                    height: 6.0.h,
-                                    child: ElevatedButton(
-                                      onPressed: () async {
-                                        print('masuk');
-
-                                        showFlexibleBottomSheet(
-                                          minHeight: 0,
-                                          initHeight: 0.5,
-                                          maxHeight: 0.5,
-                                          context: context,
-                                          builder: _buildBottomSheet,
-                                          isExpand: false,
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: mainColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        'Lanjutkan',
-                                        style: TextStyle(
-                                          fontSize: 14.0.sp,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFFFDF8F8),
-                                        ),
-                                      ),
-                                    ),
-                                  )))
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ))
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget viewprice(
-    bool isHide,
-    List dataPulsa,
-    String provider,
-    String logoProvider,
-  ) {
-    return Container(
-      height: Get.height * 0.45,
-      child: Visibility(
-        visible: isHide,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            margin: EdgeInsets.only(top: 1.0.h, left: 1.5.h, right: 1.5.h),
-            color: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: dataPulsa.length,
-              itemBuilder: (context, index) {
-                var element = dataPulsa[index];
-                bool isSelected = index == selectedItemIndex;
-
-                return GestureDetector(
-                  onTap: () async {
-                    controller.restart();
-                    if (tNoPulsa.text.isEmpty) {
-                      Flushbar(
-                        message: 'Mohon masukkan nomor terlebih dahulu!',
-                        duration: Duration(seconds: 3),
-                      )..show(context);
-                    } else {
-                      setState(() {
-                        selectedItemIndex = index;
-                      });
-                    }
-                  },
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 8.0),
-                      padding: EdgeInsets.all(12.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 2,
-                            blurRadius: 2,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 20,
-                            width: 20,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: isSelected ? Colors.grey : Colors.grey,
-                                width: 2,
-                              ),
-                              color:
-                                  isSelected ? Colors.grey : Colors.transparent,
-                            ),
-                          ),
-                          SizedBox(width: 12),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '${provider}' +
-                                        ' ' +
-                                        'Prabayar' +
-                                        ' ' +
-                                        NumberFormat.currency(
-                                          locale: 'id-ID',
-                                          symbol: '',
-                                          decimalDigits: 0,
-                                        ).format(double.parse(element.nominal)),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color:
-                                          isSelected ? Colors.blue : blackColor,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 0.5.h,
-                                  ),
-                                  Text(
-                                    '${provider}' +
-                                        ' ' +
-                                        'Prabayar' +
-                                        ' ' +
-                                        NumberFormat.currency(
-                                          locale: 'id-ID',
-                                          symbol: '',
-                                          decimalDigits: 0,
-                                        ).format(double.parse(element.nominal)),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color:
-                                          isSelected ? Colors.blue : blackColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 3.0.h,
-                              ),
-                              Text(
-                                NumberFormat.currency(
-                                  locale: 'id-ID',
-                                  symbol: 'Rp.',
-                                  decimalDigits: 0,
-                                ).format(int.parse(element.biaya)),
-                                style: TextStyle(
-                                  color: isSelected ? Colors.blue : blackColor,
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      )
-
-                      // Column(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                      //   children: [
-                      //     Text(
-                      //       NumberFormat.currency(
-                      //         locale: 'id-ID',
-                      //         symbol: 'Rp.',
-                      //         decimalDigits: 0,
-                      //       ).format(int.parse(element.nominal)),
-                      //       style: TextStyle(
-                      //         color: isSelected ? Colors.blue : blackColor,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-
-                      ),
-                );
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBottomSheet(
-    BuildContext context,
-    ScrollController scrollController,
-    double bottomSheetOffset,
-  ) {
-    return Material(
-      child: Container(
-        color: whiteColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(2.5.h, 2.0.h, 2.5.h, 0.0.h),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                Padding(
+                  padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Konfirmasi pembayaran',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13.0.sp,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: Color(0xFF8E8C8C),
-                          size: 20,
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.03,
-                  ),
-                  Text(
-                    'Apa Anda yakin ingin melanjutkan\ntransaksi ini?',
-                    style: TextStyle(
-                      fontSize: 12.0.sp,
-                      // fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  Divider(
-                    color: Colors.grey.shade500,
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Produk',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Text(
-                            'No HP',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Text(
-                            'Harga',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 4.0.h,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            ':',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Text(
-                            ':',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Text(
-                            ':',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Telkomsel prabayar 10.000',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Text(
-                            '081290001234',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Text(
-                            'Rp. 10.250',
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Divider(
-                    color: Colors.grey.shade500,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Harga Jual',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 1.0.h,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        'Rp. 11.500',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      // Checkbox(
-                      //   value: _ingatsaya,
-                      //   onChanged: (ingatSaya) {
-                      //     setState(() {
-                      //       _ingatsaya = ingatSaya ?? false;
-                      //     });
-                      //   },
-                      // ),
-                      // Text(
-                      //   'Simpan untuk trx selanjutnya',
-                      //   style: TextStyle(
-                      //     fontSize: 8.0.sp,
-                      //     color: blackColor,
+                      // Center(
+                      //   child: Image.asset(
+                      //     'assets/images/ketenagakerjaan.png',
+                      //     height: 3.5.h,
                       //   ),
                       // ),
+                      // SizedBox(
+                      //   height: 1.h,
+                      // ),
+                      // Divider(
+                      //   color: Colors.black38,
+                      // ),
+                      // SizedBox(
+                      //   height: 1.h,
+                      // ),
+                      // Text(
+                      //   'NIK',
+                      //   style: TextStyle(
+                      //     fontSize: 11.0.sp,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   height: 1.h,
+                      // ),
+                      // Form(
+                      //   key: formkey,
+                      //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                      //   child: TextFormField(
+                      //     minLines: 1,
+                      //     maxLength: 15,
+                      //     controller: idpel,
+                      //     onChanged: (a) {
+                      //       setState(() {
+                      //         wilayah = a.length;
+                      //         // _isButtonVisible = a.isNotEmpty;
+                      //       });
+                      //     },
+                      //     decoration: InputDecoration(
+                      //       border: OutlineInputBorder(
+                      //         borderSide: BorderSide(color: Colors.grey),
+                      //         borderRadius: BorderRadius.circular(10.0),
+                      //       ),
+                      //       hintText: 'Masukkan Kode ',
+                      //       hintStyle: TextStyle(
+                      //         fontSize: 12.0.sp,
+                      //         color: Colors.grey.shade500,
+                      //       ),
+                      //     ),
+                      //     validator: (value) {
+                      //       if (wilayah < 7) {
+                      //         return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                      //       }
+                      //       return null;
+                      //     },
+                      //   ),
+                      // ),
+                      // // SizedBox(
+                      // //   height: 1.h,
+                      // // ),
+                      // Text(
+                      //   'Bayar Hingga',
+                      //   style: TextStyle(
+                      //     fontSize: 12.sp,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                      // SizedBox(height: 1.h),
+                      // Obx(() => DropdownButtonFormField2(
+                      //       isExpanded: true,
+                      //       decoration: InputDecoration(
+                      //         fillColor: Colors.transparent,
+                      //         filled: true,
+                      //         border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10),
+                      //           borderSide: BorderSide(color: Colors.grey),
+                      //         ),
+                      //         // Add more decoration..
+                      //       ),
+                      //       hint: const Text(
+                      //         '-- Bayar Hingga Bulan --',
+                      //         style: TextStyle(fontSize: 14),
+                      //       ),
+                      //       items: bpjsController.months.map((value) {
+                      //         return DropdownMenuItem(
+                      //           child: Text(
+                      //             value['name'],
+                      //           ),
+                      //           value: value['value'],
+                      //         );
+                      //       }).toList(),
+                      //       validator: (value) {
+                      //         if (value == null) {
+                      //           return 'Select Bank';
+                      //         }
+                      //         return null;
+                      //       },
+                      //       onChanged: (value) {
+                      //         setState(() {
+                      //           print('Jumlah Bulan: $value');
+                      //           print(value);
+                      //         });
+                      //         bayarHinggaValue = value;
+                      //       },
+                      //       buttonStyleData: const ButtonStyleData(
+                      //         padding: EdgeInsets.only(right: 8),
+                      //       ),
+                      //       iconStyleData: const IconStyleData(
+                      //         icon: Icon(
+                      //           Icons.arrow_drop_down,
+                      //           color: Colors.black45,
+                      //         ),
+                      //         iconSize: 24,
+                      //       ),
+                      //       dropdownStyleData: DropdownStyleData(
+                      //         decoration: BoxDecoration(
+                      //           borderRadius: BorderRadius.circular(15),
+                      //         ),
+                      //       ),
+                      //       menuItemStyleData: const MenuItemStyleData(
+                      //         padding: EdgeInsets.symmetric(horizontal: 16),
+                      //       ),
+                      //     )),
+                      // // SizedBox(
+                      // //   height: 2.h,
+                      // // ),
+                      // // Container(
+                      // //   padding: EdgeInsets.all(16.0),
+                      // //   decoration: BoxDecoration(
+                      // //     color: Colors.amber.withOpacity(0.4),
+                      // //     borderRadius: BorderRadius.circular(5),
+                      // //   ),
+                      // //   child: Text(
+                      // //     'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
+                      // //     style: TextStyle(
+                      // //       fontSize: 11.0.sp,
+                      // //       fontWeight: FontWeight.w400,
+                      // //     ),
+                      // //     textAlign: TextAlign.justify,
+                      // //   ),
+                      // // ),
+                      // SizedBox(
+                      //   height: Get.height * 0.30,
+                      // ),
+                      // Align(
+                      //   alignment: Alignment.bottomCenter,
+                      //   child: Container(
+                      //     color: Colors.transparent,
+                      //     padding: EdgeInsets.all(16.0),
+                      //     child: Center(
+                      //       child: SizedBox(
+                      //         width: 41.0.h,
+                      //         height: 6.0.h,
+                      //         child: ElevatedButton(
+                      //           onPressed: idpel.text.length >= 7
+                      //               // idpel.text.length >= 7
+                      //               ? () async {
+                      //                   // if (formkey.currentState!.validate()) {
+                      //                   //   await plnpascaController.plnpascainquiry(
+                      //                   //       idpel.text, context);
+                      //                   // }
+                      //                 }
+                      //               : null,
+                      //           style: ElevatedButton.styleFrom(
+                      //             primary: idpel.text.length >= 7
+                      //                 ? mainColor
+                      //                 : Colors.grey.shade700,
+                      //             shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(10.0),
+                      //             ),
+                      //             // elevation: 10,
+                      //           ),
+                      //           child: Text(
+                      //             'Lanjutkan',
+                      //             style: TextStyle(
+                      //               fontSize: 14.0.sp,
+                      //               fontWeight: FontWeight.bold,
+                      //               color: Color(0xFFFDF8F8),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )
+
+                      Padding(
+                        padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(),
+                            Center(
+                              child: Image.asset(
+                                'assets/images/comingsoon.png',
+                                height: Get.height * 0.30,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Text(
+                              'Fitur ini akan segera hadir!!',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Text(
+                              'Nantikan kehadiran fitur ini di aplikasi Moganti.',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Container()
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Harga jual akan tampil pada struk bukti pembelian',
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontSize: 8.0.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Container(
-                      color: whiteColor,
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(
-                          child: SizedBox(
-                        width: 35.0.h,
-                        height: 6.0.h,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            // Get.to(InvoiceView());
-                            Get.to(PinView());
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: mainColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Text(
-                            'Lanjutkan',
-                            style: TextStyle(
-                              fontSize: 14.0.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFDF8F8),
-                            ),
-                          ),
-                        ),
-                      )))
-                ],
-              ),
-            ),
+                ),
+              ],
+            )
           ],
-        ),
-      ),
-    );
+        )));
   }
 }

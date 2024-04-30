@@ -153,7 +153,7 @@ class _AkunViewState extends State<AkunView> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Selamat ${greeting} ${pref.read('nama_lengkap')}',
+                                          'Selamat ${greeting} ${pref.read('nama_lengkap').substring(0, 1).toUpperCase()}${pref.read('nama_lengkap').substring(1)}',
                                           style: TextStyle(
                                             color: whiteColor,
                                             fontSize: 11.0.sp,

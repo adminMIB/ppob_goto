@@ -111,7 +111,7 @@ class _RiwayatBerhasilViewState extends State<RiwayatBerhasilView> {
                                                     history['created_at']),
                                                 style: TextStyle(
                                                   color: slateTextColor,
-                                                  fontSize: 7.sp,
+                                                  fontSize: 10.sp,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),

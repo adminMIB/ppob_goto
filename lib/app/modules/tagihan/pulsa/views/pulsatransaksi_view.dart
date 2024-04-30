@@ -19,7 +19,7 @@ import 'package:showcaseview/showcaseview.dart';
 import 'package:sizer/sizer.dart';
 import 'package:screenshot/screenshot.dart';
 
-class PulsagagalView extends StatefulWidget {
+class PulsatransaksiView extends StatefulWidget {
   final String? productCode;
   final String? productName;
   final String? harga;
@@ -28,7 +28,7 @@ class PulsagagalView extends StatefulWidget {
   final String? noref;
   final String? tglwaktu;
   final String? tipetransaksi;
-  const PulsagagalView(
+  const PulsatransaksiView(
       {super.key,
       this.productCode,
       this.productName,
@@ -40,10 +40,10 @@ class PulsagagalView extends StatefulWidget {
       this.tipetransaksi});
 
   @override
-  State<PulsagagalView> createState() => _PulsagagalViewState();
+  State<PulsatransaksiView> createState() => _PulsatransaksiViewState();
 }
 
-class _PulsagagalViewState extends State<PulsagagalView> {
+class _PulsatransaksiViewState extends State<PulsatransaksiView> {
   //  DateTime parsedDateTime = parseDateTime(widget.tglwaktu ?? '');
   final helperController = Get.put(HelperController());
 
@@ -147,12 +147,12 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                   child: Column(
                                                     children: [
                                                       Text(
-                                                        'Transaksi Gagal',
+                                                        'Transaksi Berhasil',
                                                         style: TextStyle(
                                                           fontSize: 14.0.sp,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Colors.red,
+                                                          color: Colors.green,
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -165,22 +165,31 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                             ' ' +
                                                             (widget.tipetransaksi ==
                                                                     'paket_data'
-                                                                ? 'Paket data'
+                                                                ? 'Paket Data'
                                                                 : (widget.tipetransaksi ==
                                                                         'pulsa'
                                                                     ? 'Pulsa'
                                                                     : widget
                                                                         .tipetransaksi!)),
                                                         style: TextStyle(
-                                                            fontSize: 13.sp,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: mainColor),
+                                                          fontSize: 12.5.sp,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: mainColor,
+                                                        ),
                                                         textAlign:
                                                             TextAlign.left,
                                                       ),
+                                                      // Text(
+                                                      //   'Transaksi Pulsa',
+                                                      //   style: TextStyle(
+                                                      //       fontSize: 12.sp,
+                                                      //       fontWeight:
+                                                      //           FontWeight.w500,
+                                                      //       color: mainColor),
+                                                      // ),
                                                       SizedBox(
-                                                        height: 0.5.h,
+                                                        height: 1.h,
                                                       ),
                                                       Text(
                                                         'No. Handphone :' +
@@ -301,8 +310,8 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                             ),
                                                           ),
                                                           Container(
-                                                            width: Get.width *
-                                                                0.45,
+                                                            // color: oceanColor,
+                                                            width: 40.w,
                                                             child: Text(
                                                               widget
                                                                   .productName!,
@@ -323,47 +332,6 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                       SizedBox(
                                                         height: 1.0.h,
                                                       ),
-                                                      // Row(
-                                                      //   mainAxisAlignment:
-                                                      //       MainAxisAlignment
-                                                      //           .spaceBetween,
-                                                      //   crossAxisAlignment:
-                                                      //       CrossAxisAlignment
-                                                      //           .start,
-                                                      //   children: [
-                                                      //     Text(
-                                                      //       'Produk',
-                                                      //       style: TextStyle(
-                                                      //         fontSize: 11.0.sp,
-                                                      //         // color: Colors.grey,
-                                                      //         fontWeight:
-                                                      //             FontWeight
-                                                      //                 .w400,
-                                                      //       ),
-                                                      //     ),
-                                                      //     Container(
-                                                      //       // color: oceanColor,
-                                                      //       width: 40.w,
-                                                      //       child: Text(
-                                                      //         widget
-                                                      //             .productName!,
-                                                      //         style: TextStyle(
-                                                      //           fontSize:
-                                                      //               11.0.sp,
-                                                      //           fontWeight:
-                                                      //               FontWeight
-                                                      //                   .w400,
-                                                      //         ),
-                                                      //         textAlign:
-                                                      //             TextAlign
-                                                      //                 .right,
-                                                      //       ),
-                                                      //     ),
-                                                      //   ],
-                                                      // ),
-                                                      // SizedBox(
-                                                      //   height: 1.0.h,
-                                                      // ),
                                                       // Row(
                                                       //   mainAxisAlignment:
                                                       //       MainAxisAlignment
@@ -488,6 +456,7 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                         height: 2.0.h,
                                                       ),
                                                       Container(
+                                                        height: 8.0.h,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -496,11 +465,11 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                                       8.0),
                                                           border: Border.all(
                                                             color: Colors
-                                                                .red, // Outline color
+                                                                .green, // Outline color
                                                             width:
                                                                 2.0, // Outline width
                                                           ),
-                                                          color: Colors.red
+                                                          color: Colors.green
                                                               .withOpacity(0.2),
                                                         ),
                                                         child: Padding(
@@ -509,30 +478,27 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                                                   1.0.h),
                                                           child: Row(
                                                             children: [
-                                                              Image.asset(
-                                                                'assets/images/failed.png',
-                                                                height: 4.h,
+                                                              SvgPicture.asset(
+                                                                'assets/images/Checkmark.svg',
+                                                                height: 3.5.h,
                                                               ),
                                                               SizedBox(
                                                                 width: 2.0.w,
                                                               ),
-                                                              Container(
-                                                                width: 60.0.w,
-                                                                child: Text(
-                                                                  // widget.error!,
-                                                                  'Transaksi' +
-                                                                      ' ' +
-                                                                      (widget
-                                                                          .status!),
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          11.sp,
-                                                                      color: Colors
-                                                                          .red,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400),
-                                                                ),
+                                                              Text(
+                                                                // widget.error!,
+                                                                'Transaksi' +
+                                                                    ' ' +
+                                                                    (widget
+                                                                        .status!),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        11.sp,
+                                                                    color: Colors
+                                                                        .green,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400),
                                                               )
                                                             ],
                                                           ),
@@ -551,14 +517,17 @@ class _PulsagagalViewState extends State<PulsagagalView> {
                                           child: FractionalTranslation(
                                             translation: Offset(0.0, -0.5),
                                             child: Container(
-                                                height: 60.h,
-                                                width: 60.0,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: whiteColor,
-                                                ),
-                                                child: Image.asset(
-                                                    'assets/images/failed.png')),
+                                              height: 60.h,
+                                              width: 60.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: whiteColor,
+                                              ),
+                                              child: SvgPicture.asset(
+                                                'assets/images/Checkmark.svg',
+                                                height: 3.5.h,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],

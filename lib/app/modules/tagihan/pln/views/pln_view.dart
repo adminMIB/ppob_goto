@@ -5,10 +5,12 @@ import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/akun/views/coba_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/plnview.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/views/nontaglis_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/tagihanlistrik_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/pascabayar_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -130,7 +132,7 @@ class _PlnViewState extends State<PlnView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Pilih penyedia',
+                                'Pilih Penyedia',
                                 style: TextStyle(
                                   fontSize: 12.0.sp,
                                   fontWeight: FontWeight.w500,
@@ -150,11 +152,17 @@ class _PlnViewState extends State<PlnView> {
                                     height: 5.0.h,
                                   ),
                                 ),
-                                title: Text('Non-Taglis'),
+                                title: Text(
+                                  'Non-Taglis',
+                                  style: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                                 trailing:
                                     Icon(Icons.keyboard_arrow_right_outlined),
                                 onTap: () {
-                                  Get.to(NontaglisView());
+                                  Get.to(Pln2View());
                                 },
                               ),
 
@@ -187,11 +195,17 @@ class _PlnViewState extends State<PlnView> {
                                     height: 5.0.h,
                                   ),
                                 ),
-                                title: Text('Tagihan Listrik'),
+                                title: Text(
+                                  'Tagihan Listrik',
+                                  style: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                                 trailing:
                                     Icon(Icons.keyboard_arrow_right_outlined),
                                 onTap: () {
-                                  Get.to(TagihanlistrikView());
+                                  Get.to(PascabayarView());
                                 },
                               ),
                               Divider(
@@ -209,7 +223,13 @@ class _PlnViewState extends State<PlnView> {
                                     height: 5.0.h,
                                   ),
                                 ),
-                                title: Text('Prabayar'),
+                                title: Text(
+                                  'Token Listrik',
+                                  style: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                                 trailing:
                                     Icon(Icons.keyboard_arrow_right_outlined),
                                 onTap: () {

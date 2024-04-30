@@ -154,11 +154,11 @@ class CustomPopupWidget extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            fixedSize: Size(15.0.h, 3.h)),
+                            fixedSize: Size(15.0.h, 2.h)),
                         child: Text(
                           'Kembali',
                           style: TextStyle(
-                            fontSize: 13.0.sp,
+                            fontSize: 11.0.sp,
                           ),
                         ),
                       ),

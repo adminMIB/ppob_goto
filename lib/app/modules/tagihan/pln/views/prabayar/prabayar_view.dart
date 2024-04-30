@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/bottmsheet_prabayar_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/bottmsheet_prabayar_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
@@ -22,14 +22,16 @@ class PrabayarView extends StatefulWidget {
 
 class _PrabayarViewState extends State<PrabayarView> {
   bool status = false;
-  int selectedItemIndex = -1;
-  bool isSelected = false;
+  int selectedItemIndex = -1; // -1 berarti tidak ada yang dipilih
 
   bool shouldUpdateViewPrice = false;
   final formkey = GlobalKey<FormState>();
   TextEditingController idpel = TextEditingController();
-  final plnprabayarController = Get.put(PlnController());
+  final plnpascaController = Get.put(PlnController());
   final helperController = Get.put(HelperController());
+
+  PhoneContact? _phoneContact;
+  final plnprabayarController = Get.put(PlnController());
 
   int wilayah = 0;
   int lengthNoTelepon = 0;

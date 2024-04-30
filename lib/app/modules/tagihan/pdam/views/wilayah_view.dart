@@ -155,46 +155,92 @@ class _WilayahViewState extends State<WilayahView> {
                       SizedBox(
                         height: Get.height * 0.45,
                       ),
-                      Container(
-                        color: whiteColor,
-                        padding: EdgeInsets.all(16.0),
-                        child: Center(
-                          child: SizedBox(
-                            width: 41.0.h,
-                            height: 6.0.h,
-                            child: ElevatedButton(
-                              onPressed: idpel.text.length >= 7
-                                  ? () async {
-                                      if (formkey.currentState!.validate()) {
-                                        await pdamController.pdaminquiry(
-                                            idpel.text,
-                                            widget.productCode,
-                                            widget.productName,
-                                            context);
-                                      }
-                                    }
-                                  : null,
-                              style: ElevatedButton.styleFrom(
-                                primary: idpel.text.length >= 7
-                                    ? mainColor
-                                    : Colors.grey.shade700,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                // elevation: 10,
-                              ),
-                              child: Text(
-                                'Lanjutkan',
-                                style: TextStyle(
-                                  fontSize: 14.0.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFDF8F8),
+                      // Align(
+                      //   alignment: Alignment.bottomCenter,
+                      //   child: Container(
+                      //     color: whiteColor,
+                      //     padding: EdgeInsets.all(16.0),
+                      //     child: Center(
+                      //       child: SizedBox(
+                      //         width: 41.0.h,
+                      //         height: 6.0.h,
+                      //         child: ElevatedButton(
+                      //           onPressed: idpel.text.length >= 7
+                      //               ? () async {
+                      //                   if (formkey.currentState!.validate()) {
+                      //                     await pdamController.pdaminquiry(
+                      //                         idpel.text,
+                      //                         widget.productCode,
+                      //                         widget.productName,
+                      //                         context);
+                      //                   }
+                      //                 }
+                      //               : null,
+                      //           style: ElevatedButton.styleFrom(
+                      //             primary: idpel.text.length >= 7
+                      //                 ? mainColor
+                      //                 : Colors.grey.shade700,
+                      //             shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(10.0),
+                      //             ),
+                      //             // elevation: 10,
+                      //           ),
+                      //           child: Text(
+                      //             'Lanjutkan',
+                      //             style: TextStyle(
+                      //               fontSize: 14.0.sp,
+                      //               fontWeight: FontWeight.bold,
+                      //               color: Color(0xFFFDF8F8),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )
+                      Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            color: Colors.transparent,
+                            padding: EdgeInsets.all(16.0),
+                            child: Center(
+                              child: SizedBox(
+                                width: 41.0.h,
+                                height: 6.0.h,
+                                child: ElevatedButton(
+                                  onPressed: idpel.text.length >= 7
+                                      ? () async {
+                                          if (formkey.currentState!
+                                              .validate()) {
+                                            await pdamController.pdaminquiry(
+                                                idpel.text,
+                                                widget.productCode,
+                                                widget.productName,
+                                                context);
+                                          }
+                                        }
+                                      : null,
+                                  style: ElevatedButton.styleFrom(
+                                    primary: idpel.text.length >= 7
+                                        ? mainColor
+                                        : Colors.grey.shade700,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    // elevation: 10,
+                                  ),
+                                  child: Text(
+                                    'Lanjutkan',
+                                    style: TextStyle(
+                                      fontSize: 14.0.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFFDF8F8),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
+                          ))
                     ],
                   ),
                 )

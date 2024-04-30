@@ -6,10 +6,9 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:sizer/sizer.dart';
 
-class BottmsheetPrabayarView extends StatefulWidget {
+class BottmsheetPascaView extends StatefulWidget {
   String? idpel;
-  String? idpel2;
-  String? namaPelanggan;
+  String? nama_pelanggan;
   String? kodeproduk;
   String? tarif;
   String? daya;
@@ -18,11 +17,13 @@ class BottmsheetPrabayarView extends StatefulWidget {
   String? nominal;
   String? ref1;
   String? ref2;
-  BottmsheetPrabayarView({
+  String? harga;
+  String? periode;
+  String? total_payment;
+  BottmsheetPascaView({
     super.key,
     this.idpel,
-    this.idpel2,
-    this.namaPelanggan,
+    this.nama_pelanggan,
     this.kodeproduk,
     this.tarif,
     this.daya,
@@ -31,13 +32,16 @@ class BottmsheetPrabayarView extends StatefulWidget {
     this.nominal,
     this.ref1,
     this.ref2,
+    this.harga,
+    this.periode,
+    this.total_payment,
   });
 
   @override
-  State<BottmsheetPrabayarView> createState() => _BottmsheetPrabayarViewState();
+  State<BottmsheetPascaView> createState() => _BottmsheetPascaViewState();
 }
 
-class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
+class _BottmsheetPascaViewState extends State<BottmsheetPascaView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -111,12 +115,13 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                           height: 1.0.h,
                         ),
                         _buildInvoiceField("ID Pelanggan", widget.idpel!),
-                        _buildInvoiceField("Nama Pelanggan", widget.namaPelanggan!),
+                        _buildInvoiceField(
+                            "Nama Pelanggan", widget.nama_pelanggan!),
                         _buildInvoiceField(
                           "Daya/Tarif",
                           widget.daya! + '/' + widget.tarif!,
                         ),
-                        _buildInvoiceField("Tanggal", widget.tanggal!),
+                        _buildInvoiceField("Nama Pelanggan", widget.periode!),
                         SizedBox(
                           height: 0.5.h,
                         ),
@@ -132,7 +137,7 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                             locale: 'id-ID',
                             symbol: 'Rp.',
                             decimalDigits: 0,
-                          ).format(int.parse(widget.nominal!)),
+                          ).format(int.parse(widget.harga!)),
                         ),
                         _buildInvoiceField(
                           "Biaya Admin",
@@ -141,6 +146,14 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                             symbol: 'Rp.',
                             decimalDigits: 0,
                           ).format(int.parse(widget.admin!)),
+                        ),
+                        _buildInvoiceField(
+                          "Biaya Admin",
+                          NumberFormat.currency(
+                            locale: 'id-ID',
+                            symbol: 'Rp.',
+                            decimalDigits: 0,
+                          ).format(int.parse(widget.total_payment!)),
                         ),
                         SizedBox(
                           height: 1.0.h,
@@ -171,18 +184,16 @@ class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
                       child: ElevatedButton(
                         onPressed: () async {
                           // Get.to(PdamstrukView());
-                          Get.to(
-                            PinView(
-                              tipeTransaksi: 'plnprabayar',
-                              productCode: widget.kodeproduk,
-                              idpel: widget.idpel,
-                              idpel2: widget.idpel2,
-                              ref1: widget.ref1,
-                              ref2: widget.ref2,
-                              amount: widget.nominal,
-                              admin: widget.admin,
-                            ),
-                          );
+                          Get.to(PinView(
+                            tipeTransaksi: 'plnpasca',
+                            periode: widget.periode,
+                            idpel: widget.idpel,
+                            ref1: widget.ref1,
+                            ref2: widget.ref2,
+                            harga: widget.harga,
+                            admin: widget.admin,
+                            total_payment: widget.total_payment,
+                          ));
                         },
                         style: ElevatedButton.styleFrom(
                           primary: mainColor,

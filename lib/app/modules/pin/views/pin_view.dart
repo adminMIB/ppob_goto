@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/emoney/controllers/emoney_controller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/bpjs/controllers/bpjs_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:ppob_mpay1/main.dart';
@@ -24,10 +25,11 @@ class PinView extends StatefulWidget {
   final String? ref1;
   final String? ref2;
   final String? admin;
-  final String? total_bayar;
+  final String? total_payment;
   final String? periode;
   final String? tipeTransaksi;
   final String? amount;
+  final String? no_hp;
   const PinView({
     Key? key,
     this.productName,
@@ -41,10 +43,11 @@ class PinView extends StatefulWidget {
     this.ref1,
     this.ref2,
     this.admin,
-    this.total_bayar,
+    this.total_payment,
     this.periode,
     this.tipeTransaksi,
     this.amount,
+    this.no_hp,
   }) : super(key: key);
 
   @override
@@ -52,16 +55,19 @@ class PinView extends StatefulWidget {
 }
 
 class _PinViewState extends State<PinView> {
-  final pulsaController = Get.put(PulsaController());
-  final pdamController = Get.put(PdamController());
-  final plnprabayarController = Get.put(PlnController());
-  final emoneyController = Get.put(EmoneyController());
   String currentText = "";
   TextEditingController textEditingController = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   FocusNode pinFocusNode = FocusNode();
+
+  final pulsaController = Get.put(PulsaController());
+  final pdamController = Get.put(PdamController());
+  final plnController = Get.put(PlnController());
+  final plnprabayarController = Get.put(PlnController());
+  final emoneyController = Get.put(EmoneyController());
+  final bpjskesehatanController = Get.put(BpjsController());
 
   @override
   void initState() {
@@ -190,16 +196,17 @@ class _PinViewState extends State<PinView> {
                           context,
                         );
                       } else if (widget.tipeTransaksi == 'pdam') {
-                        await pdamController.pdampayment(
-                          widget.productName,
-                          widget.productCode,
+                        await pdamController.pdampayment(widget.productName, widget.productCode, widget.idpel, widget.ref1, widget.ref2, widget.total_payment,
+                            widget.harga, widget.admin, widget.periode, v, context);
+                      } else if (widget.tipeTransaksi == 'plnpasca') {
+                        await plnController.plnpascapayment(
+                          widget.periode,
                           widget.idpel,
                           widget.ref1,
                           widget.ref2,
                           widget.harga,
+                          widget.total_payment,
                           widget.admin,
-                          widget.total_bayar,
-                          widget.periode,
                           v,
                           context,
                         );
@@ -221,34 +228,23 @@ class _PinViewState extends State<PinView> {
                           widget.ref2,
                           widget.amount,
                           widget.admin,
-                          widget.total_bayar,
+                          widget.total_payment,
+                          v,
+                          context,
+                        );
+                      } else if (widget.tipeTransaksi == 'bpjskesehatan') {
+                        await bpjskesehatanController.bpjskespayment(
+                          widget.idpel,
+                          widget.no_hp,
+                          widget.periode,
+                          widget.ref1,
+                          widget.ref2,
+                          widget.total_payment,
+                          widget.admin,
                           v,
                           context,
                         );
                       }
-                      // await pulsaController.transaksipulsa(
-                      //   v,
-                      //   widget.nomorTelepon,
-                      //   widget.productCode,
-                      //   widget.harga,
-                      //   widget.productName,pos
-                      //   widget.type,
-                      //   widget.provider,
-                      //   context,
-                      // );
-
-                      // await pdamController.pdampayment(
-                      //     widget.productName,
-                      //     widget.productCode,
-                      //     widget.idpel,
-                      //     widget.ref1,
-                      //     widget.ref2,
-                      //     widget.harga,
-                      //     widget.admin,
-                      //     widget.total_bayar,
-                      //     widget.periode,
-                      //     v,
-                      //     context);
                     },
                     onChanged: (value) {
                       if (value.length == 6) {

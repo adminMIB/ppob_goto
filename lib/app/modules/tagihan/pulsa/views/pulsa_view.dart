@@ -10,9 +10,9 @@ import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/product.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/views/kontak_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/product.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/kontak_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
@@ -112,7 +112,7 @@ class _PulsaViewState extends State<PulsaView> {
                                     ),
                                     SizedBox(height: 1.0.h),
                                     Text(
-                                      'Pulsa Pascabayar',
+                                      'Pulsa Prabayar',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0.sp,
@@ -400,44 +400,6 @@ class _PulsaViewState extends State<PulsaView> {
                                     )),
                               ),
                             ),
-                            // Container(
-                            //     color: whiteColor,
-                            //     padding: EdgeInsets.all(16.0),
-                            //     child: Center(
-                            //         child: SizedBox(
-                            //       width: 41.0.h,
-                            //       height: 6.0.h,
-                            //       child: ElevatedButton(
-                            //         onPressed: () async {
-                            //           print('masuk');
-
-                            //           showFlexibleBottomSheet(
-                            //             minHeight: 0,
-                            //             initHeight: 0.5,
-                            //             maxHeight: 0.5,
-                            //             context: context,
-                            //             builder: _buildBottomSheet,
-                            //             isExpand: false,
-                            //           );
-                            //         },
-                            //         style: ElevatedButton.styleFrom(
-                            //           primary: mainColor,
-                            //           shape: RoundedRectangleBorder(
-                            //             borderRadius:
-                            //                 BorderRadius.circular(10.0),
-                            //           ),
-                            //         ),
-                            //         child: Text(
-                            //           'Lanjutkan',
-                            //           style: TextStyle(
-                            //             fontSize: 14.0.sp,
-                            //             fontWeight: FontWeight.bold,
-                            //             color: Color(0xFFFDF8F8),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     ))
-                            // )
                           ],
                         ),
                       ),
@@ -614,117 +576,15 @@ class _PulsaViewState extends State<PulsaView> {
                   SizedBox(
                     height: 1.0.h,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Produk',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.1,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Container(
-                        width: 28.0.h,
-                        child: Text(
-                          productName,
-                          style: TextStyle(
-                            fontSize: 12.0.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'No. HP',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.1,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        tNoPulsa.text,
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Harga',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.12,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        NumberFormat.currency(
-                          locale: 'id-ID',
-                          symbol: 'Rp.',
-                          decimalDigits: 0,
-                        ).format(int.parse(price)),
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.0.h,
+                  _buildInvoiceField("Produk", productName),
+                  _buildInvoiceField("No. HandPhone", tNoPulsa.text),
+                  _buildInvoiceField(
+                    "Harga",
+                    NumberFormat.currency(
+                      locale: 'id-ID',
+                      symbol: 'Rp.',
+                      decimalDigits: 0,
+                    ).format(int.parse(price)),
                   ),
                   Divider(
                     color: Colors.grey.shade500,
@@ -732,41 +592,13 @@ class _PulsaViewState extends State<PulsaView> {
                   SizedBox(
                     height: 1.0.h,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Harga',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.12,
-                      ),
-                      Text(
-                        ':',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 2.0.h,
-                      ),
-                      Text(
-                        NumberFormat.currency(
-                          locale: 'id-ID',
-                          symbol: 'Rp.',
-                          decimalDigits: 0,
-                        ).format(int.parse(price)),
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+                  _buildInvoiceField(
+                    "Total Pesanan",
+                    NumberFormat.currency(
+                      locale: 'id-ID',
+                      symbol: 'Rp.',
+                      decimalDigits: 0,
+                    ).format(int.parse(price)),
                   ),
                   SizedBox(
                     height: 1.0.h,
@@ -876,5 +708,44 @@ class _PulsaViewState extends State<PulsaView> {
             ),
           ],
         ));
+  }
+
+  Widget _buildInvoiceField(String label, String value) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.5.h),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 35.5.w,
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12.0.sp,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          SizedBox(width: 1.5.w),
+          Text(
+            ":",
+            style: TextStyle(
+              fontSize: 12.0.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          SizedBox(width: 4.0.w),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 12.0.sp,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

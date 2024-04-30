@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/pulsa/pulsa_model.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa/pulsa_model.dart';
 
 class OvoController extends GetxController {
   final helperController = Get.put(HelperController());

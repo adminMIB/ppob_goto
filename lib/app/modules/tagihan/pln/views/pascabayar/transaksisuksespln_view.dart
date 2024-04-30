@@ -19,31 +19,46 @@ import 'package:showcaseview/showcaseview.dart';
 import 'package:sizer/sizer.dart';
 import 'package:screenshot/screenshot.dart';
 
-class PulsatransaksiView extends StatefulWidget {
+class transaksisuksesplnView extends StatefulWidget {
   final String? productCode;
   final String? productName;
+  final String? idpel;
+  final String? nama_pelanggan;
+  final String? periode;
+  final String? deskripsi;
   final String? harga;
-  final String? nomorTelepon;
-  final String? status;
+  final String? total_bayar;
+  final String? admin;
   final String? noref;
   final String? tglwaktu;
-  final String? tipetransaksi;
-  const PulsatransaksiView(
-      {super.key,
-      this.productCode,
-      this.productName,
-      this.harga,
-      this.nomorTelepon,
-      this.status,
-      this.noref,
-      this.tglwaktu,
-      this.tipetransaksi});
+  final String? error;
+  final String? tarif;
+  final String? daya;
+  final String? info;
+  const transaksisuksesplnView({
+    super.key,
+    this.productCode,
+    this.productName,
+    this.idpel,
+    this.nama_pelanggan,
+    this.periode,
+    this.deskripsi,
+    this.harga,
+    this.total_bayar,
+    this.admin,
+    this.noref,
+    this.tglwaktu,
+    this.error,
+    this.tarif,
+    this.daya,
+    this.info,
+  });
 
   @override
-  State<PulsatransaksiView> createState() => _PulsatransaksiViewState();
+  State<transaksisuksesplnView> createState() => _transaksisuksesplnViewState();
 }
 
-class _PulsatransaksiViewState extends State<PulsatransaksiView> {
+class _transaksisuksesplnViewState extends State<transaksisuksesplnView> {
   //  DateTime parsedDateTime = parseDateTime(widget.tglwaktu ?? '');
   final helperController = Get.put(HelperController());
 
@@ -83,7 +98,13 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                           alignment: Alignment.topRight,
                           child: GestureDetector(
                             onTap: () async {
-                              Get.offAll(MainPage());
+                              Get.offAll(MainPage()
+                                  // ShowCaseWidget(
+                                  //     builder: Builder(
+                                  //         builder: (_) => MainPage(
+                                  //             //fungsi
+                                  //             ))),
+                                  );
                             },
                             child: Icon(
                               Icons.close,
@@ -112,7 +133,7 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                     Stack(
                                       children: [
                                         Container(
-                                          height: 60.0.h,
+                                          height: 70.0.h,
                                           width: Get.width,
                                           decoration: BoxDecoration(
                                             color: biru,
@@ -123,15 +144,6 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                   .withOpacity(0.2),
                                               width: 2.0,
                                             ),
-                                            // boxShadow: [
-                                            //   BoxShadow(
-                                            //     color: Colors.grey
-                                            //         .withOpacity(0.3),
-                                            //     spreadRadius: 5,
-                                            //     blurRadius: 7,
-                                            //     offset: Offset(0, 1),
-                                            //   ),
-                                            // ],
                                           ),
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
@@ -161,41 +173,20 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                         height: 2.0.h,
                                                       ),
                                                       Text(
-                                                        'Transaksi' +
-                                                            ' ' +
-                                                            (widget.tipetransaksi ==
-                                                                    'paket_data'
-                                                                ? 'Paket data'
-                                                                : (widget.tipetransaksi ==
-                                                                        'pulsa'
-                                                                    ? 'Pulsa'
-                                                                    : widget
-                                                                        .tipetransaksi!)),
+                                                        'Pembayaran Tagihan Listrik',
                                                         style: TextStyle(
-                                                          fontSize: 12.5.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: mainColor,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.left,
+                                                            fontSize: 12.sp,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: mainColor),
                                                       ),
-                                                      // Text(
-                                                      //   'Transaksi Pulsa',
-                                                      //   style: TextStyle(
-                                                      //       fontSize: 12.sp,
-                                                      //       fontWeight:
-                                                      //           FontWeight.w500,
-                                                      //       color: mainColor),
-                                                      // ),
                                                       SizedBox(
                                                         height: 1.h,
                                                       ),
                                                       Text(
-                                                        'No. Handphone :' +
+                                                        'ID Pelanggan :' +
                                                             ' ' +
-                                                            (widget
-                                                                .nomorTelepon!),
+                                                            (widget.idpel!),
                                                         style: TextStyle(
                                                             fontSize: 12.sp,
                                                             fontWeight:
@@ -241,8 +232,6 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                           ),
                                                           Text(
                                                             widget.tglwaktu!,
-
-                                                            // '',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               fontWeight:
@@ -266,41 +255,7 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            'No. Ref',
-                                                            style: TextStyle(
-                                                              fontSize: 11.0.sp,
-                                                              // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            widget.noref!,
-                                                            style: TextStyle(
-                                                              fontSize: 11.0.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                            textAlign:
-                                                                TextAlign.right,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 1.0.h,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Produk',
+                                                            'Nama Pelanggan',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
@@ -314,7 +269,7 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                             width: 40.w,
                                                             child: Text(
                                                               widget
-                                                                  .productName!,
+                                                                  .nama_pelanggan!,
                                                               style: TextStyle(
                                                                 fontSize:
                                                                     11.0.sp,
@@ -332,44 +287,79 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                       SizedBox(
                                                         height: 1.0.h,
                                                       ),
-                                                      // Row(
-                                                      //   mainAxisAlignment:
-                                                      //       MainAxisAlignment
-                                                      //           .spaceBetween,
-                                                      //   crossAxisAlignment:
-                                                      //       CrossAxisAlignment
-                                                      //           .start,
-                                                      //   children: [
-                                                      //     Text(
-                                                      //       'Nomor Handphone',
-                                                      //       style: TextStyle(
-                                                      //         fontSize: 11.0.sp,
-                                                      //         // color: Colors.grey,
-                                                      //         fontWeight:
-                                                      //             FontWeight
-                                                      //                 .w400,
-                                                      //       ),
-                                                      //     ),
-                                                      //     SizedBox(
-                                                      //       height: 1.0.h,
-                                                      //     ),
-                                                      //     Text(
-                                                      //       widget
-                                                      //           .nomorTelepon!,
-                                                      //       style: TextStyle(
-                                                      //         fontSize: 11.0.sp,
-                                                      //         fontWeight:
-                                                      //             FontWeight
-                                                      //                 .w400,
-                                                      //       ),
-                                                      //       textAlign:
-                                                      //           TextAlign.right,
-                                                      //     ),
-                                                      //   ],
-                                                      // ),
-                                                      // SizedBox(
-                                                      //   height: 1.0.h,
-                                                      // ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Tarif/Daya',
+                                                            style: TextStyle(
+                                                              fontSize: 11.0.sp,
+                                                              // color: Colors.grey,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 1.0.h,
+                                                          ),
+                                                          Text(
+                                                            widget.tarif! +
+                                                                '/' +
+                                                                widget.daya!,
+                                                            style: TextStyle(
+                                                              fontSize: 11.0.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 1.0.h,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Periode',
+                                                            style: TextStyle(
+                                                              fontSize: 11.0.sp,
+                                                              // color: Colors.grey,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            widget.periode!,
+                                                            style: TextStyle(
+                                                              fontSize: 11.0.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 1.0.h,
+                                                      ),
                                                       Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -408,7 +398,7 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                         ],
                                                       ),
                                                       SizedBox(
-                                                        height: 1.h,
+                                                        height: 1.0.h,
                                                       ),
                                                       Row(
                                                         mainAxisAlignment:
@@ -419,13 +409,13 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            'Total Bayar',
+                                                            'Biaya Admin',
                                                             style: TextStyle(
-                                                              fontSize: 16.0.sp,
+                                                              fontSize: 11.0.sp,
                                                               // color: Colors.grey,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .bold,
+                                                                      .w400,
                                                             ),
                                                           ),
                                                           Text(
@@ -438,7 +428,48 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                                           0)
                                                                   .format(int
                                                                       .parse(widget
-                                                                          .harga!)),
+                                                                          .admin!)),
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      11.0.sp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400)),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 1.0.h,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Total Harga',
+                                                            style: TextStyle(
+                                                              fontSize: 16.0.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                          ),
+                                                          Text(
+                                                              NumberFormat.currency(
+                                                                      locale:
+                                                                          'id-ID',
+                                                                      symbol:
+                                                                          'Rp ',
+                                                                      decimalDigits:
+                                                                          0)
+                                                                  .format(int
+                                                                      .parse(widget
+                                                                          .total_bayar!)),
                                                               style: TextStyle(
                                                                   fontSize:
                                                                       16.0.sp,
@@ -447,10 +478,24 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                                           .bold)),
                                                         ],
                                                       ),
+                                                      SizedBox(
+                                                        height: 1.h,
+                                                      ),
                                                       Divider(
                                                         color: Colors
                                                             .grey.shade400,
                                                         thickness: 1.2,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 1.0.h,
+                                                      ),
+                                                      Text(
+                                                        widget.info!,
+                                                        style: TextStyle(
+                                                          fontSize: 11.0.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
                                                       ),
                                                       SizedBox(
                                                         height: 2.0.h,
@@ -490,7 +535,7 @@ class _PulsatransaksiViewState extends State<PulsatransaksiView> {
                                                                 'Transaksi' +
                                                                     ' ' +
                                                                     (widget
-                                                                        .status!),
+                                                                        .deskripsi!),
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         11.sp,
