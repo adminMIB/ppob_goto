@@ -176,7 +176,7 @@ class _BottmsheetEmoneyViewState extends State<BottmsheetEmoneyView> {
                               ref2: widget.ref2,
                               amount: widget.nominal,
                               admin: widget.admin,
-                              total_bayar: widget.total_bayar,
+                              total_payment: widget.total_bayar,
                             ),
                           );
                         },
