@@ -47,12 +47,10 @@ class PrabayarTransaksiBerhasilView extends StatefulWidget {
   });
 
   @override
-  State<PrabayarTransaksiBerhasilView> createState() =>
-      _PrabayarTransaksiBerhasilViewState();
+  State<PrabayarTransaksiBerhasilView> createState() => _PrabayarTransaksiBerhasilViewState();
 }
 
-class _PrabayarTransaksiBerhasilViewState
-    extends State<PrabayarTransaksiBerhasilView> {
+class _PrabayarTransaksiBerhasilViewState extends State<PrabayarTransaksiBerhasilView> {
   Uint8List? _imageFile;
   ScreenshotController screenshotController2 = ScreenshotController();
   @override
@@ -129,17 +127,14 @@ class _PrabayarTransaksiBerhasilViewState
                                           width: Get.width,
                                           decoration: BoxDecoration(
                                             color: biru,
-                                            borderRadius:
-                                                BorderRadius.circular(3.h),
+                                            borderRadius: BorderRadius.circular(3.h),
                                             border: Border.all(
-                                              color: Color(0xFF005B96)
-                                                  .withOpacity(0.2),
+                                              color: Color(0xFF005B96).withOpacity(0.2),
                                               width: 2.0,
                                             ),
                                             boxShadow: [
                                               BoxShadow(
-                                                color: Colors.grey.shade300
-                                                    .withOpacity(0.5),
+                                                color: Colors.grey.shade300.withOpacity(0.5),
                                                 spreadRadius: 5,
                                                 blurRadius: 7,
                                                 offset: Offset(0, 1),
@@ -163,12 +158,10 @@ class _PrabayarTransaksiBerhasilViewState
                                                         'Transaksi Berhasil',
                                                         style: TextStyle(
                                                           fontSize: 14.0.sp,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                          fontWeight: FontWeight.bold,
                                                           color: Colors.green,
                                                         ),
-                                                        textAlign:
-                                                            TextAlign.center,
+                                                        textAlign: TextAlign.center,
                                                       ),
                                                       SizedBox(
                                                         height: 2.0.h,
@@ -177,8 +170,7 @@ class _PrabayarTransaksiBerhasilViewState
                                                         'Token Listrik',
                                                         style: TextStyle(
                                                           fontSize: 12.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                          fontWeight: FontWeight.w500,
                                                           color: mainColor,
                                                         ),
                                                       ),
@@ -186,13 +178,10 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.h,
                                                       ),
                                                       Text(
-                                                        'ID Pelanggan :' +
-                                                            ' ' +
-                                                            (widget.idpel!),
+                                                        'ID Pelanggan :' + ' ' + (widget.idpel!),
                                                         style: TextStyle(
                                                           fontSize: 12.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                          fontWeight: FontWeight.w500,
                                                           color: mainColor,
                                                         ),
                                                       )
@@ -210,39 +199,28 @@ class _PrabayarTransaksiBerhasilViewState
                                                   height: 1.0.h,
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 1.0.h,
-                                                      right: 1.0.h),
+                                                  padding: EdgeInsets.only(left: 1.0.h, right: 1.0.h),
                                                   child: Column(
                                                     children: [
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Tanggal dan Waktu',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                           Text(
                                                             widget.waktu!,
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
-                                                            textAlign:
-                                                                TextAlign.right,
+                                                            textAlign: TextAlign.right,
                                                           ),
                                                         ],
                                                       ),
@@ -250,41 +228,28 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Nama Pelanggan',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                           Container(
                                                             width: 40.5.w,
                                                             // color: Colors.amber,
                                                             child: FittedBox(
-                                                              fit: BoxFit
-                                                                  .scaleDown,
-                                                              alignment: Alignment
-                                                                  .centerRight,
+                                                              fit: BoxFit.scaleDown,
+                                                              alignment: Alignment.centerRight,
                                                               child: Text(
-                                                                widget
-                                                                    .namaPelanggan!,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      11.0.sp,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
+                                                                widget.namaPelanggan!,
+                                                                style: TextStyle(
+                                                                  fontSize: 11.0.sp,
+                                                                  fontWeight: FontWeight.w400,
                                                                 ),
                                                               ),
                                                             ),
@@ -341,46 +306,30 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Tarif/Daya',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
-                                                          widget.tarif != '' ||
-                                                                  widget.daya !=
-                                                                      ''
+                                                          widget.tarif != '' || widget.daya != ''
                                                               ? Text(
                                                                   '${widget.tarif!}/${widget.daya}',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 )
                                                               : Text(
                                                                   '-',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 ),
                                                         ],
@@ -435,39 +384,23 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Nominal',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                           Text(
-                                                            NumberFormat.currency(
-                                                                    locale:
-                                                                        'id-ID',
-                                                                    symbol:
-                                                                        'Rp ',
-                                                                    decimalDigits:
-                                                                        0)
-                                                                .format(int
-                                                                    .parse(widget
-                                                                        .nominal!)),
+                                                            NumberFormat.currency(locale: 'id-ID', symbol: 'Rp ', decimalDigits: 0)
+                                                                .format(int.parse(widget.nominal!)),
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                         ],
@@ -476,44 +409,30 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Jumlah kwh',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                           widget.kwh != ''
                                                               ? Text(
                                                                   widget.kwh!,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 )
                                                               : Text(
                                                                   '-',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 ),
                                                         ],
@@ -522,44 +441,30 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Token',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                           widget.token != ''
                                                               ? Text(
                                                                   widget.token!,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 )
                                                               : Text(
                                                                   '-',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 ),
                                                         ],
@@ -568,39 +473,23 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Biaya Admin',
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
                                                               // color: Colors.grey,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                           Text(
-                                                            NumberFormat.currency(
-                                                                    locale:
-                                                                        'id-ID',
-                                                                    symbol:
-                                                                        'Rp ',
-                                                                    decimalDigits:
-                                                                        0)
-                                                                .format(int
-                                                                    .parse(widget
-                                                                        .admin!)),
+                                                            NumberFormat.currency(locale: 'id-ID', symbol: 'Rp ', decimalDigits: 0)
+                                                                .format(int.parse(widget.admin!)),
                                                             style: TextStyle(
                                                               fontSize: 11.0.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
                                                         ],
@@ -609,54 +498,31 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.0.h,
                                                       ),
                                                       Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             'Total Bayar',
                                                             style: TextStyle(
                                                               fontSize: 16.0.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                              fontWeight: FontWeight.bold,
                                                             ),
-                                                            textAlign:
-                                                                TextAlign.right,
+                                                            textAlign: TextAlign.right,
                                                           ),
                                                           widget.total != ''
                                                               ? Text(
-                                                                  NumberFormat.currency(
-                                                                          locale:
-                                                                              'id-ID',
-                                                                          symbol:
-                                                                              'Rp ',
-                                                                          decimalDigits:
-                                                                              0)
-                                                                      .format(int.parse(
-                                                                          widget
-                                                                              .total!)),
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  NumberFormat.currency(locale: 'id-ID', symbol: 'Rp ', decimalDigits: 0)
+                                                                      .format(int.parse(widget.total!)),
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 )
                                                               : Text(
                                                                   '-',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 ),
                                                         ],
@@ -665,8 +531,7 @@ class _PrabayarTransaksiBerhasilViewState
                                                         height: 1.h,
                                                       ),
                                                       Divider(
-                                                        color: Colors
-                                                            .grey.shade400,
+                                                        color: Colors.grey.shade400,
                                                         thickness: 1.2,
                                                       ),
                                                       SizedBox(
@@ -677,13 +542,9 @@ class _PrabayarTransaksiBerhasilViewState
                                                               children: [
                                                                 Text(
                                                                   '${widget.info!}',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        11.0.sp,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                  style: TextStyle(
+                                                                    fontSize: 11.0.sp,
+                                                                    fontWeight: FontWeight.w400,
                                                                   ),
                                                                 ),
                                                                 SizedBox(
@@ -691,50 +552,29 @@ class _PrabayarTransaksiBerhasilViewState
                                                                 ),
                                                                 Container(
                                                                   height: 8.0.h,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Colors
-                                                                          .green, // Outline color
-                                                                      width:
-                                                                          2.0, // Outline width
+                                                                  decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                    border: Border.all(
+                                                                      color: Colors.green, // Outline color
+                                                                      width: 2.0, // Outline width
                                                                     ),
-                                                                    color: Colors
-                                                                        .green
-                                                                        .withOpacity(
-                                                                            0.2),
+                                                                    color: Colors.green.withOpacity(0.2),
                                                                   ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsets
-                                                                        .all(1.0
-                                                                            .h),
+                                                                  child: Padding(
+                                                                    padding: EdgeInsets.all(1.0.h),
                                                                     child: Row(
                                                                       children: [
-                                                                        SvgPicture
-                                                                            .asset(
+                                                                        SvgPicture.asset(
                                                                           'assets/images/Checkmark.svg',
-                                                                          height:
-                                                                              3.5.h,
+                                                                          height: 3.5.h,
                                                                         ),
                                                                         SizedBox(
-                                                                          width:
-                                                                              2.0.w,
+                                                                          width: 2.0.w,
                                                                         ),
                                                                         Text(
                                                                           // widget.error!,
-                                                                          'Transaksi' +
-                                                                              ' ' +
-                                                                              (widget.description!),
-                                                                          style: TextStyle(
-                                                                              fontSize: 11.sp,
-                                                                              color: Colors.green,
-                                                                              fontWeight: FontWeight.w400),
+                                                                          widget.description!,
+                                                                          style: TextStyle(fontSize: 11.sp, color: Colors.green, fontWeight: FontWeight.w400),
                                                                         )
                                                                       ],
                                                                     ),
@@ -744,54 +584,29 @@ class _PrabayarTransaksiBerhasilViewState
                                                             )
                                                           : Container(
                                                               height: 8.0.h,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Colors
-                                                                      .green, // Outline color
-                                                                  width:
-                                                                      2.0, // Outline width
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(8.0),
+                                                                border: Border.all(
+                                                                  color: Colors.green, // Outline color
+                                                                  width: 2.0, // Outline width
                                                                 ),
-                                                                color: Colors
-                                                                    .green
-                                                                    .withOpacity(
-                                                                        0.2),
+                                                                color: Colors.green.withOpacity(0.2),
                                                               ),
                                                               child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(1.0
-                                                                            .h),
+                                                                padding: EdgeInsets.all(1.0.h),
                                                                 child: Row(
                                                                   children: [
-                                                                    SvgPicture
-                                                                        .asset(
+                                                                    SvgPicture.asset(
                                                                       'assets/images/Checkmark.svg',
-                                                                      height:
-                                                                          3.5.h,
+                                                                      height: 3.5.h,
                                                                     ),
                                                                     SizedBox(
-                                                                      width:
-                                                                          2.0.w,
+                                                                      width: 2.0.w,
                                                                     ),
                                                                     Text(
                                                                       // widget.error!,
-                                                                      'Transaksi' +
-                                                                          ' ' +
-                                                                          (widget
-                                                                              .description!),
-                                                                      style: TextStyle(
-                                                                          fontSize: 11
-                                                                              .sp,
-                                                                          color: Colors
-                                                                              .green,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
+                                                                      'Transaksi' + ' ' + (widget.description!),
+                                                                      style: TextStyle(fontSize: 11.sp, color: Colors.green, fontWeight: FontWeight.w400),
                                                                     )
                                                                   ],
                                                                 ),
@@ -847,25 +662,15 @@ class _PrabayarTransaksiBerhasilViewState
                               height: 6.0.h,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  double pixelRatio =
-                                      MediaQuery.of(context).devicePixelRatio;
+                                  double pixelRatio = MediaQuery.of(context).devicePixelRatio;
 
-                                  screenshotController2
-                                      .capture(pixelRatio: pixelRatio)
-                                      .then((Uint8List? image) async {
+                                  screenshotController2.capture(pixelRatio: pixelRatio).then((Uint8List? image) async {
                                     await [Permission.storage].request();
-                                    final time = DateTime.now()
-                                        .toIso8601String()
-                                        .replaceAll('.', '-')
-                                        .replaceAll(':', '-');
+                                    final time = DateTime.now().toIso8601String().replaceAll('.', '-').replaceAll(':', '-');
                                     final nameScreenshot = 'screenshot_$time';
                                     _imageFile = image;
 
-                                    final result =
-                                        await ImageGallerySaver.saveImage(
-                                            Uint8List.fromList(image!),
-                                            quality: 100,
-                                            name: nameScreenshot);
+                                    final result = await ImageGallerySaver.saveImage(Uint8List.fromList(image!), quality: 100, name: nameScreenshot);
 
                                     print('result  : $result');
 
@@ -876,14 +681,12 @@ class _PrabayarTransaksiBerhasilViewState
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: mainColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.download_rounded,
-                                        color: whiteColor),
+                                    Icon(Icons.download_rounded, color: whiteColor),
                                     Text(
                                       ' Unduh',
                                     ),
@@ -896,9 +699,7 @@ class _PrabayarTransaksiBerhasilViewState
                               height: 6.0.h,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  screenshotController2
-                                      .capture()
-                                      .then((Uint8List? image) {
+                                  screenshotController2.capture().then((Uint8List? image) {
                                     if (image != null) {
                                       Share.file(
                                         'MPay',
@@ -916,14 +717,12 @@ class _PrabayarTransaksiBerhasilViewState
                                       print('Captured image is null');
                                     }
                                   }).catchError((onError) {
-                                    print(
-                                        'Error capturing screenshot: $onError');
+                                    print('Error capturing screenshot: $onError');
                                   });
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: mainColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

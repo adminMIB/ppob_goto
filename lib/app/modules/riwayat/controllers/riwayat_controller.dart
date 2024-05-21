@@ -25,8 +25,9 @@ class RiwayatController extends GetxController {
           print('Ini Riwayat Berhasil');
           print(onSuccess['response']['data']);
           listRiwayat.assignAll(onSuccess['response']['data']);
-          riwayatBerhasil.assignAll(
-              listRiwayat.where((element) => element['status'] == 'SUKSES'));
+          // riwayatBerhasil.assignAll(listRiwayat.where((element) => element['status'] == 'SUCCESSFUL'));
+          riwayatBerhasil
+              .assignAll(listRiwayat.where((element) => element['status'] == 'SUCCESS' || element['status'] == 'SUCCESSFUL' || element['status'] == 'SUKSES'));
           // listRiwayat.assignAll(items)
         }
       },
@@ -51,8 +52,9 @@ class RiwayatController extends GetxController {
           print('Ini Riwayat Gagal');
           print(onSuccess['response']['data']);
           listRiwayat.assignAll(onSuccess['response']['data']);
-          riwayatGagal.assignAll(
-              listRiwayat.where((element) => element['status'] == 'GAGAL'));
+          // riwayatGagal.assignAll(listRiwayat.where((element) => element['status'] == 'GAGAL'));
+          riwayatGagal
+              .assignAll(listRiwayat.where((element) => element['status'] == 'GAGAL' || element['status'] == 'failed' || element['status'] == 'FAILED'));
           // listRiwayat.assignAll(items)
         }
       },

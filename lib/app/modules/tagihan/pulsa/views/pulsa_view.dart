@@ -113,10 +113,7 @@ class _PulsaViewState extends State<PulsaView> {
                                     SizedBox(height: 1.0.h),
                                     Text(
                                       'Pulsa Prabayar',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14.0.sp,
-                                          fontWeight: FontWeight.w500),
+                                      style: TextStyle(color: Colors.black, fontSize: 14.0.sp, fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(
                                       height: 1.0.h,
@@ -130,15 +127,12 @@ class _PulsaViewState extends State<PulsaView> {
                                       height: 1.0.h,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 2.0.h, right: 2.0.h),
+                                      padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding:
-                                                EdgeInsets.only(left: 7.0.h),
+                                            padding: EdgeInsets.only(left: 7.0.h),
                                             child: Text(
                                               'Nomor Handphone',
                                               style: TextStyle(
@@ -152,10 +146,8 @@ class _PulsaViewState extends State<PulsaView> {
                                             height: 1.0.h,
                                           ),
                                           Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               // Image.asset(
                                               //   'assets/images/telkomsel.png',
@@ -169,16 +161,12 @@ class _PulsaViewState extends State<PulsaView> {
                                                   onTap: () {
                                                     tNoPulsa.text = '';
                                                   },
-                                                  child: _data.logoProvider
-                                                              .value ==
-                                                          ''
+                                                  child: _data.logoProvider.value == ''
                                                       ? Container()
                                                       : Image.asset(
-                                                          _data.logoProvider
-                                                              .value,
+                                                          _data.logoProvider.value,
                                                           width: 5.0.h,
-                                                          alignment: Alignment
-                                                              .topCenter,
+                                                          alignment: Alignment.topCenter,
                                                         ),
                                                 ),
                                               ),
@@ -186,84 +174,44 @@ class _PulsaViewState extends State<PulsaView> {
                                               SizedBox(width: 2.0.h),
                                               Form(
                                                 key: _formkey,
-                                                autovalidateMode:
-                                                    AutovalidateMode
-                                                        .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 child: Container(
                                                   width: 65.w,
                                                   // height: 7.h,
                                                   child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       TextFormField(
                                                         minLines: 1,
                                                         maxLength: 13,
                                                         controller: tNoPulsa,
-                                                        keyboardType:
-                                                            TextInputType
-                                                                .number,
+                                                        keyboardType: TextInputType.number,
                                                         onChanged: (a) async {
-                                                          lengthNoTelepon =
-                                                              a.length;
-                                                          pulsaController
-                                                              .checkNomorPonsel(
-                                                                  a, context);
+                                                          lengthNoTelepon = a.length;
+                                                          pulsaController.checkNomorPonsel(a, context);
                                                           setState(() {
-                                                            shouldUpdateViewPrice =
-                                                                true;
+                                                            shouldUpdateViewPrice = true;
                                                           });
-                                                          await Future.delayed(
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      2000));
+                                                          await Future.delayed(Duration(milliseconds: 2000));
                                                         },
-                                                        decoration:
-                                                            InputDecoration(
-                                                          border:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                                    color: Colors
-                                                                        .grey),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
+                                                        decoration: InputDecoration(
+                                                          border: OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.grey),
+                                                            borderRadius: BorderRadius.circular(10.0),
                                                           ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                                    color: Colors
-                                                                        .grey),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0), // Same circular border radius
+                                                          enabledBorder: OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.grey),
+                                                            borderRadius: BorderRadius.circular(10.0), // Same circular border radius
                                                           ),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                                    color: Colors
-                                                                        .blue),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.blue),
+                                                            borderRadius: BorderRadius.circular(10.0),
                                                           ),
-                                                          hintText:
-                                                              'Masukkan Nomer telepon',
-                                                          hintStyle: TextStyle(
-                                                              fontSize: 12.0.sp,
-                                                              color: Colors.grey
-                                                                  .shade500),
+                                                          hintText: 'Masukkan Nomer telepon',
+                                                          hintStyle: TextStyle(fontSize: 12.0.sp, color: Colors.grey.shade500),
                                                         ),
                                                         validator: (value) {
-                                                          if (lengthNoTelepon <
-                                                              7) {
+                                                          if (lengthNoTelepon < 7) {
                                                             return 'Nomor handphone minimal 10 karakter';
                                                           }
                                                           return null; // No error message here
@@ -280,29 +228,14 @@ class _PulsaViewState extends State<PulsaView> {
                                               ),
                                               GestureDetector(
                                                 onTap: () async {
-                                                  var result = await showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          const KontakView());
+                                                  var result = await showDialog(context: context, builder: (BuildContext context) => const KontakView());
 
-                                                  if (result != null &&
-                                                      result is String) {
-                                                    String formattedNumber =
-                                                        result
-                                                            .replaceAll(
-                                                                '+62', '0')
-                                                            .replaceAll('-', '')
-                                                            .replaceAll(
-                                                                ' ', '');
+                                                  if (result != null && result is String) {
+                                                    String formattedNumber = result.replaceAll('+62', '0').replaceAll('-', '').replaceAll(' ', '');
 
                                                     setState(() {
-                                                      tNoPulsa.text =
-                                                          formattedNumber;
-                                                      pulsaController
-                                                          .checkNomorPonsel(
-                                                              formattedNumber,
-                                                              context);
+                                                      tNoPulsa.text = formattedNumber;
+                                                      pulsaController.checkNomorPonsel(formattedNumber, context);
                                                     });
                                                   }
                                                 },
@@ -313,8 +246,7 @@ class _PulsaViewState extends State<PulsaView> {
                                                   child: Image.asset(
                                                     'assets/images/kontak.png',
                                                     height: 4.0.h,
-                                                    alignment:
-                                                        Alignment.topCenter,
+                                                    alignment: Alignment.topCenter,
                                                   ),
                                                 ),
                                               ),
@@ -327,18 +259,13 @@ class _PulsaViewState extends State<PulsaView> {
                                       height: 2.0.h,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 2.0.h, right: 6.0.h),
+                                      padding: EdgeInsets.only(left: 2.0.h, right: 6.0.h),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           Text(
                                             'Simpan Nomor untuk trx selanjutnya',
-                                            style: TextStyle(
-                                                fontSize: 7.0.sp,
-                                                fontWeight: FontWeight.w400,
-                                                color: greyTextColor),
+                                            style: TextStyle(fontSize: 7.0.sp, fontWeight: FontWeight.w400, color: greyTextColor),
                                           ),
                                           SizedBox(
                                             width: 1.0.w,
@@ -378,22 +305,11 @@ class _PulsaViewState extends State<PulsaView> {
                                       child: Container(
                                         color: whiteColor,
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: pulsaController
-                                              .listPulsaOnly
-                                              .map((element) {
-                                            return viewprice(
-                                                _data.isCek.value == true
-                                                    ? true
-                                                    : false,
-                                                element['provider'],
-                                                element['productCode'],
-                                                element['productName'],
-                                                element['price'],
-                                                element['type']);
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: pulsaController.listPulsaOnly.map((element) {
+                                            return viewprice(_data.isCek.value == true ? true : false, element['provider'], element['productCode'],
+                                                element['productName'], element['price'], element['type']);
                                           }).toList(),
                                         ),
                                       ),
@@ -437,15 +353,7 @@ class _PulsaViewState extends State<PulsaView> {
                   bottomSheetColor: Colors.transparent,
                   context: context,
                   builder: (context, scrollController, bottomSheetOffset) {
-                    return _buildBottomSheet(
-                        price,
-                        productName,
-                        productCode,
-                        type,
-                        provider,
-                        context,
-                        scrollController,
-                        bottomSheetOffset);
+                    return _buildBottomSheet(price, productName, productCode, type, provider, context, scrollController, bottomSheetOffset);
                   },
                   isExpand: false,
                 );
@@ -671,9 +579,7 @@ class _PulsaViewState extends State<PulsaView> {
                                 }
                               : null,
                           style: ElevatedButton.styleFrom(
-                            primary: tNoPulsa.text.length >= 7
-                                ? mainColor
-                                : Colors.grey.shade500,
+                            primary: tNoPulsa.text.length >= 7 ? mainColor : Colors.grey.shade500,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),

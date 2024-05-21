@@ -100,7 +100,7 @@ class _EwalletViewState extends State<EwalletView> {
                     image: 'assets/images/brizzii.png',
                     title: 'Brizzi',
                     onTap: () {
-                      Get.to(OldHomeView());
+                      Get.to(BrizziView());
                     },
                   ),
                 ],

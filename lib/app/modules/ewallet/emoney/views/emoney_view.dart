@@ -18,96 +18,102 @@ class _EmoneyViewState extends State<EmoneyView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: mainColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: whiteColor,
+        title: Text(
+          // "Top Up E-Money",
+          "Scan Kartu E-Money",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 14.0.sp,
+            // fontWeight: FontWeight.w700,
+            color: mainColor,
+          ),
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: blackColor,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
           },
         ),
       ),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 2.0.h,
-                horizontal: 2.0.w,
-              ),
-              child: Column(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/images/emoney.png',
-                      fit: BoxFit.contain,
-                      height: 5.0.h,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Center(
-                    child: Image.asset(
-                      'assets/images/emoneyhp.png',
-                      height: 30.0.h,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.0.h,
-                  ),
-                  Text(
-                    'Tempel dan tahan kartu di belakang handphone untuk cek, update, atau top-up saldo atau',
-                    style: TextStyle(
-                      fontSize: 12.0.sp,
-                      fontWeight: FontWeight.w400,
-                      color: mainColor,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.32,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+      body: Stack(
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 45.h,
+                decoration: BoxDecoration(
+                  color: whiteColor,
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+                ),
+                child: SafeArea(
+                  child: Column(
                     children: [
-                      Text(
-                        'Masukkan nomer kartu?',
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 13.0.sp,
-                          fontWeight: FontWeight.w400,
-                          height: 0,
-                          letterSpacing: 0.25,
-                        ),
-                      ),
-                      SizedBox(width: 1.0.h),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(InputKartuView());
-                        },
-                        child: Text(
-                          'Top up',
-                          style: TextStyle(
-                            color: mainColor,
-                            fontSize: 14.0.sp,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.50,
+                      Container(
+                        width: 40.w,
+                        height: 10.h,
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/emoney.png',
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 70,
+            left: 10,
+            right: 10,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/emoneyhp.png',
+                    height: 40.0.h,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Tempel dan tahan kartu di belakang handphone untuk cek, update, dan top-up saldo",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 12.0.sp, fontWeight: FontWeight.w400, color: whiteColor),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(InputKartuView());
+                    },
+                    child: Text(
+                      'Masukan nomor kartu?',
+                      style: TextStyle(
+                        color: whiteColor,
+                        fontSize: 12.0.sp,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.50,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -8,6 +8,7 @@ import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
 import 'package:ppob_mpay1/app/data/popup/views/saldotidakcukup_view.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/bottmsheet_emoney_view.dart';
+import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/emoney_transaksi_berhasil_view.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/emoney_transaksi_gagal_view.dart';
 
 class EmoneyController extends GetxController {
@@ -75,32 +76,27 @@ class EmoneyController extends GetxController {
         if (onSuccess['status'] == true) {
           print('Transaksi Berhasil : $onSuccess');
 
-          // PersistentNavBarNavigator.pushNewScreen(
-          //   context,
-          //   screen: PrabayarTransaksiBerhasilView(
-          //     idpel: idPel,
-          //     waktu: DateFormat('yyyy-MM-dd HH:mm:ss').format(CustomTime(onSuccess['response']['date'])),
-          //     noMeter: idPel,
-          //     noRef: onSuccess['response']['ref'],
-          //     namaPelanggan: onSuccess['response']['nama_pelanggan'],
-          //     nominal: amount,
-          //     tarif: onSuccess['response']['tarif'],
-          //     daya: onSuccess['response']['daya'].toString(),
-          //     kwh: onSuccess['response']['kwh'].toString(),
-          //     token: onSuccess['response']['token'.toString()],
-          //     admin: admin,
-          //     total: onSuccess['response']['saldo_terpotong'].toString(),
-          //     info: onSuccess['response']['info_text'],
-          //     description: onSuccess['response']['description'],
-          //   ),
-          // );
+          PersistentNavBarNavigator.pushNewScreen(
+            context,
+            screen: EmoneyTransaksiBerhasilView(
+              idpel: idPel,
+              waktu: DateFormat('yyyy-MM-dd HH:mm:ss').format(CustomTime(onSuccess['response']['tanggal'])),
+              nominal: onSuccess['response']['nominal'].toString(),
+              admin: admin,
+              ref1: onSuccess['response']['ref1'],
+              ref2: onSuccess['response']['ref2'],
+              total: onSuccess['response']['total_bayar'].toString(),
+              ket: onSuccess['response']['keterangan'],
+              namaPelanggan: onSuccess['response']['nama_pelanggan'],
+            ),
+          );
         } else {
           print('error $onSuccess');
           Get.back();
           showDialog(
             context: context,
             builder: (BuildContext context) => Saldotidakcukup(
-              pesan: onSuccess['info_text'],
+              pesan: onSuccess['message'],
             ),
           );
         }
@@ -122,7 +118,7 @@ class EmoneyController extends GetxController {
         );
       },
       body: {
-        "productCode": "EMSCIN",
+        "productCode": "EMGJK",
         "idpel": idPel,
         "ref1": noref1,
         "ref2": noref2,

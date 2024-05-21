@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'dart:typed_data';
@@ -10,7 +11,7 @@ import 'package:ppob_mpay1/app/main_page.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sizer/sizer.dart';
 
-class EmoneyTransaksiGagalView extends StatefulWidget {
+class EmoneyTransaksiBerhasilView extends StatefulWidget {
   String? idpel;
   String? namaPelanggan;
   String? waktu;
@@ -20,8 +21,7 @@ class EmoneyTransaksiGagalView extends StatefulWidget {
   String? ref2;
   String? total;
   String? ket;
-
-  EmoneyTransaksiGagalView({
+  EmoneyTransaksiBerhasilView({
     super.key,
     this.idpel,
     this.namaPelanggan,
@@ -35,10 +35,10 @@ class EmoneyTransaksiGagalView extends StatefulWidget {
   });
 
   @override
-  State<EmoneyTransaksiGagalView> createState() => _EmoneyTransaksiGagalViewState();
+  State<EmoneyTransaksiBerhasilView> createState() => _EmoneyTransaksiBerhasilViewState();
 }
 
-class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
+class _EmoneyTransaksiBerhasilViewState extends State<EmoneyTransaksiBerhasilView> {
   Uint8List? _imageFile;
   ScreenshotController screenshotController2 = ScreenshotController();
 
@@ -86,7 +86,7 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                       Screenshot(
                         controller: screenshotController2,
                         child: Container(
-                          // color: Colors.red,
+                          color: whiteColor,
                           child: Column(
                             children: [
                               SizedBox(
@@ -111,7 +111,7 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                                       ),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey.shade300.withOpacity(0.5),
+                                          color: Colors.grey.shade100.withOpacity(0.5),
                                           spreadRadius: 5,
                                           blurRadius: 7,
                                           offset: Offset(0, 1),
@@ -132,11 +132,11 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  'Transaksi Gagal',
+                                                  'Transaksi Berhasil',
                                                   style: TextStyle(
                                                     fontSize: 14.0.sp,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.red,
+                                                    color: Colors.green,
                                                   ),
                                                   textAlign: TextAlign.center,
                                                 ),
@@ -145,14 +145,22 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                                                 ),
                                                 Text(
                                                   'E-Money',
-                                                  style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500, color: mainColor),
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: mainColor,
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: 1.h,
                                                 ),
                                                 Text(
-                                                  'ID Pelanggan : ${widget.idpel!}',
-                                                  style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500, color: mainColor),
+                                                  'ID Pelanggan :  ${widget.idpel!}',
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: mainColor,
+                                                  ),
                                                 )
                                               ],
                                             ),
@@ -249,6 +257,13 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                                                               fontWeight: FontWeight.w400,
                                                             ),
                                                           ),
+                                                    // Text(
+                                                    //   '-',
+                                                    //   style: TextStyle(
+                                                    //     fontSize: 11.0.sp,
+                                                    //     fontWeight: FontWeight.w400,
+                                                    //   ),
+                                                    // ),
                                                   ],
                                                 ),
                                                 SizedBox(
@@ -334,38 +349,39 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                                                 SizedBox(
                                                   height: 2.0.h,
                                                 ),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(8.0),
-                                                    border: Border.all(
-                                                      color: Colors.red, // Outline color
-                                                      width: 2.0, // Outline width
-                                                    ),
-                                                    color: Colors.red.withOpacity(0.2),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: EdgeInsets.all(1.0.h),
-                                                    child: Row(
-                                                      children: [
-                                                        Image.asset(
-                                                          'assets/images/failed.png',
-                                                          height: 4.h,
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 8.0.h,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(8.0),
+                                                        border: Border.all(
+                                                          color: Colors.green, // Outline color
+                                                          width: 2.0, // Outline width
                                                         ),
-                                                        SizedBox(
-                                                          width: 2.0.w,
+                                                        color: Colors.green.withOpacity(0.2),
+                                                      ),
+                                                      child: Padding(
+                                                        padding: EdgeInsets.all(1.0.h),
+                                                        child: Row(
+                                                          children: [
+                                                            SvgPicture.asset(
+                                                              'assets/images/Checkmark.svg',
+                                                              height: 3.5.h,
+                                                            ),
+                                                            SizedBox(
+                                                              width: 2.0.w,
+                                                            ),
+                                                            Text(
+                                                              // widget.error!,
+                                                              'Transaksi  ${widget.ket!}',
+                                                              style: TextStyle(fontSize: 11.sp, color: Colors.green, fontWeight: FontWeight.w400),
+                                                            )
+                                                          ],
                                                         ),
-                                                        Container(
-                                                          width: 60.0.w,
-                                                          child: Text(
-                                                            // widget.error!,
-                                                            // widget.ket!,
-                                                            ' widget.ket!',
-                                                            style: TextStyle(fontSize: 11.sp, color: Colors.red, fontWeight: FontWeight.w400),
-                                                          ),
-                                                        )
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 )
                                               ],
                                             ),
@@ -386,8 +402,8 @@ class _EmoneyTransaksiGagalViewState extends State<EmoneyTransaksiGagalView> {
                                             shape: BoxShape.circle,
                                             color: whiteColor,
                                           ),
-                                          child: Image.asset(
-                                            'assets/images/failed.png',
+                                          child: SvgPicture.asset(
+                                            'assets/images/Checkmark.svg',
                                             height: 3.5.h,
                                           ),
                                         ),
