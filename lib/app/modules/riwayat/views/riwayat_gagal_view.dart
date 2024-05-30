@@ -84,11 +84,11 @@ class _RiwayatGagalViewState extends State<RiwayatGagalView> {
                                           ],
                                         ),
                                         SizedBox(height: 2.0.h),
+                                        _detailTransaksi("No. Ref", history['ref2']),
                                         _detailTransaksi("Nama Produk", history['type_transaction']),
                                         _detailTransaksi("Jenis Transaksi", history['type_transaction']),
                                         _detailTransaksi("Aktivitas Transaksi", history['transaction_activities']),
                                         _detailTransaksi("Tanggal Transaksi", formatCreatedAt(history['payment_time'])),
-                                        _detailTransaksi("No. Ref", history['ref2']),
                                         _detailTransaksi("Kode Produk", history['product_code']),
                                         _detailTransaksi(
                                             "Total Pembayaran",
