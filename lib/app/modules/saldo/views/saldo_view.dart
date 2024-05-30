@@ -62,8 +62,7 @@ class _SaldoViewState extends State<SaldoView> {
   List<String> bank = ["MANDIRI", "BCA", "BRI", "BNI"];
 
   String _formatCurrency(double amount) {
-    final currencyFormat =
-        NumberFormat.currency(locale: 'id-ID', symbol: '', decimalDigits: 0);
+    final currencyFormat = NumberFormat.currency(locale: 'id-ID', symbol: '', decimalDigits: 0);
     return currencyFormat.format(amount);
   }
 
@@ -130,9 +129,7 @@ class _SaldoViewState extends State<SaldoView> {
                                       Stack(
                                         alignment: Alignment.center,
                                         children: [
-                                          if (homeController.balance.value ==
-                                                  '0' &&
-                                              isLoading.value)
+                                          if (homeController.balance.value == '0' && isLoading.value)
                                             SizedBox(
                                               width: 12.0,
                                               height: 12.0,
@@ -140,17 +137,14 @@ class _SaldoViewState extends State<SaldoView> {
                                                 strokeWidth: 2.0,
                                               ),
                                             ),
-                                          if (!(homeController.balance.value ==
-                                                  '0' &&
-                                              isLoading.value))
+                                          if (!(homeController.balance.value == '0' && isLoading.value))
                                             Text(
                                               'Rp. ' +
                                                   NumberFormat.currency(
                                                     locale: 'id-ID',
                                                     symbol: '',
                                                     decimalDigits: 0,
-                                                  ).format(double.parse(
-                                                      '${homeController.balance.value}')) +
+                                                  ).format(double.parse('${homeController.balance.value}')) +
                                                   '',
                                               style: TextStyle(
                                                 color: mainColor,
@@ -196,8 +190,7 @@ class _SaldoViewState extends State<SaldoView> {
                                               setState(() {
                                                 isLoading.value = true;
                                               });
-                                              await Future.delayed(
-                                                  Duration(seconds: 2));
+                                              await Future.delayed(Duration(seconds: 2));
                                               await _refreshBalance();
                                               setState(() {
                                                 isLoading.value = false;
@@ -273,8 +266,7 @@ class _SaldoViewState extends State<SaldoView> {
                             Expanded(
                               child: Form(
                                 key: _formKey,
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 child: TextFormField(
                                   minLines: 1,
                                   controller: saldo,
@@ -282,19 +274,16 @@ class _SaldoViewState extends State<SaldoView> {
                                   onChanged: (a) {
                                     saldoanda = int.tryParse(a) ?? 0;
                                     if (a.isNotEmpty) {
-                                      final cleanedValue =
-                                          a.replaceAll(RegExp(r'[^\d]'), '');
+                                      final cleanedValue = a.replaceAll(RegExp(r'[^\d]'), '');
                                       final formatter = NumberFormat.currency(
                                         locale: 'id-ID',
                                         symbol: '',
                                         decimalDigits: 0,
                                       );
-                                      final formattedValue = formatter
-                                          .format(int.parse(cleanedValue));
+                                      final formattedValue = formatter.format(int.parse(cleanedValue));
                                       saldo.value = TextEditingValue(
                                         text: formattedValue,
-                                        selection: TextSelection.collapsed(
-                                            offset: formattedValue.length),
+                                        selection: TextSelection.collapsed(offset: formattedValue.length),
                                       );
                                       print(cleanedValue);
                                     }
@@ -319,8 +308,7 @@ class _SaldoViewState extends State<SaldoView> {
                                       ),
                                     ),
                                     border: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey),
+                                      borderSide: BorderSide(color: Colors.grey),
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     hintText: 'Masukkan nominal ',
@@ -334,10 +322,8 @@ class _SaldoViewState extends State<SaldoView> {
                                       return 'Masukkan jumlah saldo';
                                     }
 
-                                    final cleanedValue =
-                                        value.replaceAll(RegExp(r'[^\d]'), '');
-                                    int inputSaldo =
-                                        int.tryParse(cleanedValue) ?? 0;
+                                    final cleanedValue = value.replaceAll(RegExp(r'[^\d]'), '');
+                                    int inputSaldo = int.tryParse(cleanedValue) ?? 0;
                                     if (inputSaldo < 10000) {
                                       return 'Saldo minimal harus Rp 10.000';
                                     }
@@ -432,20 +418,15 @@ class _SaldoViewState extends State<SaldoView> {
                             child: ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  final cleanedValue = saldo.text
-                                      .replaceAll(RegExp(r'[^\d]'), '');
-                                  final parsedValue =
-                                      int.tryParse(cleanedValue) ?? 0;
+                                  final cleanedValue = saldo.text.replaceAll(RegExp(r'[^\d]'), '');
+                                  final parsedValue = int.tryParse(cleanedValue) ?? 0;
                                   if (parsedValue >= 10000) {
                                     if (bankValue == null) {
-                                      await helperController.popUpMessage(
-                                          'Silahkan pilih bank terlebih dahulu',
-                                          context);
+                                      await helperController.popUpMessage('Silahkan pilih bank terlebih dahulu', context);
                                     } else {
                                       await saldoController.Topupsaldo(
                                         context,
-                                        saldo.text
-                                            .replaceAll(RegExp(r'[^\d]'), ''),
+                                        saldo.text.replaceAll(RegExp(r'[^\d]'), ''),
                                         bankValue,
                                       );
                                     }

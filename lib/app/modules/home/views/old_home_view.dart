@@ -159,10 +159,8 @@ class _OldHomeViewState extends State<OldHomeView> {
                                   Container(
                                     width: 27.0.h,
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Selamat datang',
@@ -175,8 +173,7 @@ class _OldHomeViewState extends State<OldHomeView> {
                                           height: 0.5.h,
                                         ),
                                         Text(
-                                          '${pref.read('nama_lengkap')}'
-                                              .toUpperCase(),
+                                          '${pref.read('nama_lengkap')}'.toUpperCase(),
                                           style: TextStyle(
                                             fontSize: 14.0.sp,
                                             fontWeight: FontWeight.w600,
@@ -199,10 +196,8 @@ class _OldHomeViewState extends State<OldHomeView> {
                                     width: 8.h,
                                   ),
                                   Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Image.asset(
                                         'assets/images/logo1.png',
@@ -244,8 +239,7 @@ class _OldHomeViewState extends State<OldHomeView> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             'Saldo Anda',
@@ -258,8 +252,7 @@ class _OldHomeViewState extends State<OldHomeView> {
                                             height: 0.2.h,
                                           ),
                                           Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 'Rp. ',
@@ -271,33 +264,24 @@ class _OldHomeViewState extends State<OldHomeView> {
                                               Stack(
                                                 alignment: Alignment.center,
                                                 children: [
-                                                  if (homeController
-                                                              .balance.value ==
-                                                          '0' &&
-                                                      isLoading.value)
+                                                  if (homeController.balance.value == '0' && isLoading.value)
                                                     SizedBox(
                                                       width: 12.0,
                                                       height: 12.0,
-                                                      child:
-                                                          CircularProgressIndicator(
+                                                      child: CircularProgressIndicator(
                                                         strokeWidth: 2.0,
                                                       ),
                                                     ),
-                                                  if (!(homeController
-                                                              .balance.value ==
-                                                          '0' &&
-                                                      isLoading.value))
+                                                  if (!(homeController.balance.value == '0' && isLoading.value))
                                                     Text(
                                                       NumberFormat.currency(
                                                         locale: 'id-ID',
                                                         symbol: '',
                                                         decimalDigits: 0,
-                                                      ).format(double.parse(
-                                                          '${homeController.balance.value}')),
+                                                      ).format(double.parse('${homeController.balance.value}')),
                                                       style: TextStyle(
                                                         fontSize: 12.0.sp,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                 ],
@@ -308,8 +292,7 @@ class _OldHomeViewState extends State<OldHomeView> {
                                                   setState(() {
                                                     isLoading.value = true;
                                                   });
-                                                  await Future.delayed(
-                                                      Duration(seconds: 2));
+                                                  await Future.delayed(Duration(seconds: 2));
                                                   await _refreshBalance();
                                                   setState(() {
                                                     isLoading.value = false;

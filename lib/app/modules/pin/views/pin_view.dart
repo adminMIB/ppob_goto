@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/modules/ewallet/emoney/controllers/emoney_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/controllers/bpjs_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
@@ -65,6 +66,7 @@ class _PinViewState extends State<PinView> {
   final pdamController = Get.put(PdamController());
   final plnController = Get.put(PlnController());
   final plnprabayarController = Get.put(PlnController());
+  final emoneyController = Get.put(EmoneyController());
   final bpjskesehatanController = Get.put(BpjsController());
 
   @override
@@ -111,8 +113,7 @@ class _PinViewState extends State<PinView> {
                 children: [
                   Text(
                     'Masukkan PIN',
-                    style:
-                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 1.0.h,
@@ -133,8 +134,7 @@ class _PinViewState extends State<PinView> {
               Form(
                 key: formKey,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 75),
+                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 75),
                   child: PinCodeTextField(
                     backgroundColor: Colors.transparent,
                     appContext: context,
@@ -196,18 +196,8 @@ class _PinViewState extends State<PinView> {
                           context,
                         );
                       } else if (widget.tipeTransaksi == 'pdam') {
-                        await pdamController.pdampayment(
-                            widget.productName,
-                            widget.productCode,
-                            widget.idpel,
-                            widget.ref1,
-                            widget.ref2,
-                            widget.total_payment,
-                            widget.harga,
-                            widget.admin,
-                            widget.periode,
-                            v,
-                            context);
+                        await pdamController.pdampayment(widget.productName, widget.productCode, widget.idpel, widget.ref1, widget.ref2, widget.total_payment,
+                            widget.harga, widget.admin, widget.periode, v, context);
                       } else if (widget.tipeTransaksi == 'plnpasca') {
                         await plnController.plnpascapayment(
                           widget.periode,
@@ -222,25 +212,38 @@ class _PinViewState extends State<PinView> {
                         );
                       } else if (widget.tipeTransaksi == 'plnprabayar') {
                         await plnprabayarController.plnprabayarPayment(
-                            widget.idpel,
-                            widget.idpel2,
-                            widget.ref1,
-                            widget.ref2,
-                            widget.amount,
-                            widget.admin,
-                            v,
-                            context);
+                          widget.idpel,
+                          widget.idpel2,
+                          widget.ref1,
+                          widget.ref2,
+                          widget.amount,
+                          widget.admin,
+                          v,
+                          context,
+                        );
+                      } else if (widget.tipeTransaksi == 'emoney') {
+                        await emoneyController.emoneyPayment(
+                          widget.idpel,
+                          widget.ref1,
+                          widget.ref2,
+                          widget.amount,
+                          widget.admin,
+                          widget.total_payment,
+                          v,
+                          context,
+                        );
                       } else if (widget.tipeTransaksi == 'bpjskesehatan') {
                         await bpjskesehatanController.bpjskespayment(
-                            widget.idpel,
-                            widget.no_hp,
-                            widget.periode,
-                            widget.ref1,
-                            widget.ref2,
-                            widget.total_payment,
-                            widget.admin,
-                            v,
-                            context);
+                          widget.idpel,
+                          widget.no_hp,
+                          widget.periode,
+                          widget.ref1,
+                          widget.ref2,
+                          widget.total_payment,
+                          widget.admin,
+                          v,
+                          context,
+                        );
                       }
                     },
                     onChanged: (value) {
@@ -268,8 +271,7 @@ class _PinViewState extends State<PinView> {
                     textEditingController.clear();
                   }
                   setState(() {
-                    textEditingController.text = textEditingController.text
-                        .substring(0, textEditingController.text.length - 1);
+                    textEditingController.text = textEditingController.text.substring(0, textEditingController.text.length - 1);
                   });
                 },
                 rightIcon: const Icon(

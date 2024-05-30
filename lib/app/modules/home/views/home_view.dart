@@ -79,9 +79,7 @@ class _HomeViewState extends State<HomeView> {
   //   isLoading.value = true;
   // }
 
-  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
-      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
-      : '';
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join() : '';
 
   void initGreeting() async {
     int time = DateTime.now().hour;
@@ -199,10 +197,8 @@ class _HomeViewState extends State<HomeView> {
                                       width: 63.w,
                                       height: 7.h,
                                       child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(
                                             children: [
@@ -267,15 +263,12 @@ class _HomeViewState extends State<HomeView> {
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Stack(
                                         alignment: Alignment.center,
                                         children: [
-                                          if (homeController.balance.value ==
-                                                  '0' &&
-                                              isLoading.value)
+                                          if (homeController.balance.value == '0' && isLoading.value)
                                             SizedBox(
                                               width: 12.0,
                                               height: 12.0,
@@ -283,9 +276,7 @@ class _HomeViewState extends State<HomeView> {
                                                 strokeWidth: 2.0,
                                               ),
                                             ),
-                                          if (!(homeController.balance.value ==
-                                                  '0' &&
-                                              isLoading.value))
+                                          if (!(homeController.balance.value == '0' && isLoading.value))
                                             Container(
                                               width: 40.w,
                                               // color: blackColor,
@@ -298,8 +289,7 @@ class _HomeViewState extends State<HomeView> {
                                                         locale: 'id-ID',
                                                         symbol: '',
                                                         decimalDigits: 0,
-                                                      ).format(double.parse(
-                                                          '${homeController.balance.value}')),
+                                                      ).format(double.parse('${homeController.balance.value}')),
                                                   style: TextStyle(
                                                     color: mainColor,
                                                     fontSize: 18.0.sp,
@@ -345,8 +335,7 @@ class _HomeViewState extends State<HomeView> {
                                               setState(() {
                                                 isLoading.value = true;
                                               });
-                                              await Future.delayed(
-                                                  Duration(seconds: 2));
+                                              await Future.delayed(Duration(seconds: 2));
                                               await _refreshBalance();
                                               setState(() {
                                                 isLoading.value = false;
@@ -390,8 +379,7 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       ElevatedButton.icon(
                                         onPressed: () {
@@ -414,8 +402,7 @@ class _HomeViewState extends State<HomeView> {
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: mainColor,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                                            borderRadius: BorderRadius.circular(8),
                                           ),
                                           minimumSize: Size(
                                             8.w, //panjang
@@ -728,8 +715,7 @@ class _HomeViewState extends State<HomeView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 4.5.h),
+                                  padding: EdgeInsets.symmetric(horizontal: 4.5.h),
                                   child: Text(
                                     'Promo',
                                     style: TextStyle(
@@ -760,16 +746,12 @@ class _HomeViewState extends State<HomeView> {
                                           width: 250.h,
                                           decoration: BoxDecoration(
                                             color: mainColor,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
+                                            borderRadius: BorderRadius.circular(10.0),
                                           ),
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 1.5.h),
+                                          margin: EdgeInsets.symmetric(horizontal: 1.5.h),
                                           child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            child: Image.asset(assetPath,
-                                                fit: BoxFit.fill),
+                                            borderRadius: BorderRadius.circular(10.0),
+                                            child: Image.asset(assetPath, fit: BoxFit.fill),
                                           ),
                                         );
                                       },
@@ -798,16 +780,12 @@ class _HomeViewState extends State<HomeView> {
                                           width: 250.h,
                                           decoration: BoxDecoration(
                                             color: mainColor,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
+                                            borderRadius: BorderRadius.circular(10.0),
                                           ),
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 1.5.h),
+                                          margin: EdgeInsets.symmetric(horizontal: 1.5.h),
                                           child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            child: Image.asset(assetPath,
-                                                fit: BoxFit.fill),
+                                            borderRadius: BorderRadius.circular(10.0),
+                                            child: Image.asset(assetPath, fit: BoxFit.fill),
                                           ),
                                         );
                                       },

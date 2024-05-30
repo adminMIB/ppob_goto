@@ -103,26 +103,20 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: plnprabayarController.listDenomPrabayarListrik
-                            .map((element) {
+                        children: plnprabayarController.listDenomPrabayarListrik.map((element) {
                           return GestureDetector(
                             onTap: () async {
                               controller.restart();
                               if (idpel.text.isEmpty) {
                                 Flushbar(
-                                  message:
-                                      'Mohon masukkan nomor terlebih dahulu!',
+                                  message: 'Mohon masukkan nomor terlebih dahulu!',
                                   duration: Duration(seconds: 3),
                                 )..show(context);
                               } else {
-                                plnprabayarController.selectedNominal.value =
-                                    element.nominal;
-                                print(plnprabayarController
-                                    .selectedNominal.value = element.nominal);
+                                plnprabayarController.selectedNominal.value = element.nominal;
+                                print(plnprabayarController.selectedNominal.value = element.nominal);
                                 setState(() {
-                                  selectedItemIndex = plnprabayarController
-                                      .listDenomPrabayarListrik
-                                      .indexOf(element);
+                                  selectedItemIndex = plnprabayarController.listDenomPrabayarListrik.indexOf(element);
                                 });
                               }
                             },
@@ -130,12 +124,7 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                               margin: EdgeInsets.only(bottom: 2.0.h),
                               padding: EdgeInsets.all(2.0.h),
                               decoration: BoxDecoration(
-                                color: selectedItemIndex ==
-                                        plnprabayarController
-                                            .listDenomPrabayarListrik
-                                            .indexOf(element)
-                                    ? greyishColor
-                                    : whiteColor,
+                                color: selectedItemIndex == plnprabayarController.listDenomPrabayarListrik.indexOf(element) ? greyishColor : whiteColor,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(
@@ -148,8 +137,7 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     width: 35.0.w,
@@ -209,9 +197,7 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                       textAlign: TextAlign.justify,
                     ),
                   ),
-                  // Expanded(
-                  //   child: SizedBox(),
-                  // ),
+
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -225,16 +211,12 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                             onPressed: idpel.text.length >= 7
                                 ? () async {
                                     if (formkey.currentState!.validate()) {
-                                      await plnprabayarController
-                                          .plnprabayarInquiry(
-                                              idpel.text, context);
+                                      await plnprabayarController.plnprabayarInquiry(idpel.text, context);
                                     }
                                   }
                                 : null,
                             style: ElevatedButton.styleFrom(
-                              primary: idpel.text.length >= 7
-                                  ? mainColor
-                                  : Colors.grey.shade700,
+                              primary: idpel.text.length >= 7 ? mainColor : Colors.grey.shade700,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),

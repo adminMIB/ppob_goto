@@ -84,15 +84,8 @@ class _AkunViewState extends State<AkunView> {
   // String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
   //     ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
   //     : '';
-  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
-      ? userNamalengkap
-          .trim()
-          .split(' ')
-          .map((l) => l[0])
-          .take(2)
-          .join()
-          .toUpperCase()
-      : '';
+  String getInitials(String userNamalengkap) =>
+      userNamalengkap.isNotEmpty ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join().toUpperCase() : '';
 
   @override
   Widget build(BuildContext context) {
@@ -244,8 +237,7 @@ class _AkunViewState extends State<AkunView> {
                                   Stack(
                                     alignment: Alignment.center,
                                     children: [
-                                      if (homeController.balance.value == '0' &&
-                                          isLoading.value)
+                                      if (homeController.balance.value == '0' && isLoading.value)
                                         SizedBox(
                                           width: 12.0,
                                           height: 12.0,
@@ -253,9 +245,7 @@ class _AkunViewState extends State<AkunView> {
                                             strokeWidth: 2.0,
                                           ),
                                         ),
-                                      if (!(homeController.balance.value ==
-                                              '0' &&
-                                          isLoading.value))
+                                      if (!(homeController.balance.value == '0' && isLoading.value))
                                         Container(
                                           width: 40.w,
                                           // color: blackColor,
@@ -268,8 +258,7 @@ class _AkunViewState extends State<AkunView> {
                                                     locale: 'id-ID',
                                                     symbol: '',
                                                     decimalDigits: 0,
-                                                  ).format(double.parse(
-                                                      '${homeController.balance.value}')),
+                                                  ).format(double.parse('${homeController.balance.value}')),
                                               style: TextStyle(
                                                 color: mainColor,
                                                 fontSize: 18.0.sp,
@@ -315,8 +304,7 @@ class _AkunViewState extends State<AkunView> {
                                           setState(() {
                                             isLoading.value = true;
                                           });
-                                          await Future.delayed(
-                                              Duration(seconds: 2));
+                                          await Future.delayed(Duration(seconds: 2));
                                           await _refreshBalance();
                                           setState(() {
                                             isLoading.value = false;
@@ -438,8 +426,7 @@ class _AkunViewState extends State<AkunView> {
                     ),
                     child: Column(
                       children: [
-                        _buildListTile(
-                            'Informasi Akun', 'assets/images/customer.png', () {
+                        _buildListTile('Informasi Akun', 'assets/images/customer.png', () {
                           setState(() {
                             isSubMenuVisible = !isSubMenuVisible;
                           });
@@ -519,13 +506,10 @@ class _AkunViewState extends State<AkunView> {
                             ),
                           ),
                         ),
-                        _buildListTile(
-                            'Ubah Kata Sandi', 'assets/images/lock.png', () {
+                        _buildListTile('Ubah Kata Sandi', 'assets/images/lock.png', () {
                           Get.to(LupapasswordView());
                         }),
-                        _buildListTile(
-                            'FingerPrint', 'assets/images/fingerprintn.png',
-                            () {
+                        _buildListTile('FingerPrint', 'assets/images/fingerprintn.png', () {
                           Get.to(FingerprintView());
                         }),
                         _buildListTile('MPIN', 'assets/images/pin.png', () {
@@ -606,9 +590,7 @@ class _AkunViewState extends State<AkunView> {
                               //   height: 17.0.h,
                               // ),
                               title: 'Ingin keluar',
-                              titleStyle: TextStyle(
-                                  fontSize: 13.0.sp,
-                                  fontWeight: FontWeight.w500),
+                              titleStyle: TextStyle(fontSize: 13.0.sp, fontWeight: FontWeight.w500),
                               msg: ' Pastikan aktivitas kamu sudah selesai',
                               msgStyle: TextStyle(
                                 fontSize: 11.0.sp,
