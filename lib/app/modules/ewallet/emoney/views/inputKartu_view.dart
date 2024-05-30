@@ -88,7 +88,7 @@ class _InputKartuViewState extends State<InputKartuView> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: TextFormField(
                     minLines: 1,
-                    maxLength: 15,
+                    maxLength: 20,
                     controller: idpel,
                     onChanged: (a) {
                       setState(() {
@@ -107,8 +107,8 @@ class _InputKartuViewState extends State<InputKartuView> {
                       ),
                     ),
                     validator: (value) {
-                      if (lengthIdpel < 7) {
-                        return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                      if (lengthIdpel < 10) {
+                        return 'ID pelanggan minimal 10 angka dan maximal 15 angka';
                       }
                       return null;
                     },
@@ -208,13 +208,13 @@ class _InputKartuViewState extends State<InputKartuView> {
                       width: 41.0.h,
                       height: 6.0.h,
                       child: ElevatedButton(
-                        onPressed: idpel.text.length >= 7 && selectedAmount.isNotEmpty
+                        onPressed: idpel.text.length >= 10 && selectedAmount.isNotEmpty
                             ? () async {
                                 await emoneyController.emoneyInquiry(idpel.text, selectedAmount, context);
                               }
                             : null,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: idpel.text.length >= 7 ? mainColor : Colors.grey.shade700,
+                          backgroundColor: idpel.text.length >= 10 ? mainColor : Colors.grey.shade700,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),

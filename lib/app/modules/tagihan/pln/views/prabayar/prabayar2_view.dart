@@ -124,7 +124,10 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                               margin: EdgeInsets.only(bottom: 2.0.h),
                               padding: EdgeInsets.all(2.0.h),
                               decoration: BoxDecoration(
-                                color: selectedItemIndex == plnprabayarController.listDenomPrabayarListrik.indexOf(element) ? greyishColor : whiteColor,
+                                color: whiteColor,
+                                border: selectedItemIndex == plnprabayarController.listDenomPrabayarListrik.indexOf(element)
+                                    ? Border.all(color: mainColor, width: 2)
+                                    : null,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(
