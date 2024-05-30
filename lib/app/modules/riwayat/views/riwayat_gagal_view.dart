@@ -88,7 +88,7 @@ class _RiwayatGagalViewState extends State<RiwayatGagalView> {
                                         _detailTransaksi("Jenis Transaksi", history['type_transaction']),
                                         _detailTransaksi("Aktivitas Transaksi", history['transaction_activities']),
                                         _detailTransaksi("Tanggal Transaksi", formatCreatedAt(history['payment_time'])),
-                                        _detailTransaksi("No. Reffrensi", history['ref2']),
+                                        _detailTransaksi("No. Ref", history['ref2']),
                                         _detailTransaksi("Kode Produk", history['product_code']),
                                         _detailTransaksi(
                                             "Total Pembayaran",
