@@ -60,7 +60,7 @@ class PdamController extends GetxController {
     }
   }
 
-// inquiry //
+// inquiry PDAM//
 
   pdaminquiry(var idpel, var productCode, var product_name,
       BuildContext context) async {
@@ -105,11 +105,18 @@ class PdamController extends GetxController {
                 ref2: content['response']['ref2'],
               ),
             );
+          } else {
+            helperController.popUpMessage(
+                'Mohon maaf sistem sedang maintenance, Coba beberapa saat lagi.',
+                context);
           }
         },
         onError: (onError) {
           print('error : $onError');
           Get.back();
+          helperController.popUpMessage(
+              'Mohon maaf sistem sedang maintenance, Coba beberapa saat lagi.',
+              context);
         },
         body: {
           "idpel": idpel,

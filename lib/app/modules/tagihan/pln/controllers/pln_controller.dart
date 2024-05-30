@@ -132,15 +132,59 @@ class PlnController extends GetxController {
         'Authorization': 'Bearer $access_token',
       },
       onSuccess: (content) {
-        List<String> periodeMonths = content['response']['periode'].split(",");
-        List<String> formattedMonths = [];
-        formattedMonths = periodeMonths
-            .map((month) => fromCustomTime(month.trim()))
-            .where((dateTime) => dateTime != null)
-            .map((dateTime) => DateFormat('MMMM yyyy').format(dateTime))
-            .toList();
+        //   List<String> periodeList = content['response']['periode'].split(',');
+        //   List<String> formattedMonths = [];
 
-        if (content['status'] == true) {
+        //   for (String month in periodeList) {
+        //     String formattedMonth = DateFormat('yyyyMM').parse(month).toString();
+        //     formattedMonths.add(formattedMonth);
+        //   }
+
+        //   String periode1 = formattedMonths.join(', ');
+
+        //   if (content['status'] == true) {
+        //     print('hasil pasca: ${content['response']}');
+        //     Get.to(transaksisuksesplnView(
+        //       idpel: idpel,
+        //       tglwaktu: DateFormat('yyyy-MM-dd HH:mm:ss')
+        //           .format(CustomTime(content['response']['date'])),
+        //       nama_pelanggan: content['response']['nama_pelanggan'],
+        //       tarif: content['response']['tarif'],
+        //       daya: content['response']['daya'],
+        //       harga: harga,
+        //       admin: admin,
+
+        //       // periode: formattedMonths.join(', ' + " "),
+        //       periode: periode1,
+        //       total_bayar: total_payment,
+        //       deskripsi: content['response']['description'],
+        //       info: content['response']['info_text'],
+        //     ));
+        //     print(periode);
+        //   } else {
+        //     print('error : $content');
+        //     Get.back();
+        //     showDialog(
+        //         context: context,
+        //         builder: (BuildContext context) => Saldotidakcukup(
+        //               pesan: content['message'],
+        //             ));
+        //   }
+        // },
+        if (content != null &&
+            content['response'] != null &&
+            content['response']['periode'] != null) {
+          List<String> periodeList = content['response']['periode'].split(',');
+          List<String> formattedMonths = [];
+
+          for (String month in periodeList) {
+            String formattedMonth =
+                DateFormat('yyyyMM').parse(month).toString();
+            formattedMonths.add(formattedMonth);
+          }
+
+          String periode1 = formattedMonths.join(', ');
+
           print('hasil pasca: ${content['response']}');
           Get.to(transaksisuksesplnView(
             idpel: idpel,
@@ -151,13 +195,12 @@ class PlnController extends GetxController {
             daya: content['response']['daya'],
             harga: harga,
             admin: admin,
-            // periode: content['response']['periode'],
-            // periode: formattedMonths.join(', ' + " "),
-            periode: periode,
+            periode: periode1,
             total_bayar: total_payment,
             deskripsi: content['response']['description'],
             info: content['response']['info_text'],
           ));
+          print('periode $periode1');
         } else {
           print('error : $content');
           Get.back();
@@ -188,7 +231,7 @@ class PlnController extends GetxController {
             tarif: onError['response']['tarif'],
             daya: onError['response']['daya'],
             // periode: formattedMonths.join(', ' + " "),
-            periode: onError['response']['periode'],
+            periode: periode,
             harga: harga,
             admin: admin,
             total_bayar: total_payment,

@@ -412,7 +412,7 @@ class _PaketdataViewState extends State<PaketdataView> {
                               height: 2.0.h,
                             ),
                             Container(
-                                height: Get.height * 0.53,
+                                height: Get.height * 0.60,
                                 color: whiteColor,
                                 child: Padding(
                                   padding: EdgeInsets.only(
