@@ -84,9 +84,9 @@ class _RiwayatGagalViewState extends State<RiwayatGagalView> {
                                           ],
                                         ),
                                         SizedBox(height: 2.0.h),
-                                        _detailTransaksi("No. Ref", history['ref2']),
                                         _detailTransaksi("Nama Produk", history['type_transaction']),
                                         _detailTransaksi("Jenis Transaksi", history['type_transaction']),
+                                        _detailTransaksi("Aktivitas Transaksi", history['transaction_activities']),
                                         _detailTransaksi("Tanggal Transaksi", formatCreatedAt(history['payment_time'])),
                                         _detailTransaksi("No. Reffrensi", history['ref2']),
                                         _detailTransaksi("Kode Produk", history['product_code']),
@@ -99,6 +99,7 @@ class _RiwayatGagalViewState extends State<RiwayatGagalView> {
                                                   decimalDigits: 0,
                                                 ).format(double.parse('${history['amount']}'))),
                                         _detailTransaksi("Status", history['status']),
+                                        _detailTransaksi("Deskripsi", history['description']),
                                       ],
                                     ),
                                   ),
@@ -174,18 +175,21 @@ class _RiwayatGagalViewState extends State<RiwayatGagalView> {
                                             // color: blackColor,
                                             child: Align(
                                               alignment: Alignment.topRight,
-                                              child: Text(
-                                                'Rp. ' +
-                                                    NumberFormat.currency(
-                                                      locale: 'id-ID',
-                                                      symbol: '',
-                                                      decimalDigits: 0,
-                                                    ).format(double.parse('${history['amount']}')) +
-                                                    ',-',
-                                                style: TextStyle(
-                                                  color: thirdColor,
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w700,
+                                              child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  'Rp. ' +
+                                                      NumberFormat.currency(
+                                                        locale: 'id-ID',
+                                                        symbol: '',
+                                                        decimalDigits: 0,
+                                                      ).format(double.parse('${history['amount']}')) +
+                                                      ',-',
+                                                  style: TextStyle(
+                                                    color: thirdColor,
+                                                    fontSize: 16.sp,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
                                               ),
                                             ),
