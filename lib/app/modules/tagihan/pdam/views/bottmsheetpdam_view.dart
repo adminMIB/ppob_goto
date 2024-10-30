@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../data/colors.dart';
+import '../../../pin/views/pin_view.dart';
 
 class BottmsheetpdamView extends StatefulWidget {
   String? productName;

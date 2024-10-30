@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/register/controllers/register_controller.dart';
-import 'package:ppob_mpay1/app/modules/register/views/OTPregister_view.dart';
-import 'package:ppob_mpay1/app/modules/register/views/datakerabat.dart';
-import 'package:ppob_mpay1/app/modules/register/views/formpersonal.dart';
 import 'package:sizer/sizer.dart';
 
 class EmailtelpView extends StatefulWidget {
@@ -27,10 +25,10 @@ class _EmailtelpViewState extends State<EmailtelpView> {
         backgroundColor: Colors.transparent,
         title: Text(
           'Daftar',
-          style: TextStyle(
+          style: GoogleFonts.dmSans(
+            fontSize: 14.sp,
             color: mainColor,
-            fontSize: 13.sp,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         leading: IconButton(
@@ -75,10 +73,10 @@ class _EmailtelpViewState extends State<EmailtelpView> {
                       Text(
                         'Mengubah cara Anda berinteraksi dengan dunia.\n Membuat hidup lebih mudah, satu aplikasi\n sekaligus',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 11.0.sp,
+                        style: GoogleFonts.dmSans(
+                          fontSize: 11.sp,
                           color: mainColor,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -96,10 +94,10 @@ class _EmailtelpViewState extends State<EmailtelpView> {
                         children: [
                           Text(
                             'Email',
-                            style: TextStyle(
+                            style: GoogleFonts.dmSans(
+                              fontSize: 11.sp,
                               color: Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(
@@ -130,7 +128,11 @@ class _EmailtelpViewState extends State<EmailtelpView> {
                               filled: true,
                               fillColor: Colors.grey.shade200,
                               hintText: 'Masukkan Email Anda',
-                              hintStyle: TextStyle(color: Colors.grey),
+                              hintStyle: GoogleFonts.dmSans(
+                                  fontSize: 10.sp,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic),
                               border: InputBorder.none,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
@@ -168,10 +170,10 @@ class _EmailtelpViewState extends State<EmailtelpView> {
                     ),
                     child: Text(
                       'Masuk',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFFDF8F8),
+                      style: GoogleFonts.dmSans(
+                        fontSize: 12.sp,
+                        color: whiteColor,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

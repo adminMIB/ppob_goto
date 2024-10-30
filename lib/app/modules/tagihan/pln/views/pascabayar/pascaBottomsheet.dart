@@ -6,7 +6,7 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:sizer/sizer.dart';
 
-class BottmsheetPascaView extends StatefulWidget {
+class pascaBottomsheetView extends StatefulWidget {
   String? idpel;
   String? nama_pelanggan;
   String? kodeproduk;
@@ -20,7 +20,7 @@ class BottmsheetPascaView extends StatefulWidget {
   String? harga;
   String? periode;
   String? total_payment;
-  BottmsheetPascaView({
+  pascaBottomsheetView({
     super.key,
     this.idpel,
     this.nama_pelanggan,
@@ -38,10 +38,10 @@ class BottmsheetPascaView extends StatefulWidget {
   });
 
   @override
-  State<BottmsheetPascaView> createState() => _BottmsheetPascaViewState();
+  State<pascaBottomsheetView> createState() => _pascaBottomsheetState();
 }
 
-class _BottmsheetPascaViewState extends State<BottmsheetPascaView> {
+class _pascaBottomsheetState extends State<pascaBottomsheetView> {
   @override
   Widget build(BuildContext context) {
     return Container(

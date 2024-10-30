@@ -1,0 +1,20 @@
+{
+    "status": true,
+    "message": "success",
+    "response": {
+        "kodeproduk": "PLNPASC",
+        "tanggal": "20240216152931",
+        "idpel1": "538731734541",
+        "nominal": "887849",
+        "admin": "12000",
+        "total_bayar": "899849",
+        "ref1": "FR0T5H9BFIEC",
+        "ref2": "2818106711",
+        "status": "00",
+        "keterangan": "SUCCESSFUL",
+        "tarif": "R1",
+        "daya": "900",
+        "nama_pelanggan": "R SUMALI2",
+        "periode": "201202,201203,201204,201205"
+    }
+}

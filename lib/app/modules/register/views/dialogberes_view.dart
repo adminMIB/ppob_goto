@@ -19,16 +19,13 @@ class _DialogberesState extends State<Dialogberes> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 5.0.h, vertical: 30.0.h),
+      insetPadding: EdgeInsets.symmetric(horizontal: 5.0.h, vertical: 90.h),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Column(
         children: [
           Expanded(
             child: ListView(
               children: [
-                SizedBox(
-                  height: 3.0.h,
-                ),
                 Container(
                   height: 15.0.w,
                   decoration: const BoxDecoration(
@@ -52,9 +49,6 @@ class _DialogberesState extends State<Dialogberes> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                ),
-                SizedBox(
-                  height: 5.0.h,
                 ),
                 Center(
                   child: ElevatedButton(

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/register/views/uploadktp_view.dart';
 import 'package:sizer/sizer.dart';
@@ -16,8 +20,11 @@ class DataKerabattView extends StatefulWidget {
   final String? nomer_tlp_kerabat;
   final String? alamat_kerabat;
   final String? status_kerabat;
-  const DataKerabattView({
+  final File? foto_profile;
+
+  DataKerabattView({
     Key? key,
+    this.foto_profile,
     this.namaMerchant,
     this.nama_lengkap,
     this.nik,
@@ -38,9 +45,9 @@ class _DataKerabattViewState extends State<DataKerabattView> {
   final formKey = GlobalKey<FormState>();
   var hubunganValue;
   // var nama = namaMerchant;
-  List<String> kerabat = ["Sepupu", "keponakan", "kakak"];
+  List<String> kerabat = ["Berkeluarga", "keponakan", "kakak"];
 
-  TextEditingController tlp = TextEditingController();
+  TextEditingController tlp_kerabat = TextEditingController();
   TextEditingController namalengkap = TextEditingController();
   TextEditingController alamat = TextEditingController();
 
@@ -80,23 +87,22 @@ class _DataKerabattViewState extends State<DataKerabattView> {
               children: [
                 Image.asset(
                   'assets/images/kunci.png',
-                  height: 90,
+                  height: 10.h,
                 ),
                 SizedBox(
-                  height: 2.0.h,
+                  height: 1.5.h,
                 ),
                 Text(
                   'Pastikan Data yang anda masukan\n Benar!',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Color(0xFFAEAEB1),
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: GoogleFonts.dmSans(
+                      color: mainColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13.sp),
                 ),
-                // SizedBox(
-                //   height: 2.0.h,
-                // ),
+                SizedBox(
+                  height: 1.0.h,
+                ),
                 Form(
                   key: formKey,
                   child: Column(
@@ -106,11 +112,10 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                         children: [
                           Text(
                             'Nama Lengkap',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: GoogleFonts.dmSans(
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.sp),
                           ),
                           SizedBox(
                             height: 0.5.h,
@@ -123,9 +128,11 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               hintText: 'Masukkan Nama Lengkap',
-                              hintStyle: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  color: Colors.grey.shade500),
+                              hintStyle: GoogleFonts.dmSans(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 10.sp),
                             ),
                             validator: Validators.compose(
                               [
@@ -135,15 +142,14 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                             ),
                           ),
                           SizedBox(
-                            height: 1.0.h,
+                            height: 1.5.h,
                           ),
                           Text(
                             'Nomor Telepon',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: GoogleFonts.dmSans(
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.sp),
                           ),
                           SizedBox(
                             height: 0.5.h,
@@ -151,7 +157,7 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                           TextFormField(
                             minLines: 1,
                             maxLength: 13,
-                            controller: tlp,
+                            controller: tlp_kerabat,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -159,9 +165,11 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               hintText: 'Masukkan No telepon',
-                              hintStyle: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  color: Colors.grey.shade500),
+                              hintStyle: GoogleFonts.dmSans(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 10.sp),
                             ),
                             validator: Validators.compose(
                               [
@@ -169,13 +177,15 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                               ],
                             ),
                           ),
+                          SizedBox(
+                            height: 0.5.h,
+                          ),
                           Text(
                             'Alamat',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: GoogleFonts.dmSans(
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.sp),
                           ),
                           SizedBox(
                             height: 0.5.h,
@@ -190,9 +200,11 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               hintText: 'Masukkan Alamat',
-                              hintStyle: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  color: Colors.grey.shade500),
+                              hintStyle: GoogleFonts.dmSans(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 10.sp),
                             ),
                             validator: Validators.compose(
                               [
@@ -205,11 +217,10 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                           ),
                           Text(
                             'Hubungan',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: GoogleFonts.dmSans(
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.sp),
                           ),
                           SizedBox(
                             height: 0.7.h,
@@ -255,9 +266,13 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                             //   }
                             // },
                             isExpanded: true,
-                            hint: const Text(
+                            hint: Text(
                               "Hubungan antar",
-                              style: TextStyle(color: Colors.grey),
+                              style: GoogleFonts.dmSans(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 10.sp),
                             ),
                             iconSize: 30,
                             iconEnabledColor: Colors.black,
@@ -270,7 +285,13 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
-                                child: Text(value),
+                                child: Text(
+                                  value,
+                                  style: GoogleFonts.dmSans(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp),
+                                ),
                               );
                             }).toList(),
                             onChanged: (value) {
@@ -285,10 +306,11 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                           ),
                           Center(
                             child: SizedBox(
-                              width: 44.0.h,
+                              width: Get.width,
                               height: 6.0.h,
                               child: ElevatedButton(
                                 onPressed: () async {
+                                  print('data : ${widget.foto_profile}');
                                   if (formKey.currentState!.validate()) {
                                     Get.to(UploadKTP(
                                       namaMerchant: widget.namaMerchant,
@@ -298,9 +320,10 @@ class _DataKerabattViewState extends State<DataKerabattView> {
                                       email: widget.email,
                                       nomer_tlp: widget.nomer_tlp,
                                       nama_kerabat: namalengkap.text,
-                                      nomer_tlp_kerabat: tlp.text,
+                                      nomer_tlp_kerabat: tlp_kerabat.text,
                                       alamat_kerabat: alamat.text,
                                       status_kerabat: hubunganValue,
+                                      foto_profile: widget.foto_profile,
                                     ));
                                   }
                                   // Get.to(UploadKTP());

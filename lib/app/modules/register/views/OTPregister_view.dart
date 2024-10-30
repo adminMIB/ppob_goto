@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/register/controllers/register_controller.dart';
@@ -40,8 +41,10 @@ class _OTPregisterViewState extends State<OTPregisterView> {
         backgroundColor: Colors.transparent,
         title: Text(
           'Verifikasi Akun',
-          style: TextStyle(
+          style: GoogleFonts.dmSans(
+            fontSize: 14.sp,
             color: mainColor,
+            fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
@@ -71,9 +74,14 @@ class _OTPregisterViewState extends State<OTPregisterView> {
               Text(
                 'Kode OTP telah kami kirimkan',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Color(0xFF396EB0),
+                // style: TextStyle(
+                //     fontSize: 15,
+                //     color: Color(0xFF396EB0),
+                //     fontWeight: FontWeight.w400,
+                //     letterSpacing: 0.50),
+                style: GoogleFonts.dmSans(
+                    fontSize: 12.sp,
+                    color: mainColor,
                     fontWeight: FontWeight.w400,
                     letterSpacing: 0.50),
               ),
@@ -92,10 +100,10 @@ class _OTPregisterViewState extends State<OTPregisterView> {
               Text(
                 '${widget.email![0]}${'*' * (widget.email!.indexOf('@') - 1)}@gmail.com',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Color(0xFF396EB0),
-                    fontWeight: FontWeight.w500,
+                style: GoogleFonts.dmSans(
+                    fontSize: 12.sp,
+                    color: mainColor,
+                    fontWeight: FontWeight.w400,
                     letterSpacing: 0.50),
               ),
 
@@ -149,9 +157,10 @@ class _OTPregisterViewState extends State<OTPregisterView> {
                               children: [
                                 TextSpan(
                                   text: 'Mohon tunggu',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 11.sp,
                                     color: blackColor,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                                 TextSpan(
@@ -160,15 +169,20 @@ class _OTPregisterViewState extends State<OTPregisterView> {
                                           0, time.toString().indexOf('.')) +
                                       ' ' +
                                       'detik',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 11.sp,
+                                    color: blackColor,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                                 TextSpan(
-                                    text: ' ' + 'Untuk mengirim ulang',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                    ))
+                                  text: ' ' + 'Untuk mengirim ulang',
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 11.sp,
+                                    color: blackColor,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                )
                               ],
                             ),
                             textAlign: TextAlign.center,
@@ -178,7 +192,7 @@ class _OTPregisterViewState extends State<OTPregisterView> {
                     ],
                   ),
                 ),
-                interval: const Duration(milliseconds: 10),
+                interval: const Duration(milliseconds: 5),
                 onFinished: () {
                   setState(() {
                     isTimerResend = false;
@@ -193,9 +207,10 @@ class _OTPregisterViewState extends State<OTPregisterView> {
                   children: [
                     Text(
                       'Belum menerima kode?',
-                      style: TextStyle(
-                        fontSize: 12.0.sp,
+                      style: GoogleFonts.dmSans(
+                        fontSize: 11.sp,
                         color: greyTextColor,
+                        fontWeight: FontWeight.w400,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -211,10 +226,15 @@ class _OTPregisterViewState extends State<OTPregisterView> {
                       },
                       child: Text(
                         ' ' + 'Kirim ulang',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
+                        // style: TextStyle(
+                        //   fontSize: 12.sp,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Color(0xFFE27C00),
+                        // ),
+                        style: GoogleFonts.dmSans(
+                          fontSize: 11.sp,
                           color: Color(0xFFE27C00),
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     )

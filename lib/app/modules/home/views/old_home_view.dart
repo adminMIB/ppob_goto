@@ -12,13 +12,12 @@ import 'package:ppob_mpay1/app/data/popup/views/loadingcustom.dart';
 import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
 import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
 import 'package:ppob_mpay1/app/modules/multifinance/views/multifinance_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/paketdata/views/paketdata_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/pulsa_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/bpjs_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/bindings/pdam_binding.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pln_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa-paketdata/pulsa/views/pulsa_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/telco/views/telco_view.dart';
 import 'package:ppob_mpay1/app/modules/transferbank/views/transferbank_view.dart';
 import 'package:ppob_mpay1/main.dart';
@@ -159,8 +158,10 @@ class _OldHomeViewState extends State<OldHomeView> {
                                   Container(
                                     width: 27.0.h,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Selamat datang',
@@ -173,7 +174,8 @@ class _OldHomeViewState extends State<OldHomeView> {
                                           height: 0.5.h,
                                         ),
                                         Text(
-                                          '${pref.read('nama_lengkap')}'.toUpperCase(),
+                                          '${pref.read('nama_lengkap')}'
+                                              .toUpperCase(),
                                           style: TextStyle(
                                             fontSize: 14.0.sp,
                                             fontWeight: FontWeight.w600,
@@ -196,8 +198,10 @@ class _OldHomeViewState extends State<OldHomeView> {
                                     width: 8.h,
                                   ),
                                   Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Image.asset(
                                         'assets/images/logo1.png',
@@ -239,7 +243,8 @@ class _OldHomeViewState extends State<OldHomeView> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             'Saldo Anda',
@@ -252,7 +257,8 @@ class _OldHomeViewState extends State<OldHomeView> {
                                             height: 0.2.h,
                                           ),
                                           Row(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 'Rp. ',
@@ -264,24 +270,33 @@ class _OldHomeViewState extends State<OldHomeView> {
                                               Stack(
                                                 alignment: Alignment.center,
                                                 children: [
-                                                  if (homeController.balance.value == '0' && isLoading.value)
+                                                  if (homeController
+                                                              .balance.value ==
+                                                          '0' &&
+                                                      isLoading.value)
                                                     SizedBox(
                                                       width: 12.0,
                                                       height: 12.0,
-                                                      child: CircularProgressIndicator(
+                                                      child:
+                                                          CircularProgressIndicator(
                                                         strokeWidth: 2.0,
                                                       ),
                                                     ),
-                                                  if (!(homeController.balance.value == '0' && isLoading.value))
+                                                  if (!(homeController
+                                                              .balance.value ==
+                                                          '0' &&
+                                                      isLoading.value))
                                                     Text(
                                                       NumberFormat.currency(
                                                         locale: 'id-ID',
                                                         symbol: '',
                                                         decimalDigits: 0,
-                                                      ).format(double.parse('${homeController.balance.value}')),
+                                                      ).format(double.parse(
+                                                          '${homeController.balance.value}')),
                                                       style: TextStyle(
                                                         fontSize: 12.0.sp,
-                                                        fontWeight: FontWeight.w600,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                       ),
                                                     ),
                                                 ],
@@ -292,7 +307,8 @@ class _OldHomeViewState extends State<OldHomeView> {
                                                   setState(() {
                                                     isLoading.value = true;
                                                   });
-                                                  await Future.delayed(Duration(seconds: 2));
+                                                  await Future.delayed(
+                                                      Duration(seconds: 2));
                                                   await _refreshBalance();
                                                   setState(() {
                                                     isLoading.value = false;
@@ -398,7 +414,7 @@ class _OldHomeViewState extends State<OldHomeView> {
                                 image: 'assets/images/lampu.svg',
                                 title: 'PLN',
                                 onTap: () {
-                                  Get.to(PlnView());
+                                  // Get.to(PlnView());
                                 },
                               ),
                               CardMenu(

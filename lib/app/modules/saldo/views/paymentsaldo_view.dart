@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/register/views/formID_view.dart';
-import 'package:ppob_mpay1/app/modules/saldo/controllers/saldo_controller.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../main.dart';
+import '../../../data/colors.dart';
+import '../../../data/controller/helpercontroller.dart';
+import '../controllers/saldo_controller.dart';
 
 class Paymentsaldo extends StatefulWidget {
   final String? kode_unik;

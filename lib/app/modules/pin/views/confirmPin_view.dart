@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,13 @@ class ConfirmPinView extends StatefulWidget {
   final String? confirm_password;
   final String? nomer_tlp;
   final String? alamat;
-  final XFile? foto_ktp;
+  final File? foto_ktp;
   final String? nama_kerabat;
   final String? nomer_tlp_kerabat;
   final String? alamat_kerabat;
   final String? status_kerabat;
   final String? nik;
-  final String? foto_profile;
+  final File? foto_profile;
   final String? namaMerchant;
   // final String? newPin;
   final String? pin;
@@ -168,24 +169,25 @@ class _ConfirmPinViewState extends State<ConfirmPinView> {
                       } else {
                         print('masuk');
                         await pinController.datapersonal(
-                            widget.nama_lengkap,
-                            widget.username,
-                            widget.email,
-                            widget.password,
-                            widget.confirm_password,
-                            widget.nomer_tlp,
-                            widget.alamat,
-                            widget.foto_ktp,
-                            widget.nama_kerabat,
-                            widget.status_kerabat,
-                            widget.nik,
-                            // widget.foto_profile,
-                            widget.namaMerchant,
-                            widget.pin,
-                            confirm_pin,
-                            widget.nomer_tlp_kerabat,
-                            widget.alamat_kerabat,
-                            context);
+                          widget.nama_lengkap,
+                          widget.username,
+                          widget.email,
+                          widget.password,
+                          widget.confirm_password,
+                          widget.nomer_tlp,
+                          widget.alamat,
+                          widget.foto_ktp,
+                          widget.nama_kerabat,
+                          widget.status_kerabat,
+                          widget.foto_profile,
+                          widget.namaMerchant,
+                          widget.nik,
+                          widget.pin,
+                          confirm_pin,
+                          widget.nomer_tlp_kerabat,
+                          widget.alamat_kerabat,
+                          context,
+                        );
                       }
                     },
                     onChanged: (value) {

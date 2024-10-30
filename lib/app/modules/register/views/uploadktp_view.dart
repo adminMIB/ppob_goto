@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/register/views/formID_view.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../main.dart';
+import '../../../data/colors.dart';
+import '../../../data/controller/helpercontroller.dart';
+import 'formID_view.dart';
 
 class UploadKTP extends StatefulWidget {
   final String? namaMerchant;
@@ -20,8 +22,11 @@ class UploadKTP extends StatefulWidget {
   final String? nomer_tlp_kerabat;
   final String? alamat_kerabat;
   final String? status_kerabat;
+  final File? foto_profile;
+
   const UploadKTP({
     Key? key,
+    required this.foto_profile,
     this.namaMerchant,
     this.nama_lengkap,
     this.nik,
@@ -46,7 +51,7 @@ class _UploadKTPState extends State<UploadKTP> {
   int dotCount = 2;
 
   XFile? image;
-  XFile? image2;
+  File? image2;
 
   final ImagePicker picker = ImagePicker();
 
@@ -62,7 +67,8 @@ class _UploadKTPState extends State<UploadKTP> {
     var img2 = await picker.pickImage(source: media);
 
     setState(() {
-      image2 = img2;
+      image2 = File(img2!.path);
+      ;
     });
   }
 
@@ -95,14 +101,15 @@ class _UploadKTPState extends State<UploadKTP> {
         backgroundColor: Colors.transparent,
         title: Text(
           'Upload KTP anda',
-          style: TextStyle(
-            color: Colors.black,
+          style: GoogleFonts.dmSans(
+            color: mainColor,
+            fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -174,9 +181,12 @@ class _UploadKTPState extends State<UploadKTP> {
                                                 width: Get.width * 0.75,
                                                 child: Text(
                                                   'Pastikan informasi pada KTP jelas dan tidak ada yang terpotong atau buram',
-                                                  style: TextStyle(
-                                                    color: greyTextColor,
-                                                  ),
+                                                  style: GoogleFonts.dmSans(
+                                                      color:
+                                                          Colors.grey.shade500,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12.sp),
                                                 ),
                                               )
                                             ],
@@ -248,7 +258,10 @@ class _UploadKTPState extends State<UploadKTP> {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             'Panduan Foto KTP',
-                                            style: TextStyle(fontSize: 12.0.sp),
+                                            style: GoogleFonts.dmSans(
+                                                color: blackColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.5.sp),
                                           ),
                                         ),
                                         SizedBox(
@@ -271,14 +284,24 @@ class _UploadKTPState extends State<UploadKTP> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            const Text('1.'),
+                                            Text(
+                                              '1.',
+                                              style: GoogleFonts.dmSans(
+                                                  color: blackColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12.sp),
+                                            ),
                                             SizedBox(
                                               width: 2.0.w,
                                             ),
                                             SizedBox(
                                               width: Get.width * 0.80,
-                                              child: const Text(
+                                              child: Text(
                                                 'Pastikan KTP belum pernah di gunakan untuk registrasi.',
+                                                style: GoogleFonts.dmSans(
+                                                    color: blackColor,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp),
                                               ),
                                             )
                                           ],
@@ -292,14 +315,24 @@ class _UploadKTPState extends State<UploadKTP> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            const Text('2.'),
+                                            Text(
+                                              '2.',
+                                              style: GoogleFonts.dmSans(
+                                                  color: blackColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12.sp),
+                                            ),
                                             SizedBox(
                                               width: 2.0.w,
                                             ),
                                             SizedBox(
                                               width: Get.width * 0.80,
-                                              child: const Text(
+                                              child: Text(
                                                 'Foto KTP asli (bukan salinan).',
+                                                style: GoogleFonts.dmSans(
+                                                    color: blackColor,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp),
                                               ),
                                             )
                                           ],
@@ -313,14 +346,24 @@ class _UploadKTPState extends State<UploadKTP> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            const Text('3.'),
+                                            Text(
+                                              '3.',
+                                              style: GoogleFonts.dmSans(
+                                                  color: blackColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12.sp),
+                                            ),
                                             SizedBox(
                                               width: 2.0.w,
                                             ),
                                             SizedBox(
                                               width: Get.width * 0.80,
-                                              child: const Text(
+                                              child: Text(
                                                 'Informasi pada KTP harus jelas dan tidak ada yang terpotong atau buram.',
+                                                style: GoogleFonts.dmSans(
+                                                    color: blackColor,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp),
                                               ),
                                             )
                                           ],
@@ -334,14 +377,25 @@ class _UploadKTPState extends State<UploadKTP> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            const Text('4.'),
+                                            Text(
+                                              '4.',
+                                              style: GoogleFonts.dmSans(
+                                                  color: blackColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12.sp),
+                                            ),
                                             SizedBox(
                                               width: 2.0.w,
                                             ),
                                             SizedBox(
                                               width: Get.width * 0.80,
-                                              child: const Text(
-                                                  'Pastikan tidak ada pantulan cahaya dan bayangan di foto KTP.'),
+                                              child: Text(
+                                                'Pastikan tidak ada pantulan cahaya dan bayangan di foto KTP.',
+                                                style: GoogleFonts.dmSans(
+                                                    color: blackColor,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp),
+                                              ),
                                             )
                                           ],
                                         ),
@@ -354,14 +408,24 @@ class _UploadKTPState extends State<UploadKTP> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            const Text('5.'),
+                                            Text(
+                                              '5.',
+                                              style: GoogleFonts.dmSans(
+                                                  color: blackColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12.sp),
+                                            ),
                                             SizedBox(
                                               width: 2.0.w,
                                             ),
                                             SizedBox(
                                               width: Get.width * 0.80,
-                                              child: const Text(
+                                              child: Text(
                                                 'Foto memenuhi area dari frame foto.',
+                                                style: GoogleFonts.dmSans(
+                                                    color: blackColor,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp),
                                               ),
                                             )
                                           ],
@@ -445,6 +509,7 @@ class _UploadKTPState extends State<UploadKTP> {
         onPressed: () async {
           controller.restart();
           if (_formKey.currentState!.validate()) {
+            print('image ktp : ${image2!.path}');
             Get.to(FormIdView(
               namaMerchant: widget.namaMerchant,
               nama_lengkap: widget.nama_lengkap,
@@ -457,6 +522,7 @@ class _UploadKTPState extends State<UploadKTP> {
               nomer_tlp_kerabat: widget.nomer_tlp_kerabat,
               status_kerabat: widget.status_kerabat,
               foto_ktp: image2!,
+              foto_profile: widget.foto_profile,
             ));
           }
         },

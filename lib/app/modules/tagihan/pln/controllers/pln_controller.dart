@@ -3,18 +3,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
-import 'package:ppob_mpay1/app/data/popup/views/saldotidakcukup_view.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/pulsa_model.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/bottmsheet_prabayar_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/listrikmodel.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/bottomsheetpasca_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/transaksigagalpln_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/transaksisuksespln_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar_transaksi_berhasil_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar_transaksi_gagal_view.dart';
+
+import '../../../../data/controller/helpercontroller.dart';
+import '../../../../data/controller/network_helper.dart';
+import '../../../../data/popup/views/saldotidakcukup_view.dart';
+import '../views/prabayar/listrikmodel.dart';
+import '../views/pascabayar/pascaBottomsheet.dart';
+import '../views/pascabayar/transaksigagalpln_view.dart';
+import '../views/pascabayar/transaksisuksespln_view.dart';
+import '../views/prabayar/PrabayarBottomsheet_view.dart';
+import '../views/prabayar/prabayar_transaksi_berhasil_view.dart';
+import '../views/prabayar/prabayar_transaksi_gagal_view.dart';
 
 class PlnController extends GetxController {
   final helperController = Get.put(HelperController());
@@ -55,12 +55,6 @@ class PlnController extends GetxController {
         if (content['status'] == true) {
           print('hasil pln: $content');
           Get.back();
-          // List<String> periodeMonths =
-          //     content['response']['periode'].split(",");
-          // List<String> formattedMonths = periodeMonths.map((month) {
-          //   DateTime dateTime = fromCustomTime(month.trim());
-          //   return DateFormat('MMMM yyyy').format(dateTime);
-          // }).toList();
           List<String> periodeMonths =
               content['response']['periode'].split(",");
           List<String> formattedMonths = [];
@@ -71,7 +65,7 @@ class PlnController extends GetxController {
               .toList();
 
           Get.bottomSheet(
-            BottmsheetPascaView(
+            pascaBottomsheetView(
               idpel: idpel,
               nama_pelanggan: content['response']['nama_pelanggan'],
               admin: content['response']['admin'],
@@ -291,7 +285,7 @@ class PlnController extends GetxController {
 
           Get.back();
           Get.bottomSheet(
-            BottmsheetPrabayarView(
+            PrabayarBottomsheet_view(
               idpel: idPel,
               idpel2: onSuccess['response']['idpel2'],
               namaPelanggan: onSuccess['response']['nama_pelanggan'],

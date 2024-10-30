@@ -1,17 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/modules/ewallet/emoney/controllers/emoney_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/bpjs/controllers/bpjs_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
+
+import '../../../../main.dart';
+import '../../../data/colors.dart';
+import '../../ewallet/emoney/controllers/emoney_controller.dart';
+import '../../tagihan/bpjs/controllers/bpjs_controller.dart';
+import '../../tagihan/pdam/controllers/pdam_controller.dart';
+import '../../tagihan/pln/controllers/pln_controller.dart';
+import '../../tagihan/pulsa-paketdata/pulsa/controllers/pulsa_controller.dart';
 
 class PinView extends StatefulWidget {
   final String? productName;
@@ -113,7 +114,8 @@ class _PinViewState extends State<PinView> {
                 children: [
                   Text(
                     'Masukkan PIN',
-                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 1.0.h,
@@ -134,7 +136,8 @@ class _PinViewState extends State<PinView> {
               Form(
                 key: formKey,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 75),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 24, horizontal: 75),
                   child: PinCodeTextField(
                     backgroundColor: Colors.transparent,
                     appContext: context,
@@ -196,8 +199,18 @@ class _PinViewState extends State<PinView> {
                           context,
                         );
                       } else if (widget.tipeTransaksi == 'pdam') {
-                        await pdamController.pdampayment(widget.productName, widget.productCode, widget.idpel, widget.ref1, widget.ref2, widget.total_payment,
-                            widget.harga, widget.admin, widget.periode, v, context);
+                        await pdamController.pdampayment(
+                            widget.productName,
+                            widget.productCode,
+                            widget.idpel,
+                            widget.ref1,
+                            widget.ref2,
+                            widget.total_payment,
+                            widget.harga,
+                            widget.admin,
+                            widget.periode,
+                            v,
+                            context);
                       } else if (widget.tipeTransaksi == 'plnpasca') {
                         await plnController.plnpascapayment(
                           widget.periode,
@@ -271,7 +284,8 @@ class _PinViewState extends State<PinView> {
                     textEditingController.clear();
                   }
                   setState(() {
-                    textEditingController.text = textEditingController.text.substring(0, textEditingController.text.length - 1);
+                    textEditingController.text = textEditingController.text
+                        .substring(0, textEditingController.text.length - 1);
                   });
                 },
                 rightIcon: const Icon(

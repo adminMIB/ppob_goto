@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/emoneykartu_view.dart';
-import 'package:ppob_mpay1/app/modules/ewallet/emoney/views/emoneynfc_view.dart';
 import 'package:sizer/sizer.dart';
 import '../controllers/emoney_controller.dart';
 
@@ -24,7 +22,15 @@ class _InputKartuViewState extends State<InputKartuView> {
   final formkey = GlobalKey<FormState>();
 
   //List Harga Top Up
-  final List<int> listHarga = [20000, 50000, 100000, 200000, 300000, 400000];
+  final List<int> listHarga = [
+    20000,
+    50000,
+    100000,
+    200000,
+    300000,
+    400000,
+    500000,
+  ];
   String selectedAmount = '';
 
   @override
@@ -144,7 +150,9 @@ class _InputKartuViewState extends State<InputKartuView> {
                           padding: EdgeInsets.all(2.0.h),
                           decoration: BoxDecoration(
                             color: whiteColor,
-                            border: isSelected ? Border.all(color: mainColor, width: 2) : null,
+                            border: isSelected
+                                ? Border.all(color: mainColor, width: 2)
+                                : null,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -208,13 +216,17 @@ class _InputKartuViewState extends State<InputKartuView> {
                       width: 41.0.h,
                       height: 6.0.h,
                       child: ElevatedButton(
-                        onPressed: idpel.text.length >= 10 && selectedAmount.isNotEmpty
-                            ? () async {
-                                await emoneyController.emoneyInquiry(idpel.text, selectedAmount, context);
-                              }
-                            : null,
+                        onPressed:
+                            idpel.text.length >= 10 && selectedAmount.isNotEmpty
+                                ? () async {
+                                    await emoneyController.emoneyInquiry(
+                                        idpel.text, selectedAmount, context);
+                                  }
+                                : null,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: idpel.text.length >= 10 ? mainColor : Colors.grey.shade700,
+                          backgroundColor: idpel.text.length >= 10
+                              ? mainColor
+                              : Colors.grey.shade700,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),

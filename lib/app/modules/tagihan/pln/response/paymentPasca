@@ -1,0 +1,21 @@
+{
+    "status": false,
+    "response": {
+        "productCode": "PLNPASCH",
+        "date": "20240220141612",
+        "no_pelanggan": "538731734541",
+        "amount": "887849",
+        "admin": "12000",
+        "total": 899849,
+        "status": "00",
+        "description": "SUCCESSFUL",
+        "saldo_terpotong": 899849,
+        "sisa_saldo": 89301,
+        "nama_pelanggan": "R SUMALI2",
+        "periode": "201202,201203,201204,201205",
+        "url_struk": "http://struk.rajabiller.com/pdf/struk.php?id=23bf7coZfew9FO65XmZoh%2BIinep8pil9HeDIhDRlpNXn9fSnYjPvak64MAzdzqHvHzEll%2F0dbwOO2%2FG2a8UkCQ%3D%3D",
+        "tarif": "R1",
+        "daya": "900",
+        "info_text": "Rincian Tagihan dapat diakses di www.pln.co.id"
+    }
+}

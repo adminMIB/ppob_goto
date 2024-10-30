@@ -1,19 +1,18 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/wilayah_view.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../main.dart';
+import '../../../../data/colors.dart';
+import '../../../../data/controller/helpercontroller.dart';
+import '../controllers/pdam_controller.dart';
+import 'wilayah_view.dart';
+
 class PdamView extends StatefulWidget {
-  List? dataPdam;
+  final List? dataPdam;
+
   PdamView({Key? key, this.dataPdam}) : super(key: key);
 
   @override
@@ -21,28 +20,20 @@ class PdamView extends StatefulWidget {
 }
 
 class _PdamViewState extends State<PdamView> {
-  final pdamController = Get.put(PdamController());
+  final PdamController pdamController = Get.put(PdamController());
+  final HelperController helperController = Get.put(HelperController());
+
   final isLoading = false.obs;
-
-  bool status = false;
-  int selectedItemIndex = -1;
-
-  bool _ingatsaya = false;
-  TextEditingController searchController = TextEditingController();
-
-  final pulsaController = Get.put(PulsaController());
-  final helperController = Get.put(HelperController());
+  final TextEditingController searchController = TextEditingController();
 
   PhoneContact? _phoneContact;
-
   int lengthNoTelepon = 0;
   var pickNumber = '';
 
   @override
   void initState() {
     super.initState();
-    pdamController.pdam(context); // Make sure this is called
-    // print(pdamController.dataPdam); // Check if data is populated
+    pdamController.pdam(context);
   }
 
   @override
@@ -51,170 +42,123 @@ class _PdamViewState extends State<PdamView> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         controller.restart();
-        FocusScopeNode currentFocus = FocusScope.of(context);
-
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
+        FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: whiteColor,
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              SafeArea(
-                  child: Column(
-                children: [
-                  AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.black,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFF005B96), // Warna solid untuk AppBar
+          title: Text(
+            'PDAM',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFFDAE8FA), Color(0xFF005B96)],
+              begin: Alignment.bottomRight,
+              end: Alignment.topRight,
+            ),
+          ),
+          child: SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(2.0.h),
+                  child: TextField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      pdamController.filterData(value);
+                    },
+                    decoration: InputDecoration(
+                      fillColor: Colors.white, // Warna latar belakang TextField
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      onPressed: () {
-                        Get.back();
-                      },
+                      hintText: 'Cari Wilayah',
+                      prefixIcon: Icon(Icons.search),
+                      hintStyle: TextStyle(
+                        fontSize: 12.0.sp,
+                        color: Colors.grey.shade500,
+                      ),
                     ),
                   ),
-                  Stack(
-                    children: [
-                      Column(
-                        children: [
-                          Center(
-                            child: SvgPicture.asset(
-                              'assets/images/air.svg',
-                              fit: BoxFit.contain,
-                              width: 5.0.h,
-                              height: 5.0.h,
-                            ),
-                          ),
-                          SizedBox(height: 1.0.h),
-                          Text(
-                            'PDAM',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14.0.sp,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Divider(
-                            color: Colors.grey.shade500,
-                            indent: 2.0.h,
-                            endIndent: 2.0.h,
-                          ),
-                          SizedBox(
-                            height: 1.0.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 2.0.h,
-                              right: 2.0.h,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Pilih Wilayah',
-                                  style: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                SizedBox(
-                                  height: 1.0.h,
-                                ),
-                                TextField(
-                                  controller: searchController,
-                                  onChanged: (value) {
-                                    pdamController.filterData(value);
-                                  },
-                                  // onChanged: (text) {
-                                  //   // Trigger the search when the text changes
-                                  //   pdamController.updateSearchText(text);
-                                  // },
-                                  // onChanged: (query) {
-                                  //   pdamController.search(query);
-                                  // },
-                                  decoration: InputDecoration(
-                                    hintText: 'Cari Wilayah...',
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    prefixIcon: Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.0.h,
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.60,
-                                  child: Obx(
-                                    () => SingleChildScrollView(
-                                      child: Column(
-                                        children: pdamController.dataPdam
-                                            .map((element) {
-                                          return Container(
-                                            child: Column(
-                                              children: [
-                                                ListTile(
-                                                  leading: SvgPicture.asset(
-                                                    'assets/images/air.svg',
-                                                    fit: BoxFit.contain,
-                                                    width: 5.0.h,
-                                                    height: 4.0.h,
-                                                  ),
-                                                  title: Text(
-                                                    element['product_name'],
-                                                    style: TextStyle(
-                                                      fontSize: 12.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  trailing: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_right_outlined,
-                                                  ),
-                                                  onTap: () {
-                                                    // Get.to(
-                                                    //     transaksisuksesView());
-                                                    Get.to(WilayahView(
-                                                      productName: element[
-                                                          'product_name'],
-                                                      productCode: element[
-                                                          'product_code'],
-                                                    ));
-                                                  },
-                                                ),
-                                                Divider(
-                                                  color: Colors.grey.shade300,
-                                                  indent: 1.0,
-                                                  endIndent: 1.0,
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                ),
+                Expanded(
+                  child: Container(
+                    width: Get.width,
+                    height: Get.height * 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(3.5.h),
+                        topRight: Radius.circular(3.5.h),
                       ),
-                    ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 2.h, left: 2.h, right: 2.h),
+                      child: Obx(
+                        () => Scrollbar(
+                          thumbVisibility: true,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: pdamController.dataPdam.map((element) {
+                                return Column(
+                                  children: [
+                                    ListTile(
+                                      leading: Image.asset(
+                                        'assets/images/pdamlogo.png',
+                                        height: 4.h,
+                                      ),
+                                      title: Text(
+                                        element['product_name'],
+                                        style: TextStyle(
+                                          fontSize: 11.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.keyboard_arrow_right_outlined,
+                                      ),
+                                      onTap: () {
+                                        Get.to(WilayahView(
+                                          productName: element['product_name'],
+                                          productCode: element['product_code'],
+                                        ));
+                                      },
+                                    ),
+                                    Divider(
+                                      color: Colors.grey.shade300,
+                                      indent: 1.0,
+                                      endIndent: 1.0,
+                                    ),
+                                  ],
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ],
-              ))
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

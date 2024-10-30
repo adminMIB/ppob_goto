@@ -9,10 +9,13 @@ import 'package:ppob_mpay1/app/data/popup/views/customPopup.dart';
 import 'package:ppob_mpay1/app/data/popup/views/loadingcustom.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 
+import '../urlservices2.dart';
+
 class HelperController extends getx.GetxController {
   final Dio _client = Dio(
     BaseOptions(
-      baseUrl: UrlListService.baseUrl,
+      // baseUrl: UrlListService.baseUrl,
+      baseUrl: Urlservice2.urlbase,
       contentType: Headers.formUrlEncodedContentType,
     ),
   );
@@ -59,7 +62,7 @@ class HelperController extends getx.GetxController {
     @required String? path,
     @required T Function(dynamic content)? onSuccess,
     @required T Function(dynamic error)? onError,
-    @required Map<String, dynamic>? body,
+    @required dynamic body, // Ubah tipe dari Map<String, dynamic>? ke dynamic
     Map<String, dynamic>? headers,
     bool containsFile = false,
     bool isRawResult = false,
@@ -71,10 +74,14 @@ class HelperController extends getx.GetxController {
         _client.interceptors.add(LogInterceptor());
         final response = await _client.post(
           path!,
-          data: containsFile ? FormData.fromMap(body!) : body,
+          data: containsFile
+              ? FormData.fromMap(body)
+              : body, // Jika containsFile, gunakan FormData
           options: Options(
             headers: headers,
-            contentType: Headers.jsonContentType,
+            contentType: containsFile
+                ? Headers.multipartFormDataContentType
+                : Headers.jsonContentType,
           ),
         );
 
@@ -83,17 +90,6 @@ class HelperController extends getx.GetxController {
             : onSuccess!(response.data);
       } on DioError catch (e) {
         print('${e.message} for $path');
-        // if (e.type == DioErrorType.connectionTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // } else if (e.type == DioErrorType.receiveTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // } else if (e.response?.statusCode == 412) {
-        //   return getx.Get.offAll(const TokenExpiredPage());
-        // } else if (e.type == DioErrorType.sendTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // } else if (e.type == DioErrorType.sendTimeout) {
-        //   return getx.Get.offAll(const NoConnectionPage());
-        // }
         return isResultCode
             ? onError!(e.response?.statusCode)
             : onError!(e.response?.data);
@@ -102,9 +98,7 @@ class HelperController extends getx.GetxController {
         return onError!(e);
       }
     } else {
-      // getx.Get.offAll(const NoConnectionPage());
-      // print('No internet :( Reason:');
-      // print(DataConnectionChecker().lastTryResults);
+      // Tangani jika tidak ada koneksi
     }
   }
 

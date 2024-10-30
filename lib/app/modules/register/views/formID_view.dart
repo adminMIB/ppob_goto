@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:get/get.dart';
@@ -19,11 +22,13 @@ class FormIdView extends StatefulWidget {
   final String? nomer_tlp_kerabat;
   final String? alamat_kerabat;
   final String? status_kerabat;
-  final XFile foto_ktp;
+  final File? foto_ktp;
+  final File? foto_profile;
 
-  const FormIdView({
+  FormIdView({
     Key? key,
-    required this.foto_ktp,
+    this.foto_ktp,
+    this.foto_profile,
     this.namaMerchant,
     this.nama_lengkap,
     this.nik,
@@ -55,14 +60,15 @@ class _FormIdViewState extends State<FormIdView> {
         backgroundColor: Colors.transparent,
         title: Text(
           'Buat Akun',
-          style: TextStyle(
-            color: Colors.black,
+          style: GoogleFonts.dmSans(
+            color: mainColor,
+            fontWeight: FontWeight.w500,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -72,15 +78,12 @@ class _FormIdViewState extends State<FormIdView> {
       body: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 2.h, right: 2.h),
+            padding: EdgeInsets.all(2.h),
             child: Column(
               children: [
-                SizedBox(
-                  height: 3.0.h,
-                ),
                 Image.asset(
                   'assets/images/kunci.png',
-                  height: 90,
+                  height: 10.h,
                 ),
                 SizedBox(
                   height: 2.0.h,
@@ -88,14 +91,13 @@ class _FormIdViewState extends State<FormIdView> {
                 Text(
                   'Pastikan Data yang anda masukan\n Benar!',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Color(0xFFAEAEB1),
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: GoogleFonts.dmSans(
+                      color: mainColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13.sp),
                 ),
                 SizedBox(
-                  height: 0.5.h,
+                  height: 1.5.h,
                 ),
                 // Text(
                 //   'Benar!',
@@ -120,11 +122,10 @@ class _FormIdViewState extends State<FormIdView> {
                           children: [
                             Text(
                               'Username',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: GoogleFonts.dmSans(
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.sp),
                             ),
                             SizedBox(
                               height: 0.5.h,
@@ -139,9 +140,11 @@ class _FormIdViewState extends State<FormIdView> {
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 hintText: 'Masukkan username',
-                                hintStyle: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    color: Colors.grey.shade500),
+                                hintStyle: GoogleFonts.dmSans(
+                                    color: Colors.grey.shade500,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 11.sp),
                               ),
                               // validator: Validators.compose(
                               //   [
@@ -154,11 +157,10 @@ class _FormIdViewState extends State<FormIdView> {
                             ),
                             Text(
                               'Kata Sandi',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 13.5.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: GoogleFonts.dmSans(
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.sp),
                             ),
                             SizedBox(
                               height: 0.5.h,
@@ -184,9 +186,11 @@ class _FormIdViewState extends State<FormIdView> {
                                   },
                                 ),
                                 hintText: 'Masukkan Kata sandi',
-                                hintStyle: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    color: Colors.grey.shade500),
+                                hintStyle: GoogleFonts.dmSans(
+                                    color: Colors.grey.shade500,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 11.sp),
                               ),
                               // validator: Validators.compose(
                               //   [
@@ -199,11 +203,10 @@ class _FormIdViewState extends State<FormIdView> {
                             ),
                             Text(
                               'Konfirmasi Kata Sandi',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 13.5.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: GoogleFonts.dmSans(
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.sp),
                             ),
                             SizedBox(
                               height: 0.5.h,
@@ -230,9 +233,11 @@ class _FormIdViewState extends State<FormIdView> {
                                   },
                                 ),
                                 hintText: 'Masukkan konfirmasi sandi',
-                                hintStyle: TextStyle(
-                                    fontSize: 12.0.sp,
-                                    color: Colors.grey.shade500),
+                                hintStyle: GoogleFonts.dmSans(
+                                    color: Colors.grey.shade500,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 11.sp),
                               ),
                               // validator: Validators.compose(
                               //   [
@@ -251,11 +256,10 @@ class _FormIdViewState extends State<FormIdView> {
                 ),
                 Text(
                   'Dengan mendaftar, saya telah menyetujui',
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    letterSpacing: 0.75,
-                    color: blackColor,
-                  ),
+                  style: GoogleFonts.dmSans(
+                      color: blackColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12.sp),
                 ),
                 SizedBox(
                   height: 5,
@@ -265,11 +269,11 @@ class _FormIdViewState extends State<FormIdView> {
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Ketentuan layanan',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          letterSpacing: 0.75,
-                          color: mainColor,
-                        ),
+                        style: GoogleFonts.dmSans(
+                            color: mainColor,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 0.75,
+                            fontSize: 12.sp),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             //fungsi
@@ -285,11 +289,11 @@ class _FormIdViewState extends State<FormIdView> {
                       ),
                       TextSpan(
                         text: 'kebijakan kami',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          letterSpacing: 0.25,
-                          color: mainColor,
-                        ),
+                        style: GoogleFonts.dmSans(
+                            color: mainColor,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 0.75,
+                            fontSize: 12.sp),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             //fungsi
@@ -314,10 +318,10 @@ class _FormIdViewState extends State<FormIdView> {
                           ),
                           msg:
                               'Apakah Data yang Anda isi sudah\nbenar & lengkap?',
-                          msgStyle: TextStyle(
-                            fontSize: 12.0.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          msgStyle: GoogleFonts.dmSans(
+                              color: blackColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.sp),
                           color: whiteColor,
                           context: context,
                           actions: [
@@ -325,7 +329,7 @@ class _FormIdViewState extends State<FormIdView> {
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   print('data');
-
+                                  print("foto_ktp : widget.foto_ktp.path");
                                   Get.to(SetPinView(
                                     namaMerchant: widget.namaMerchant,
                                     nama_lengkap: widget.nama_lengkap,
@@ -341,6 +345,7 @@ class _FormIdViewState extends State<FormIdView> {
                                     username: username.text,
                                     password: password.text,
                                     confirm_password: konfirPassword.text,
+                                    foto_profile: widget.foto_profile,
                                   ));
 
                                   // await pushNewScreen(context,

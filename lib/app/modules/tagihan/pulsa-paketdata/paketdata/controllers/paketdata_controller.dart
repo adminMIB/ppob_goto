@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/data/urlServices.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/paketdata/views/modelPaketdata.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/pulsa_model.dart';
+
+import '../../../../../data/controller/helpercontroller.dart';
+import '../../../../../data/urlServices.dart';
 
 class PaketdataController extends GetxController {
   final helperController = Get.put(HelperController());
@@ -189,6 +188,9 @@ class PaketdataController extends GetxController {
       onError: (context) {
         Get.back();
         print('Error: $context');
+        helperController.popUpMessage(
+            'Mohon maaf sistem sedang maintenance, Coba beberapa saat lagi.',
+            context);
       },
       body: {'provider': provider},
     );

@@ -6,12 +6,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/main_page.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sizer/sizer.dart';
-import 'package:screenshot/screenshot.dart';
+
+import '../../../../../data/colors.dart';
+import '../../../../../data/controller/helpercontroller.dart';
+import '../../../../../main_page.dart';
 
 class transaksigagalplnView extends StatefulWidget {
   final String? productCode;

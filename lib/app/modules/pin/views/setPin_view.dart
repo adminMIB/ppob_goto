@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +19,16 @@ class SetPinView extends StatefulWidget {
   final String? confirm_password;
   final String? nomer_tlp;
   final String? alamat;
-  final XFile? foto_ktp;
+  final File? foto_ktp;
   final String? nama_kerabat;
   final String? nomer_tlp_kerabat;
   final String? alamat_kerabat;
   final String? status_kerabat;
   final String? nik;
-  final String? foto_profile;
+  final File? foto_profile;
   final String? namaMerchant;
   final String? pin;
+
   // final String? newPin;
 
   const SetPinView(
@@ -44,7 +46,7 @@ class SetPinView extends StatefulWidget {
       this.status_kerabat,
       this.alamat_kerabat,
       this.nik,
-      this.foto_profile,
+      required this.foto_profile,
       this.namaMerchant,
       this.pin
       // this.newPin,
@@ -172,6 +174,7 @@ class _SetPinViewState extends State<SetPinView> {
                         username: widget.username,
                         password: widget.password,
                         confirm_password: widget.confirm_password,
+                        foto_profile: widget.foto_profile,
                         // newPin: v,
                         pin: pin,
                       ));

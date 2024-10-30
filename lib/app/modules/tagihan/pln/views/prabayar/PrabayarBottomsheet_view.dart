@@ -6,7 +6,7 @@ import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/modules/pin/views/pin_view.dart';
 import 'package:sizer/sizer.dart';
 
-class BottmsheetPrabayarView extends StatefulWidget {
+class PrabayarBottomsheet_view extends StatefulWidget {
   String? idpel;
   String? idpel2;
   String? namaPelanggan;
@@ -18,7 +18,7 @@ class BottmsheetPrabayarView extends StatefulWidget {
   String? nominal;
   String? ref1;
   String? ref2;
-  BottmsheetPrabayarView({
+  PrabayarBottomsheet_view({
     super.key,
     this.idpel,
     this.idpel2,
@@ -34,10 +34,11 @@ class BottmsheetPrabayarView extends StatefulWidget {
   });
 
   @override
-  State<BottmsheetPrabayarView> createState() => _BottmsheetPrabayarViewState();
+  State<PrabayarBottomsheet_view> createState() =>
+      _PrabayarBottomsheet_viewState();
 }
 
-class _BottmsheetPrabayarViewState extends State<BottmsheetPrabayarView> {
+class _PrabayarBottomsheet_viewState extends State<PrabayarBottomsheet_view> {
   @override
   Widget build(BuildContext context) {
     return Container(

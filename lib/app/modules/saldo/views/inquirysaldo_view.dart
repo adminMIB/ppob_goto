@@ -7,13 +7,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/register/views/formID_view.dart';
-import 'package:ppob_mpay1/app/modules/saldo/controllers/saldo_controller.dart';
-import 'package:ppob_mpay1/app/modules/saldo/views/paymentsaldo_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../data/colors.dart';
+import '../../../data/controller/helpercontroller.dart';
+import '../controllers/saldo_controller.dart';
 
 class InquirysaldoView extends StatefulWidget {
   String? kode_unik;
@@ -259,7 +258,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                           Text(
                             'Nomer Rekening',
                             style: TextStyle(
-                              fontSize: 12.sp,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -269,7 +268,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                                 Text(
                                   widget.nomer_rekening!,
                                   style: TextStyle(
-                                    fontSize: 12.sp,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -322,7 +321,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                           Text(
                             'Jumlah Pembayaran',
                             style: TextStyle(
-                              fontSize: 12.sp,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -377,7 +376,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                             child: Text(
                               'Mohon transfer sebelum masa expired habis',
                               style: TextStyle(
-                                fontSize: 12.sp,
+                                fontSize: 11.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -410,7 +409,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                                   ' masih aktif dengan nomer tiket=' +
                                   widget.kode_unik!,
                               style: TextStyle(
-                                fontSize: 12.sp,
+                                fontSize: 11.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -437,7 +436,7 @@ class _InquirysaldoViewState extends State<InquirysaldoView> {
                               'Silahkan transfer dengan nominal tersebut ke ' +
                                   widget.jenis_bank!,
                               style: TextStyle(
-                                fontSize: 12.sp,
+                                fontSize: 11.sp,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),

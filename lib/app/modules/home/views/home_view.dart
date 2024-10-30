@@ -6,32 +6,29 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
-import 'package:ppob_mpay1/app/data/card.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/data/popup/views/loadingcustom.dart';
-import 'package:ppob_mpay1/app/modules/ewallet/ewallet.dart';
-import 'package:ppob_mpay1/app/modules/login/views/login_view.dart';
-import 'package:ppob_mpay1/app/modules/multifinance/views/multifinance_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/paketdata/views/paketdata_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/pulsa_view.dart';
-import 'package:ppob_mpay1/app/modules/saldo/views/inquirysaldo_view.dart';
-import 'package:ppob_mpay1/app/modules/saldo/views/saldo_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/bpjs_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/controllers/pdam_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/pdam_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/plnview.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pln_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/telco/views/telco_view.dart';
-import 'package:ppob_mpay1/app/modules/transferbank/views/transferbank_view.dart';
-import 'package:ppob_mpay1/main.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pulsa-paketdata/pulsa-paketdata_view.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import '../controllers/home_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import '../../../../main.dart';
+import '../../../data/card.dart';
+import '../../../data/colors.dart';
+import '../../../data/controller/helpercontroller.dart';
+import '../../ewallet/ewallet.dart';
+import '../../login/views/login_view.dart';
+import '../../multifinance/views/multifinance_view.dart';
+import '../../saldo/views/saldo_view.dart';
+import '../../tagihan/bpjs/views/bpjs_view.dart';
+import '../../tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
+import '../../tagihan/pdam/controllers/pdam_controller.dart';
+import '../../tagihan/pln/views/plnview.dart';
+import '../../tagihan/pulsa-paketdata/pulsa/views/pulsa_view.dart';
+import '../../tagihan/telco/views/telco_view.dart';
+import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
   String? balance;
@@ -79,7 +76,9 @@ class _HomeViewState extends State<HomeView> {
   //   isLoading.value = true;
   // }
 
-  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join() : '';
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      : '';
 
   void initGreeting() async {
     int time = DateTime.now().hour;
@@ -197,8 +196,10 @@ class _HomeViewState extends State<HomeView> {
                                       width: 63.w,
                                       height: 7.h,
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Row(
                                             children: [
@@ -263,12 +264,15 @@ class _HomeViewState extends State<HomeView> {
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Stack(
                                         alignment: Alignment.center,
                                         children: [
-                                          if (homeController.balance.value == '0' && isLoading.value)
+                                          if (homeController.balance.value ==
+                                                  '0' &&
+                                              isLoading.value)
                                             SizedBox(
                                               width: 12.0,
                                               height: 12.0,
@@ -276,7 +280,9 @@ class _HomeViewState extends State<HomeView> {
                                                 strokeWidth: 2.0,
                                               ),
                                             ),
-                                          if (!(homeController.balance.value == '0' && isLoading.value))
+                                          if (!(homeController.balance.value ==
+                                                  '0' &&
+                                              isLoading.value))
                                             Container(
                                               width: 40.w,
                                               // color: blackColor,
@@ -289,7 +295,8 @@ class _HomeViewState extends State<HomeView> {
                                                         locale: 'id-ID',
                                                         symbol: '',
                                                         decimalDigits: 0,
-                                                      ).format(double.parse('${homeController.balance.value}')),
+                                                      ).format(double.parse(
+                                                          '${homeController.balance.value}')),
                                                   style: TextStyle(
                                                     color: mainColor,
                                                     fontSize: 18.0.sp,
@@ -335,7 +342,8 @@ class _HomeViewState extends State<HomeView> {
                                               setState(() {
                                                 isLoading.value = true;
                                               });
-                                              await Future.delayed(Duration(seconds: 2));
+                                              await Future.delayed(
+                                                  Duration(seconds: 2));
                                               await _refreshBalance();
                                               setState(() {
                                                 isLoading.value = false;
@@ -379,7 +387,8 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       ElevatedButton.icon(
                                         onPressed: () {
@@ -402,7 +411,8 @@ class _HomeViewState extends State<HomeView> {
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: mainColor,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(8),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
                                           minimumSize: Size(
                                             8.w, //panjang
@@ -489,7 +499,8 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/pulsa.png',
                                       title: 'Pulsa Prabayar',
                                       onTap: () {
-                                        Get.to(PulsaView());
+                                        // Get.to(PulsaView());
+                                        Get.to(Pulsa_PaketdataView());
                                       },
                                     ),
                                     SizedBox(
@@ -639,7 +650,166 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/transferbank.png',
                                       title: 'Transfer Bank',
                                       onTap: () {
-                                        Get.to(TransferbankView());
+                                        // Get.to(TransferbankView());
+                                        // Get.to(contohview());
+                                        // showDialog(
+                                        //     context: context,
+                                        //     builder: (BuildContext context) =>
+                                        //         contohview());
+                                        // showDialog(
+                                        //   context: context,
+                                        //   builder: (context) => StatefulBuilder(
+                                        //     builder: (BuildContext context,
+                                        //         StateSetter myState) {
+                                        //       return SingleChildScrollView(
+                                        //         child: Column(
+                                        //           mainAxisAlignment:
+                                        //               MainAxisAlignment.start,
+                                        //           crossAxisAlignment:
+                                        //               CrossAxisAlignment.start,
+                                        //           children: [
+                                        //             Wrap(
+                                        //               children: [
+                                        //                 ChipsChoice<int>.single(
+                                        //                   value:
+                                        //                       valueTipeActivity,
+                                        //                   onChanged: (val) =>
+                                        //                       myState(() =>
+                                        //                           valueTipeActivity =
+                                        //                               val),
+                                        //                   choiceItems:
+                                        //                       C2Choice.listFrom<
+                                        //                           int, String>(
+                                        //                     source:
+                                        //                         tipeActivity,
+                                        //                     value: (i, v) => i,
+                                        //                     label: (i, v) => v,
+                                        //                   ),
+                                        //                   choiceStyle:
+                                        //                       C2ChipStyle.toned(
+                                        //                     // backgroundColor: Colors.green,
+
+                                        //                     borderRadius:
+                                        //                         const BorderRadius
+                                        //                             .all(
+                                        //                       Radius.circular(
+                                        //                           5),
+                                        //                     ),
+                                        //                   ),
+
+                                        //                   wrapped: true,
+
+                                        //                   // direction: Axis.vertical,
+                                        //                 ),
+                                        //               ],
+                                        //             ),
+                                        //             Center(
+                                        //               child: Container(
+                                        //                 margin:
+                                        //                     EdgeInsets.all(10),
+                                        //                 height: MediaQuery.of(
+                                        //                             context)
+                                        //                         .size
+                                        //                         .height /
+                                        //                     22,
+                                        //                 width: MediaQuery.of(
+                                        //                         context)
+                                        //                     .size
+                                        //                     .width,
+                                        //                 child: ElevatedButton(
+                                        //                   onPressed: () async {
+                                        //                     var deskCheckIn;
+                                        //                     if (valueTipeActivity ==
+                                        //                         0) {
+                                        //                       deskCheckIn =
+                                        //                           'Prospect';
+                                        //                     } else if (valueTipeActivity ==
+                                        //                         1) {
+                                        //                       deskCheckIn =
+                                        //                           'Call';
+                                        //                     } else if (valueTipeActivity ==
+                                        //                         2) {
+                                        //                       deskCheckIn =
+                                        //                           'Visit';
+                                        //                     } else if (valueTipeActivity ==
+                                        //                         3) {
+                                        //                       deskCheckIn =
+                                        //                           'Walked In';
+                                        //                     } else if (valueTipeActivity ==
+                                        //                         4) {
+                                        //                       deskCheckIn =
+                                        //                           'Non Selling';
+                                        //                     }
+
+                                        //                     // await dailyActivityController
+                                        //                     //     .checkIn(
+                                        //                     //   widget.flag,
+                                        //                     //   deskCheckIn,
+                                        //                     //   context,
+                                        //                     // );
+
+                                        //                     setState(() {});
+                                        //                   },
+                                        //                   // style: ElevatedButton
+                                        //                   //     .styleFrom(
+                                        //                   //   primary: mainColor,
+                                        //                   //   shape:
+                                        //                   //       RoundedRectangleBorder(
+                                        //                   //     borderRadius:
+                                        //                   //         BorderRadius
+                                        //                   //             .circular(
+                                        //                   //                 8),
+                                        //                   //   ),
+                                        //                   // ),
+                                        //                   child: Text(
+                                        //                     'Check-In',
+                                        //                     // style: whiteTextFont,
+                                        //                   ),
+                                        //                 ),
+                                        //               ),
+                                        //             ),
+                                        //             Center(
+                                        //               child: Container(
+                                        //                 margin:
+                                        //                     EdgeInsets.all(10),
+                                        //                 height: MediaQuery.of(
+                                        //                             context)
+                                        //                         .size
+                                        //                         .height /
+                                        //                     22,
+                                        //                 width: MediaQuery.of(
+                                        //                         context)
+                                        //                     .size
+                                        //                     .width,
+                                        //                 child: ElevatedButton(
+                                        //                   onPressed: () {
+                                        //                     Get.back();
+                                        //                   },
+                                        //                   style: ElevatedButton
+                                        //                       .styleFrom(
+                                        //                     primary:
+                                        //                         Colors.grey,
+                                        //                     shape:
+                                        //                         RoundedRectangleBorder(
+                                        //                       borderRadius:
+                                        //                           BorderRadius
+                                        //                               .circular(
+                                        //                                   8),
+                                        //                     ),
+                                        //                   ),
+                                        //                   child: Text(
+                                        //                     'KEMBALI',
+                                        //                     // style: whiteTextFont,
+                                        //                   ),
+                                        //                 ),
+                                        //               ),
+                                        //             ),
+                                        //           ],
+                                        //         ),
+                                        //       );
+                                        //     },
+                                        //   ),
+                                        // );
                                       },
                                     ),
                                     SizedBox(
@@ -715,7 +885,8 @@ class _HomeViewState extends State<HomeView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 4.5.h),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 4.5.h),
                                   child: Text(
                                     'Promo',
                                     style: TextStyle(
@@ -746,12 +917,16 @@ class _HomeViewState extends State<HomeView> {
                                           width: 250.h,
                                           decoration: BoxDecoration(
                                             color: mainColor,
-                                            borderRadius: BorderRadius.circular(10.0),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
                                           ),
-                                          margin: EdgeInsets.symmetric(horizontal: 1.5.h),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 1.5.h),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                            child: Image.asset(assetPath, fit: BoxFit.fill),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            child: Image.asset(assetPath,
+                                                fit: BoxFit.fill),
                                           ),
                                         );
                                       },
@@ -780,12 +955,16 @@ class _HomeViewState extends State<HomeView> {
                                           width: 250.h,
                                           decoration: BoxDecoration(
                                             color: mainColor,
-                                            borderRadius: BorderRadius.circular(10.0),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
                                           ),
-                                          margin: EdgeInsets.symmetric(horizontal: 1.5.h),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 1.5.h),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                            child: Image.asset(assetPath, fit: BoxFit.fill),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            child: Image.asset(assetPath,
+                                                fit: BoxFit.fill),
                                           ),
                                         );
                                       },

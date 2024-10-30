@@ -1,0 +1,57 @@
+{
+    "status": true,
+    "message": "success",
+    "response": {
+        "kodeproduk": "PLNPRAH",
+        "tanggal": "20240222102440",
+        "idpel1": "86000703735",
+        "idpel2": "521082522378",
+        "nama_pelanggan": "REANANDA HIDAYAT PERMONO",
+        "tarif": "R1",
+        "daya": "1300",
+        "ppn": "0",
+        "ppj": "0",
+        "angsuran": "0",
+        "nominal": "0",
+        "admin": "2500",
+        "ref": "",
+        "ref1": "XL2IX75W09VT",
+        "ref2": "2818108354",
+        "status": "00",
+        "keterangan": "SUCCESSFUL"
+    }
+}
+
+
+{
+    "status": false,
+    "response": {
+        "KODE_PRODUK": "PLNPRAH",
+        "WAKTU": "20240705142327",
+        "IDPEL1": "32100768574",
+        "IDPEL2": "",
+        "IDPEL3": "",
+        "NAMA_PELANGGAN": "",
+        "NOMINAL": "0",
+        "TARIF": "",
+        "DAYA": "",
+        "REF": "",
+        "MATERAI": "",
+        "PPN": "",
+        "PPJ": "",
+        "ANGSURAN": "",
+        "RPTOKEN": "",
+        "KWH": "",
+        "TOKEN": "",
+        "INFOTEKS": "",
+        "ADMIN": "3000",
+        "REF1": "MMETAUVNFDXZ",
+        "REF2": "2818177450",
+        "REF3": "0",
+        "STATUS": "05",
+        "KET": "GENERAL ERROR",
+        "SALDO_TERPOTONG": "0",
+        "SISA_SALDO": "222196",
+        "URL_STRUK": ""
+    }
+}

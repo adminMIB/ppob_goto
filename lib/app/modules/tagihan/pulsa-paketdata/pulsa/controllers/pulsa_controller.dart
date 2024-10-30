@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/data/controller/network_helper.dart';
-import 'package:ppob_mpay1/app/data/urlServices.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/invoice.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/pulsatransaksi_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/views/pulsatransaksigagal_view.dart';
+import 'package:ppob_mpay1/app/data/urlservices2.dart';
+
+import '../../../../../data/controller/helpercontroller.dart';
+import '../../../../../data/controller/network_helper.dart';
+import '../../../../../data/urlServices.dart';
+import '../views/pulsatransaksi_view.dart';
+import '../views/pulsatransaksigagal_view.dart';
 
 class PulsaController extends GetxController {
 //  final network = Get.put(NetworkHelper());
@@ -18,6 +19,7 @@ class PulsaController extends GetxController {
 
   // var provider = ''.obs;
   var logoProvider = ''.obs;
+  var provider = ''.obs;
   var productCode;
   var listPulsaOnly = [].obs;
   var listNominalPulsa = [].obs;
@@ -173,30 +175,35 @@ class PulsaController extends GetxController {
   productprovider(BuildContext context, var provider) async {
     var access_token = pref.read('access_token');
 
-    return helperController.post(
-      path: UrlListService.productProvider,
+    return helperController.get(
+      path: Urlservice2.get_product,
       headers: {
         'Authorization': 'Bearer $access_token',
       },
       onSuccess: (content) async {
-        if (content['status'] == true) {
-          print(content['response']['content']);
-          listNominalPulsa.assignAll(content['response']['content']);
-          listPulsaOnly.assignAll(
-              listNominalPulsa.where((element) => element['type'] == 'pulsa'));
-          // List product = content['response']['content'];
-          // listNominalPulsa.assignAll(
-          //     listNominalPulsa.where((product) => product['type'] == 'pulsa'));
-        }
+        // if (content['status'] == true) {
+        //   print(content['response']['content']);
+        //   listNominalPulsa.assignAll(content['response']['content']);
+        //   listPulsaOnly.assignAll(
+        //       listNominalPulsa.where((element) => element['type'] == 'pulsa'));
+        //   // List product = content['response']['content'];
+        //   // listNominalPulsa.assignAll(
+        //   //     listNominalPulsa.where((product) => product['type'] == 'pulsa'));
+        // }
+        print('sukses : $content');
       },
       onError: (context) {
         Get.back();
+        // helperController.popUpMessage(
+        //     'Mohon maaf sistem sedang maintenance, Coba beberapa saat lagi.',
+        //     context);
         print('Error: $context');
       },
-      body: {'provider': provider},
+      // body: {'provider': provider},
     );
   }
 
+  //payment pulsa
   transaksipulsa(
       var pin,
       var nomorTelepon,

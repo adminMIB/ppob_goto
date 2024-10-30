@@ -48,11 +48,14 @@ class _RiwayatViewState extends State<RiwayatView> {
     print('Selamat $greeting');
   }
 
-  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join() : '';
+  String getInitials(String userNamalengkap) => userNamalengkap.isNotEmpty
+      ? userNamalengkap.trim().split(' ').map((l) => l[0]).take(2).join()
+      : '';
 
   String formatCreatedAt(String createdAt) {
     DateTime parsedDate = DateTime.parse(createdAt);
-    String formattedDate = DateFormat('dd MMMM yyyy, HH:mm:ss', 'id_ID').format(parsedDate);
+    String formattedDate =
+        DateFormat('dd MMMM yyyy, HH:mm:ss', 'id_ID').format(parsedDate);
 
     return formattedDate + ' WIB';
   }
@@ -108,7 +111,8 @@ class _RiwayatViewState extends State<RiwayatView> {
                                   height: 7.h,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
@@ -195,7 +199,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => tabBar.preferredSize.height + 8.5.h;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       color: whiteColor,
       child: Padding(

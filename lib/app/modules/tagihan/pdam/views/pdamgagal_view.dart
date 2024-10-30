@@ -1,22 +1,17 @@
 import 'dart:typed_data';
-
 import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/main_page.dart';
-import 'package:ppob_mpay1/app/modules/home/views/home_view.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:showcaseview/showcaseview.dart';
 import 'package:sizer/sizer.dart';
-import 'package:screenshot/screenshot.dart';
+
+import '../../../../data/colors.dart';
+import '../../../../data/controller/helpercontroller.dart';
+import '../../../../main_page.dart';
 
 class PdamgagalView extends StatefulWidget {
   final String? error;

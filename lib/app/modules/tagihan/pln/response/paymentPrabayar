@@ -1,0 +1,30 @@
+
+{
+    "status": true,
+    "message": "success",
+    "response": {
+        "productCode": "PLNPRAH",
+        "date": "20240222102728",
+        "no_meteran": "86000703735",
+        "no_pelanggan": "521082522378",
+        "nama_pelanggan": "REANANDA HIDAYAT PERMONO",
+        "amount": "50000",
+        "admin": "2500",
+        "tarif": "R1",
+        "daya": "1300",
+        "kwh": "34.3",
+        "info_text": "Informasi Hubungi Call Center 123 Atau hubungi PLN Terdekat.",
+        "token": "1252 8065 5908 3388 6940",
+        "RPTOKEN": "46296",
+        "ppn": "0",
+        "ppj": "3704",
+        "ref": "0MAS2126022219000000000086514405",
+        "ref1": "XL2IX75W09VT",
+        "ref2": "2818108362",
+        "status": "00",
+        "description": "SUCCESSFUL",
+        "saldo_terpotong": 22500,
+        "sisa_saldo": 155000,
+        "url_struk": "http://struk.rajabiller.com/pdf/struk.php?id=0%2F%2Bp%2BvZLxPUYKtPZEbIXKi8J05bhs7E4PdKvMYl814u6KrY0E7jUjHkM%2Fvzz4JdgGyS7mXD1UOds6kmYciQbUg%3D%3D"
+    }
+}

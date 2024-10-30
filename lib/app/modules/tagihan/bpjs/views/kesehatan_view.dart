@@ -47,10 +47,8 @@ class _KesehatanViewState extends State<KesehatanView> {
         }
       },
       child: Scaffold(
-          // backgroundColor: whiteColor,
+          backgroundColor: whiteColor,
           body: Stack(
-        children: [
-          ListView(
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
@@ -86,33 +84,35 @@ class _KesehatanViewState extends State<KesehatanView> {
                     Form(
                       key: formkey,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      child: TextFormField(
-                        minLines: 1,
-                        maxLength: 20,
-                        controller: idpel,
-                        onChanged: (a) {
-                          setState(() {
-                            wilayah = a.length;
-                            // _isButtonVisible = a.isNotEmpty;
-                          });
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0),
+                      child: SizedBox(
+                        child: TextFormField(
+                          minLines: 1,
+                          maxLength: 20,
+                          controller: idpel,
+                          onChanged: (a) {
+                            setState(() {
+                              wilayah = a.length;
+                              // _isButtonVisible = a.isNotEmpty;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            hintText: 'Masukkan Kode ',
+                            hintStyle: TextStyle(
+                              fontSize: 12.0.sp,
+                              color: Colors.grey.shade500,
+                            ),
                           ),
-                          hintText: 'Masukkan Kode ',
-                          hintStyle: TextStyle(
-                            fontSize: 12.0.sp,
-                            color: Colors.grey.shade500,
-                          ),
+                          validator: (value) {
+                            if (wilayah < 7) {
+                              return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                            }
+                            return null;
+                          },
                         ),
-                        validator: (value) {
-                          if (wilayah < 7) {
-                            return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
-                          }
-                          return null;
-                        },
                       ),
                     ),
                     SizedBox(
@@ -199,17 +199,17 @@ class _KesehatanViewState extends State<KesehatanView> {
                     //     textAlign: TextAlign.justify,
                     //   ),
                     // ),
-                    SizedBox(
-                      height: Get.height * 0.30,
+                    Expanded(
+                      child: SizedBox(),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         color: Colors.transparent,
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.only(bottom: 2.h),
                         child: Center(
                           child: SizedBox(
-                            width: 41.0.h,
+                            width: Get.width,
                             height: 6.0.h,
                             child: ElevatedButton(
                               onPressed: idpel.text.length >= 7
@@ -247,11 +247,9 @@ class _KesehatanViewState extends State<KesehatanView> {
                     )
                   ],
                 ),
-              ),
+              )
             ],
           )
-        ],
-      )
           // Stack(
           //   children: [
           //     SafeArea(

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba2_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/prabayar/prabayar2_view.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../data/colors.dart';
+import '../controllers/pln_controller.dart';
+import 'prabayar/prabayar2_view.dart';
+import 'pascabayar/Pasca2_view.dart';
 
 class Pln2View extends StatefulWidget {
   String? tipePLN;
@@ -44,6 +45,7 @@ class _Pln2ViewState extends State<Pln2View>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -130,7 +132,7 @@ class _Pln2ViewState extends State<Pln2View>
                   // Center(child: Text('Tab 1 content')),
                   Prabayar2View(),
                   // Replace with your second tab content
-                  Coba2View(),
+                  PascaView(),
                   Center(child: Text('Tab 3 content')),
                 ],
               ),

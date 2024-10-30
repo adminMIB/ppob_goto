@@ -3,6 +3,8 @@ import 'package:get/get.dart' as getx;
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
+
+import '../urlservices2.dart';
 // import 'package:ssl_pinning_plugin/ssl_pinning_plugin.dart';
 // import 'package:http_certificate_pinning/certificate_pinning_interceptor.dart';
 
@@ -15,7 +17,8 @@ class NetworkHelper {
 
   final Dio _client = Dio(
     BaseOptions(
-      baseUrl: UrlListService.baseUrl,
+      // baseUrl: UrlListService.baseUrl,
+      baseUrl: Urlservice2.urlbase,
       // receiveTimeout: 10000, // 10 seconds
       // sendTimeout: 10000,
       contentType: Headers.formUrlEncodedContentType,

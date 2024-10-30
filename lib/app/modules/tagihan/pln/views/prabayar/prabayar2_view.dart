@@ -30,220 +30,238 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: whiteColor,
         body: Stack(
-      children: [
-        ListView(
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: 2.h,
-                right: 2.h,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'No Meter/ID Pelanggan',
-                    style: TextStyle(
-                      fontSize: 11.0.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+            ListView(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 2.h,
+                    right: 2.h,
                   ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  Form(
-                    key: formkey,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    child: TextFormField(
-                      minLines: 1,
-                      maxLength: 15,
-                      controller: idpel,
-                      onChanged: (a) {
-                        setState(() {
-                          wilayah = a.length;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        hintText: 'Masukkan Kode ',
-                        hintStyle: TextStyle(
-                          fontSize: 12.0.sp,
-                          color: Colors.grey.shade500,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'No Meter/ID Pelanggan',
+                        style: TextStyle(
+                          fontSize: 11.0.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                      validator: (value) {
-                        if (wilayah < 7) {
-                          return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  Text(
-                    'Pilih Nominal Token',
-                    style: TextStyle(
-                      fontSize: 12.0.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 1.5.h,
-                  ),
-                  //List nominal Token Listrik
-                  Obx(
-                    () => SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: plnprabayarController.listDenomPrabayarListrik.map((element) {
-                          return GestureDetector(
-                            onTap: () async {
-                              controller.restart();
-                              if (idpel.text.isEmpty) {
-                                Flushbar(
-                                  message: 'Mohon masukkan nomor terlebih dahulu!',
-                                  duration: Duration(seconds: 3),
-                                )..show(context);
-                              } else {
-                                plnprabayarController.selectedNominal.value = element.nominal;
-                                print(plnprabayarController.selectedNominal.value = element.nominal);
-                                setState(() {
-                                  selectedItemIndex = plnprabayarController.listDenomPrabayarListrik.indexOf(element);
-                                });
-                              }
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(bottom: 2.0.h),
-                              padding: EdgeInsets.all(2.0.h),
-                              decoration: BoxDecoration(
-                                color: whiteColor,
-                                border: selectedItemIndex == plnprabayarController.listDenomPrabayarListrik.indexOf(element)
-                                    ? Border.all(color: mainColor, width: 2)
-                                    : null,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    spreadRadius: 2,
-                                    blurRadius: 2,
-                                    offset: Offset(0, 1),
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    width: 35.0.w,
-                                    // color: Colors.amber,
-                                    child: Text(
-                                      'Token Listrik PLN',
-                                      style: TextStyle(
-                                        fontSize: 11.0.sp,
-                                        fontWeight: FontWeight.w400,
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Form(
+                        key: formkey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        child: TextFormField(
+                          minLines: 1,
+                          maxLength: 15,
+                          controller: idpel,
+                          onChanged: (a) {
+                            setState(() {
+                              wilayah = a.length;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            hintText: 'Masukkan Kode ',
+                            hintStyle: TextStyle(
+                              fontSize: 12.0.sp,
+                              color: Colors.grey.shade500,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (wilayah < 7) {
+                              return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+                      Text(
+                        'Pilih Nominal Token',
+                        style: TextStyle(
+                          fontSize: 12.0.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 1.5.h,
+                      ),
+                      //List nominal Token Listrik
+                      Obx(
+                        () => SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: plnprabayarController
+                                .listDenomPrabayarListrik
+                                .map((element) {
+                              return GestureDetector(
+                                onTap: () async {
+                                  controller.restart();
+                                  if (idpel.text.isEmpty) {
+                                    Flushbar(
+                                      message:
+                                          'Mohon masukkan nomor terlebih dahulu!',
+                                      duration: Duration(seconds: 3),
+                                    )..show(context);
+                                  } else {
+                                    plnprabayarController.selectedNominal
+                                        .value = element.nominal;
+                                    print(plnprabayarController.selectedNominal
+                                        .value = element.nominal);
+                                    setState(() {
+                                      selectedItemIndex = plnprabayarController
+                                          .listDenomPrabayarListrik
+                                          .indexOf(element);
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(bottom: 2.0.h),
+                                  padding: EdgeInsets.all(2.0.h),
+                                  decoration: BoxDecoration(
+                                    color: whiteColor,
+                                    border: selectedItemIndex ==
+                                            plnprabayarController
+                                                .listDenomPrabayarListrik
+                                                .indexOf(element)
+                                        ? Border.all(color: mainColor, width: 2)
+                                        : null,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.3),
+                                        spreadRadius: 2,
+                                        blurRadius: 2,
+                                        offset: Offset(0, 1),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                  Container(
-                                    width: 40.0.w,
-                                    // color: Colors.red,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: FittedBox(
-                                        fit: BoxFit.scaleDown,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        width: 35.0.w,
+                                        // color: Colors.amber,
                                         child: Text(
-                                          NumberFormat.currency(
-                                            locale: 'id-ID',
-                                            symbol: 'Rp.',
-                                            decimalDigits: 0,
-                                          ).format(int.parse(element.nominal)),
+                                          'Token Listrik PLN',
                                           style: TextStyle(
-                                            color: mainColor,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 11.0.sp,
+                                            fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Container(
+                                        width: 40.0.w,
+                                        // color: Colors.red,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              NumberFormat.currency(
+                                                locale: 'id-ID',
+                                                symbol: 'Rp.',
+                                                decimalDigits: 0,
+                                              ).format(
+                                                  int.parse(element.nominal)),
+                                              style: TextStyle(
+                                                color: mainColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      color: Colors.amber.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text(
-                      'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
-                      style: TextStyle(
-                        fontSize: 11.0.sp,
-                        fontWeight: FontWeight.w400,
+                      SizedBox(
+                        height: 2.h,
                       ),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
+                      Container(
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Colors.amber.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
+                          style: TextStyle(
+                            fontSize: 11.0.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ),
 
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      color: whiteColor,
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(
-                        child: SizedBox(
-                          width: 41.0.h,
-                          height: 6.0.h,
-                          child: ElevatedButton(
-                            onPressed: idpel.text.length >= 7
-                                ? () async {
-                                    if (formkey.currentState!.validate()) {
-                                      await plnprabayarController.plnprabayarInquiry(idpel.text, context);
-                                    }
-                                  }
-                                : null,
-                            style: ElevatedButton.styleFrom(
-                              primary: idpel.text.length >= 7 ? mainColor : Colors.grey.shade700,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              // elevation: 10,
-                            ),
-                            child: Text(
-                              'Lanjutkan',
-                              style: TextStyle(
-                                fontSize: 14.0.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFFDF8F8),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          color: whiteColor,
+                          padding: EdgeInsets.only(top: 2.h, bottom: 2.h),
+                          child: Center(
+                            child: SizedBox(
+                              width: Get.width,
+                              height: 6.0.h,
+                              child: ElevatedButton(
+                                onPressed: idpel.text.length >= 7
+                                    ? () async {
+                                        if (formkey.currentState!.validate()) {
+                                          await plnprabayarController
+                                              .plnprabayarInquiry(
+                                                  idpel.text, context);
+                                        }
+                                      }
+                                    : null,
+                                style: ElevatedButton.styleFrom(
+                                  primary: idpel.text.length >= 7
+                                      ? mainColor
+                                      : Colors.grey.shade700,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  // elevation: 10,
+                                ),
+                                child: Text(
+                                  'Lanjutkan',
+                                  style: TextStyle(
+                                    fontSize: 14.0.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFFDF8F8),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )
           ],
-        )
-      ],
-    ));
+        ));
   }
 }

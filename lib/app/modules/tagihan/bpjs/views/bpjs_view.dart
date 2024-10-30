@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/kesehatan_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/ketenagakerjaan_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pln/views/pascabayar/coba2_view.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../data/colors.dart';
+import '../../pln/controllers/pln_controller.dart';
+import 'kesehatan_view.dart';
+import 'ketenagakerjaan_view.dart';
 
 class BpjsView extends StatefulWidget {
   String? tipePLN;
@@ -72,7 +72,7 @@ class _BpjsViewState extends State<BpjsView>
             Padding(
               padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
               child: Container(
-                height: 7.h,
+                height: 6.h,
                 decoration: BoxDecoration(
                   color: mainContainer,
                   borderRadius: BorderRadius.circular(1.5.h),

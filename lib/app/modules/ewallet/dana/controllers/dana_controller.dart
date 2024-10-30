@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/pulsa_model.dart';
+
+import '../../../tagihan/pulsa-paketdata/pulsa_model.dart';
 
 class DanaController extends GetxController {
   final helperController = Get.put(HelperController());

@@ -29,3 +29,12 @@ Color blackColor = const Color(0xff000000);
 Color abumuda = const Color(0xffD0D4CA);
 Color biru = const Color(0xffB3CDE0).withOpacity(0.1);
 Color outline = Color(0xFF005B96);
+
+const blueGradient = LinearGradient(
+  colors: [
+    Color(0xFF005B96),
+    Color(0xFFB3CDE0),
+  ],
+  begin: Alignment.topRight,
+  end: Alignment.bottomLeft,
+);

@@ -5,7 +5,6 @@ import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pulsa/controllers/pulsa_controller.dart';
 import 'package:ppob_mpay1/app/modules/transferbank/views/bank_view.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
@@ -27,7 +26,6 @@ class _TransferbankViewState extends State<TransferbankView> {
   bool shouldUpdateViewPrice = false;
   TextEditingController tNoPulsa = TextEditingController();
 
-  final pulsaController = Get.put(PulsaController());
   final helperController = Get.put(HelperController());
 
   PhoneContact? _phoneContact;

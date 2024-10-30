@@ -22,14 +22,15 @@ import '../modules/lupapassword/bindings/lupapassword_binding.dart';
 import '../modules/lupapassword/views/lupapassword_view.dart';
 import '../modules/multifinance/bindings/multifinance_binding.dart';
 import '../modules/multifinance/views/multifinance_view.dart';
-import '../modules/tagihan/paketdata/bindings/paketdata_binding.dart';
-import '../modules/tagihan/paketdata/views/paketdata_view.dart';
+import '../modules/tagihan/pulsa-paketdata/paketdata/bindings/paketdata_binding.dart';
+import '../modules/tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
 import '../modules/pin/bindings/pin_binding.dart';
 import '../modules/pin/views/pin_view.dart';
 import '../modules/promo/bindings/promo_binding.dart';
 import '../modules/promo/views/promo_view.dart';
-import '../modules/tagihan/pulsa/bindings/pulsa_binding.dart';
-import '../modules/tagihan/pulsa/views/pulsa_view.dart';
+import '../modules/tagihan/pln/views/plnview.dart';
+import '../modules/tagihan/pulsa-paketdata/pulsa/bindings/pulsa_binding.dart';
+import '../modules/tagihan/pulsa-paketdata/pulsa/views/pulsa_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/riwayat/bindings/riwayat_binding.dart';
@@ -44,7 +45,6 @@ import '../modules/tagihan/bpjs/views/bpjs_view.dart';
 import '../modules/tagihan/pdam/bindings/pdam_binding.dart';
 import '../modules/tagihan/pdam/views/pdam_view.dart';
 import '../modules/tagihan/pln/bindings/pln_binding.dart';
-import '../modules/tagihan/pln/views/pln_view.dart';
 import '../modules/tagihan/telco/bindings/telco_binding.dart';
 import '../modules/tagihan/telco/views/telco_view.dart';
 import '../modules/tagihan/views/tagihan_view.dart';
@@ -137,7 +137,7 @@ class AppPages {
       children: [
         GetPage(
           name: _Paths.PLN,
-          page: () => const PlnView(),
+          page: () => Pln2View(),
           binding: PlnBinding(),
         ),
         GetPage(
