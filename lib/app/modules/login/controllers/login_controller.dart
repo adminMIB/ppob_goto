@@ -58,14 +58,14 @@ class LoginController extends GetxController {
   actlogin(var email, var password, BuildContext context) async {
     await helperController.loading(context);
     return helperController.post(
-      path: Urlservice2.loginV1,
-      // path: 'https://3328-139-192-57-138.ngrok-free.app/api/v1/auth/Login',
+      // path: Urlservice2.loginV1,
+      path: 'http://123.176.120.84:3003/api/v1/auth/Login',
       onSuccess: (context) async {
         Get.back();
         // print('hasil $context');
         if (context['status'] == true) {
           print('berhasil : $context');
-
+          print('tokenn:  ${context['acces_token']}');
           // print('hasil $context');
           var user = context['data'];
           // var access_token = context['access_token'];
@@ -80,7 +80,7 @@ class LoginController extends GetxController {
           pref.write('nomer_tlp', user['nomer_tlp']);
           pref.write('createdAt', user['createdAt']);
           pref.write('updatedAt', user['updatedAt']);
-          pref.write('access_token', context['access_token']);
+          pref.write('access_token', context['acces_token']);
           Get.offAll(MainPage());
           // print(context);
         } else {

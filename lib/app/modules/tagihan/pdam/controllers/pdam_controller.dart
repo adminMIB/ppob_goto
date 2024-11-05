@@ -22,34 +22,35 @@ class PdamController extends GetxController {
   final helperController = Get.put(HelperController());
   final network = Get.put(NetworkHelper());
   var pref = GetStorage();
+  final pdamke2 = [].obs;
   bool shouldCallPdamApi = true;
 
   //get pdam //
 
-  pdam(BuildContext context) async {
-    // await helperController.loading(context);
-    var access_token = pref.read('access_token');
-    print('token : $access_token');
-    return helperController.post(
-      path: UrlListService.pdam,
-      headers: {
-        'Authorization': 'Bearer $access_token',
-      },
-      onSuccess: (content) {
-        if (content['status'] == true) {
-          print('hasil');
-          print(content['response']['content']);
-          originalData.assignAll(content['response']['content']);
-          dataPdam.assignAll(originalData);
-          Get.to(PdamView());
-        }
-      },
-      onError: (onError) {
-        print('error : $onError');
-      },
-      body: {},
-    );
-  }
+  // pdam(BuildContext context) async {
+  //   // await helperController.loading(context);
+  //   var access_token = pref.read('access_token');
+  //   print('token : $access_token');
+  //   return helperController.post(
+  //     path: UrlListService.pdam,
+  //     headers: {
+  //       'Authorization': 'Bearer $access_token',
+  //     },
+  //     onSuccess: (content) {
+  //       if (content['status'] == true) {
+  //         print('hasil');
+  //         print(content['response']['content']);
+  //         originalData.assignAll(content['response']['content']);
+  //         dataPdam.assignAll(originalData);
+  //         Get.to(PdamView());
+  //       }
+  //     },
+  //     onError: (onError) {
+  //       print('error : $onError');
+  //     },
+  //     body: {},
+  //   );
+  // }
 
   void filterData(String query) {
     if (query.isEmpty) {
@@ -58,6 +59,29 @@ class PdamController extends GetxController {
       dataPdam.assignAll(originalData.where((element) =>
           element['product_name'].toLowerCase().contains(query.toLowerCase())));
     }
+  }
+
+  pdam(BuildContext context) async {
+    // await helperController.loading(context);
+    var access_token = pref.read('access_token');
+    print('token : $access_token');
+    return helperController.get(
+      path: 'http://123.176.120.84:3003/api/v1/goto/products-list',
+      headers: {
+        'Authorization': 'Bearer $access_token',
+      },
+      onSuccess: (content) {
+        print('token:  $access_token');
+        print('hasil : $content');
+        // print(content['response']['data']);
+        originalData.assignAll(content['response']['data']);
+        dataPdam.assignAll(originalData);
+        // Get.to(PdamView());
+      },
+      onError: (onError) {
+        print('error : $onError');
+      },
+    );
   }
 
 // inquiry PDAM//

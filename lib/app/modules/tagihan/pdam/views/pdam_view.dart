@@ -136,10 +136,10 @@ class _PdamViewState extends State<PdamView> {
                                         Icons.keyboard_arrow_right_outlined,
                                       ),
                                       onTap: () {
-                                        Get.to(WilayahView(
-                                          productName: element['product_name'],
-                                          productCode: element['product_code'],
-                                        ));
+                                        // Get.to(WilayahView(
+                                        //   productName: element['product_name'],
+                                        //   productCode: element['product_code'],
+                                        // ));
                                       },
                                     ),
                                     Divider(

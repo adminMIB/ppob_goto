@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pulsa-paketdata/pulsa-paketdata_view.dart';
+import 'package:ppob_mpay1/app/modules/transferbank/controllers/transferbank_controller.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timer_count_down/timer_count_down.dart';
@@ -42,6 +44,7 @@ class _HomeViewState extends State<HomeView> {
   final pdamController = Get.put(PdamController());
   final homeController = Get.put(HomeController());
   final helperController = Get.put(HelperController());
+  final detailgoto = Get.put(TransferbankController());
   String? greeting;
 
   final isLoading = false.obs;
@@ -205,10 +208,10 @@ class _HomeViewState extends State<HomeView> {
                                             children: [
                                               Text(
                                                 'Selamat ${greeting} ${pref.read('nama_lengkap').substring(0, 1).toUpperCase()}${pref.read('nama_lengkap').substring(1)}',
-                                                style: TextStyle(
+                                                style: GoogleFonts.dmSans(
+                                                  fontSize: 11.sp,
                                                   color: whiteColor,
-                                                  fontSize: 11.0.sp,
-                                                  fontWeight: FontWeight.w700,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                               ),
                                             ],
@@ -218,10 +221,10 @@ class _HomeViewState extends State<HomeView> {
                                           ),
                                           Text(
                                             '${pref.read('nomer_tlp')}',
-                                            style: TextStyle(
+                                            style: GoogleFonts.dmSans(
+                                              fontSize: 8.5.sp,
                                               color: whiteColor,
-                                              fontSize: 8.0.sp,
-                                              fontWeight: FontWeight.w700,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                         ],
@@ -320,9 +323,9 @@ class _HomeViewState extends State<HomeView> {
                                           ),
                                           Text(
                                             'Saldo',
-                                            style: TextStyle(
+                                            style: GoogleFonts.dmSans(
+                                              fontSize: 9.sp,
                                               color: greyColor,
-                                              fontSize: 9.0.sp,
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
@@ -361,9 +364,9 @@ class _HomeViewState extends State<HomeView> {
                                                 ),
                                                 Text(
                                                   'Refresh',
-                                                  style: TextStyle(
+                                                  style: GoogleFonts.dmSans(
+                                                    fontSize: 9.sp,
                                                     color: greyColor,
-                                                    fontSize: 9.0.sp,
                                                     fontWeight: FontWeight.w700,
                                                   ),
                                                 ),
@@ -402,10 +405,10 @@ class _HomeViewState extends State<HomeView> {
                                         ),
                                         label: Text(
                                           'Top Up Saldo',
-                                          style: TextStyle(
+                                          style: GoogleFonts.dmSans(
+                                            fontSize: 8.sp,
                                             color: whiteColor,
-                                            fontSize: 8.0.sp,
-                                            fontWeight: FontWeight.w700,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                         style: ElevatedButton.styleFrom(
@@ -432,9 +435,9 @@ class _HomeViewState extends State<HomeView> {
                                           // ),
                                           Text(
                                             'Reward',
-                                            style: TextStyle(
+                                            style: GoogleFonts.dmSans(
+                                              fontSize: 9.sp,
                                               color: thirdColor,
-                                              fontSize: 8.0.sp,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -443,10 +446,10 @@ class _HomeViewState extends State<HomeView> {
                                           ),
                                           Text(
                                             '10.250,-',
-                                            style: TextStyle(
+                                            style: GoogleFonts.dmSans(
+                                              fontSize: 10.sp,
                                               color: thirdColor,
-                                              fontSize: 10.0.sp,
-                                              fontWeight: FontWeight.w700,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                         ],
@@ -481,10 +484,10 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 Text(
                                   'Isi Ulang',
-                                  style: TextStyle(
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 13.0.sp,
                                     color: thirdColor,
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 SizedBox(
@@ -552,10 +555,10 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 Text(
                                   'Tagihan & Pascabayar',
-                                  style: TextStyle(
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 13.0.sp,
                                     color: thirdColor,
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 SizedBox(
@@ -634,10 +637,10 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 Text(
                                   'Keuangan',
-                                  style: TextStyle(
+                                  style: GoogleFonts.dmSans(
+                                    fontSize: 13.0.sp,
                                     color: thirdColor,
-                                    fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 SizedBox(
@@ -649,7 +652,11 @@ class _HomeViewState extends State<HomeView> {
                                     CardMenu(
                                       image: 'assets/images/transferbank.png',
                                       title: 'Transfer Bank',
-                                      onTap: () {
+                                      onTap: () async {
+                                        // await detailgoto.detailgoto(context);
+
+                                        await detailgoto.inquirygoto(context);
+                                        // await detailgoto.paymentgoto(context);
                                         // Get.to(TransferbankView());
                                         // Get.to(contohview());
                                         // showDialog(
@@ -889,10 +896,10 @@ class _HomeViewState extends State<HomeView> {
                                       EdgeInsets.symmetric(horizontal: 4.5.h),
                                   child: Text(
                                     'Promo',
-                                    style: TextStyle(
+                                    style: GoogleFonts.dmSans(
+                                      fontSize: 13.0.sp,
                                       color: thirdColor,
-                                      fontSize: 12.0.sp,
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
