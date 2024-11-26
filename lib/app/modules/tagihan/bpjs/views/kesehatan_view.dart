@@ -24,6 +24,7 @@ class _KesehatanViewState extends State<KesehatanView> {
 
   final bpjsController = Get.put(BpjsController());
   final helperController = Get.put(HelperController());
+  //  final detailgoto = Get.put(TransferbankController());
 
   var bayarHinggaValue;
 
@@ -118,69 +119,70 @@ class _KesehatanViewState extends State<KesehatanView> {
                     SizedBox(
                       height: 1.h,
                     ),
-                    Text(
-                      'Bayar Hingga',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(height: 1.h),
-                    Obx(() => DropdownButtonFormField2(
-                          isExpanded: true,
-                          decoration: InputDecoration(
-                            fillColor: Colors.transparent,
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                            // Add more decoration..
-                          ),
-                          hint: const Text(
-                            '-- Bayar Hingga Bulan --',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          items: bpjsController.months.map((value) {
-                            return DropdownMenuItem(
-                              child: Text(
-                                value['name'],
-                              ),
-                              value: value['value'],
-                            );
-                          }).toList(),
-                          validator: (value) {
-                            if (value == null) {
-                              return 'Select Bank';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            setState(() {
-                              print('Jumlah Bulan: $value');
-                              print(value);
-                            });
-                            bayarHinggaValue = value;
-                          },
-                          buttonStyleData: const ButtonStyleData(
-                            padding: EdgeInsets.only(right: 8),
-                          ),
-                          iconStyleData: const IconStyleData(
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black45,
-                            ),
-                            iconSize: 24,
-                          ),
-                          dropdownStyleData: DropdownStyleData(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                          menuItemStyleData: const MenuItemStyleData(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                          ),
-                        )),
+                    // Text(
+                    //   'Bayar Hingga',
+                    //   style: TextStyle(
+                    //     fontSize: 12.sp,
+                    //     fontWeight: FontWeight.w500,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 1.h),
+                    // Obx(() => DropdownButtonFormField2(
+                    //       isExpanded: true,
+                    //       decoration: InputDecoration(
+                    //         fillColor: Colors.transparent,
+                    //         filled: true,
+                    //         border: OutlineInputBorder(
+                    //           borderRadius: BorderRadius.circular(10),
+                    //           borderSide: BorderSide(color: Colors.grey),
+                    //         ),
+                    //         // Add more decoration..
+                    //       ),
+                    //       hint: const Text(
+                    //         '-- Bayar Hingga Bulan --',
+                    //         style: TextStyle(fontSize: 14),
+                    //       ),
+                    //       items: bpjsController.months.map((value) {
+                    //         return DropdownMenuItem(
+                    //           child: Text(
+                    //             value['name'],
+                    //           ),
+                    //           value: value['value'],
+                    //         );
+                    //       }).toList(),
+                    //       validator: (value) {
+                    //         if (value == null) {
+                    //           return 'Select Bank';
+                    //         }
+                    //         return null;
+                    //       },
+                    //       onChanged: (value) {
+                    //         setState(() {
+                    //           print('Jumlah Bulan: $value');
+                    //           print(value);
+                    //         });
+                    //         bayarHinggaValue = value;
+                    //       },
+                    //       buttonStyleData: const ButtonStyleData(
+                    //         padding: EdgeInsets.only(right: 8),
+                    //       ),
+                    //       iconStyleData: const IconStyleData(
+                    //         icon: Icon(
+                    //           Icons.arrow_drop_down,
+                    //           color: Colors.black45,
+                    //         ),
+                    //         iconSize: 24,
+                    //       ),
+                    //       dropdownStyleData: DropdownStyleData(
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(15),
+                    //         ),
+                    //       ),
+                    //       menuItemStyleData: const MenuItemStyleData(
+                    //         padding: EdgeInsets.symmetric(horizontal: 16),
+                    //       ),
+                    //     )),
+
                     // SizedBox(
                     //   height: 2.h,
                     // ),

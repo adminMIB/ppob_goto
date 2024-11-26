@@ -35,7 +35,7 @@ class _AkunViewState extends State<AkunView> {
   String? greeting;
   String? versionApp;
 
-  final homeController = Get.put(HomeController());
+  // final homeController = Get.put(HomeController());
 
   void initState() {
     super.initState();
@@ -44,15 +44,15 @@ class _AkunViewState extends State<AkunView> {
     getPackage();
   }
 
-  Future<void> _refreshBalance() async {
-    setState(() {
-      isRefreshing = true;
-    });
-    await homeController.CheckBalance(context);
-    setState(() {
-      isRefreshing = false;
-    });
-  }
+  // Future<void> _refreshBalance() async {
+  //   setState(() {
+  //     isRefreshing = true;
+  //   });
+  //   await homeController.CheckBalance(context);
+  //   setState(() {
+  //     isRefreshing = false;
+  //   });
+  // }
 
   void initGreeting() async {
     int time = DateTime.now().hour;
@@ -227,202 +227,202 @@ class _AkunViewState extends State<AkunView> {
                           width: 2,
                         ),
                       ),
-                      child: Obx(
-                        () => Padding(
-                          padding: EdgeInsets.all(2.0.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      if (homeController.balance.value == '0' &&
-                                          isLoading.value)
-                                        SizedBox(
-                                          width: 12.0,
-                                          height: 12.0,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2.0,
-                                          ),
-                                        ),
-                                      if (!(homeController.balance.value ==
-                                              '0' &&
-                                          isLoading.value))
-                                        Container(
-                                          width: 40.w,
-                                          // color: blackColor,
-                                          child: FittedBox(
-                                            fit: BoxFit.scaleDown,
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              'Rp. ' +
-                                                  NumberFormat.currency(
-                                                    locale: 'id-ID',
-                                                    symbol: '',
-                                                    decimalDigits: 0,
-                                                  ).format(double.parse(
-                                                      '${homeController.balance.value}')),
-                                              style: TextStyle(
-                                                color: mainColor,
-                                                fontSize: 18.0.sp,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 2.0.h,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/Dompet.png',
-                                      ),
-                                      SizedBox(
-                                        width: 0.5.h,
-                                      ),
-                                      Text(
-                                        'Saldo',
-                                        style: TextStyle(
-                                          color: greyColor,
-                                          fontSize: 9.0.sp,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 1.0.h,
-                                      ),
-                                      Container(
-                                        color: Colors.grey,
-                                        height: 3.h,
-                                        width: 1,
-                                      ),
-                                      SizedBox(
-                                        width: 1.0.h,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          setState(() {
-                                            isLoading.value = true;
-                                          });
-                                          await Future.delayed(
-                                              Duration(seconds: 2));
-                                          await _refreshBalance();
-                                          setState(() {
-                                            isLoading.value = false;
-                                          });
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Remix.refresh_line,
-                                              color: greyColor,
-                                              size: 10.0.sp,
-                                            ),
-                                            SizedBox(
-                                              width: 0.5.h,
-                                            ),
-                                            Text(
-                                              'Refresh',
-                                              style: TextStyle(
-                                                color: greyColor,
-                                                fontSize: 9.0.sp,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 1.5.h,
-                              ),
-                              Container(
-                                color: Colors.grey,
-                                height: 10.h,
-                                width: 1,
-                              ),
-                              SizedBox(
-                                width: 1.5.h,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ElevatedButton.icon(
-                                    onPressed: () {
-                                      Get.to(SaldoView());
-                                    },
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.cartPlus,
-                                      color: whiteColor,
-                                      size: 2.0.h,
-                                    ),
-                                    label: Text(
-                                      'Top Up Saldo',
-                                      style: TextStyle(
-                                        color: whiteColor,
-                                        fontSize: 8.0.sp,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: mainColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      minimumSize: Size(
-                                        8.w, //panjang
-                                        4.h, //tinggi
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/Prize.png',
-                                        height: 3.0.h,
-                                        width: 3.0.h,
-                                      ),
-                                      // SizedBox(
-                                      //   width: 0.5.h,
-                                      // ),
-                                      Text(
-                                        'Reward',
-                                        style: TextStyle(
-                                          color: thirdColor,
-                                          fontSize: 8.0.sp,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 1.0.h,
-                                      ),
-                                      Text(
-                                        '10.250,-',
-                                        style: TextStyle(
-                                          color: thirdColor,
-                                          fontSize: 12.0.sp,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // child: Obx(
+                      //   () => Padding(
+                      //     padding: EdgeInsets.all(2.0.h),
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Column(
+                      //           mainAxisAlignment: MainAxisAlignment.start,
+                      //           crossAxisAlignment: CrossAxisAlignment.start,
+                      //           children: [
+                      //             // Stack(
+                      //             //   alignment: Alignment.center,
+                      //             //   children: [
+                      //             //     if (homeController.balance.value == '0' &&
+                      //             //         isLoading.value)
+                      //             //       SizedBox(
+                      //             //         width: 12.0,
+                      //             //         height: 12.0,
+                      //             //         child: CircularProgressIndicator(
+                      //             //           strokeWidth: 2.0,
+                      //             //         ),
+                      //             //       ),
+                      //             //     if (!(homeController.balance.value ==
+                      //             //             '0' &&
+                      //             //         isLoading.value))
+                      //             //       Container(
+                      //             //         width: 40.w,
+                      //             //         // color: blackColor,
+                      //             //         child: FittedBox(
+                      //             //           fit: BoxFit.scaleDown,
+                      //             //           alignment: Alignment.centerLeft,
+                      //             //           child: Text(
+                      //             //             'Rp. ' +
+                      //             //                 NumberFormat.currency(
+                      //             //                   locale: 'id-ID',
+                      //             //                   symbol: '',
+                      //             //                   decimalDigits: 0,
+                      //             //                 ).format(double.parse(
+                      //             //                     '${homeController.balance.value}')),
+                      //             //             style: TextStyle(
+                      //             //               color: mainColor,
+                      //             //               fontSize: 18.0.sp,
+                      //             //               fontWeight: FontWeight.w700,
+                      //             //             ),
+                      //             //           ),
+                      //             //         ),
+                      //             //       ),
+                      //             //   ],
+                      //             // ),
+                      //             SizedBox(
+                      //               height: 2.0.h,
+                      //             ),
+                      //             Row(
+                      //               children: [
+                      //                 Image.asset(
+                      //                   'assets/images/Dompet.png',
+                      //                 ),
+                      //                 SizedBox(
+                      //                   width: 0.5.h,
+                      //                 ),
+                      //                 Text(
+                      //                   'Saldo',
+                      //                   style: TextStyle(
+                      //                     color: greyColor,
+                      //                     fontSize: 9.0.sp,
+                      //                     fontWeight: FontWeight.w700,
+                      //                   ),
+                      //                 ),
+                      //                 SizedBox(
+                      //                   width: 1.0.h,
+                      //                 ),
+                      //                 Container(
+                      //                   color: Colors.grey,
+                      //                   height: 3.h,
+                      //                   width: 1,
+                      //                 ),
+                      //                 SizedBox(
+                      //                   width: 1.0.h,
+                      //                 ),
+                      //                 GestureDetector(
+                      //                   onTap: () async {
+                      //                     setState(() {
+                      //                       isLoading.value = true;
+                      //                     });
+                      //                     await Future.delayed(
+                      //                         Duration(seconds: 2));
+                      //                     await _refreshBalance();
+                      //                     setState(() {
+                      //                       isLoading.value = false;
+                      //                     });
+                      //                   },
+                      //                   child: Row(
+                      //                     children: [
+                      //                       Icon(
+                      //                         Remix.refresh_line,
+                      //                         color: greyColor,
+                      //                         size: 10.0.sp,
+                      //                       ),
+                      //                       SizedBox(
+                      //                         width: 0.5.h,
+                      //                       ),
+                      //                       Text(
+                      //                         'Refresh',
+                      //                         style: TextStyle(
+                      //                           color: greyColor,
+                      //                           fontSize: 9.0.sp,
+                      //                           fontWeight: FontWeight.w700,
+                      //                         ),
+                      //                       ),
+                      //                     ],
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ],
+                      //         ),
+                      //         SizedBox(
+                      //           width: 1.5.h,
+                      //         ),
+                      //         Container(
+                      //           color: Colors.grey,
+                      //           height: 10.h,
+                      //           width: 1,
+                      //         ),
+                      //         SizedBox(
+                      //           width: 1.5.h,
+                      //         ),
+                      //         Column(
+                      //           mainAxisAlignment: MainAxisAlignment.start,
+                      //           crossAxisAlignment: CrossAxisAlignment.start,
+                      //           children: [
+                      //             ElevatedButton.icon(
+                      //               onPressed: () {
+                      //                 Get.to(SaldoView());
+                      //               },
+                      //               icon: FaIcon(
+                      //                 FontAwesomeIcons.cartPlus,
+                      //                 color: whiteColor,
+                      //                 size: 2.0.h,
+                      //               ),
+                      //               label: Text(
+                      //                 'Top Up Saldo',
+                      //                 style: TextStyle(
+                      //                   color: whiteColor,
+                      //                   fontSize: 8.0.sp,
+                      //                   fontWeight: FontWeight.w700,
+                      //                 ),
+                      //               ),
+                      //               style: ElevatedButton.styleFrom(
+                      //                 backgroundColor: mainColor,
+                      //                 shape: RoundedRectangleBorder(
+                      //                   borderRadius: BorderRadius.circular(8),
+                      //                 ),
+                      //                 minimumSize: Size(
+                      //                   8.w, //panjang
+                      //                   4.h, //tinggi
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             Row(
+                      //               children: [
+                      //                 Image.asset(
+                      //                   'assets/images/Prize.png',
+                      //                   height: 3.0.h,
+                      //                   width: 3.0.h,
+                      //                 ),
+                      //                 // SizedBox(
+                      //                 //   width: 0.5.h,
+                      //                 // ),
+                      //                 Text(
+                      //                   'Reward',
+                      //                   style: TextStyle(
+                      //                     color: thirdColor,
+                      //                     fontSize: 8.0.sp,
+                      //                     fontWeight: FontWeight.w600,
+                      //                   ),
+                      //                 ),
+                      //                 SizedBox(
+                      //                   width: 1.0.h,
+                      //                 ),
+                      //                 Text(
+                      //                   '10.250,-',
+                      //                   style: TextStyle(
+                      //                     color: thirdColor,
+                      //                     fontSize: 12.0.sp,
+                      //                     fontWeight: FontWeight.w700,
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                   //Akhir Saldo

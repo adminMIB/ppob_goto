@@ -37,31 +37,31 @@ class OldHomeView extends StatefulWidget {
 
 class _OldHomeViewState extends State<OldHomeView> {
   final pdamController = Get.put(PdamController());
-  final homeController = Get.put(HomeController());
+  // final homeController = Get.put(HomeController());
 
   final isLoading = false.obs;
   PersistentTabController? persistentTabController;
   bool isRefreshing = false;
   var pref = GetStorage();
   @override
-  void initState() {
-    super.initState();
-    homeController.CheckBalance(context);
-  }
+  // void initState() {
+  //   super.initState();
+  //   homeController.CheckBalance(context);
+  // }
 
-  void _handleRefresh() {
-    homeController.CheckBalance(context);
-  }
+  // void _handleRefresh() {
+  //   homeController.CheckBalance(context);
+  // }
 
-  Future<void> _refreshBalance() async {
-    setState(() {
-      isRefreshing = true;
-    });
-    await homeController.CheckBalance(context);
-    setState(() {
-      isRefreshing = false;
-    });
-  }
+  // Future<void> _refreshBalance() async {
+  //   setState(() {
+  //     isRefreshing = true;
+  //   });
+  //   await homeController.CheckBalance(context);
+  //   setState(() {
+  //     isRefreshing = false;
+  //   });
+  // }
 
   Future<void> _showLoadingWithDelay() async {
     await Future.delayed(Duration(seconds: 2));
@@ -267,62 +267,62 @@ class _OldHomeViewState extends State<OldHomeView> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  if (homeController
-                                                              .balance.value ==
-                                                          '0' &&
-                                                      isLoading.value)
-                                                    SizedBox(
-                                                      width: 12.0,
-                                                      height: 12.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        strokeWidth: 2.0,
-                                                      ),
-                                                    ),
-                                                  if (!(homeController
-                                                              .balance.value ==
-                                                          '0' &&
-                                                      isLoading.value))
-                                                    Text(
-                                                      NumberFormat.currency(
-                                                        locale: 'id-ID',
-                                                        symbol: '',
-                                                        decimalDigits: 0,
-                                                      ).format(double.parse(
-                                                          '${homeController.balance.value}')),
-                                                      style: TextStyle(
-                                                        fontSize: 12.0.sp,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
+                                              // Stack(
+                                              //   alignment: Alignment.center,
+                                              //   children: [
+                                              //     if (homeController
+                                              //                 .balance.value ==
+                                              //             '0' &&
+                                              //         isLoading.value)
+                                              //       SizedBox(
+                                              //         width: 12.0,
+                                              //         height: 12.0,
+                                              //         child:
+                                              //             CircularProgressIndicator(
+                                              //           strokeWidth: 2.0,
+                                              //         ),
+                                              //       ),
+                                              //     if (!(homeController
+                                              //                 .balance.value ==
+                                              //             '0' &&
+                                              //         isLoading.value))
+                                              //       Text(
+                                              //         NumberFormat.currency(
+                                              //           locale: 'id-ID',
+                                              //           symbol: '',
+                                              //           decimalDigits: 0,
+                                              //         ).format(double.parse(
+                                              //             '${homeController.balance.value}')),
+                                              //         style: TextStyle(
+                                              //           fontSize: 12.0.sp,
+                                              //           fontWeight:
+                                              //               FontWeight.w600,
+                                              //         ),
+                                              //       ),
+                                              //   ],
+                                              // ),
                                               SizedBox(width: 2.0.w),
-                                              GestureDetector(
-                                                onTap: () async {
-                                                  setState(() {
-                                                    isLoading.value = true;
-                                                  });
-                                                  await Future.delayed(
-                                                      Duration(seconds: 2));
-                                                  await _refreshBalance();
-                                                  setState(() {
-                                                    isLoading.value = false;
-                                                  });
-                                                },
-                                                child: Align(
-                                                  alignment: Alignment.center,
-                                                  child: Icon(
-                                                    Remix.refresh_line,
-                                                    color: blackColor,
-                                                    size: 15.0.sp,
-                                                  ),
-                                                ),
-                                              ),
+                                              // GestureDetector(
+                                              //   onTap: () async {
+                                              //     setState(() {
+                                              //       isLoading.value = true;
+                                              //     });
+                                              //     await Future.delayed(
+                                              //         Duration(seconds: 2));
+                                              //     await _refreshBalance();
+                                              //     setState(() {
+                                              //       isLoading.value = false;
+                                              //     });
+                                              //   },
+                                              //   child: Align(
+                                              //     alignment: Alignment.center,
+                                              //     child: Icon(
+                                              //       Remix.refresh_line,
+                                              //       color: blackColor,
+                                              //       size: 15.0.sp,
+                                              //     ),
+                                              //   ),
+                                              // ),
                                             ],
                                           ),
                                         ],

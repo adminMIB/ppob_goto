@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
         children: [
           HomeView(),
           PromoView(),
-          RiwayatView(),
+          // RiwayatView(),
           AkunView(),
         ],
       ),

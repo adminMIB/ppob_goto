@@ -187,10 +187,10 @@ class AppPages {
       page: () => FingerprintView(),
       binding: FingerprintBinding(),
     ),
-    GetPage(
-      name: _Paths.SALDO,
-      page: () => SaldoView(),
-      binding: SaldoBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.SALDO,
+    //   page: () => SaldoView(),
+    //   binding: SaldoBinding(),
+    // ),
   ];
 }

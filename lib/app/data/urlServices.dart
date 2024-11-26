@@ -28,10 +28,10 @@ class UrlListService {
   //Riwayat
   static const riwayat = 'api/ppob/transaksi_history';
 
-  //Topup saldo
-  static const checkbalance = 'api/ppob/cek_saldo_user';
-  static const topupsaldo = 'api/ppob/inquiry_topSaldo';
-  static const uploadbukti = 'api/ppob/payment_topSaldo';
+  // //Topup saldo
+  // static const checkbalance = 'api/ppob/cek_saldo_user';
+  // static const topupsaldo = 'api/ppob/inquiry_topSaldo';
+  // static const uploadbukti = 'api/ppob/payment_topSaldo';
 
   //Pln Pascabayar
   static const plnpascainquiry = 'api/ppob/product_pln_pasca_inquiry';

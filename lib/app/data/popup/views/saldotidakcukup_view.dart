@@ -67,7 +67,7 @@ class _SaldotidakcukupState extends State<Saldotidakcukup> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Get.to(SaldoView());
+                  // Get.to(SaldoView());
                 },
                 style: ElevatedButton.styleFrom(
                     primary: mainColor,

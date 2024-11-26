@@ -7,6 +7,10 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:ppob_mpay1/app/modules/ewallet/gopay/views/customergopay_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/GotoBpjs_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/goto_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/transaksiGoto_sukses.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pulsa-paketdata/pulsa-paketdata_view.dart';
 import 'package:ppob_mpay1/app/modules/transferbank/controllers/transferbank_controller.dart';
 import 'package:remixicon/remixicon.dart';
@@ -25,6 +29,7 @@ import '../../login/views/login_view.dart';
 import '../../multifinance/views/multifinance_view.dart';
 import '../../saldo/views/saldo_view.dart';
 import '../../tagihan/bpjs/views/bpjs_view.dart';
+import '../../tagihan/pdam/views/bottomGoto.dart';
 import '../../tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
 import '../../tagihan/pdam/controllers/pdam_controller.dart';
 import '../../tagihan/pln/views/plnview.dart';
@@ -42,7 +47,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final pdamController = Get.put(PdamController());
-  final homeController = Get.put(HomeController());
+  // final homeController = Get.put(HomeController());
   final helperController = Get.put(HelperController());
   final detailgoto = Get.put(TransferbankController());
   String? greeting;
@@ -52,27 +57,27 @@ class _HomeViewState extends State<HomeView> {
   bool isRefreshing = false;
   var pref = GetStorage();
   @override
-  void initState() {
-    super.initState();
-    homeController.CheckBalance(context);
-    initGreeting();
-  }
+  // void initState() {
+  //   super.initState();
+  //   homeController.CheckBalance(context);
+  //   initGreeting();
+  // }
 
   // void _handleRefresh() {
   //   homeController.CheckBalance(context);
   // }
 
-  Future<void> _refreshBalance() async {
-    await helperController.loading(context);
-    setState(() {
-      isRefreshing = true;
-    });
-    await homeController.CheckBalance(context);
-    setState(() {
-      isRefreshing = false;
-    });
-    Get.back();
-  }
+  // Future<void> _refreshBalance() async {
+  //   await helperController.loading(context);
+  //   setState(() {
+  //     isRefreshing = true;
+  //   });
+  //   await homeController.CheckBalance(context);
+  //   setState(() {
+  //     isRefreshing = false;
+  //   });
+  //   Get.back();
+  // }
 
   // Future<void> _showLoadingWithDelay() async {
   //   await Future.delayed(Duration(seconds: 2));
@@ -109,6 +114,14 @@ class _HomeViewState extends State<HomeView> {
     'assets/images/iklan1.png',
     'assets/images/iklan2.png',
   ];
+  void _showResponsiveBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => BottomGotoView(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -259,207 +272,207 @@ class _HomeViewState extends State<HomeView> {
                               width: 2,
                             ),
                           ),
-                          child: Obx(
-                            () => Padding(
-                              padding: EdgeInsets.all(2.0.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          if (homeController.balance.value ==
-                                                  '0' &&
-                                              isLoading.value)
-                                            SizedBox(
-                                              width: 12.0,
-                                              height: 12.0,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2.0,
-                                              ),
-                                            ),
-                                          if (!(homeController.balance.value ==
-                                                  '0' &&
-                                              isLoading.value))
-                                            Container(
-                                              width: 40.w,
-                                              // color: blackColor,
-                                              child: FittedBox(
-                                                fit: BoxFit.scaleDown,
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  'Rp. ' +
-                                                      NumberFormat.currency(
-                                                        locale: 'id-ID',
-                                                        symbol: '',
-                                                        decimalDigits: 0,
-                                                      ).format(double.parse(
-                                                          '${homeController.balance.value}')),
-                                                  style: TextStyle(
-                                                    color: mainColor,
-                                                    fontSize: 18.0.sp,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 2.0.h,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/Dompet.png',
-                                          ),
-                                          SizedBox(
-                                            width: 0.5.h,
-                                          ),
-                                          Text(
-                                            'Saldo',
-                                            style: GoogleFonts.dmSans(
-                                              fontSize: 9.sp,
-                                              color: greyColor,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 1.0.h,
-                                          ),
-                                          Container(
-                                            color: Colors.grey,
-                                            height: 3.h,
-                                            width: 1,
-                                          ),
-                                          SizedBox(
-                                            width: 1.0.h,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () async {
-                                              setState(() {
-                                                isLoading.value = true;
-                                              });
-                                              await Future.delayed(
-                                                  Duration(seconds: 2));
-                                              await _refreshBalance();
-                                              setState(() {
-                                                isLoading.value = false;
-                                              });
-                                            },
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Remix.refresh_line,
-                                                  color: greyColor,
-                                                  size: 10.0.sp,
-                                                ),
-                                                SizedBox(
-                                                  width: 0.5.h,
-                                                ),
-                                                Text(
-                                                  'Refresh',
-                                                  style: GoogleFonts.dmSans(
-                                                    fontSize: 9.sp,
-                                                    color: greyColor,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 1.5.h,
-                                  ),
-                                  Container(
-                                    color: Colors.grey,
-                                    height: 10.h,
-                                    width: 1,
-                                  ),
-                                  SizedBox(
-                                    width: 1.5.h,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ElevatedButton.icon(
-                                        onPressed: () {
-                                          Get.to(SaldoView());
-                                          // Get.to(InquirysaldoView());
-                                        },
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.cartPlus,
-                                          color: whiteColor,
-                                          size: 2.0.h,
-                                        ),
-                                        label: Text(
-                                          'Top Up Saldo',
-                                          style: GoogleFonts.dmSans(
-                                            fontSize: 8.sp,
-                                            color: whiteColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: mainColor,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          minimumSize: Size(
-                                            8.w, //panjang
-                                            4.h, //tinggi
-                                          ),
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/Prize.png',
-                                            height: 3.0.h,
-                                            width: 3.0.h,
-                                          ),
-                                          // SizedBox(
-                                          //   width: 0.5.h,
-                                          // ),
-                                          Text(
-                                            'Reward',
-                                            style: GoogleFonts.dmSans(
-                                              fontSize: 9.sp,
-                                              color: thirdColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 1.0.h,
-                                          ),
-                                          Text(
-                                            '10.250,-',
-                                            style: GoogleFonts.dmSans(
-                                              fontSize: 10.sp,
-                                              color: thirdColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // child: Obx(
+                          //   () => Padding(
+                          //     padding: EdgeInsets.all(2.0.h),
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.center,
+                          //       children: [
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.start,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             // Stack(
+                          //             //   alignment: Alignment.center,
+                          //             //   children: [
+                          //             //     if (homeController.balance.value ==
+                          //             //             '0' &&
+                          //             //         isLoading.value)
+                          //             //       SizedBox(
+                          //             //         width: 12.0,
+                          //             //         height: 12.0,
+                          //             //         child: CircularProgressIndicator(
+                          //             //           strokeWidth: 2.0,
+                          //             //         ),
+                          //             //       ),
+                          //             //     if (!(homeController.balance.value ==
+                          //             //             '0' &&
+                          //             //         isLoading.value))
+                          //             //       Container(
+                          //             //         width: 40.w,
+                          //             //         // color: blackColor,
+                          //             //         child: FittedBox(
+                          //             //           fit: BoxFit.scaleDown,
+                          //             //           alignment: Alignment.centerLeft,
+                          //             //           child: Text(
+                          //             //             'Rp. ' +
+                          //             //                 NumberFormat.currency(
+                          //             //                   locale: 'id-ID',
+                          //             //                   symbol: '',
+                          //             //                   decimalDigits: 0,
+                          //             //                 ).format(double.parse(
+                          //             //                     '${homeController.balance.value}')),
+                          //             //             style: TextStyle(
+                          //             //               color: mainColor,
+                          //             //               fontSize: 18.0.sp,
+                          //             //               fontWeight: FontWeight.w700,
+                          //             //             ),
+                          //             //           ),
+                          //             //         ),
+                          //             //       ),
+                          //             //   ],
+                          //             // ),
+                          //             SizedBox(
+                          //               height: 2.0.h,
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 Image.asset(
+                          //                   'assets/images/Dompet.png',
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 0.5.h,
+                          //                 ),
+                          //                 Text(
+                          //                   'Saldo',
+                          //                   style: GoogleFonts.dmSans(
+                          //                     fontSize: 9.sp,
+                          //                     color: greyColor,
+                          //                     fontWeight: FontWeight.w700,
+                          //                   ),
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 1.0.h,
+                          //                 ),
+                          //                 Container(
+                          //                   color: Colors.grey,
+                          //                   height: 3.h,
+                          //                   width: 1,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 1.0.h,
+                          //                 ),
+                          //                 GestureDetector(
+                          //                   onTap: () async {
+                          //                     setState(() {
+                          //                       isLoading.value = true;
+                          //                     });
+                          //                     await Future.delayed(
+                          //                         Duration(seconds: 2));
+                          //                     await _refreshBalance();
+                          //                     setState(() {
+                          //                       isLoading.value = false;
+                          //                     });
+                          //                   },
+                          //                   child: Row(
+                          //                     children: [
+                          //                       Icon(
+                          //                         Remix.refresh_line,
+                          //                         color: greyColor,
+                          //                         size: 10.0.sp,
+                          //                       ),
+                          //                       SizedBox(
+                          //                         width: 0.5.h,
+                          //                       ),
+                          //                       Text(
+                          //                         'Refresh',
+                          //                         style: GoogleFonts.dmSans(
+                          //                           fontSize: 9.sp,
+                          //                           color: greyColor,
+                          //                           fontWeight: FontWeight.w700,
+                          //                         ),
+                          //                       ),
+                          //                     ],
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         SizedBox(
+                          //           width: 1.5.h,
+                          //         ),
+                          //         Container(
+                          //           color: Colors.grey,
+                          //           height: 10.h,
+                          //           width: 1,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 1.5.h,
+                          //         ),
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.start,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             ElevatedButton.icon(
+                          //               onPressed: () {
+                          //                 Get.to(SaldoView());
+                          //                 // Get.to(InquirysaldoView());
+                          //               },
+                          //               icon: FaIcon(
+                          //                 FontAwesomeIcons.cartPlus,
+                          //                 color: whiteColor,
+                          //                 size: 2.0.h,
+                          //               ),
+                          //               label: Text(
+                          //                 'Top Up Saldo',
+                          //                 style: GoogleFonts.dmSans(
+                          //                   fontSize: 8.sp,
+                          //                   color: whiteColor,
+                          //                   fontWeight: FontWeight.w600,
+                          //                 ),
+                          //               ),
+                          //               style: ElevatedButton.styleFrom(
+                          //                 backgroundColor: mainColor,
+                          //                 shape: RoundedRectangleBorder(
+                          //                   borderRadius:
+                          //                       BorderRadius.circular(8),
+                          //                 ),
+                          //                 minimumSize: Size(
+                          //                   8.w, //panjang
+                          //                   4.h, //tinggi
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //             Row(
+                          //               children: [
+                          //                 Image.asset(
+                          //                   'assets/images/Prize.png',
+                          //                   height: 3.0.h,
+                          //                   width: 3.0.h,
+                          //                 ),
+                          //                 // SizedBox(
+                          //                 //   width: 0.5.h,
+                          //                 // ),
+                          //                 Text(
+                          //                   'Reward',
+                          //                   style: GoogleFonts.dmSans(
+                          //                     fontSize: 9.sp,
+                          //                     color: thirdColor,
+                          //                     fontWeight: FontWeight.w600,
+                          //                   ),
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: 1.0.h,
+                          //                 ),
+                          //                 Text(
+                          //                   '10.250,-',
+                          //                   style: GoogleFonts.dmSans(
+                          //                     fontSize: 10.sp,
+                          //                     color: thirdColor,
+                          //                     fontWeight: FontWeight.w600,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                         ),
                         //Akhir Saldo
                         SizedBox(
@@ -584,8 +597,10 @@ class _HomeViewState extends State<HomeView> {
                                       title: 'PDAM',
                                       onTap: () async {
                                         // isLoading.value = true;
-                                        await pdamController.pdam(context);
+                                        // await pdamController.pdam(context);
+
                                         // isLoading.value = false;
+                                        Get.to(TesGotoView());
                                       },
                                     ),
                                     SizedBox(
@@ -595,7 +610,8 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/sehat.png',
                                       title: 'BPJS',
                                       onTap: () {
-                                        Get.to(BpjsView());
+                                        // Get.to(BpjsView());
+                                        Get.to(GotoBPJSView());
                                       },
                                     ),
                                     SizedBox(
@@ -653,10 +669,17 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/transferbank.png',
                                       title: 'Transfer Bank',
                                       onTap: () async {
+                                        Get.to(GotoSuksesView());
                                         // await detailgoto.detailgoto(context);
 
-                                        await detailgoto.inquirygoto(context);
+                                        // await detailgoto.inquirygoto(context);
+
                                         // await detailgoto.paymentgoto(context);
+
+                                        // await detailgoto.cekstatus(context);
+
+                                        // await pdamController.pdam(context);
+
                                         // Get.to(TransferbankView());
                                         // Get.to(contohview());
                                         // showDialog(

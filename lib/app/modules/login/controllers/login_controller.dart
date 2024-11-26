@@ -17,7 +17,7 @@ class LoginController extends GetxController {
     BuildContext context,
   ) async {
     return helperController.post(
-      path: UrlListService.urlLoginGoto,
+      path: 'http://192.168.50.94:3002/api/v1/auth/Login',
       onSuccess: (context) async {
         // print('Login : $context');
 
@@ -58,8 +58,7 @@ class LoginController extends GetxController {
   actlogin(var email, var password, BuildContext context) async {
     await helperController.loading(context);
     return helperController.post(
-      // path: Urlservice2.loginV1,
-      path: 'http://123.176.120.84:3003/api/v1/auth/Login',
+      path: 'http://192.168.50.94:3002/api/v1/auth/Login',
       onSuccess: (context) async {
         Get.back();
         // print('hasil $context');

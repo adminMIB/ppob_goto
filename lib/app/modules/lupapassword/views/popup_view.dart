@@ -16,7 +16,8 @@ class _PopupLupaState extends State<PopupLupa> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 4.5.h, vertical: 30.0.h),
+      insetPadding:
+          EdgeInsets.symmetric(horizontal: 4.5.h, vertical: Get.height * 0.7),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Column(
         children: [
