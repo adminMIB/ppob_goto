@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ppob_mpay1/app/modules/goto/controllers/goto_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/transaksiGoto_sukses.dart';
 import 'package:sizer/sizer.dart';
 
@@ -14,6 +15,9 @@ class BottomGotoView extends StatefulWidget {
   final String? amount;
   final String? productcode;
   final String? productname;
+  final String? accountnumber;
+  final String? id;
+  final String? username;
   BottomGotoView({
     super.key,
     this.screen,
@@ -23,6 +27,9 @@ class BottomGotoView extends StatefulWidget {
     this.amount,
     this.productcode,
     this.productname,
+    this.accountnumber,
+    this.id,
+    this.username,
   });
 
   @override
@@ -30,7 +37,7 @@ class BottomGotoView extends StatefulWidget {
 }
 
 class _BottomGotoViewState extends State<BottomGotoView> {
-  final detailgoto = Get.put(TransferbankController());
+  final detailgoto = Get.put(GotoController());
 
   late Map<String, String> screenData;
 
@@ -186,6 +193,9 @@ class _BottomGotoViewState extends State<BottomGotoView> {
                         widget.amount,
                         widget.productcode,
                         widget.productname,
+                        widget.accountnumber,
+                        widget.id,
+                        widget.username,
                       );
                     },
                     style: ElevatedButton.styleFrom(

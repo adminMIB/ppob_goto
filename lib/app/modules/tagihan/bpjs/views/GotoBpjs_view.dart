@@ -245,8 +245,8 @@ class _GotoBPJSViewState extends State<GotoBPJSView> {
                                           //     idpel.text,
                                           //     bayarHinggaValue,
                                           //     context);
-                                          await detailgoto.inquirygoto(
-                                              context, idpel.text);
+                                          // await detailgoto.inquirygoto(
+                                          //     context, idpel.text);
                                         }
                                       }
                                     : null,

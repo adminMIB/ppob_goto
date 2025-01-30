@@ -11,14 +11,14 @@ import 'package:sizer/sizer.dart';
 
 import '../../../goto/controllers/goto_controller.dart';
 
-class KetenagakerjaanView extends StatefulWidget {
-  const KetenagakerjaanView({Key? key}) : super(key: key);
+class DendabpjsView extends StatefulWidget {
+  const DendabpjsView({Key? key}) : super(key: key);
 
   @override
-  _KetenagakerjaanViewState createState() => _KetenagakerjaanViewState();
+  _DendabpjsViewState createState() => _DendabpjsViewState();
 }
 
-class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
+class _DendabpjsViewState extends State<DendabpjsView> {
   int selectedItemIndex = -1; // -1 berarti tidak ada yang dipilih
   final formkey = GlobalKey<FormState>();
   int wilayah = 0;
@@ -39,7 +39,7 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
   @override
   void initState() {
     super.initState();
-    bpjsController.bpjs_ket(context);
+    // bpjsController.bpjs_ket(context);
   }
 
   @override
@@ -60,7 +60,7 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               title: Text(
-                'BPJS Ketenagakerjaan',
+                'BPJS',
                 style: TextStyle(
                   color: mainColor,
                   fontWeight: FontWeight.w600,
@@ -80,7 +80,6 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    top: 1.h,
                     left: 2.h,
                     right: 2.h,
                   ),
@@ -129,123 +128,7 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
                           },
                         ),
                       ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Text(
-                        'Pilih Nominal Token',
-                        style: TextStyle(
-                          fontSize: 12.0.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.5.h,
-                      ),
-                      //List nominal Token Listrik
-                      Container(
-                        // height: Get.height,
-                        child: Obx(
-                          () => Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: bpjsController.dataBPJSKES.map((element) {
-                              return GestureDetector(
-                                onTap: () async {
-                                  setState(() {
-                                    selectedItemIndex = bpjsController
-                                        .dataBPJSKES
-                                        .indexOf(element);
-                                    productname1 = element['productName'];
-                                    productcode1 = element['id'];
-                                  });
-
-                                  controller.restart();
-                                  if (idpel.text.isEmpty) {
-                                    Flushbar(
-                                      message:
-                                          'Mohon masukkan nomor terlebih dahulu!',
-                                      duration: Duration(seconds: 3),
-                                    )..show(context);
-                                  } else {
-                                    bpjsController.dataBPJSKES ==
-                                        bpjsController.dataBPJSKES;
-                                    // print(plnprabayarController.selectedNominal
-                                    //     .value = element.nominal);
-                                    setState(() {
-                                      selectedItemIndex = bpjsController
-                                          .dataBPJSKES
-                                          .indexOf(element);
-                                    });
-                                  }
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 2.0.h),
-                                  padding: EdgeInsets.all(2.0.h),
-                                  decoration: BoxDecoration(
-                                    color: whiteColor,
-                                    border: selectedItemIndex ==
-                                            bpjsController.dataBPJSKES
-                                                .indexOf(element)
-                                        ? Border.all(color: mainColor, width: 2)
-                                        : null,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.3),
-                                        spreadRadius: 2,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 1),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 40.0.w,
-                                        // color: Colors.red,
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: FittedBox(
-                                            fit: BoxFit.scaleDown,
-                                            child: Text(
-                                              element['productName'],
-                                              style: TextStyle(
-                                                color: mainColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ),
                       Expanded(child: SizedBox()),
-                      // Container(
-                      //   padding: EdgeInsets.all(16.0),
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.amber.withOpacity(0.4),
-                      //     borderRadius: BorderRadius.circular(5),
-                      //   ),
-                      //   child: Text(
-                      //     'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
-                      //     style: TextStyle(
-                      //       fontSize: 11.0.sp,
-                      //       fontWeight: FontWeight.w400,
-                      //     ),
-                      //     textAlign: TextAlign.justify,
-                      //   ),
-                      // ),
-
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
@@ -263,11 +146,9 @@ class _KetenagakerjaanViewState extends State<KetenagakerjaanView> {
                                           //     .plnprabayarInquiry(
                                           //         idpel.text, context);
                                           print('hasil code: $productname1');
-                                          await gotoController.inquirygoto(
+                                          await bpjsController.inquirygotobpjs(
                                             context,
                                             idpel.text,
-                                            productcode1!,
-                                            productname1!,
                                           );
                                         }
                                       }

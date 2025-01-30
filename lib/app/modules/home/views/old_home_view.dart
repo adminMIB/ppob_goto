@@ -422,7 +422,7 @@ class _OldHomeViewState extends State<OldHomeView> {
                                 title: 'PDAM',
                                 onTap: () async {
                                   // isLoading.value = true;
-                                  await pdamController.pdam(context);
+                                  // await pdamController.pdam(context);
                                   // isLoading.value = false;
                                 },
                               ),

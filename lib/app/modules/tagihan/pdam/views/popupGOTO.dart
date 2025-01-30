@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../data/colors.dart';
-import '../../../login/views/login_view.dart';
 import '../../../home/views/home_view.dart';
 
 class PopupGOTO extends StatefulWidget {

@@ -3,10 +3,12 @@ import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/akun/controllers/akun_controller.dart';
+
 import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
 import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
 import 'package:ppob_mpay1/main.dart';
@@ -82,10 +84,10 @@ class _DatapersonalState extends State<Datapersonal> {
                           padding: EdgeInsets.only(right: 8),
                           child: Text(
                             'Informasi Akun',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: whiteColor,
+                            style: GoogleFonts.openSans(
+                              fontSize: 14.0.sp, // Ukuran font sesuai Sizer
+                              fontWeight: FontWeight.w500, // Berat font
+                              color: whiteColor, // Warna teks
                             ),
                           ),
                         ),
@@ -96,10 +98,11 @@ class _DatapersonalState extends State<Datapersonal> {
                               getInitials(
                                 pref.read('nama_lengkap'),
                               ),
-                              style: TextStyle(
-                                  color: mainColor,
-                                  fontSize: 14.0.sp,
-                                  fontWeight: FontWeight.bold),
+                              style: GoogleFonts.openSans(
+                                fontSize: 12.0.sp, // Ukuran font sesuai Sizer
+                                fontWeight: FontWeight.bold, // Berat font
+                                color: blackColor, // Warna teks
+                              ),
                             )),
                       ],
                     ),
@@ -149,10 +152,12 @@ class _DatapersonalState extends State<Datapersonal> {
                                     children: [
                                       Text(
                                         'Data Personal',
-                                        style: TextStyle(
-                                          fontSize: 12.0.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: whiteColor,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w500, // Berat font
+                                          color: whiteColor, // Warna teks
                                         ),
                                       ),
                                       Icon(
@@ -180,26 +185,29 @@ class _DatapersonalState extends State<Datapersonal> {
                                     children: [
                                       Text(
                                         'Nama Lengkap',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: Colors.black87, // Warna teks
                                         ),
                                       ),
                                       SizedBox(
                                         height: 1.h,
                                       ),
-                                      Obx(
-                                        () => Text(
-                                          // '${akunController.userProfile}'
-                                          '${akunController.userProfile['nama_lengkap'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                      Text(
+                                        pref.read(
+                                          "nama_lengkap",
                                         ),
-                                      ),
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: blackColor, // Warna teks
+                                        ),
+                                      )
                                     ],
                                   ),
                                   SizedBox(
@@ -217,26 +225,29 @@ class _DatapersonalState extends State<Datapersonal> {
                                     children: [
                                       Text(
                                         'Username',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: Colors.black87, // Warna teks
                                         ),
                                       ),
                                       SizedBox(
                                         height: 1.h,
                                       ),
-                                      Obx(
-                                        () => Text(
-                                          // '${akunController.userProfile}'
-                                          '${akunController.userProfile['username'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                      Text(
+                                        pref.read(
+                                          "username",
                                         ),
-                                      ),
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: blackColor, // Warna teks
+                                        ),
+                                      )
                                     ],
                                   ),
                                   SizedBox(
@@ -254,25 +265,29 @@ class _DatapersonalState extends State<Datapersonal> {
                                     children: [
                                       Text(
                                         'Email',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: Colors.black87, // Warna teks
                                         ),
                                       ),
                                       SizedBox(
                                         height: 1.h,
                                       ),
-                                      Obx(
-                                        () => Text(
-                                          '${akunController.userProfile['email'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                      Text(
+                                        pref.read(
+                                          "email",
                                         ),
-                                      ),
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: blackColor, // Warna teks
+                                        ),
+                                      )
                                     ],
                                   ),
                                   SizedBox(
@@ -290,63 +305,29 @@ class _DatapersonalState extends State<Datapersonal> {
                                     children: [
                                       Text(
                                         'Nomor Telepon',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: Colors.black87, // Warna teks
                                         ),
                                       ),
                                       SizedBox(
                                         height: 1.h,
                                       ),
-                                      Obx(
-                                        () => Text(
-                                          // '${akunController.userProfile}'
-                                          '${akunController.userProfile['nomor_telepon'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 1.0.h,
-                                  ),
-                                  Divider(
-                                    color: Colors.grey.shade500,
-                                  ),
-                                  SizedBox(
-                                    height: 1.0.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
                                       Text(
-                                        'Alamat',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
+                                        pref.read(
+                                          "nomer_tlp",
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 1.h,
-                                      ),
-                                      Obx(
-                                        () => Text(
-                                          // '${akunController.userProfile}'
-                                          '${akunController.userProfile['alamat'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: blackColor, // Warna teks
                                         ),
-                                      ),
+                                      )
                                     ],
                                   ),
                                   SizedBox(
@@ -358,40 +339,75 @@ class _DatapersonalState extends State<Datapersonal> {
                                   SizedBox(
                                     height: 1.0.h,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Kota',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 1.h,
-                                      ),
-                                      Obx(
-                                        () => Text(
-                                          // '${akunController.userProfile}'
-                                          '${akunController.userProfile['kota'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 1.0.h,
-                                  ),
-                                  Divider(
-                                    color: Colors.grey.shade500,
-                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Alamat',
+                                  //       style: TextStyle(
+                                  //         color: Colors.grey.shade600,
+                                  //         fontSize: 14.sp,
+                                  //         fontWeight: FontWeight.w400,
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(
+                                  //       height: 1.h,
+                                  //     ),
+                                  //     Text(
+                                  //       pref.read(
+                                  //         "nama_lengkap",
+                                  //       ),
+                                  //       style: TextStyle(
+                                  //         fontSize: 12.0.sp,
+                                  //         fontWeight: FontWeight.w500,
+                                  //         color: whiteColor,
+                                  //       ),
+                                  //     )
+                                  //   ],
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 1.0.h,
+                                  // ),
+                                  // Divider(
+                                  //   color: Colors.grey.shade500,
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 1.0.h,
+                                  // ),
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Kota',
+                                  //       style: TextStyle(
+                                  //         color: Colors.grey.shade600,
+                                  //         fontSize: 14.sp,
+                                  //         fontWeight: FontWeight.w400,
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(
+                                  //       height: 1.h,
+                                  //     ),
+                                  //     Obx(
+                                  //       () => Text(
+                                  //         '',
+                                  //         style: TextStyle(
+                                  //           color: blackColor,
+                                  //           fontSize: 14.sp,
+                                  //           fontWeight: FontWeight.w500,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 1.0.h,
+                                  // ),
+                                  // Divider(
+                                  //   color: Colors.grey.shade500,
+                                  // ),
                                   SizedBox(
                                     height: 1.0.h,
                                   ),
@@ -401,26 +417,27 @@ class _DatapersonalState extends State<Datapersonal> {
                                     children: [
                                       Text(
                                         'NIK',
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 14.sp,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0.sp,
                                           fontWeight: FontWeight.w400,
+                                          color: Colors.black87,
                                         ),
                                       ),
                                       SizedBox(
                                         height: 1.h,
                                       ),
-                                      Obx(
-                                        () => Text(
-                                          // '${akunController.userProfile}'
-                                          '${akunController.userProfile['nik'] ?? ''}',
-                                          style: TextStyle(
-                                            color: blackColor,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                      Text(
+                                        pref.read(
+                                          "nik",
                                         ),
-                                      ),
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12.0
+                                              .sp, // Ukuran font sesuai Sizer
+                                          fontWeight:
+                                              FontWeight.w400, // Berat font
+                                          color: blackColor, // Warna teks
+                                        ),
+                                      )
                                     ],
                                   ),
                                   SizedBox(

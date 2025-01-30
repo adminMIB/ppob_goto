@@ -199,18 +199,18 @@ class _PinViewState extends State<PinView> {
                           context,
                         );
                       } else if (widget.tipeTransaksi == 'pdam') {
-                        await pdamController.pdampayment(
-                            widget.productName,
-                            widget.productCode,
-                            widget.idpel,
-                            widget.ref1,
-                            widget.ref2,
-                            widget.total_payment,
-                            widget.harga,
-                            widget.admin,
-                            widget.periode,
-                            v,
-                            context);
+                        // await pdamController.pdampayment(
+                        //     widget.productName,
+                        //     widget.productCode,
+                        //     widget.idpel,
+                        //     widget.ref1,
+                        //     widget.ref2,
+                        //     widget.total_payment,
+                        //     widget.harga,
+                        //     widget.admin,
+                        //     widget.periode,
+                        //     v,
+                        //     context);
                       } else if (widget.tipeTransaksi == 'plnpasca') {
                         await plnController.plnpascapayment(
                           widget.periode,

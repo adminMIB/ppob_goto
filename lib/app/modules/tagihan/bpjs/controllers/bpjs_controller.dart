@@ -12,6 +12,9 @@ import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/input_tlp_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/resibpjskes_gagal_view.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/resibpjskes_sukses_view.dart';
 
+import '../../../../data/urlservices2.dart';
+import '../../pdam/views/bottomGoto.dart';
+
 class BpjsController extends GetxController {
   final network = Get.put(NetworkHelper());
   final helperController = Get.put(HelperController());
@@ -20,6 +23,9 @@ class BpjsController extends GetxController {
 
   int currentMonth = DateTime.now().month;
   List months = [].obs;
+  final originalData = [].obs;
+  var filteredData = [].obs; // Data yang telah difilter dan diurutkan
+  final dataBPJSKES = [].obs;
   var monthInt;
   //  List<String> years = [].obs;
   @override
@@ -27,6 +33,174 @@ class BpjsController extends GetxController {
     getMonthsInYear(12);
 
     super.onInit();
+  }
+
+  inquirygotobpjs(
+    BuildContext context,
+    var idpel,
+  ) async {
+    var access_token = pref.read('access_token');
+    var username = pref.read('username');
+    var id = pref.read('id');
+    await helperController.loading(context);
+    return helperController.post(
+        // path: 'http://192.168.50.128:3002/api/v1/goto/inquiry',
+        path: UrlListService2.inquiryGoto,
+        headers: {
+          'Authorization': 'Bearer $access_token',
+        },
+        onSuccess: (content) {
+          Get.back();
+          print('hasil inquriry :  $content');
+          print('screen : ${content['response']['data']['screen']}');
+          // Get.to(BottomGotoView(
+          //   screen: content['response']['data']['screen'],
+
+          // ));
+          print('idpelll $idpel');
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (_) => BottomGotoView(
+              screen: content['response']['data']['screen'],
+              idpel: idpel,
+              retrievalReferenceNumber: content['response']['data']
+                  ['retrievalReferenceNumber'],
+              transactionDateTime: content['response']['data']
+                  ['transactionDateTime'],
+              amount: content['response']['data']['amount'],
+              productcode: 'bpjs-denda',
+              productname: 'BPJS Denda BPJS Denda',
+            ),
+          );
+        },
+        onError: (onError) {
+          print('error: $onError');
+          if (onError['status'] == false) {
+            var responseCode = onError['response']?['responseCode'];
+            var responseMessage = onError['response']?['responseMessage'] ??
+                "Tunggu beberapa saat lagi";
+
+            if (responseCode == 400 && responseMessage == "Invalid Number") {
+              helperController.popUpMessage("Tagihan sudah dibayar", context);
+            } else {
+              helperController.popUpMessage(responseMessage, context);
+            }
+          } else {
+            helperController.popUpMessage("Tunggu beberapa saat lagi", context);
+          }
+        },
+        body: {
+          //pdam
+          "productCode": 'bpjs-denda',
+          "accountNumber": idpel,
+          "productName": 'BPJS Denda BPJS Denda',
+          "username": username,
+          "user_id": id
+        });
+  }
+
+  bpjs_ket(
+    BuildContext context,
+  ) async {
+    await helperController.loading(context);
+    var access_token = pref.read('access_token');
+    return helperController.get(
+      path: UrlListService2.getProduct,
+      headers: {
+        'Authorization': 'Bearer $access_token',
+      },
+      onSuccess: (content) {
+        Get.back();
+        print("token $access_token");
+        var products = content['response']['data'];
+
+        // Filter data untuk menghapus produk dengan '-gopay' atau '-keluarga'
+        // var filteredProducts = products.where((product) {
+        //   return !(product['id'].contains('-gopay') ||
+        //       product['id'].contains('-keluarga'));
+        // }).toList();
+
+        // Membersihkan duplikasi pada productName
+        for (var product in products) {
+          product['productName'] = product['productName']
+              .replaceFirst(RegExp(r'^BPJS Ketenagakerjaan '), '');
+        }
+
+        // Urutkan berdasarkan bulan (angka pada 'id')
+        products.sort((a, b) {
+          // Ekstraksi angka bulan dari id
+          int monthA = int.parse(
+              RegExp(r'(\d+)month').firstMatch(a['id'])?.group(1) ?? '0');
+          int monthB = int.parse(
+              RegExp(r'(\d+)month').firstMatch(b['id'])?.group(1) ?? '0');
+          return monthA.compareTo(monthB);
+        });
+
+        originalData.assignAll(products);
+        dataBPJSKES.assignAll(originalData);
+
+        print('Filtered Products: $originalData');
+      },
+      onError: (onError) {
+        print('error : $onError');
+      },
+      body: {
+        'keyword': 'bpjs-ketenagakerjaan',
+      },
+    );
+  }
+
+  bpjs_kes(
+    BuildContext context,
+  ) async {
+    await helperController.loading(context);
+    var access_token = pref.read('access_token');
+    return helperController.get(
+      path: UrlListService2.getProduct,
+      headers: {
+        'Authorization': 'Bearer $access_token',
+      },
+      onSuccess: (content) {
+        Get.back();
+        print("token $access_token");
+        var products = content['response']['data'];
+
+        // Filter data untuk menghapus produk dengan '-gopay' atau '-keluarga'
+        var filteredProducts = products.where((product) {
+          return !(product['id'].contains('-gopay') ||
+              product['id'].contains('-keluarga'));
+        }).toList();
+
+        // Membersihkan duplikasi pada productName
+        for (var product in filteredProducts) {
+          product['productName'] = product['productName']
+              .replaceFirst(RegExp(r'^BPJS Kesehatan '), '');
+        }
+
+        // Urutkan berdasarkan bulan (angka pada 'id')
+        filteredProducts.sort((a, b) {
+          // Ekstraksi angka bulan dari id
+          int monthA = int.parse(
+              RegExp(r'(\d+)month').firstMatch(a['id'])?.group(1) ?? '0');
+          int monthB = int.parse(
+              RegExp(r'(\d+)month').firstMatch(b['id'])?.group(1) ?? '0');
+          return monthA.compareTo(monthB);
+        });
+
+        originalData.assignAll(filteredProducts);
+        dataBPJSKES.assignAll(originalData);
+
+        print('Sorted and Cleaned Products: $filteredProducts');
+      },
+      onError: (onError) {
+        print('error : $onError');
+      },
+      body: {
+        'keyword': 'bpjs-kesehatan',
+      },
+    );
   }
 
   List getMonthsInYear(int length) {

@@ -3,11 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:get/get.dart';
+import 'package:ppob_mpay1/app/modules/goto/controllers/goto_controller.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../data/colors.dart';
 import '../../../../data/controller/helpercontroller.dart';
+import '../../../transferbank/controllers/transferbank_controller.dart';
 import '../controllers/pdam_controller.dart';
 
 class WilayahView extends StatefulWidget {
@@ -34,6 +36,7 @@ class _WilayahViewState extends State<WilayahView> {
 
   final pdamController = Get.put(PdamController());
   final helperController = Get.put(HelperController());
+  final detailgoto = Get.put(GotoController());
 
   PhoneContact? _phoneContact;
 
@@ -113,7 +116,7 @@ class _WilayahViewState extends State<WilayahView> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: TextFormField(
                       minLines: 1,
-                      maxLength: 10,
+                      // maxLength: 10,
                       controller: idpel,
                       onChanged: (a) {
                         setState(() {
@@ -174,11 +177,17 @@ class _WilayahViewState extends State<WilayahView> {
                                 // idpel.text.length >= 7
                                 ? () async {
                                     if (formkey.currentState!.validate()) {
-                                      await pdamController.pdaminquiry(
-                                          idpel.text,
-                                          widget.productCode,
-                                          widget.productName,
-                                          context);
+                                      // await pdamController.pdaminquiry(
+                                      //     idpel.text,
+                                      //     widget.productCode,
+                                      //     widget.productName,
+                                      //     context);
+                                      await detailgoto.inquirygoto(
+                                        context,
+                                        idpel.text,
+                                        widget.productCode,
+                                        widget.productName,
+                                      );
                                     }
                                   }
                                 : null,

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
@@ -8,6 +8,8 @@ import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/bpjs/controllers/bpjs_controller.dart';
 import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../goto/controllers/goto_controller.dart';
 
 class KesehatanView extends StatefulWidget {
   const KesehatanView({Key? key}) : super(key: key);
@@ -24,444 +26,290 @@ class _KesehatanViewState extends State<KesehatanView> {
 
   final bpjsController = Get.put(BpjsController());
   final helperController = Get.put(HelperController());
+  final gotoController = Get.put(GotoController());
   //  final detailgoto = Get.put(TransferbankController());
 
   var bayarHinggaValue;
+
+  String? productname1;
+  String? productcode1;
 
   int lengthNoTelepon = 0;
 
   @override
   void initState() {
     super.initState();
+    bpjsController.bpjs_kes(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () {
-        controller.restart();
-        FocusScopeNode currentFocus = FocusScope.of(context);
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          controller.restart();
+          FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
-          backgroundColor: whiteColor,
-          body: Stack(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 1.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+            backgroundColor: whiteColor,
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              title: Text(
+                'BPJS',
+                style: TextStyle(
+                  color: mainColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: mainColor,
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ),
+            body: Stack(
+              children: [
+                ListView(
                   children: [
-                    Center(
-                      child: Image.asset(
-                        'assets/images/kesehatan.png',
-                        height: 2.5.h,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: 2.h,
+                        right: 2.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Divider(
-                      color: Colors.black38,
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Text(
-                      'No Meter/ID Pelanggan',
-                      style: TextStyle(
-                        fontSize: 11.0.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    Form(
-                      key: formkey,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      child: SizedBox(
-                        child: TextFormField(
-                          minLines: 1,
-                          maxLength: 20,
-                          controller: idpel,
-                          onChanged: (a) {
-                            setState(() {
-                              wilayah = a.length;
-                              // _isButtonVisible = a.isNotEmpty;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            hintText: 'Masukkan Kode ',
-                            hintStyle: TextStyle(
-                              fontSize: 12.0.sp,
-                              color: Colors.grey.shade500,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'No Meter/ID Pelanggan',
+                            style: TextStyle(
+                              fontSize: 11.0.sp,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                          validator: (value) {
-                            if (wilayah < 7) {
-                              return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    // Text(
-                    //   'Bayar Hingga',
-                    //   style: TextStyle(
-                    //     fontSize: 12.sp,
-                    //     fontWeight: FontWeight.w500,
-                    //   ),
-                    // ),
-                    // SizedBox(height: 1.h),
-                    // Obx(() => DropdownButtonFormField2(
-                    //       isExpanded: true,
-                    //       decoration: InputDecoration(
-                    //         fillColor: Colors.transparent,
-                    //         filled: true,
-                    //         border: OutlineInputBorder(
-                    //           borderRadius: BorderRadius.circular(10),
-                    //           borderSide: BorderSide(color: Colors.grey),
-                    //         ),
-                    //         // Add more decoration..
-                    //       ),
-                    //       hint: const Text(
-                    //         '-- Bayar Hingga Bulan --',
-                    //         style: TextStyle(fontSize: 14),
-                    //       ),
-                    //       items: bpjsController.months.map((value) {
-                    //         return DropdownMenuItem(
-                    //           child: Text(
-                    //             value['name'],
-                    //           ),
-                    //           value: value['value'],
-                    //         );
-                    //       }).toList(),
-                    //       validator: (value) {
-                    //         if (value == null) {
-                    //           return 'Select Bank';
-                    //         }
-                    //         return null;
-                    //       },
-                    //       onChanged: (value) {
-                    //         setState(() {
-                    //           print('Jumlah Bulan: $value');
-                    //           print(value);
-                    //         });
-                    //         bayarHinggaValue = value;
-                    //       },
-                    //       buttonStyleData: const ButtonStyleData(
-                    //         padding: EdgeInsets.only(right: 8),
-                    //       ),
-                    //       iconStyleData: const IconStyleData(
-                    //         icon: Icon(
-                    //           Icons.arrow_drop_down,
-                    //           color: Colors.black45,
-                    //         ),
-                    //         iconSize: 24,
-                    //       ),
-                    //       dropdownStyleData: DropdownStyleData(
-                    //         decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(15),
-                    //         ),
-                    //       ),
-                    //       menuItemStyleData: const MenuItemStyleData(
-                    //         padding: EdgeInsets.symmetric(horizontal: 16),
-                    //       ),
-                    //     )),
-
-                    // SizedBox(
-                    //   height: 2.h,
-                    // ),
-                    // Container(
-                    //   padding: EdgeInsets.all(16.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.amber.withOpacity(0.4),
-                    //     borderRadius: BorderRadius.circular(5),
-                    //   ),
-                    //   child: Text(
-                    //     'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
-                    //     style: TextStyle(
-                    //       fontSize: 11.0.sp,
-                    //       fontWeight: FontWeight.w400,
-                    //     ),
-                    //     textAlign: TextAlign.justify,
-                    //   ),
-                    // ),
-                    Expanded(
-                      child: SizedBox(),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        color: Colors.transparent,
-                        padding: EdgeInsets.only(bottom: 2.h),
-                        child: Center(
-                          child: SizedBox(
-                            width: Get.width,
-                            height: 6.0.h,
-                            child: ElevatedButton(
-                              onPressed: idpel.text.length >= 7
-                                  // idpel.text.length >= 7
-                                  ? () async {
-                                      if (formkey.currentState!.validate()) {
-                                        await bpjsController.bpjskesehatan(
-                                            idpel.text,
-                                            bayarHinggaValue,
-                                            context);
-                                      }
-                                    }
-                                  : null,
-                              style: ElevatedButton.styleFrom(
-                                primary: idpel.text.length >= 7
-                                    ? mainColor
-                                    : Colors.grey.shade700,
-                                shape: RoundedRectangleBorder(
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          Form(
+                            key: formkey,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            child: TextFormField(
+                              minLines: 1,
+                              maxLength: 15,
+                              controller: idpel,
+                              onChanged: (a) {
+                                setState(() {
+                                  wilayah = a.length;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                // elevation: 10,
-                              ),
-                              child: Text(
-                                'Lanjutkan',
-                                style: TextStyle(
-                                  fontSize: 14.0.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFDF8F8),
+                                hintText: 'Masukkan Kode ',
+                                hintStyle: TextStyle(
+                                  fontSize: 12.0.sp,
+                                  color: Colors.grey.shade500,
                                 ),
+                              ),
+                              validator: (value) {
+                                if (wilayah < 7) {
+                                  return 'ID pelanggan minimal 7 angka dan maximal 15 angka';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          Text(
+                            'Pilih Nominal Token',
+                            style: TextStyle(
+                              fontSize: 12.0.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 1.5.h,
+                          ),
+                          //List nominal Token Listrik
+                          Container(
+                            // height: Get.height,
+                            child: Obx(
+                              () => Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children:
+                                    bpjsController.dataBPJSKES.map((element) {
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      setState(() {
+                                        selectedItemIndex = bpjsController
+                                            .dataBPJSKES
+                                            .indexOf(element);
+                                        productname1 = element['productName'];
+                                        productcode1 = element['id'];
+                                      });
+
+                                      controller.restart();
+                                      if (idpel.text.isEmpty) {
+                                        Flushbar(
+                                          message:
+                                              'Mohon masukkan nomor terlebih dahulu!',
+                                          duration: Duration(seconds: 3),
+                                        )..show(context);
+                                      } else {
+                                        bpjsController.dataBPJSKES ==
+                                            bpjsController.dataBPJSKES;
+                                        // print(plnprabayarController.selectedNominal
+                                        //     .value = element.nominal);
+                                        setState(() {
+                                          selectedItemIndex = bpjsController
+                                              .dataBPJSKES
+                                              .indexOf(element);
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 2.0.h),
+                                      padding: EdgeInsets.all(2.0.h),
+                                      decoration: BoxDecoration(
+                                        color: whiteColor,
+                                        border: selectedItemIndex ==
+                                                bpjsController.dataBPJSKES
+                                                    .indexOf(element)
+                                            ? Border.all(
+                                                color: mainColor, width: 2)
+                                            : null,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.3),
+                                            spreadRadius: 2,
+                                            blurRadius: 2,
+                                            offset: Offset(0, 1),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 40.0.w,
+                                            // color: Colors.red,
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  element['productName'],
+                                                  style: TextStyle(
+                                                    color: mainColor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                               ),
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.amber.withOpacity(0.4),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              'Pembayaran tagihan listrik tidak dilakukan pada pukul 23.00 - 00.30 WIB sesuai ketentuan PLN',
+                              style: TextStyle(
+                                fontSize: 11.0.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ),
+
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              color: whiteColor,
+                              padding: EdgeInsets.only(top: 2.h, bottom: 2.h),
+                              child: Center(
+                                child: SizedBox(
+                                  width: Get.width,
+                                  height: 6.0.h,
+                                  child: ElevatedButton(
+                                    onPressed: idpel.text.length >= 7
+                                        ? () async {
+                                            if (formkey.currentState!
+                                                .validate()) {
+                                              // await plnprabayarController
+                                              //     .plnprabayarInquiry(
+                                              //         idpel.text, context);
+                                              print(
+                                                  'hasil code: $productname1');
+                                              await gotoController.inquirygoto(
+                                                context,
+                                                idpel.text,
+                                                productcode1!,
+                                                productname1!,
+                                              );
+                                            }
+                                          }
+                                        : null,
+                                    style: ElevatedButton.styleFrom(
+                                      primary: idpel.text.length >= 7
+                                          ? mainColor
+                                          : Colors.grey.shade700,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      // elevation: 10,
+                                    ),
+                                    child: Text(
+                                      'Lanjutkan',
+                                      style: TextStyle(
+                                        fontSize: 14.0.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFFFDF8F8),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    )
+                    ),
                   ],
-                ),
-              )
-            ],
-          )
-          // Stack(
-          //   children: [
-          //     SafeArea(
-          //         child: SingleChildScrollView(
-          //       child: Column(
-          //         children: [
-          //           AppBar(
-          //             elevation: 0,
-          //             backgroundColor: Colors.transparent,
-          //             leading: IconButton(
-          //               icon: Icon(
-          //                 Icons.arrow_back_ios,
-          //                 color: Colors.black,
-          //               ),
-          //               onPressed: () {
-          //                 Get.back();
-          //               },
-          //             ),
-          //           ),
-          //           Stack(
-          //             children: [
-          //               Column(
-          //                 children: [
-          //                   Center(
-          //                     child: Image.asset(
-          //                       'assets/images/kesehatan.png',
-          //                       height: 1.8.h,
-          //                     ),
-          //                   ),
-          //                   SizedBox(height: 1.5.h),
-          //                   Text(
-          //                     'BPJS Kesehatan',
-          //                     style: TextStyle(
-          //                         color: Colors.black,
-          //                         fontSize: 14.0.sp,
-          //                         fontWeight: FontWeight.w600),
-          //                   ),
-          //                   SizedBox(
-          //                     height: 1.0.h,
-          //                   ),
-          //                   Divider(
-          //                     color: Colors.grey.shade500,
-          //                     indent: 2.0.h,
-          //                     endIndent: 2.0.h,
-          //                   ),
-          //                   SizedBox(
-          //                     height: 2.h,
-          //                   ),
-          //                 ],
-          //               ),
-          //             ],
-          //           ),
-          //           Padding(
-          //             padding: EdgeInsets.only(left: 2.0.h, right: 2.0.h),
-          //             child: Column(
-          //               crossAxisAlignment: CrossAxisAlignment.start,
-          //               children: [
-          //                 Text(
-          //                   'No. VA Keluarga',
-          //                   style: TextStyle(
-          //                     fontSize: 11.0.sp,
-          //                     fontWeight: FontWeight.w400,
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 1.h,
-          //                 ),
-          //                 Form(
-          //                   key: formkey,
-          //                   autovalidateMode: AutovalidateMode.onUserInteraction,
-          //                   child: TextFormField(
-          //                     minLines: 1,
-          //                     maxLength: 20,
-          //                     controller: idpel,
-          //                     onChanged: (a) {
-          //                       setState(() {
-          //                         wilayah = a.length;
-          //                       });
-          //                     },
-          //                     decoration: InputDecoration(
-          //                       border: OutlineInputBorder(
-          //                         borderSide: BorderSide(color: Colors.grey),
-          //                         borderRadius: BorderRadius.circular(10.0),
-          //                       ),
-          //                       hintText: 'Masukkan Kode ',
-          //                       hintStyle: TextStyle(
-          //                         fontSize: 12.0.sp,
-          //                         color: Colors.grey.shade500,
-          //                       ),
-          //                     ),
-          //                     validator: (value) {
-          //                       if (wilayah < 7) {
-          //                         return 'ID pelanggan minimal 7 angka dan maximal 10 angka';
-          //                       }
-          //                       return null;
-          //                     },
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 0.5.h,
-          //                 ),
-          //                 Text(
-          //                   'Bayar Hingga',
-          //                   style: TextStyle(
-          //                     fontSize: 11.0.sp,
-          //                     fontWeight: FontWeight.w400,
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 1.h,
-          //                 ),
-          //                 Obx(() => DropdownButtonFormField2(
-          //                       isExpanded: true,
-          //                       decoration: InputDecoration(
-          //                         fillColor: whiteColor,
-          //                         filled: true,
-          //                         border: OutlineInputBorder(
-          //                           borderRadius: BorderRadius.circular(10),
-          //                           borderSide: BorderSide(color: Colors.grey),
-          //                         ),
-          //                         // Add more decoration..
-          //                       ),
-          //                       hint: const Text(
-          //                         'Bayar Hingga',
-          //                         style: TextStyle(fontSize: 14),
-          //                       ),
-          //                       items: bpjsController.months.map((value) {
-          //                         return DropdownMenuItem(
-          //                           child: Text(
-          //                             value['name'],
-          //                           ),
-          //                           value: value['value'],
-          //                         );
-          //                       }).toList(),
-          //                       validator: (value) {
-          //                         if (value == null) {
-          //                           return 'Select Bank';
-          //                         }
-          //                         return null;
-          //                       },
-          //                       onChanged: (value) {
-          //                         setState(() {
-          //                           print('Jumlah Bulan: $value');
-          //                           print(value);
-          //                         });
-          //                         bayarHinggaValue = value;
-          //                       },
-          //                       buttonStyleData: const ButtonStyleData(
-          //                         padding: EdgeInsets.only(right: 8),
-          //                       ),
-          //                       iconStyleData: const IconStyleData(
-          //                         icon: Icon(
-          //                           Icons.arrow_drop_down,
-          //                           color: Colors.black45,
-          //                         ),
-          //                         iconSize: 24,
-          //                       ),
-          //                       dropdownStyleData: DropdownStyleData(
-          //                         decoration: BoxDecoration(
-          //                           borderRadius: BorderRadius.circular(15),
-          //                         ),
-          //                       ),
-          //                       menuItemStyleData: const MenuItemStyleData(
-          //                         padding: EdgeInsets.symmetric(horizontal: 16),
-          //                       ),
-          //                     )),
-          //                 SizedBox(
-          //                   height: Get.height * 0.35,
-          //                 ),
-          //                 Align(
-          //                   alignment: Alignment.bottomCenter,
-          //                   child: Container(
-          //                       color: whiteColor,
-          //                       padding: EdgeInsets.all(16.0),
-          //                       child: Center(
-          //                           child: SizedBox(
-          //                         width: 41.0.h,
-          //                         height: 6.0.h,
-          //                         child: ElevatedButton(
-          //                           onPressed: () async {
-          //                             // print('masuk');
-          //                             await bpjsController.bpjskesehatan(
-          //                                 idpel.text, bayarHinggaValue, context);
-          //                           },
-          //                           style: ElevatedButton.styleFrom(
-          //                             primary: mainColor,
-          //                             shape: RoundedRectangleBorder(
-          //                               borderRadius: BorderRadius.circular(10.0),
-          //                             ),
-          //                           ),
-          //                           child: Text(
-          //                             'Lanjutkan',
-          //                             style: TextStyle(
-          //                               fontSize: 14.0.sp,
-          //                               fontWeight: FontWeight.bold,
-          //                               color: Color(0xFFFDF8F8),
-          //                             ),
-          //                           ),
-          //                         ),
-          //                       ))),
-          //                 )
-          //               ],
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     ))
-          //   ],
-          // ),
-          ),
-    );
+                )
+              ],
+            )));
   }
 }

@@ -8,6 +8,7 @@ import 'package:ppob_mpay1/app/data/urlServices.dart';
 import '../../../../data/controller/helpercontroller.dart';
 import '../../../../data/controller/network_helper.dart';
 import '../../../../data/popup/views/saldotidakcukup_view.dart';
+import '../../../../data/urlservices2.dart';
 import '../views/prabayar/listrikmodel.dart';
 import '../views/pascabayar/pascaBottomsheet.dart';
 import '../views/pascabayar/transaksigagalpln_view.dart';
@@ -21,6 +22,8 @@ class PlnController extends GetxController {
   var listDenomPrabayarListrik = <TokenListrikModel>[].obs; // Ubah ke RxList
   var pref = GetStorage();
   var selectedNominal = ''.obs;
+  final originalData = [].obs;
+  final dataPLN = [].obs;
 
   final network = Get.put(NetworkHelper());
 
@@ -28,6 +31,67 @@ class PlnController extends GetxController {
   void onInit() {
     super.onInit();
     denomPrabayarListrik();
+  }
+
+  pln_goto(
+    // var idpel,
+    // var productcode,
+    // var productname,
+    BuildContext context,
+  ) async {
+    await helperController.loading(context);
+    var access_token = pref.read('access_token');
+    print('token : $access_token');
+    return helperController.get(
+      path: UrlListService2.getProduct,
+      headers: {
+        'Authorization': 'Bearer $access_token',
+      },
+      onSuccess: (content) {
+        Get.back();
+        print('token:  $access_token');
+        print('hasil : $content');
+        // print(content['response']['data']);
+
+        // originalData.assignAll(content['response']['data']);
+        // dataPLN.assignAll(originalData);
+        var products = content['response']['data'];
+        var filteredProducts = products.where((product) {
+          String productId = product['id'] ?? ''; // Pastikan 'id' ada
+          return productId.endsWith('-sat');
+        }).toList();
+
+        // Urutkan produk berdasarkan harga (termurah terlebih dahulu)
+        filteredProducts.sort((a, b) {
+          double priceA = a['price']?.toDouble() ??
+              0.0; // Pastikan harga adalah tipe double
+          double priceB = b['price']?.toDouble() ?? 0.0;
+          return priceA.compareTo(priceB);
+        });
+
+        originalData.assignAll(products);
+        dataPLN.assignAll(filteredProducts);
+
+        print('Filtered Products: $filteredProducts');
+
+        // Get.to(PdamView());
+      },
+      onError: (onError) {
+        print('error : $onError');
+      },
+      body: {
+        'keyword': 'pln-prepaid',
+      },
+    );
+  }
+
+  void filterData(String query) {
+    if (query.isEmpty) {
+      dataPLN.assignAll(originalData);
+    } else {
+      dataPLN.assignAll(originalData.where((element) =>
+          element['productName'].toLowerCase().contains(query.toLowerCase())));
+    }
   }
 
   void denomPrabayarListrik() {

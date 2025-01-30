@@ -1,10 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/main_page.dart';
+import 'package:ppob_mpay1/app/modules/goto/controllers/goto_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,9 +24,21 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
   TextEditingController idpel = TextEditingController();
   // final plnpascaController = Get.put(PlnController());
   final plnprabayarController = Get.put(PlnController());
+  final pln_goto = Get.put(GotoController());
+
+  String? productname1;
+  String? productcode1;
+
   int wilayah = 0;
   bool _isButtonVisible = false;
+  // var productname;
+  // var productcode;
   @override
+  void initState() {
+    super.initState();
+    plnprabayarController.pln_goto(context);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: whiteColor,
@@ -99,16 +110,24 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                         height: 1.5.h,
                       ),
                       //List nominal Token Listrik
-                      Obx(
-                        () => SingleChildScrollView(
-                          child: Column(
+                      Container(
+                        // height: Get.height,
+                        child: Obx(
+                          () => Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: plnprabayarController
-                                .listDenomPrabayarListrik
-                                .map((element) {
+                            children:
+                                plnprabayarController.dataPLN.map((element) {
                               return GestureDetector(
                                 onTap: () async {
+                                  setState(() {
+                                    selectedItemIndex = plnprabayarController
+                                        .dataPLN
+                                        .indexOf(element);
+                                    productname1 = element['productName'];
+                                    productcode1 = element['id'];
+                                  });
+
                                   controller.restart();
                                   if (idpel.text.isEmpty) {
                                     Flushbar(
@@ -117,13 +136,13 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                                       duration: Duration(seconds: 3),
                                     )..show(context);
                                   } else {
-                                    plnprabayarController.selectedNominal
-                                        .value = element.nominal;
-                                    print(plnprabayarController.selectedNominal
-                                        .value = element.nominal);
+                                    plnprabayarController.dataPLN ==
+                                        plnprabayarController.dataPLN;
+                                    // print(plnprabayarController.selectedNominal
+                                    //     .value = element.nominal);
                                     setState(() {
                                       selectedItemIndex = plnprabayarController
-                                          .listDenomPrabayarListrik
+                                          .dataPLN
                                           .indexOf(element);
                                     });
                                   }
@@ -134,8 +153,7 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                                   decoration: BoxDecoration(
                                     color: whiteColor,
                                     border: selectedItemIndex ==
-                                            plnprabayarController
-                                                .listDenomPrabayarListrik
+                                            plnprabayarController.dataPLN
                                                 .indexOf(element)
                                         ? Border.all(color: mainColor, width: 2)
                                         : null,
@@ -152,20 +170,8 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Container(
-                                        width: 35.0.w,
-                                        // color: Colors.amber,
-                                        child: Text(
-                                          'Token Listrik PLN',
-                                          style: TextStyle(
-                                            fontSize: 11.0.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
                                       Container(
                                         width: 40.0.w,
                                         // color: Colors.red,
@@ -174,12 +180,7 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                                           child: FittedBox(
                                             fit: BoxFit.scaleDown,
                                             child: Text(
-                                              NumberFormat.currency(
-                                                locale: 'id-ID',
-                                                symbol: 'Rp.',
-                                                decimalDigits: 0,
-                                              ).format(
-                                                  int.parse(element.nominal)),
+                                              element['productName'],
                                               style: TextStyle(
                                                 color: mainColor,
                                                 fontWeight: FontWeight.bold,
@@ -228,9 +229,16 @@ class _Prabayar2ViewState extends State<Prabayar2View> {
                                 onPressed: idpel.text.length >= 7
                                     ? () async {
                                         if (formkey.currentState!.validate()) {
-                                          await plnprabayarController
-                                              .plnprabayarInquiry(
-                                                  idpel.text, context);
+                                          // await plnprabayarController
+                                          //     .plnprabayarInquiry(
+                                          //         idpel.text, context);
+                                          print('hasil code: $productname1');
+                                          await pln_goto.inquirygoto(
+                                            context,
+                                            idpel.text,
+                                            productcode1!,
+                                            productname1!,
+                                          );
                                         }
                                       }
                                     : null,

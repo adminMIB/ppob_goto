@@ -3,21 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
-import 'package:ppob_mpay1/app/modules/ewallet/gopay/views/customergopay_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/bpjs/views/GotoBpjs_view.dart';
-import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/goto_view.dart';
+import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/cobawell.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pdam/views/transaksiGoto_sukses.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pulsa-paketdata/pulsa-paketdata_view.dart';
 import 'package:ppob_mpay1/app/modules/transferbank/controllers/transferbank_controller.dart';
-import 'package:remixicon/remixicon.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '../../../../main.dart';
@@ -27,15 +22,12 @@ import '../../../data/controller/helpercontroller.dart';
 import '../../ewallet/ewallet.dart';
 import '../../login/views/login_view.dart';
 import '../../multifinance/views/multifinance_view.dart';
-import '../../saldo/views/saldo_view.dart';
-import '../../tagihan/bpjs/views/bpjs_view.dart';
+import '../../tagihan/bpjs/views/goto_all_bpjs.dart';
 import '../../tagihan/pdam/views/bottomGoto.dart';
 import '../../tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
 import '../../tagihan/pdam/controllers/pdam_controller.dart';
 import '../../tagihan/pln/views/plnview.dart';
-import '../../tagihan/pulsa-paketdata/pulsa/views/pulsa_view.dart';
 import '../../tagihan/telco/views/telco_view.dart';
-import '../controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
   String? balance;
@@ -597,10 +589,10 @@ class _HomeViewState extends State<HomeView> {
                                       title: 'PDAM',
                                       onTap: () async {
                                         // isLoading.value = true;
-                                        // await pdamController.pdam(context);
+                                        await pdamController.pdam3(context);
 
                                         // isLoading.value = false;
-                                        Get.to(TesGotoView());
+                                        // Get.to(TesGotoView());
                                       },
                                     ),
                                     SizedBox(
@@ -611,7 +603,8 @@ class _HomeViewState extends State<HomeView> {
                                       title: 'BPJS',
                                       onTap: () {
                                         // Get.to(BpjsView());
-                                        Get.to(GotoBPJSView());
+                                        Get.to(GotoAll());
+                                        // Get.to(GotoBPJSView());
                                       },
                                     ),
                                     SizedBox(
@@ -669,7 +662,8 @@ class _HomeViewState extends State<HomeView> {
                                       image: 'assets/images/transferbank.png',
                                       title: 'Transfer Bank',
                                       onTap: () async {
-                                        Get.to(GotoSuksesView());
+                                        // Get.to(GotoSuksesView());
+                                        Get.to(Cobawel());
                                         // await detailgoto.detailgoto(context);
 
                                         // await detailgoto.inquirygoto(context);

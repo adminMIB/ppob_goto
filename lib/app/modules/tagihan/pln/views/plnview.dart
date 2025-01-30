@@ -32,7 +32,7 @@ class _Pln2ViewState extends State<Pln2View>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     // plnpasca.plnpascainquiry(idpel.text, context);
   }
 
@@ -106,7 +106,7 @@ class _Pln2ViewState extends State<Pln2View>
                   tabs: [
                     Tab(text: 'Token'),
                     Tab(text: 'Tagihan'),
-                    Tab(text: 'Non-Tagihan'),
+                    // Tab(text: 'Non-Tagihan'),
                   ],
                   // onTap: (index) {
                   //   // Menyimpan nilai tab yang dipilih
@@ -133,7 +133,7 @@ class _Pln2ViewState extends State<Pln2View>
                   Prabayar2View(),
                   // Replace with your second tab content
                   PascaView(),
-                  Center(child: Text('Tab 3 content')),
+                  // Center(child: Text('Tab 3 content')),
                 ],
               ),
             ),

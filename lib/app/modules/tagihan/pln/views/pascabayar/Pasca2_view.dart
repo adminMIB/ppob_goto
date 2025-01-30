@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:get/get.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
+import 'package:ppob_mpay1/app/modules/goto/controllers/goto_controller.dart';
 import 'package:ppob_mpay1/app/modules/tagihan/pln/controllers/pln_controller.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,6 +22,8 @@ class _PascaViewState extends State<PascaView> {
   final formkey = GlobalKey<FormState>();
   TextEditingController idpel = TextEditingController();
   final plnpascaController = Get.put(PlnController());
+  final gotocontroller = Get.put(GotoController());
+
   int wilayah = 0;
   bool _isButtonVisible = false;
   @override
@@ -111,8 +115,26 @@ class _PascaViewState extends State<PascaView> {
                                 // idpel.text.length >= 7
                                 ? () async {
                                     if (formkey.currentState!.validate()) {
-                                      await plnpascaController.plnpascainquiry(
-                                          idpel.text, context);
+                                      // await plnpascaController.plnpascainquiry(
+                                      //     idpel.text, context);
+
+                                      String productcode = dotenv.env['PROD'] ==
+                                              "true"
+                                          ? dotenv
+                                              .env['productCodePostpaidProd']!
+                                          : dotenv
+                                              .env['productCodePostpaidDev']!;
+
+                                      String productname =
+                                          "Tagihan PLN Postpaid";
+                                      print('produkkk : $productcode');
+
+                                      await gotocontroller.inquirygoto(
+                                        context,
+                                        idpel.text,
+                                        productcode,
+                                        productname,
+                                      );
                                     }
                                   }
                                 : null,

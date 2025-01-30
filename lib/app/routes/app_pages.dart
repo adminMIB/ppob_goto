@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/akun_view.dart';
+
 import '../modules/akun/bindings/akun_binding.dart';
+import '../modules/akun/views/akun_view.dart';
 import '../modules/ewallet/brizzi/bindings/brizzi_binding.dart';
 import '../modules/ewallet/brizzi/views/brizzi_view.dart';
 import '../modules/ewallet/dana/bindings/dana_binding.dart';
@@ -14,6 +15,8 @@ import '../modules/ewallet/ovo/bindings/ovo_binding.dart';
 import '../modules/ewallet/ovo/views/ovo_view.dart';
 import '../modules/fingerprint/bindings/fingerprint_binding.dart';
 import '../modules/fingerprint/views/fingerprint_view.dart';
+import '../modules/goto/bindings/goto_binding.dart';
+import '../modules/goto/views/goto_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -22,15 +25,10 @@ import '../modules/lupapassword/bindings/lupapassword_binding.dart';
 import '../modules/lupapassword/views/lupapassword_view.dart';
 import '../modules/multifinance/bindings/multifinance_binding.dart';
 import '../modules/multifinance/views/multifinance_view.dart';
-import '../modules/tagihan/pulsa-paketdata/paketdata/bindings/paketdata_binding.dart';
-import '../modules/tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
 import '../modules/pin/bindings/pin_binding.dart';
 import '../modules/pin/views/pin_view.dart';
 import '../modules/promo/bindings/promo_binding.dart';
 import '../modules/promo/views/promo_view.dart';
-import '../modules/tagihan/pln/views/plnview.dart';
-import '../modules/tagihan/pulsa-paketdata/pulsa/bindings/pulsa_binding.dart';
-import '../modules/tagihan/pulsa-paketdata/pulsa/views/pulsa_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/riwayat/bindings/riwayat_binding.dart';
@@ -45,6 +43,11 @@ import '../modules/tagihan/bpjs/views/bpjs_view.dart';
 import '../modules/tagihan/pdam/bindings/pdam_binding.dart';
 import '../modules/tagihan/pdam/views/pdam_view.dart';
 import '../modules/tagihan/pln/bindings/pln_binding.dart';
+import '../modules/tagihan/pln/views/plnview.dart';
+import '../modules/tagihan/pulsa-paketdata/paketdata/bindings/paketdata_binding.dart';
+import '../modules/tagihan/pulsa-paketdata/paketdata/views/paketdata_view.dart';
+import '../modules/tagihan/pulsa-paketdata/pulsa/bindings/pulsa_binding.dart';
+import '../modules/tagihan/pulsa-paketdata/pulsa/views/pulsa_view.dart';
 import '../modules/tagihan/telco/bindings/telco_binding.dart';
 import '../modules/tagihan/telco/views/telco_view.dart';
 import '../modules/tagihan/views/tagihan_view.dart';
@@ -192,5 +195,10 @@ class AppPages {
     //   page: () => SaldoView(),
     //   binding: SaldoBinding(),
     // ),
+    GetPage(
+      name: _Paths.GOTO,
+      page: () => const GotoView(),
+      binding: GotoBinding(),
+    ),
   ];
 }

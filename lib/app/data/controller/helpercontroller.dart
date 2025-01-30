@@ -15,25 +15,67 @@ class HelperController extends getx.GetxController {
   final Dio _client = Dio(
     BaseOptions(
       // baseUrl: UrlListService.baseUrl,
-      baseUrl: Urlservice2.urlbase,
+      baseUrl: UrlListService2.baseUrl,
       contentType: Headers.formUrlEncodedContentType,
     ),
   );
 
-  Future<Object?> get<T>(
-      {@required String? path,
-      @required T Function(dynamic data)? onSuccess,
-      @required T Function(dynamic error)? onError,
-      Map<String, dynamic>? headers,
-      Map<String, dynamic>? queryParameters,
-      bool isRawResult = false,
-      bool isResultCode = false}) async {
+  // Future<Object?> get<T>(
+  //     {@required String? path,
+  //     @required T Function(dynamic data)? onSuccess,
+  //     @required T Function(dynamic error)? onError,
+  //     Map<String, dynamic>? headers,
+  //     Map<String, dynamic>? queryParameters,
+  //     bool isRawResult = false,
+  //     bool isResultCode = false}) async {
+  //   bool result = await InternetConnectionChecker().hasConnection;
+  //   if (result == true) {
+  //     try {
+  //       final response = await _client.get(
+  //         path!,
+  //         options: Options(headers: headers),
+  //         queryParameters: queryParameters,
+  //       );
+
+  //       return isRawResult
+  //           ? onSuccess!(response.data)
+  //           : onSuccess!(response.data);
+  //     } on DioError catch (e) {
+  //       print('${e.message} for $path');
+  //       print('Full response in onError: ${e.response?.toString()}');
+
+  //       return isResultCode
+  //           ? onError!(e.response?.statusCode)
+  //           : onError!(e.response?.data);
+  //     } catch (e) {
+  //       print(e.toString());
+  //       return onError!(e);
+  //     }
+  //   } else {
+  //     // getx.Get.offAll(const NoConnectionPage());
+  //   }
+  // }
+
+  Future<Object?> get<T>({
+    @required String? path,
+    @required T Function(dynamic data)? onSuccess,
+    @required T Function(dynamic error)? onError,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body, // Body sebagai parameter
+    bool isRawResult = false,
+    bool isResultCode = false,
+  }) async {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
       try {
-        final response = await _client.get(
+        final response = await _client.request(
           path!,
-          options: Options(headers: headers),
+          options: Options(
+            method: 'GET', // Memaksa metode menjadi GET
+            headers: headers,
+          ),
+          data: body, // Menambahkan body ke dalam permintaan
           queryParameters: queryParameters,
         );
 
@@ -52,7 +94,7 @@ class HelperController extends getx.GetxController {
         return onError!(e);
       }
     } else {
-      // getx.Get.offAll(const NoConnectionPage());
+      // Handle no connection
     }
   }
 

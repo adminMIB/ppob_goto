@@ -176,7 +176,7 @@ class PulsaController extends GetxController {
     var access_token = pref.read('access_token');
 
     return helperController.get(
-      path: Urlservice2.get_product,
+      path: UrlListService2.getProduct,
       headers: {
         'Authorization': 'Bearer $access_token',
       },

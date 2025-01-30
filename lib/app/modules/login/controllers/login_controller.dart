@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ppob_mpay1/app/data/controller/helpercontroller.dart';
-import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/data/urlservices2.dart';
 import 'package:ppob_mpay1/app/main_page.dart';
 
@@ -17,7 +16,7 @@ class LoginController extends GetxController {
     BuildContext context,
   ) async {
     return helperController.post(
-      path: 'http://192.168.50.94:3002/api/v1/auth/Login',
+      path: UrlListService2.loginGoto,
       onSuccess: (context) async {
         // print('Login : $context');
 
@@ -58,7 +57,9 @@ class LoginController extends GetxController {
   actlogin(var email, var password, BuildContext context) async {
     await helperController.loading(context);
     return helperController.post(
-      path: 'http://192.168.50.94:3002/api/v1/auth/Login',
+      // path: UrlListService2.loginGoto,
+      path: UrlListService2.loginGoto,
+
       onSuccess: (context) async {
         Get.back();
         // print('hasil $context');
@@ -73,13 +74,23 @@ class LoginController extends GetxController {
           // print('access $access_token');
 
           pref.write('nama_lengkap', user['nama_lengkap']);
-          // pref.write()
+          pref.write('username', user['username']);
           pref.write('email', user['email']);
           pref.write('password', user['password']);
           pref.write('nomer_tlp', user['nomer_tlp']);
+          pref.write('foto_ktp', user['foto_ktp']);
+          pref.write('foto_profile', user['foto_profile']);
+          pref.write('nik', user['nik']);
+          pref.write('nama_kerabat', user['nama_kerabat']);
+          pref.write('nomer_tlp_kerabat', user['nomer_tlp_kerabat']);
+          pref.write('alamat_kerabat', user['alamat_kerabat']);
+          pref.write('status_kerabat', user['status_kerabat']);
+          pref.write('namaMerchant', user['namaMerchant']);
           pref.write('createdAt', user['createdAt']);
           pref.write('updatedAt', user['updatedAt']);
           pref.write('access_token', context['acces_token']);
+          pref.write('id', user['id']);
+
           Get.offAll(MainPage());
           // print(context);
         } else {

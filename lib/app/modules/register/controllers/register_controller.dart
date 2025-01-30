@@ -27,7 +27,7 @@ class RegisterController extends GetxController {
   verifiksiOTP(var kodeOTP, var email, BuildContext context) async {
     await helperController.loading(context);
     return helperController.post(
-        path: Urlservice2.otp,
+        path: UrlListService2.otpGoto,
         onSuccess: (content) async {
           print('masuk : $content');
 
@@ -53,7 +53,7 @@ class RegisterController extends GetxController {
   email(BuildContext context, var email) async {
     await helperController.loading(context);
     return helperController.post(
-      path: Urlservice2.email,
+      path: UrlListService2.emailGoto,
       onSuccess: (content) {
         print('sukses : $content');
         Get.off(OTPregisterView(
@@ -100,7 +100,7 @@ class RegisterController extends GetxController {
     // var name_profile = ;
     await helperController.loading(context);
     return helperController.post(
-      path: Urlservice2.registrasiV1,
+      path: UrlListService2.registrasiGoto,
       // path: 'https://3328-139-192-57-138.ngrok-free.app/api/v1/auth/register',
       containsFile: true,
       onSuccess: (content) {

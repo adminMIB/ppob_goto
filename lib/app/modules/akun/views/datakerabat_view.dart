@@ -3,6 +3,7 @@ import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
 import 'package:ppob_mpay1/app/data/urlServices.dart';
@@ -86,10 +87,10 @@ class _DatakerabatState extends State<Datakerabat> {
                           padding: EdgeInsets.only(right: 8),
                           child: Text(
                             'Informasi Akun',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.bold,
-                              color: whiteColor,
+                            style: GoogleFonts.openSans(
+                              fontSize: 14.0.sp, // Ukuran font sesuai Sizer
+                              fontWeight: FontWeight.w500, // Berat font
+                              color: whiteColor, // Warna teks
                             ),
                           ),
                         ),
@@ -100,10 +101,11 @@ class _DatakerabatState extends State<Datakerabat> {
                               getInitials(
                                 pref.read('nama_lengkap'),
                               ),
-                              style: TextStyle(
-                                  color: mainColor,
-                                  fontSize: 14.0.sp,
-                                  fontWeight: FontWeight.bold),
+                              style: GoogleFonts.openSans(
+                                fontSize: 14.0.sp, // Ukuran font sesuai Sizer
+                                fontWeight: FontWeight.bold, // Berat font
+                                color: blackColor, // Warna teks
+                              ),
                             )),
                       ],
                     ),
@@ -154,10 +156,12 @@ class _DatakerabatState extends State<Datakerabat> {
                                   children: [
                                     Text(
                                       'Data Kerabat',
-                                      style: TextStyle(
-                                        fontSize: 12.0.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: whiteColor,
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w500, // Berat font
+                                        color: whiteColor, // Warna teks
                                       ),
                                     ),
                                     Icon(
@@ -185,21 +189,25 @@ class _DatakerabatState extends State<Datakerabat> {
                                   children: [
                                     Text(
                                       'Nama Kerabat',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w400,
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: Colors.black87, // Warna teks
                                       ),
                                     ),
-                                    Obx(
-                                      () => Text(
-                                        // '${akunController.userProfile}'
-                                        '${akunController.kerabat['namaKerabat'] ?? ''}',
-                                        style: TextStyle(
-                                          color: blackColor,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    Text(
+                                      pref.read(
+                                            "nama_kerabat",
+                                          ) ??
+                                          '',
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: blackColor, // Warna teks
                                       ),
                                     ),
                                   ],
@@ -219,26 +227,30 @@ class _DatakerabatState extends State<Datakerabat> {
                                   children: [
                                     Text(
                                       'Alamat Kerabat',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w400,
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: Colors.black87, // Warna teks
                                       ),
                                     ),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    Obx(
-                                      () => Text(
-                                        // '${akunController.userProfile}'
-                                        '${akunController.kerabat['alamat_kerabat'] ?? ''}',
-                                        style: TextStyle(
-                                          color: blackColor,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    Text(
+                                      pref.read(
+                                            "alamat_kerabat",
+                                          ) ??
+                                          '',
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: blackColor, // Warna teks
                                       ),
-                                    ),
+                                    )
                                   ],
                                 ),
                                 SizedBox(
@@ -256,26 +268,30 @@ class _DatakerabatState extends State<Datakerabat> {
                                   children: [
                                     Text(
                                       'Status Kerabat',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w400,
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: Colors.black87, // Warna teks
                                       ),
                                     ),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    Obx(
-                                      () => Text(
-                                        // '${akunController.userProfile}'
-                                        '${akunController.kerabat['status_kerabat'] ?? ''}',
-                                        style: TextStyle(
-                                          color: blackColor,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    Text(
+                                      pref.read(
+                                            "status_kerabat",
+                                          ) ??
+                                          '',
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: blackColor, // Warna teks
                                       ),
-                                    ),
+                                    )
                                   ],
                                 ),
                                 SizedBox(
@@ -293,26 +309,27 @@ class _DatakerabatState extends State<Datakerabat> {
                                   children: [
                                     Text(
                                       'No Telepon Kerabat',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w400,
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: Colors.black87, // Warna teks
                                       ),
                                     ),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    Obx(
-                                      () => Text(
-                                        // '${akunController.userProfile}'
-                                        '${akunController.kerabat['nomer_tlp_kerabat'] ?? ''}',
-                                        style: TextStyle(
-                                          color: blackColor,
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    Text(
+                                      pref.read('nomer_tlp_kerabat') ?? '',
+                                      style: GoogleFonts.openSans(
+                                        fontSize:
+                                            12.0.sp, // Ukuran font sesuai Sizer
+                                        fontWeight:
+                                            FontWeight.w400, // Berat font
+                                        color: blackColor, // Warna teks
                                       ),
-                                    ),
+                                    )
                                   ],
                                 ),
                                 SizedBox(

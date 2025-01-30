@@ -18,7 +18,7 @@ class NetworkHelper {
   final Dio _client = Dio(
     BaseOptions(
       // baseUrl: UrlListService.baseUrl,
-      baseUrl: Urlservice2.urlbase,
+      baseUrl: UrlListService2.baseUrl,
       // receiveTimeout: 10000, // 10 seconds
       // sendTimeout: 10000,
       contentType: Headers.formUrlEncodedContentType,

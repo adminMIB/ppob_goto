@@ -31,10 +31,10 @@ class _PdamViewState extends State<PdamView> {
   var pickNumber = '';
 
   @override
-  void initState() {
-    super.initState();
-    pdamController.pdam(context);
-  }
+  // void initState() {
+  //   super.initState();
+  //   pdamController.pdam3(context);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +45,10 @@ class _PdamViewState extends State<PdamView> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        backgroundColor: Color(0xFF005B96),
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Color(0xFF005B96), // Warna solid untuk AppBar
+          backgroundColor: Colors.transparent,
           title: Text(
             'PDAM',
             style: TextStyle(
@@ -126,7 +127,7 @@ class _PdamViewState extends State<PdamView> {
                                         height: 4.h,
                                       ),
                                       title: Text(
-                                        element['product_name'],
+                                        element['productName'],
                                         style: TextStyle(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.w400,
@@ -136,10 +137,10 @@ class _PdamViewState extends State<PdamView> {
                                         Icons.keyboard_arrow_right_outlined,
                                       ),
                                       onTap: () {
-                                        // Get.to(WilayahView(
-                                        //   productName: element['product_name'],
-                                        //   productCode: element['product_code'],
-                                        // ));
+                                        Get.to(WilayahView(
+                                          productName: element['productName'],
+                                          productCode: element['id'],
+                                        ));
                                       },
                                     ),
                                     Divider(

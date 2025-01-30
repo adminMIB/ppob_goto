@@ -1,19 +1,11 @@
-import 'dart:io';
-import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ppob_mpay1/app/data/colors.dart';
-import 'package:ppob_mpay1/app/data/urlServices.dart';
 import 'package:ppob_mpay1/app/modules/akun/controllers/akun_controller.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/datakerabat_view.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/datapersonal_view.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/fieldkerabat_view.dart';
 import 'package:ppob_mpay1/app/modules/akun/views/fieldmerchant_view.dart';
-import 'package:ppob_mpay1/app/modules/akun/views/profilefield_view.dart';
-import 'package:ppob_mpay1/app/modules/home/controllers/home_controller.dart';
-import 'package:ppob_mpay1/main.dart';
 import 'package:sizer/sizer.dart';
 
 class Datamerchant extends StatefulWidget {
@@ -178,26 +170,24 @@ class _DatamerchantState extends State<Datamerchant> {
                               children: [
                                 Text(
                                   'Nama Merchant',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
+                                  style: GoogleFonts.openSans(
+                                    fontSize:
+                                        12.0.sp, // Ukuran font sesuai Sizer
+                                    fontWeight: FontWeight.w400, // Berat font
+                                    color: Colors.black87, // Warna teks
                                   ),
                                 ),
                                 SizedBox(
                                   height: 1.h,
                                 ),
-                                Obx(
-                                  () => Text(
-                                    // '${akunController.userProfile}'
-                                    '${akunController.merchant['nama_merchant'] ?? ''}',
-                                    style: TextStyle(
-                                      color: blackColor,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                Text(
+                                  pref.read('nama_lengkap'),
+                                  style: GoogleFonts.openSans(
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: blackColor,
                                   ),
-                                ),
+                                )
                               ],
                             ),
                             SizedBox(
@@ -209,36 +199,36 @@ class _DatamerchantState extends State<Datamerchant> {
                             SizedBox(
                               height: 1.0.h,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Alamat Toko',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Obx(
-                                  () => Text(
-                                    // '${akunController.userProfile}'
-                                    '${akunController.merchant['alamat_toko'] ?? ''}',
-                                    style: TextStyle(
-                                      color: blackColor,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 2.0.h,
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     Text(
+                            //       'Alamat Toko',
+                            //       style: TextStyle(
+                            //         color: Colors.grey.shade600,
+                            //         fontSize: 14.sp,
+                            //         fontWeight: FontWeight.w400,
+                            //       ),
+                            //     ),
+                            //     SizedBox(
+                            //       height: 1.h,
+                            //     ),
+                            //     // Obx(
+                            //     //   () => Text(
+                            //     //     // '${akunController.userProfile}'
+                            //     //     '',
+                            //     //     style: TextStyle(
+                            //     //       color: blackColor,
+                            //     //       fontSize: 14.sp,
+                            //     //       fontWeight: FontWeight.w500,
+                            //     //     ),
+                            //     //   ),
+                            //     // ),
+                            //   ],
+                            // ),
+                            // SizedBox(
+                            //   height: 2.0.h,
+                            // ),
                           ],
                         ),
                       ),

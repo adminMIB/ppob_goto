@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:ppob_mpay1/app/modules/goto/controllers/goto_controller.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,6 +21,8 @@ class GotoSuksesView extends StatefulWidget {
   final String? productCode;
   final String? productName;
   final String? accountNumber;
+  final String? id;
+  final String? username;
   const GotoSuksesView({
     super.key,
     this.paymentscreen,
@@ -27,6 +30,8 @@ class GotoSuksesView extends StatefulWidget {
     this.productCode,
     this.productName,
     this.accountNumber,
+    this.id,
+    this.username,
   });
 
   @override
@@ -34,7 +39,7 @@ class GotoSuksesView extends StatefulWidget {
 }
 
 class _GotoSuksesViewState extends State<GotoSuksesView> {
-  final detailgoto = Get.put(TransferbankController());
+  final detailgoto = Get.put(GotoController());
 
   late Map<String, String> screenData;
   //  DateTime parsedDateTime = parseDateTime(widget.tglwaktu ?? '');
@@ -411,11 +416,14 @@ class _GotoSuksesViewState extends State<GotoSuksesView> {
                               child: ElevatedButton(
                                 onPressed: () async {
                                   await detailgoto.cekstatus(
-                                      context,
-                                      widget.retrievalReferenceNumber,
-                                      widget.productCode,
-                                      widget.productName,
-                                      widget.accountNumber);
+                                    context,
+                                    widget.retrievalReferenceNumber,
+                                    widget.productCode,
+                                    widget.productName,
+                                    widget.accountNumber,
+                                    widget.id,
+                                    widget.username,
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: mainColor,
